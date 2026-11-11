@@ -1,0 +1,949 @@
+{
+  "schema_version": "1.0.0",
+  "method_selection": {
+    "schema_version": "1.0.0",
+    "id": "method:bench-dragon",
+    "fingerprint": {
+      "objective": "deterministic simulation, no optimization objective",
+      "data": "physical parameters and required output template; no fitting samples",
+      "mechanism": "planar Archimedean spiral, constant head speed, rigid straight chords",
+      "requested_conclusion": "position and speed at 301 sample times for224 handles, not collision-free safety",
+      "constraints": "positive branch, outward first neighbour, initial condition, dimensions and output rounding"
+    },
+    "model": "spiral and fixed Euclidean chord constraints, differentiated for velocities",
+    "solver": "analytic arc inversion + Brent on certified scalar brackets + velocity recurrence",
+    "selected_candidate_id": "arc-brent",
+    "candidates": [
+      {
+        "id": "arc-brent",
+        "decision": "selected",
+        "premises": [
+          "positive pitch and radius",
+          "time before head origin",
+          "fixed positive chord lengths",
+          "each chord has f(0)<0<f(pi)",
+          "first root in(0,pi)",
+          "nonzero velocity denominator"
+        ],
+        "data": "given parameters only",
+        "sources": [
+          "geometry",
+          "notes"
+        ],
+        "reason": "Uses known analytic arc length, certifies first branch and avoids accumulated head integration error.",
+        "complexity": "O(M*N*K) scalar evaluations; M=301,N=224,K is bracketed-solver work, not claimed fixed or constant.",
+        "risks": [
+          "roundoff near small delta",
+          "denominator conditioning",
+          "no certificate if a bracket condition fails"
+        ],
+        "validation": [
+          "independent quadrature",
+          "rod and velocity residuals",
+          "finite differences",
+          "tighter reference roots"
+        ],
+        "fallback": "Stop at uncertified branch; review geometry/domain before alternative bracket or ODE."
+      },
+      {
+        "id": "ode-head",
+        "decision": "admissible_not_selected",
+        "premises": [
+          "same model and initial state",
+          "smooth right-hand side on positive branch",
+          "tolerances and event at origin explicitly controlled"
+        ],
+        "data": "same parameters",
+        "sources": [
+          "ode",
+          "geometry"
+        ],
+        "reason": "Valid equivalent numerical route, but not needed when an analytic monotone arc map is available; output spacing is not integrator step.",
+        "complexity": "adaptive evaluations plus sequential neighbour roots; stiffness not asserted",
+        "risks": [
+          "integration error can accumulate",
+          "sparse output may miss boundary events"
+        ],
+        "validation": [
+          "arc residual",
+          "step/tolerance refinement and events"
+        ],
+        "fallback": "Review premises before changing method."
+      },
+      {
+        "id": "newton-unbracketed",
+        "decision": "not_selected",
+        "premises": [],
+        "data": "Known coefficients and continuous domain",
+        "sources": [
+          "geometry"
+        ],
+        "reason": "Derivative and local initial guess alone do not certify nearest branch; any use needs safeguarded domain and residual checks.",
+        "complexity": "Not selected; complexity not estimated.",
+        "risks": [],
+        "validation": [],
+        "fallback": "Review premises before changing method."
+      },
+      {
+        "id": "global-nonlinear-optimization",
+        "decision": "not_selected",
+        "premises": [],
+        "data": "Known coefficients and continuous domain",
+        "sources": [
+          "notes"
+        ],
+        "reason": "This subproblem prescribes motion rather than an optimum; a least-squares constraint solve adds dimensions and can settle on an incorrect branch without extra certification.",
+        "complexity": "Not selected; complexity not estimated.",
+        "risks": [],
+        "validation": [],
+        "fallback": "Review premises before changing method."
+      },
+      {
+        "id": "statistical-or-ML-fit",
+        "decision": "not_applicable",
+        "premises": [],
+        "data": "Known coefficients and continuous domain",
+        "sources": [
+          "index"
+        ],
+        "reason": "No training observations, inference target or stochastic mechanism; deterministic parameters do not justify a fitted predictor or significance tests.",
+        "complexity": "Not selected; complexity not estimated.",
+        "risks": [],
+        "validation": [],
+        "fallback": "Review premises before changing method."
+      }
+    ],
+    "coverage_gap": "Seven-category source lacks exact spiral-root proof; proof below is project adaptation, not falsely attributed to copied algorithms.",
+    "conditions_evidence": "Analytical conditional proofs and fresh numeric read-only checks in verification report; observations not universal theorems."
+  },
+  "dossier": {
+    "id": "math:bench-dragon-q1",
+    "structure": "spiral_chain",
+    "symbols": [
+      {
+        "id": "sym:p",
+        "latex": "p",
+        "meaning": "spiral pitch",
+        "unit": "m",
+        "domain": "p>0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:b",
+        "latex": "b",
+        "meaning": "radial coefficient",
+        "unit": "m",
+        "domain": "b=p/(2pi)>0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:t",
+        "latex": "t",
+        "meaning": "elapsed time",
+        "unit": "s",
+        "domain": "0<=t<=T",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:T",
+        "latex": "T",
+        "meaning": "last requested time",
+        "unit": "s",
+        "domain": "T=300",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:v",
+        "latex": "v_0",
+        "meaning": "head speed",
+        "unit": "m/s",
+        "domain": "v0=1>0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:N",
+        "latex": "N",
+        "meaning": "number of handles",
+        "unit": "1",
+        "domain": "N=224 positive integer",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:i",
+        "latex": "i",
+        "meaning": "handle index",
+        "unit": "1",
+        "domain": "i in{0,...,N-1}",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:theta",
+        "latex": "\\theta_i(t)",
+        "meaning": "handle angle",
+        "unit": "1",
+        "domain": "theta_i>0; radians treated dimensionless",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:q0",
+        "latex": "\\theta_{\\mathrm{init}}",
+        "meaning": "head initial angle",
+        "unit": "1",
+        "domain": "32pi",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:X",
+        "latex": "\\mathbf X(\\theta)",
+        "meaning": "curve position",
+        "unit": "m",
+        "domain": "positive theta to R^2",
+        "shape": "2-vector",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:Xi",
+        "latex": "\\mathbf X_i(t)",
+        "meaning": "handle position",
+        "unit": "m",
+        "domain": "X(theta_i(t))",
+        "shape": "2-vector",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:tau",
+        "latex": "\\boldsymbol\\tau(\\theta)",
+        "meaning": "derivative of position with respect to dimensionless angle",
+        "unit": "m",
+        "domain": "theta>0",
+        "shape": "2-vector",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:S",
+        "latex": "S(\\theta)",
+        "meaning": "arc primitive with S(0)=0",
+        "unit": "m",
+        "domain": "theta>=0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:u",
+        "latex": "u",
+        "meaning": "dummy angle of integration",
+        "unit": "1",
+        "domain": "u>=0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:L",
+        "latex": "L_i",
+        "meaning": "straight distance for rod i",
+        "unit": "m",
+        "domain": "i=1..223; L1=2.86,others1.65",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:ell",
+        "latex": "\\ell",
+        "meaning": "positive test rod distance",
+        "unit": "m",
+        "domain": "ell>0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:r",
+        "latex": "r",
+        "meaning": "previous-handle radius in local chord solve",
+        "unit": "m",
+        "domain": "r=b theta_(i-1)>0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:delta",
+        "latex": "\\delta",
+        "meaning": "outward angle difference",
+        "unit": "1",
+        "domain": "0<delta<pi",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:F",
+        "latex": "F(\\delta;r,\\ell)",
+        "meaning": "squared chord residual",
+        "unit": "m^2",
+        "domain": "delta in[0,pi]",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:d",
+        "latex": "\\mathbf d_i",
+        "meaning": "rod vector Xi-Xi-1",
+        "unit": "m",
+        "domain": "i=1..223",
+        "shape": "2-vector",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:omega",
+        "latex": "\\omega_i",
+        "meaning": "angular velocity",
+        "unit": "1/s",
+        "domain": "d theta_i/dt",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:Vi",
+        "latex": "\\mathbf V_i",
+        "meaning": "velocity vector",
+        "unit": "m/s",
+        "domain": "d Xi/dt",
+        "shape": "2-vector",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:Ui",
+        "latex": "U_i",
+        "meaning": "speed magnitude",
+        "unit": "m/s",
+        "domain": "norm Vi>=0",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      },
+      {
+        "id": "sym:D",
+        "latex": "D_i",
+        "meaning": "velocity recurrence denominator",
+        "unit": "m^2",
+        "domain": "d_i dot tau(theta_i)>0 on certified branch",
+        "shape": "scalar",
+        "first_definition": "notation section",
+        "scope": "this subproblem"
+      }
+    ],
+    "assumptions": [
+      {
+        "id": "asm:rigid",
+        "statement": "Fixed straight chord lengths, ideal hinges, no hole clearance dynamics.",
+        "type": "modelling_assumption",
+        "source": "parameters.json and explicit model simplification",
+        "impact": "Not a force or compliance model."
+      },
+      {
+        "id": "asm:branch",
+        "statement": "Follow the outward first root in (0,pi), when the sign bracket is certified.",
+        "type": "branch_convention",
+        "source": "existing approved method and project derivation",
+        "impact": "No claim about roots beyond pi when bracket fails."
+      },
+      {
+        "id": "asm:scope",
+        "statement": "Only handle-centre kinematics for Q1; no collisions, bench swept volume, turn-around or optimization.",
+        "type": "scope_boundary",
+        "source": "user question selection and frozen scope",
+        "impact": "Does not imply collision-free motion or physical safety."
+      }
+    ],
+    "equations": [
+      {
+        "id": "eq:spiral",
+        "latex": "b=\\frac{p}{2\\pi},\\qquad \\mathbf X(\\theta)=b\\theta(\\cos\\theta,\\sin\\theta)^{\\mathsf T}",
+        "symbol_ids": [
+          "sym:b",
+          "sym:p",
+          "sym:X",
+          "sym:theta"
+        ],
+        "assumption_ids": [],
+        "meaning": "Positive Archimedean spiral",
+        "lhs_dimension": "m",
+        "rhs_dimension": "s",
+        "required_symbol_units": {
+          "sym:p": "m",
+          "sym:theta": "1"
+        },
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:tangent",
+        "latex": "\\boldsymbol\\tau(\\theta)=\\mathbf X^{\\prime}(\\theta)=b(\\cos\\theta-\\theta\\sin\\theta,\\sin\\theta+\\theta\\cos\\theta)^{\\mathsf T},\\quad \\|\\boldsymbol\\tau(\\theta)\\|=b\\sqrt{1+\\theta^2}",
+        "symbol_ids": [
+          "sym:tau",
+          "sym:X",
+          "sym:theta",
+          "sym:b"
+        ],
+        "assumption_ids": [],
+        "meaning": "Derivative and arc density",
+        "lhs_dimension": "m",
+        "rhs_dimension": "m",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:arc",
+        "latex": "S(\\theta)=\\int_0^\\theta b\\sqrt{1+u^2}\\,du=\\frac b2\\left(\\theta\\sqrt{1+\\theta^2}+\\operatorname{arsinh}\\theta\\right)",
+        "symbol_ids": [
+          "sym:S",
+          "sym:theta",
+          "sym:b",
+          "sym:u"
+        ],
+        "assumption_ids": [],
+        "meaning": "Exact arc primitive, S(0)=0",
+        "lhs_dimension": "m",
+        "rhs_dimension": "m",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:head",
+        "latex": "\\boxed{S(\\theta_{\\mathrm{init}})-S(\\theta_0(t))=v_0t},\\quad \\theta_{\\mathrm{init}}=32\\pi,\\quad 0\\le t<S(\\theta_{\\mathrm{init}})/v_0",
+        "symbol_ids": [
+          "sym:S",
+          "sym:q0",
+          "sym:theta",
+          "sym:t",
+          "sym:v"
+        ],
+        "assumption_ids": [
+          "asm:scope"
+        ],
+        "meaning": "Head arc equation and validity domain",
+        "lhs_dimension": "m",
+        "rhs_dimension": "m",
+        "required_symbol_units": {
+          "sym:v": "m/s",
+          "sym:t": "s"
+        },
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:head-ode",
+        "latex": "\\boxed{\\omega_0(t)=-\\frac{v_0}{b\\sqrt{1+\\theta_0(t)^2}}}",
+        "symbol_ids": [
+          "sym:omega",
+          "sym:v",
+          "sym:b",
+          "sym:theta"
+        ],
+        "assumption_ids": [],
+        "meaning": "Equivalent head ODE, sign fixed by inward motion",
+        "lhs_dimension": "1/s",
+        "rhs_dimension": "1/s",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:rod",
+        "latex": "\\|\\mathbf X_i(t)-\\mathbf X_{i-1}(t)\\|^2=L_i^2,\\quad i=1,\\ldots,N-1",
+        "symbol_ids": [
+          "sym:Xi",
+          "sym:L",
+          "sym:t",
+          "sym:i",
+          "sym:N"
+        ],
+        "assumption_ids": [
+          "asm:rigid"
+        ],
+        "meaning": "Straight rods, not arc distances",
+        "lhs_dimension": "m^2",
+        "rhs_dimension": "m^2",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:stable-chord",
+        "latex": "\\boxed{F(\\delta;r,\\ell)=(b\\delta)^2+4r(r+b\\delta)\\sin^2(\\delta/2)-\\ell^2=0}",
+        "symbol_ids": [
+          "sym:F",
+          "sym:delta",
+          "sym:r",
+          "sym:ell",
+          "sym:b"
+        ],
+        "assumption_ids": [
+          "asm:rigid",
+          "asm:branch"
+        ],
+        "meaning": "Stable squared-chord residual",
+        "lhs_dimension": "m^2",
+        "rhs_dimension": "m^2",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:chord-derivative",
+        "latex": "\\frac{\\partial F}{\\partial\\delta}=2b^2\\delta+4rb\\sin^2(\\delta/2)+2r(r+b\\delta)\\sin\\delta>0",
+        "symbol_ids": [
+          "sym:F",
+          "sym:delta",
+          "sym:b",
+          "sym:r"
+        ],
+        "assumption_ids": [
+          "asm:branch"
+        ],
+        "meaning": "Strict positivity only when b,r>0 and 0<delta<pi",
+        "lhs_dimension": "m^2",
+        "rhs_dimension": "m^2",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:bracket",
+        "latex": "F(0;r,\\ell)=-\\ell^2<0,\\quad F(\\pi;r,\\ell)=(2r+b\\pi)^2-\\ell^2>0\\quad\\text{if }0<\\ell<2r+b\\pi",
+        "symbol_ids": [
+          "sym:F",
+          "sym:r",
+          "sym:ell",
+          "sym:b"
+        ],
+        "assumption_ids": [
+          "asm:branch"
+        ],
+        "meaning": "Existence needs endpoint sign condition as well as monotonicity",
+        "lhs_dimension": "m^2",
+        "rhs_dimension": "m^2",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:velocity-constraint",
+        "latex": "\\mathbf d_i=\\mathbf X_i-\\mathbf X_{i-1},\\qquad \\mathbf d_i^{\\mathsf T}\\bigl(\\boldsymbol\\tau(\\theta_i)\\omega_i-\\boldsymbol\\tau(\\theta_{i-1})\\omega_{i-1}\\bigr)=0",
+        "symbol_ids": [
+          "sym:d",
+          "sym:Xi",
+          "sym:tau",
+          "sym:theta",
+          "sym:omega",
+          "sym:i"
+        ],
+        "assumption_ids": [
+          "asm:rigid"
+        ],
+        "meaning": "Differentiate constant squared rod length; two-times factor cancels",
+        "lhs_dimension": "m^2/s",
+        "rhs_dimension": "m^2/s",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:velocity",
+        "latex": "\\boxed{\\omega_i=\\frac{\\mathbf d_i^{\\mathsf T}\\boldsymbol\\tau(\\theta_{i-1})}{D_i}\\omega_{i-1}},\\quad D_i=\\mathbf d_i^{\\mathsf T}\\boldsymbol\\tau(\\theta_i)=\\tfrac12\\frac{\\partial F}{\\partial\\delta}>0,\\quad \\mathbf V_i=\\boldsymbol\\tau(\\theta_i)\\omega_i,\\quad U_i=\\|\\mathbf V_i\\|",
+        "symbol_ids": [
+          "sym:omega",
+          "sym:d",
+          "sym:tau",
+          "sym:theta",
+          "sym:D",
+          "sym:Vi",
+          "sym:Ui",
+          "sym:F"
+        ],
+        "assumption_ids": [
+          "asm:rigid",
+          "asm:branch"
+        ],
+        "meaning": "Recurrence and positive denominator on certified branch; values have different units as declared in symbol table",
+        "lhs_dimension": "1/s",
+        "rhs_dimension": "1/s",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      },
+      {
+        "id": "eq:radius-bound",
+        "latex": "S(32\\pi)-S(16\\pi)\\ge\\frac b2\\left((32\\pi)^2-(16\\pi)^2\\right)-16\\pi b=105.6\\pi-4.4>300\\,\\mathrm m",
+        "symbol_ids": [
+          "sym:S",
+          "sym:b"
+        ],
+        "assumption_ids": [],
+        "meaning": "With frozen p=.55m, implies head theta>16pi until300s",
+        "lhs_dimension": "m",
+        "rhs_dimension": "m",
+        "required_symbol_units": {},
+        "evidence_type": "project_derivation"
+      }
+    ],
+    "derivations": [
+      {
+        "id": "derive:arc",
+        "conditions": [
+          "b>0",
+          "theta>=0"
+        ],
+        "equation_ids": [
+          "eq:tangent",
+          "eq:arc"
+        ],
+        "steps": [
+          "Differentiate X componentwise using the product rule.",
+          "Expand squared tangent norm: cross terms cancel and cos²+sin²=1, obtaining b²(1+theta²).",
+          "Use d[theta sqrt(1+theta²)]/dtheta=sqrt(1+theta²)+theta²/sqrt(1+theta²) and d asinh(theta)/dtheta=1/sqrt(1+theta²).",
+          "The sum times b/2 is b sqrt(1+theta²); value at zero vanishes."
+        ],
+        "status": "derived",
+        "open_gaps": []
+      },
+      {
+        "id": "derive:head",
+        "conditions": [
+          "b>0",
+          "v0>0",
+          "0<=t<S(theta_init)/v0"
+        ],
+        "equation_ids": [
+          "eq:head",
+          "eq:head-ode"
+        ],
+        "steps": [
+          "Constant speed along the curve makes traversed length v0*t.",
+          "Inward travel subtracts arc length from S(theta_init).",
+          "Differentiate using the chain rule: -Sprime(theta0)*omega0=v0; divide by positive b sqrt(1+theta0²)."
+        ],
+        "status": "derived",
+        "open_gaps": []
+      },
+      {
+        "id": "derive:chord",
+        "conditions": [
+          "r>0",
+          "b>0",
+          "ell>0"
+        ],
+        "equation_ids": [
+          "eq:rod",
+          "eq:stable-chord"
+        ],
+        "steps": [
+          "Rotate previous handle to angle0 without changing Euclidean distance. Radii are r and r+b*delta.",
+          "Squared distance equals r²+(r+b*delta)²-2r(r+b*delta)cos(delta).",
+          "Regroup as (b*delta)²+2r(r+b*delta)(1-cos(delta)).",
+          "Use 1-cos(delta)=2sin²(delta/2); subtract ell². This avoids subtracting nearly equal O(r²) terms."
+        ],
+        "status": "derived",
+        "open_gaps": []
+      },
+      {
+        "id": "derive:velocity",
+        "conditions": [
+          "constant_chords",
+          "positive_geometry",
+          "branch_scope",
+          "differentiable branch"
+        ],
+        "equation_ids": [
+          "eq:velocity-constraint",
+          "eq:velocity"
+        ],
+        "steps": [
+          "Let d_i=X_i-X_i-1. Differentiate d_i dot d_i=L_i²: 2d_i dot(V_i-V_i-1)=0.",
+          "Apply chain rule V_i=tau(theta_i)*omega_i; rearrange coefficients of omega_i.",
+          "With previous handle fixed, derivative of squared distance with respect to delta is 2d_i dot tau(theta_i).",
+          "Use strict Fdelta>0 on the certified interval; division is justified analytically. A finite-precision threshold is still necessary for conditioning."
+        ],
+        "status": "derived",
+        "open_gaps": []
+      }
+    ],
+    "propositions": [
+      {
+        "id": "prop:head-unique",
+        "conditions": [
+          "b>0",
+          "v0>0",
+          "theta_init>0",
+          "0<=t<S(theta_init)/v0"
+        ],
+        "equation_ids": [
+          "eq:arc",
+          "eq:head"
+        ],
+        "steps": [
+          "S is continuous and strictly increasing because Sprime=b sqrt(1+theta²)>0.",
+          "Right side S(theta_init)-v0t lies in(0,S(theta_init)] so a unique head angle in(0,theta_init] exists by the intermediate value theorem.",
+          "Differentiation gives omega0<0; t=0 returns theta_init. The positive-radius domain ends at the origin, not beyond."
+        ],
+        "status": "proved",
+        "open_gaps": []
+      },
+      {
+        "id": "prop:chord-first-root",
+        "conditions": [
+          "positive_geometry",
+          "constant_chords",
+          "branch_scope",
+          "0<ell<2r+b*pi"
+        ],
+        "equation_ids": [
+          "eq:stable-chord",
+          "eq:chord-derivative",
+          "eq:bracket"
+        ],
+        "steps": [
+          "F is continuous on[0,pi]. Its lower endpoint is strictly negative and upper endpoint strictly positive under the stated chord bound.",
+          "On(0,pi), every term of Fdelta is nonnegative and 2b²delta is strictly positive. Thus F is strictly increasing.",
+          "The intermediate value theorem gives exactly one root delta* in(0,pi). No smaller positive root exists by monotonicity, so it is the first outward root.",
+          "No claim is made about branches outside pi or that no roots exist if the upper sign test fails."
+        ],
+        "status": "proved",
+        "open_gaps": []
+      },
+      {
+        "id": "prop:frozen-interval",
+        "conditions": [
+          "p=.55m",
+          "v0=1m/s",
+          "theta_init=32pi",
+          "0<=t<=300s",
+          "L_i<=2.86m"
+        ],
+        "equation_ids": [
+          "eq:radius-bound",
+          "eq:bracket"
+        ],
+        "steps": [
+          "For u>=0, u<=sqrt(1+u²)<=u+1; integrate to bound S(32pi) from below and S(16pi) from above.",
+          "The resulting difference is105.6pi-4.4>300m (already follows from pi>3). Thus at300s the head theta remains>16pi and radius>4.4m; earlier radii are larger.",
+          "Induct along the outward chain: every previous radius is>4.4m. Hence 2r+b*pi>9.075m>2.86m, certifying each neighbour bracket throughout the continuous interval.",
+          "At each finite stage the implicit-function derivative Fdelta is positive, so differentiability and the velocity recurrence hold locally; no uniform floating-point condition-number bound is asserted."
+        ],
+        "status": "proved",
+        "open_gaps": []
+      }
+    ],
+    "unproved_or_out_of_scope": [
+      "collision absence",
+      "global stability bound",
+      "all chain angular velocities negative for all continuous times",
+      "arbitrary alternate input correctness"
+    ],
+    "statistical_inference": "not applicable: deterministic kinematics, no sampling design or estimated population effect",
+    "schema_version": "1.0.0",
+    "problem_setting": {
+      "scope": "Q1 handle-centre kinematics only",
+      "inputs": "frozen stage-a input-manifest and parameters; existing confirmed v2 result for numerical observations",
+      "requested_conclusion": "position and speed at 301 sample times for224 handles, not collision-free safety"
+    }
+  },
+  "contract_links": [
+    {
+      "equation_id": "eq:spiral",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    },
+    {
+      "equation_id": "eq:tangent",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    },
+    {
+      "equation_id": "eq:arc",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    },
+    {
+      "equation_id": "eq:head",
+      "role": "executable",
+      "targets": [
+        {
+          "group": "constraints",
+          "id": "head_arc"
+        }
+      ],
+      "reason": "Executable constraint cross-reference; mathematical equivalence still requires user review."
+    },
+    {
+      "equation_id": "eq:head-ode",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    },
+    {
+      "equation_id": "eq:rod",
+      "role": "executable",
+      "targets": [
+        {
+          "group": "constraints",
+          "id": "chord"
+        }
+      ],
+      "reason": "Executable constraint cross-reference; mathematical equivalence still requires user review."
+    },
+    {
+      "equation_id": "eq:stable-chord",
+      "role": "executable",
+      "targets": [
+        {
+          "group": "constraints",
+          "id": "chord"
+        }
+      ],
+      "reason": "Executable constraint cross-reference; mathematical equivalence still requires user review."
+    },
+    {
+      "equation_id": "eq:chord-derivative",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    },
+    {
+      "equation_id": "eq:bracket",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    },
+    {
+      "equation_id": "eq:velocity-constraint",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    },
+    {
+      "equation_id": "eq:velocity",
+      "role": "executable",
+      "targets": [
+        {
+          "group": "constraints",
+          "id": "velocity_relation"
+        }
+      ],
+      "reason": "Executable constraint cross-reference; mathematical equivalence still requires user review."
+    },
+    {
+      "equation_id": "eq:radius-bound",
+      "role": "explanatory",
+      "targets": [],
+      "reason": "Explanatory definition, derivation or branch certificate; no claim of automatic equivalence to executable code."
+    }
+  ],
+  "validation_plan": [
+    {
+      "id": "check:rod",
+      "description": "Rod length residual, all stored samples",
+      "threshold": 1e-08,
+      "unit": "m",
+      "evidence_kind": "numerical"
+    },
+    {
+      "id": "check:head-speed",
+      "description": "Head speed error",
+      "threshold": 1e-09,
+      "unit": "m/s",
+      "evidence_kind": "numerical"
+    },
+    {
+      "id": "check:denominator",
+      "description": "Minimum sampled positive velocity denominator",
+      "threshold": 1e-10,
+      "unit": "m^2",
+      "evidence_kind": "numerical"
+    },
+    {
+      "id": "check:fd",
+      "description": "Independent velocity finite difference at h=0.001s",
+      "threshold": 1e-05,
+      "unit": "m/s",
+      "evidence_kind": "numerical"
+    },
+    {
+      "id": "check:math-review",
+      "description": "Review assumptions, domains, derivation steps, scope and executable cross-references before approval",
+      "threshold": null,
+      "unit": "1",
+      "evidence_kind": "human_review"
+    }
+  ],
+  "figures": [
+    {
+      "id": "fig:kinematic-diagnostics",
+      "question": "Do the stored positions and velocities satisfy the geometric and differentiated rod constraints across the sampled times?",
+      "data_origin": "historical confirmed dragon-q1 v2/revision2 NPZ; reference only, never treated as this new version execution",
+      "data_sha256": "537a70fc502496861e0f9b8de3af88ad8b6a34d61adea24073ddb5150fc82179",
+      "contract_version": 2,
+      "result_revision": 2,
+      "specification": "{\"figure_id\": \"fig:kinematic-diagnostics\", \"question\": \"Do the stored positions and velocities satisfy the geometric and differentiated rod constraints across the sampled times?\", \"claim_status\": \"Numerically checked; no collision-free or continuous-time stability claim.\", \"panels\": [{\"id\": \"a\", \"x\": \"time_s,301 samples\", \"y\": \"max over223 rods of abs(norm(diff(position_m,axis=1))-L_i),m\", \"scale\": \"linear time; logarithmic residual only if nonzero, zeros handled explicitly\", \"evidence_role\": \"geometric residual\"}, {\"id\": \"b\", \"x\": \"time_s,301 samples\", \"y\": \"max over223 rods of abs(d_i dot(V_i-V_i-1)),m^2/s\", \"scale\": \"same time axis, distinct y units and labelled acceptance threshold\", \"evidence_role\": \"independent velocity constraint\"}], \"processing\": \"Use all301 times and all223 rods; report max reduction, no cherry picking. Do not join unlike units on one y-axis.\", \"exports_after_C+\": [\"vector PDF\", \"PNG preview\", \"LaTeX inclusion with source/hash binding\"], \"checks_required\": [\"final-size labels and units\", \"true data and aggregation\", \"no statistical error bars for deterministic single run\", \"threshold provenance\", \"font/collision/crop/alignment and human visual inspection\"]}",
+      "status": "planned"
+    },
+    {
+      "id": "fig:head-path",
+      "question": "Does the sampled head trajectory follow the prescribed spiral and inward direction?",
+      "data_origin": "historical confirmed dragon-q1 v2/revision2 NPZ; reference only, never treated as this new version execution",
+      "data_sha256": "537a70fc502496861e0f9b8de3af88ad8b6a34d61adea24073ddb5150fc82179",
+      "contract_version": 2,
+      "result_revision": 2,
+      "specification": "{\"figure_id\": \"fig:head-path\", \"priority\": \"optional if useful for explaining geometry\", \"question\": \"Does the sampled head trajectory follow the prescribed spiral and inward direction?\", \"data\": \"position_m[:,0,:] with equal aspect ratio; mark t0 andt300 and selected time labels\", \"limitation\": \"A handle-centre curve does not demonstrate finite-width bench clearance.\"}",
+      "status": "planned"
+    }
+  ],
+  "provenance": [
+    {
+      "path": "stage-a-plus/math/bench-dragon-dossier.json",
+      "sha256": "badc4c0ac67870a275a76a399b428d2cd545809a459ddcf22be01fd54051744d",
+      "role": "A+ reviewed source; historical confirmations are not imported as B+ approvals"
+    },
+    {
+      "path": "stage-a-plus/cases/bench-dragon-method-selection.json",
+      "sha256": "1f890020f19c77703924c7cc0ae71103659cdd56e6ebf4ef6fb00f7951c88945",
+      "role": "A+ reviewed source; historical confirmations are not imported as B+ approvals"
+    },
+    {
+      "path": "stage-a-plus/sources/read-log.json",
+      "sha256": "54ae3be1411242799313c6a2fba2a90c06a3581981ced4d5412153c5953bb674",
+      "role": "A+ reviewed source; historical confirmations are not imported as B+ approvals"
+    },
+    {
+      "path": "stage-a-plus/mathematical-review.json",
+      "sha256": "c3de806c9d59189354088b103aec176b2e7113f0f8661686a6e1af7d7b5dafb8",
+      "role": "A+ reviewed source; historical confirmations are not imported as B+ approvals"
+    }
+  ],
+  "presentation": {
+    "equation_spacing": "normal"
+  }
+}

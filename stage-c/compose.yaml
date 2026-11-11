@@ -1,0 +1,10 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.19.1
+    container_name: modelcrew-stage-c-qdrant
+    ports:
+      - "127.0.0.1:56333:6333"
+    volumes:
+      - modelcrew-stage-c-qdrant:/qdrant/storage
+volumes:
+  modelcrew-stage-c-qdrant:

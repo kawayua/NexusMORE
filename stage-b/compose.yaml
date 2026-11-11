@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: modelcrew-stage-b-postgres
+    environment:
+      POSTGRES_DB: modelcrew
+      POSTGRES_USER: modelcrew
+      POSTGRES_PASSWORD: ${MODELCREW_DB_PASSWORD:?set local database password}
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - modelcrew-stage-b-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U modelcrew -d modelcrew"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  modelcrew-stage-b-db:

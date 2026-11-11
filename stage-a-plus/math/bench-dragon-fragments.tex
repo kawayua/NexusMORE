@@ -1,0 +1,149 @@
+% A+ reusable source. Not yet compiled; C+ owns real compilation/rendering.
+% Units use SI conventions; radians dimensionless. Requires amsmath, amssymb, amsthm.
+\subsection*{Notation}
+\begin{tabular}{llll}
+Symbol & Meaning & Unit & Domain \\
+$p$ & spiral pitch & m & p>0 \\
+$b$ & radial coefficient & m & b=p/(2pi)>0 \\
+$t$ & elapsed time & s & 0<=t<=T \\
+$T$ & last requested time & s & T=300 \\
+$v_0$ & head speed & m/s & v0=1>0 \\
+$N$ & number of handles & 1 & N=224 positive integer \\
+$i$ & handle index & 1 & i in\{0,...,N-1\} \\
+$\theta_i(t)$ & handle angle & 1 & theta\_i>0; radians treated dimensionless \\
+$\theta_{\mathrm{init}}$ & head initial angle & 1 & 32pi \\
+$\mathbf X(\theta)$ & curve position & m & positive theta to R^2 \\
+$\mathbf X_i(t)$ & handle position & m & X(theta\_i(t)) \\
+$\boldsymbol\tau(\theta)$ & derivative of position with respect to dimensionless angle & m & theta>0 \\
+$S(\theta)$ & arc primitive with S(0)=0 & m & theta>=0 \\
+$u$ & dummy angle of integration & 1 & u>=0 \\
+$L_i$ & straight distance for rod i & m & i=1..223; L1=2.86,others1.65 \\
+$\ell$ & positive test rod distance & m & ell>0 \\
+$r$ & previous-handle radius in local chord solve & m & r=b theta\_(i-1)>0 \\
+$\delta$ & outward angle difference & 1 & 0<delta<pi \\
+$F(\delta;r,\ell)$ & squared chord residual & m^2 & delta in[0,pi] \\
+$\mathbf d_i$ & rod vector Xi-Xi-1 & m & i=1..223 \\
+$\omega_i$ & angular velocity & 1/s & d theta\_i/dt \\
+$\mathbf V_i$ & velocity vector & m/s & d Xi/dt \\
+$U_i$ & speed magnitude & m/s & norm Vi>=0 \\
+$D_i$ & velocity recurrence denominator & m^2 & d\_i dot tau(theta\_i)>0 on certified branch \\
+\end{tabular}
+\subsection*{Assumptions}
+\paragraph{asm:rigid} Fixed straight chord lengths, ideal hinges, no hole clearance dynamics.
+\paragraph{asm:branch} Follow the outward first root in (0,pi), when the sign bracket is certified.
+\paragraph{asm:scope} Only handle-centre kinematics for Q1; no collisions, bench swept volume, turn-around or optimization.
+\subsection*{Equations}
+% Positive Archimedean spiral
+\begin{equation}
+b=\frac{p}{2\pi},\qquad \mathbf X(\theta)=b\theta(\cos\theta,\sin\theta)^{\mathsf T}
+\label{eq:spiral}
+\end{equation}
+% Derivative and arc density
+\begin{equation}
+\boldsymbol\tau(\theta)=\mathbf X^{\prime}(\theta)=b(\cos\theta-\theta\sin\theta,\sin\theta+\theta\cos\theta)^{\mathsf T},\quad \|\boldsymbol\tau(\theta)\|=b\sqrt{1+\theta^2}
+\label{eq:tangent}
+\end{equation}
+% Exact arc primitive, S(0)=0
+\begin{equation}
+S(\theta)=\int_0^\theta b\sqrt{1+u^2}\,du=\frac b2\left(\theta\sqrt{1+\theta^2}+\operatorname{arsinh}\theta\right)
+\label{eq:arc}
+\end{equation}
+% Head arc equation and validity domain
+\begin{equation}
+\boxed{S(\theta_{\mathrm{init}})-S(\theta_0(t))=v_0t},\quad \theta_{\mathrm{init}}=32\pi,\quad 0\le t<S(\theta_{\mathrm{init}})/v_0
+\label{eq:head}
+\end{equation}
+% Equivalent head ODE, sign fixed by inward motion
+\begin{equation}
+\boxed{\omega_0(t)=-\frac{v_0}{b\sqrt{1+\theta_0(t)^2}}}
+\label{eq:head-ode}
+\end{equation}
+% Straight rods, not arc distances
+\begin{equation}
+\|\mathbf X_i(t)-\mathbf X_{i-1}(t)\|^2=L_i^2,\quad i=1,\ldots,N-1
+\label{eq:rod}
+\end{equation}
+% Stable squared-chord residual
+\begin{equation}
+\boxed{F(\delta;r,\ell)=(b\delta)^2+4r(r+b\delta)\sin^2(\delta/2)-\ell^2=0}
+\label{eq:stable-chord}
+\end{equation}
+% Strict positivity only when b,r>0 and 0<delta<pi
+\begin{equation}
+\frac{\partial F}{\partial\delta}=2b^2\delta+4rb\sin^2(\delta/2)+2r(r+b\delta)\sin\delta>0
+\label{eq:chord-derivative}
+\end{equation}
+% Existence needs endpoint sign condition as well as monotonicity
+\begin{equation}
+F(0;r,\ell)=-\ell^2<0,\quad F(\pi;r,\ell)=(2r+b\pi)^2-\ell^2>0\quad\text{if }0<\ell<2r+b\pi
+\label{eq:bracket}
+\end{equation}
+% Differentiate constant squared rod length; two-times factor cancels
+\begin{equation}
+\mathbf d_i=\mathbf X_i-\mathbf X_{i-1},\qquad \mathbf d_i^{\mathsf T}\bigl(\boldsymbol\tau(\theta_i)\omega_i-\boldsymbol\tau(\theta_{i-1})\omega_{i-1}\bigr)=0
+\label{eq:velocity-constraint}
+\end{equation}
+% Recurrence and positive denominator on certified branch; values have different units as declared in symbol table
+\begin{equation}
+\boxed{\omega_i=\frac{\mathbf d_i^{\mathsf T}\boldsymbol\tau(\theta_{i-1})}{D_i}\omega_{i-1}},\quad D_i=\mathbf d_i^{\mathsf T}\boldsymbol\tau(\theta_i)=\tfrac12\frac{\partial F}{\partial\delta}>0,\quad \mathbf V_i=\boldsymbol\tau(\theta_i)\omega_i,\quad U_i=\|\mathbf V_i\|
+\label{eq:velocity}
+\end{equation}
+% With frozen p=.55m, implies head theta>16pi until300s
+\begin{equation}
+S(32\pi)-S(16\pi)\ge\frac b2\left((32\pi)^2-(16\pi)^2\right)-16\pi b=105.6\pi-4.4>300\,\mathrm m
+\label{eq:radius-bound}
+\end{equation}
+\paragraph{derive:arc}
+Conditions: b>0; theta>=0.
+\begin{enumerate}
+\item Differentiate X componentwise using the product rule.
+\item Expand squared tangent norm: cross terms cancel and cos²+sin²=1, obtaining b²(1+theta²).
+\item Use d[theta sqrt(1+theta²)]/dtheta=sqrt(1+theta²)+theta²/sqrt(1+theta²) and d asinh(theta)/dtheta=1/sqrt(1+theta²).
+\item The sum times b/2 is b sqrt(1+theta²); value at zero vanishes.
+\end{enumerate}
+\paragraph{derive:head}
+Conditions: b>0; v0>0; 0<=t<S(theta\_init)/v0.
+\begin{enumerate}
+\item Constant speed along the curve makes traversed length v0*t.
+\item Inward travel subtracts arc length from S(theta\_init).
+\item Differentiate using the chain rule: -Sprime(theta0)*omega0=v0; divide by positive b sqrt(1+theta0²).
+\end{enumerate}
+\paragraph{derive:chord}
+Conditions: r>0; b>0; ell>0.
+\begin{enumerate}
+\item Rotate previous handle to angle0 without changing Euclidean distance. Radii are r and r+b*delta.
+\item Squared distance equals r²+(r+b*delta)²-2r(r+b*delta)cos(delta).
+\item Regroup as (b*delta)²+2r(r+b*delta)(1-cos(delta)).
+\item Use 1-cos(delta)=2sin²(delta/2); subtract ell². This avoids subtracting nearly equal O(r²) terms.
+\end{enumerate}
+\paragraph{derive:velocity}
+Conditions: constant\_chords; positive\_geometry; branch\_scope; differentiable branch.
+\begin{enumerate}
+\item Let d\_i=X\_i-X\_i-1. Differentiate d\_i dot d\_i=L\_i²: 2d\_i dot(V\_i-V\_i-1)=0.
+\item Apply chain rule V\_i=tau(theta\_i)*omega\_i; rearrange coefficients of omega\_i.
+\item With previous handle fixed, derivative of squared distance with respect to delta is 2d\_i dot tau(theta\_i).
+\item Use strict Fdelta>0 on the certified interval; division is justified analytically. A finite-precision threshold is still necessary for conditioning.
+\end{enumerate}
+\paragraph{prop:head-unique}
+Conditions: b>0; v0>0; theta\_init>0; 0<=t<S(theta\_init)/v0.
+\begin{enumerate}
+\item S is continuous and strictly increasing because Sprime=b sqrt(1+theta²)>0.
+\item Right side S(theta\_init)-v0t lies in(0,S(theta\_init)] so a unique head angle in(0,theta\_init] exists by the intermediate value theorem.
+\item Differentiation gives omega0<0; t=0 returns theta\_init. The positive-radius domain ends at the origin, not beyond.
+\end{enumerate}
+\paragraph{prop:chord-first-root}
+Conditions: positive\_geometry; constant\_chords; branch\_scope; 0<ell<2r+b*pi.
+\begin{enumerate}
+\item F is continuous on[0,pi]. Its lower endpoint is strictly negative and upper endpoint strictly positive under the stated chord bound.
+\item On(0,pi), every term of Fdelta is nonnegative and 2b²delta is strictly positive. Thus F is strictly increasing.
+\item The intermediate value theorem gives exactly one root delta* in(0,pi). No smaller positive root exists by monotonicity, so it is the first outward root.
+\item No claim is made about branches outside pi or that no roots exist if the upper sign test fails.
+\end{enumerate}
+\paragraph{prop:frozen-interval}
+Conditions: p=.55m; v0=1m/s; theta\_init=32pi; 0<=t<=300s; L\_i<=2.86m.
+\begin{enumerate}
+\item For u>=0, u<=sqrt(1+u²)<=u+1; integrate to bound S(32pi) from below and S(16pi) from above.
+\item The resulting difference is105.6pi-4.4>300m (already follows from pi>3). Thus at300s the head theta remains>16pi and radius>4.4m; earlier radii are larger.
+\item Induct along the outward chain: every previous radius is>4.4m. Hence 2r+b*pi>9.075m>2.86m, certifying each neighbour bracket throughout the continuous interval.
+\item At each finite stage the implicit-function derivative Fdelta is positive, so differentiability and the velocity recurrence hold locally; no uniform floating-point condition-number bound is asserted.
+\end{enumerate}

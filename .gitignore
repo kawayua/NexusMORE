@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Runtime artifacts and secrets
+runs/
+artifacts/
+*.log
+*.jsonl
+
+# Local data copies (source files remain outside the repository unless explicitly approved)
+data/raw/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+!stage-a/**/runs/README.md
+!stage-a/**/artifacts/README.md
+
+# Public paper page images: local reading cache only; do not redistribute.
+stage-a/2024-A-problem-1/external-reference/
+
+# Local registered execution bundles (may contain private inputs)
+stage-c/execution/
+
+# Portable C+ compiler/cache (recorded by provenance, not distributed)
+stage-c-plus/tools/
+stage-c-plus/tex-cache/
+
+# Local runs, paper outputs and third-party references not shipped in source snapshots
+/.pytest_cache/
+/tmp/
+/output/
+/resources/algorithms/reference/
+/resources/paper/reference/
+/stage-a-plus/sources/
+/stage-c-plus/algorithm-catalog.json
+/contracts/examples/valid-2024-a-q1-input-1.1.json
+/contracts/examples/invalid-input-structure-1.1.json

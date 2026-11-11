@@ -1,0 +1,403 @@
+{
+  "risks": [
+    "只覆盖一个开发小题",
+    "Schema结构通过不能证明数学正确",
+    "原题官方URL未补，不用论文替代题面来源",
+    "v2尚未重写或执行求解代码；当前B节点仅为历史工件联调，旧结果不能视为已满足v2新增检查。",
+    "新增G1-G5检查尚未执行，initial_status均为unknown，不得填passed。",
+    "速度递推分母接近0时若未显式检测，可能导致错误速度传播。",
+    "稳定弦长表达式无括区或求根失败若静默跳圈，会破坏节点顺序。"
+  ],
+  "checks": [
+    {
+      "id": "head_speed",
+      "unit": "m/s",
+      "method": "全部时刻检查速率",
+      "tolerance": 1e-09,
+      "description": "龙头速率始终1",
+      "initial_status": "unknown",
+      "evidence_required": "最大绝对误差及时间索引"
+    },
+    {
+      "id": "rod_distance",
+      "unit": "m",
+      "method": "计算全部节点直线距离残差",
+      "tolerance": 1e-08,
+      "description": "首杆2.86，其余1.65",
+      "initial_status": "unknown",
+      "evidence_required": "最大残差及对应节点时间"
+    },
+    {
+      "id": "velocity_fd",
+      "unit": "m/s",
+      "method": "独立时间中心差分，端点单侧",
+      "tolerance": 1e-05,
+      "description": "速度与位置导数一致",
+      "initial_status": "unknown",
+      "evidence_required": "步长、误差和收敛记录"
+    },
+    {
+      "id": "completeness",
+      "unit": "boolean",
+      "method": "回读导出工件",
+      "tolerance": null,
+      "description": "数组形状、有限性、模板标签和六位显示完整",
+      "initial_status": "unknown",
+      "evidence_required": "逐项检查报告"
+    },
+    {
+      "id": "chord_delta_stable",
+      "unit": "m^2",
+      "method": "使用(b*delta)^2+4*r*(r+b*delta)*sin(delta/2)^2-L^2；在0<delta<pi做单调性证明/数值检查并检查括区端点异号；无括区或求根不收敛明确报错，禁止静默跳圈",
+      "tolerance": 1e-10,
+      "description": "角差弦长平方稳定表达式、0<delta<pi严格单调与括区异号检查",
+      "initial_status": "unknown",
+      "evidence_required": "单调性、括区端点符号、最大残差及失败节点"
+    },
+    {
+      "id": "velocity_recurrence_guard",
+      "unit": "boolean",
+      "method": "对固定孔距约束求导得到速度递推；不将所有把手速率设为1；分母低于显式阈值时记录节点和时间并终止或转人工判断；不以公式算出的速率自证",
+      "tolerance": null,
+      "description": "速度由距离约束求导递推，分母接近0检测与节点时间记录",
+      "initial_status": "unknown",
+      "evidence_required": "分母最小值、触发阈值、节点和时间、终止或人工判断记录"
+    },
+    {
+      "id": "theta_diagnostics",
+      "unit": "rad",
+      "method": "回读theta_rad(301,224)，检查同刻theta沿链严格增加、同节点随时间递减；核对t=0最初点、A点正x轴和顺时针盘入方向",
+      "tolerance": 1e-12,
+      "description": "theta_rad诊断数组及链顺序、时间方向、初始方向检查",
+      "initial_status": "unknown",
+      "evidence_required": "形状、严格性违例索引、初始节点和方向记录"
+    },
+    {
+      "id": "head_arc_integration",
+      "unit": "m",
+      "method": "以独立数值积分计算龙头弧长并与弧长方程对照，报告误差和步长收敛，不强制浮点误差严格单调下降",
+      "tolerance": 1e-08,
+      "description": "独立数值积分核验龙头弧长",
+      "initial_status": "unknown",
+      "evidence_required": "积分步长、误差和收敛记录"
+    },
+    {
+      "id": "velocity_fd_refined",
+      "unit": "m/s",
+      "method": "h=1e-2,1e-3,1e-4秒；内部时刻取中心差分，端点用二阶单侧；报告向量误差随h变化，不强制严格单调下降；以h=1e-3秒的向量误差<=1e-5 m/s为准",
+      "tolerance": 1e-05,
+      "description": "细化时间差分核验速度并报告误差随h变化",
+      "initial_status": "unknown",
+      "evidence_required": "h列表、最大向量误差、中心/单侧端点记录、收敛记录"
+    },
+    {
+      "id": "root_tolerance_resample",
+      "unit": "m",
+      "method": "以严于默认的求根容差对抽样节点复算位置和角差，报告残差、样本、容差和单位；失败明确报错",
+      "tolerance": 1e-10,
+      "description": "加严求根容差抽样复算",
+      "initial_status": "unknown",
+      "evidence_required": "抽样清单、容差、最大残差、失败记录"
+    },
+    {
+      "id": "excel_readback",
+      "unit": "boolean",
+      "method": "回读result1.xlsx，核对模板标签、数组维度、时间列、有限性、数值与六位显示；容差和单位明确",
+      "tolerance": null,
+      "description": "回读Excel核对标签、维度、时间列、数值和六位显示",
+      "initial_status": "unknown",
+      "evidence_required": "逐项报告、标签/维度/时间列/六位显示核对结果"
+    },
+    {
+      "id": "v2_execution_status",
+      "unit": "boolean",
+      "method": "核对v2求解代码是否已重写/执行及B节点结果来源；未执行时不得将旧结果视为v2新增检查通过，初态保持unknown",
+      "tolerance": null,
+      "description": "v2代码状态与历史B节点结果隔离检查",
+      "initial_status": "unknown",
+      "evidence_required": "版本状态、B节点来源、未执行或人工确认记录"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "input0",
+      "path": "D:\\big-third-up\\A题\\A题.pdf",
+      "role": "problem_statement",
+      "sha256": "7ece8c6d2b876781e5219091c38980e1321ffd1d56604cbe36cd867edb7a1933",
+      "source_id": "statement"
+    },
+    {
+      "id": "input1",
+      "path": "D:\\big-third-up\\A题\\附件\\result1.xlsx",
+      "role": "required_output_template",
+      "sha256": "72fe1bad957f0201278640fda5415a6c11a663f0651e0ce0670c5f1d1d92e631",
+      "source_id": "statement"
+    }
+  ],
+  "method": {
+    "steps": [
+      "由螺线弧长反演龙头极角，采用弧长方程+Brent求根；ODE积分仅作需步长收敛核验的可选等价方法，不将RK4累计误差归于当前实现",
+      "对相邻把手构造delta角差，使用稳定弦长平方表达式(b*delta)^2+4*r*(r+b*delta)*sin(delta/2)^2-L^2；在0<delta<pi检查严格单调并检查括区端点异号，无括区或收敛失败明确报错，不静默跳圈",
+      "按固定直线孔距逐个求外侧最近根，检查节点顺序并禁止跳圈",
+      "由距离约束对时间求导递推速度，不将所有把手速率设为1；分母接近0时按显式阈值检测，记录节点和时间并终止或待人工判断",
+      "保存theta_rad(301,224)诊断数组；检查同刻theta沿链严格增加、同节点随时间递减，并核对最初点、A点正x轴与顺时针盘入方向",
+      "以独立数值积分核验龙头弧长；以时间差分核验速度，h=1e-2,1e-3,1e-4秒，内部时刻用中心差分、端点用二阶单侧，报告误差随h变化，不强制浮点误差严格单调下降；以h=1e-3秒的向量误差<=1e-5 m/s为准",
+      "加严求根容差抽样复算；回读Excel核对标签、维度、时间列、数值和六位显示，容差和单位必须明确",
+      "导出前保留浮点精度；Excel显示六位小数；新增检查未执行时保持unknown"
+    ],
+    "root_selection": "外侧最近根；对相邻角差delta使用f(delta)=(b*delta)^2+4*r*(r+b*delta)*sin(delta/2)^2-L^2，在0<delta<pi内证明并检查严格单调；先检查括区端点异号，无括区或求根不收敛时明确报错，禁止静默跳圈；检查节点顺序。",
+    "requires_new_confirmation": [
+      "物理约束变化",
+      "坐标约定或计算输入变化",
+      "放宽验收容差",
+      "更换硬性指定方法",
+      "改变孔距约束、速度递推或根选择规则",
+      "将可选ODE等价方法作为主线"
+    ],
+    "allowed_equivalent_changes": [
+      "同一精度要求下弧长求根替换ODE积分，需审阅并记录实现差异",
+      "ODE积分仅作可选等价方法，必须通过步长收敛核验且不得声称当前弧长+Brent实现存在RK4累计误差"
+    ]
+  },
+  "outputs": [
+    {
+      "id": "arrays",
+      "path": "trajectories.npz",
+      "fields": [
+        {
+          "name": "position_m",
+          "unit": "m",
+          "shape": [
+            301,
+            224,
+            2
+          ]
+        },
+        {
+          "name": "velocity_m_s",
+          "unit": "m/s",
+          "shape": [
+            301,
+            224,
+            2
+          ]
+        },
+        {
+          "name": "speed_m_s",
+          "unit": "m/s",
+          "shape": [
+            301,
+            224
+          ]
+        },
+        {
+          "name": "time_s",
+          "unit": "s",
+          "shape": [
+            301
+          ]
+        },
+        {
+          "name": "theta_rad",
+          "unit": "rad",
+          "shape": [
+            301,
+            224
+          ]
+        }
+      ],
+      "format": "npz",
+      "decimal_places": null
+    },
+    {
+      "id": "workbook",
+      "path": "result1.xlsx",
+      "fields": [
+        {
+          "name": "位置数据区",
+          "unit": "m",
+          "shape": [
+            448,
+            301
+          ]
+        },
+        {
+          "name": "速度数据区",
+          "unit": "m/s",
+          "shape": [
+            224,
+            301
+          ]
+        }
+      ],
+      "format": "xlsx",
+      "decimal_places": 6
+    }
+  ],
+  "problem": {
+    "scope": "0～300秒，每秒224个把手的位置和速率；不含碰撞、调头和优化。",
+    "title": "板凳龙问题1",
+    "case_id": "CUMCM2024A",
+    "objective": {
+      "kind": "simulation",
+      "description": "在给定螺线和龙头恒速条件下计算并核验位置速度。"
+    },
+    "subproblem_id": "Q1"
+  },
+  "sources": [
+    {
+      "id": "statement",
+      "kind": "problem_statement",
+      "sha256": "7ece8c6d2b876781e5219091c38980e1321ffd1d56604cbe36cd867edb7a1933",
+      "locator": "本地A题.pdf第1页问题1、第2页图4；官方题面URL待补"
+    }
+  ],
+  "variables": [
+    {
+      "id": "theta",
+      "unit": "rad",
+      "domain": "实数向量；0≤t≤300",
+      "meaning": "224个把手的展开极角"
+    },
+    {
+      "id": "position",
+      "unit": "m",
+      "domain": "(301,224,2)",
+      "meaning": "把手位置"
+    },
+    {
+      "id": "velocity",
+      "unit": "m/s",
+      "domain": "(301,224,2)",
+      "meaning": "切向速度向量"
+    },
+    {
+      "id": "speed",
+      "unit": "m/s",
+      "domain": "(301,224)",
+      "meaning": "速度向量的模"
+    }
+  ],
+  "parameters": [
+    {
+      "id": "pitch",
+      "unit": "m",
+      "value": 0.55,
+      "origin": "given",
+      "source_id": "statement",
+      "derivation": null
+    },
+    {
+      "id": "head_length",
+      "unit": "m",
+      "value": 3.41,
+      "origin": "given",
+      "source_id": "statement",
+      "derivation": null
+    },
+    {
+      "id": "body_length",
+      "unit": "m",
+      "value": 2.2,
+      "origin": "given",
+      "source_id": "statement",
+      "derivation": null
+    },
+    {
+      "id": "hole_offset",
+      "unit": "m",
+      "value": 0.275,
+      "origin": "given",
+      "source_id": "statement",
+      "derivation": null
+    },
+    {
+      "id": "head_gap",
+      "unit": "m",
+      "value": 2.86,
+      "origin": "derived",
+      "source_id": "statement",
+      "derivation": "head_length-2*hole_offset"
+    },
+    {
+      "id": "body_gap",
+      "unit": "m",
+      "value": 1.65,
+      "origin": "derived",
+      "source_id": "statement",
+      "derivation": "body_length-2*hole_offset"
+    },
+    {
+      "id": "head_speed",
+      "unit": "m/s",
+      "value": 1,
+      "origin": "given",
+      "source_id": "statement",
+      "derivation": null
+    },
+    {
+      "id": "initial_turns",
+      "unit": "1",
+      "value": 16,
+      "origin": "given",
+      "source_id": "statement",
+      "derivation": null
+    },
+    {
+      "id": "handle_count",
+      "unit": "1",
+      "value": 224,
+      "origin": "derived",
+      "source_id": "statement",
+      "derivation": "223 benches + 1"
+    },
+    {
+      "id": "end_time",
+      "unit": "s",
+      "value": 300,
+      "origin": "given",
+      "source_id": "statement",
+      "derivation": null
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "rigid",
+      "source_id": "statement",
+      "statement": "板凳刚性、把手理想铰接；共享孔中心为同一点，忽略间隙"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "head_arc",
+      "meaning": "龙头匀速沿螺线盘入",
+      "check_id": "head_speed",
+      "expression": "S(theta_initial)-S(theta_head(t))=head_speed*t"
+    },
+    {
+      "id": "chord",
+      "meaning": "固定欧氏孔距，不是弧长差",
+      "check_id": "rod_distance",
+      "expression": "norm(P_j-P_(j-1))=head_gap if j=1 else body_gap"
+    },
+    {
+      "id": "velocity_relation",
+      "meaning": "刚性连杆长度对时间导数为零",
+      "check_id": "velocity_fd",
+      "expression": "(P_j-P_(j-1)) dot (V_j-V_(j-1))=0"
+    }
+  ],
+  "conventions": {
+    "indexing": "0龙头前；1～221龙身前；222龙尾前；223龙尾后",
+    "direction": "顺时针盘入，θ随时间递减；其余节点向外θ递增",
+    "time_unit": "s",
+    "length_unit": "m",
+    "time_origin": "龙头前把手在A点时t=0",
+    "coordinate_system": "r=bθ; x=bθcosθ,y=bθsinθ；A在正x轴"
+  },
+  "alternatives": [
+    "ODE求解龙头运动并做步长收敛检查",
+    "弧长方程+Brent求根作为主线；ODE积分仅作可选等价方法，需记录步长收敛核验。"
+  ],
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "TaskNode": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "scope": {
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Scope",
+          "type": "string"
+        },
+        "conclusion_type": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Conclusion Type",
+          "type": "string"
+        },
+        "depends_on": {
+          "items": {
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Depends On",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "conclusion_type"
+      ],
+      "title": "TaskNode",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "task_graph": {
+      "items": {
+        "$ref": "#/$defs/TaskNode"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Task Graph",
+      "type": "array"
+    },
+    "category": {
+      "enum": [
+        "optimization",
+        "prediction",
+        "evaluation",
+        "graph",
+        "statistics",
+        "simulation",
+        "machine-learning",
+        "geometry"
+      ],
+      "title": "Category",
+      "type": "string"
+    },
+    "card_ids": {
+      "items": {
+        "maxLength": 300,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 6,
+      "title": "Card Ids",
+      "type": "array"
+    },
+    "facts": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "title": "Facts",
+      "type": "object"
+    },
+    "research_question": {
+      "maxLength": 300,
+      "minLength": 1,
+      "title": "Research Question",
+      "type": "string"
+    }
+  },
+  "required": [
+    "task_graph",
+    "category",
+    "research_question"
+  ],
+  "title": "Plan",
+  "type": "object"
+}

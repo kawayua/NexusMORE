@@ -1,0 +1,266 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_sha256": "9e7dcfa619da64a22609a7db3ae26bc5b2fdaefeab929607c87504835e95afac",
+  "scope": "Six existing C+ cards; additive D1 handoff profiles, original catalog unchanged.",
+  "profiles": [
+    {
+      "inputs_units": [
+        "curve coordinates and length units",
+        "initial state, time units, node ordering and geometric dimensions"
+      ],
+      "steps": [
+        "define curve and arc-length mapping",
+        "derive connection and velocity constraints",
+        "specify admissible branches before numerical solving"
+      ],
+      "stopping_conditions": [
+        "all requested times solved within approved tolerances or branch uncertainty reported"
+      ],
+      "failure_states": [
+        "ambiguous branch",
+        "singular constraint",
+        "unit or dimension mismatch"
+      ],
+      "minimal_example": "Use existing A+ bench-dragon dossier as a finite-structure example, not a universal geometry solver.",
+      "validation": [
+        "initial/boundary state",
+        "length/velocity residuals",
+        "branch validity",
+        "tighter-tolerance comparison"
+      ],
+      "card_id": "geometry-model",
+      "version": "1.0.0",
+      "base_card_sha256": "fa72f2a1dc1fdf14b0147c7964e40083cfe6904a6af2d95eb1a601e314acd814",
+      "tags": [
+        "geometry",
+        "model"
+      ],
+      "source_ids": [
+        "geometry",
+        "notes"
+      ],
+      "variables_and_formulas": "Read the bound source sections; task-specific mathematical expressions belong to the confirmed mathematical package.",
+      "complexity_and_scale": "No general scale guarantee",
+      "dependency_version_policy": "Record the actually installed API version in the task package; do not infer it from the source version.",
+      "verification": "profile_reviewed_not_executed_in_D1"
+    },
+    {
+      "inputs_units": [
+        "scalar function f with residual units",
+        "bracket endpoints and x units",
+        "approved absolute/relative tolerances"
+      ],
+      "steps": [
+        "check continuity, domain, endpoints and sign bracket",
+        "handle endpoint roots separately",
+        "run safeguarded scalar solve",
+        "check residual and branch"
+      ],
+      "stopping_conditions": [
+        "solver convergence with approved xtol/rtol",
+        "maxiter or domain failure returns failure"
+      ],
+      "failure_states": [
+        "invalid bracket",
+        "discontinuity",
+        "iteration limit",
+        "wrong root branch"
+      ],
+      "minimal_example": "f(x)=x^2-2 on [1,2]; known positive branch; example specification only, not executed by D1.",
+      "validation": [
+        "analytic positive root comparison",
+        "residual plus conditioning",
+        "negative case: discontinuous sign-changing function"
+      ],
+      "card_id": "bracketed-root",
+      "version": "1.0.0",
+      "base_card_sha256": "2636252f821227c2695f1d5fd5200693ad0434696a26c0ed3a72fc0ea998b61b",
+      "tags": [
+        "geometry",
+        "numerical_algorithm"
+      ],
+      "source_ids": [
+        "geometry"
+      ],
+      "variables_and_formulas": "Read the bound source sections; task-specific mathematical expressions belong to the confirmed mathematical package.",
+      "complexity_and_scale": "Review budget only, not a universal solver size bound",
+      "dependency_version_policy": "Record the actually installed API version in the task package; do not infer it from the source version.",
+      "verification": "profile_reviewed_not_executed_in_D1"
+    },
+    {
+      "inputs_units": [
+        "c, A, b, variable bounds",
+        "each row and objective unit",
+        "continuous variable domain"
+      ],
+      "steps": [
+        "verify linearity and continuous domain",
+        "solve the declared LP",
+        "inspect solver status and feasibility before objective"
+      ],
+      "stopping_conditions": [
+        "solver optimum with feasible residuals",
+        "infeasible/unbounded/resource limit recorded separately"
+      ],
+      "failure_states": [
+        "infeasible",
+        "unbounded",
+        "time/resource exhausted",
+        "unexpected integrality requirement"
+      ],
+      "minimal_example": "Existing A+ continuous resource-allocation dossier; reference that baseline, without executing it in D1.",
+      "validation": [
+        "primal feasibility",
+        "bounds",
+        "objective recomputation",
+        "available primal/dual residuals"
+      ],
+      "card_id": "continuous-lp",
+      "version": "1.0.0",
+      "base_card_sha256": "e207c12c90ce3a26b0ec7eb3a987dc30779cdd12a90c23be3f047e91df8b2f00",
+      "tags": [
+        "optimization",
+        "model"
+      ],
+      "source_ids": [
+        "lp",
+        "notes"
+      ],
+      "variables_and_formulas": "Read the bound source sections; task-specific mathematical expressions belong to the confirmed mathematical package.",
+      "complexity_and_scale": "Review budget only, not a universal solver size bound",
+      "dependency_version_policy": "Record the actually installed API version in the task package; do not infer it from the source version.",
+      "verification": "profile_reviewed_not_executed_in_D1"
+    },
+    {
+      "inputs_units": [
+        "linear objective/constraints and row units",
+        "integrality vector",
+        "bounds and integer feasibility tolerance"
+      ],
+      "steps": [
+        "declare integrality before solving",
+        "solve MILP",
+        "inspect incumbent feasibility, bound and reported gap"
+      ],
+      "stopping_conditions": [
+        "declared optimality gap reached",
+        "resource limit with or without incumbent distinguished"
+      ],
+      "failure_states": [
+        "no feasible incumbent",
+        "integrality violation",
+        "time limit without proof",
+        "relaxation misreported as integer solution"
+      ],
+      "minimal_example": "One binary variable with 0<=x<=1; specification only, no D1 MILP run.",
+      "validation": [
+        "integrality",
+        "constraint residuals",
+        "incumbent objective",
+        "bound/gap and status"
+      ],
+      "card_id": "integer-lp",
+      "version": "1.0.0",
+      "base_card_sha256": "4d924a22a4338293173052ab2bbe43c423ff47b6f1816e91484f628067186540",
+      "tags": [
+        "optimization",
+        "model"
+      ],
+      "source_ids": [
+        "integer",
+        "notes"
+      ],
+      "variables_and_formulas": "Read the bound source sections; task-specific mathematical expressions belong to the confirmed mathematical package.",
+      "complexity_and_scale": "Review budget only, not a universal solver size bound",
+      "dependency_version_policy": "Record the actually installed API version in the task package; do not infer it from the source version.",
+      "verification": "profile_reviewed_not_executed_in_D1"
+    },
+    {
+      "inputs_units": [
+        "RHS, initial state and state units",
+        "time interval",
+        "method, rtol, per-state atol, max_step and events"
+      ],
+      "steps": [
+        "verify model domain and initial conditions",
+        "review stiffness and events",
+        "integrate with error control",
+        "check termination and invariants"
+      ],
+      "stopping_conditions": [
+        "end time reached or declared terminal event",
+        "solver failure/domain violation recorded"
+      ],
+      "failure_states": [
+        "solver failure",
+        "domain exit",
+        "missed event risk",
+        "invalid model assumptions"
+      ],
+      "minimal_example": "y'= -y, y(0)=1; compare exp(-t); specification only, no D1 integration run.",
+      "validation": [
+        "initial state",
+        "known analytic solution where available",
+        "tighter tolerances/step limit",
+        "event direction and physical invariants"
+      ],
+      "card_id": "ivp-integrator",
+      "version": "1.0.0",
+      "base_card_sha256": "1c38fc4e19e0a109d8ccc2ffb7206ae32c7bce3e7023ab4bc32d00eebd9ab7c3",
+      "tags": [
+        "simulation",
+        "numerical_algorithm"
+      ],
+      "source_ids": [
+        "ode",
+        "geometry"
+      ],
+      "variables_and_formulas": "Read the bound source sections; task-specific mathematical expressions belong to the confirmed mathematical package.",
+      "complexity_and_scale": "Review budget only, not a universal solver size bound",
+      "dependency_version_policy": "Record the actually installed API version in the task package; do not infer it from the source version.",
+      "verification": "profile_reviewed_not_executed_in_D1"
+    },
+    {
+      "inputs_units": [
+        "callable f, a, b, args",
+        "xtol in x units, rtol dimensionless, maxiter, full_output"
+      ],
+      "steps": [
+        "load source/API version",
+        "validate bracket",
+        "request convergence metadata",
+        "inspect result and residual"
+      ],
+      "stopping_conditions": [
+        "converged=True under declared tolerance",
+        "nonconvergence or API exception recorded"
+      ],
+      "failure_states": [
+        "invalid argument",
+        "missing SciPy",
+        "nonconvergence",
+        "changed dependency version"
+      ],
+      "minimal_example": "scipy.optimize.brentq(lambda x:x*x-2, 1, 2, full_output=True); reference only, not run in D1.",
+      "validation": [
+        "API dependency version",
+        "convergence metadata",
+        "positive-root and residual checks"
+      ],
+      "card_id": "brentq-api",
+      "version": "1.0.0",
+      "base_card_sha256": "c6b25da3780ac104b58d3469272c47d6f61d0e090897725a1144b94007e9bcb2",
+      "tags": [
+        "geometry",
+        "api"
+      ],
+      "source_ids": [
+        "geometry"
+      ],
+      "variables_and_formulas": "Read the bound source sections; task-specific mathematical expressions belong to the confirmed mathematical package.",
+      "complexity_and_scale": "Review budget only, not a universal solver size bound",
+      "dependency_version_policy": "Record the actually installed API version in the task package; do not infer it from the source version.",
+      "verification": "profile_reviewed_not_executed_in_D1"
+    }
+  ]
+}
