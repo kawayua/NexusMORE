@@ -1,4 +1,4 @@
-> 当前结论（2026-11-02）：阶段A单题基线已由用户接受，详见[验收小结](../stage-a/2024-A-problem-1/stage-a-summary.md)。以下保留准备过程和历史状态。
+> 当前结论（2026-11-02）：阶段A单题基线已由用户接受，详见[验收小结](../archive/research/stages/stage-a/2024-A-problem-1/stage-a-summary.md)。以下保留准备过程和历史状态。
 
 # 阶段 A 准备情况记录
 

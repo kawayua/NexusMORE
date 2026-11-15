@@ -1,10 +1,11 @@
+from modelcrew.project_assets import asset_path,local_history
 import copy,json,math,re
 from pathlib import Path
 import pytest
 from modelcrew.aplus import choose_method,check_dossier
 from modelcrew.config import ROOT
 from modelcrew.inputs import file_hash
-BASE=ROOT/'stage-a-plus'
+BASE=asset_path(ROOT,'stage-a-plus')
 def read(path):return json.loads((BASE/path).read_text(encoding='utf-8'))
 
 @pytest.fixture
@@ -88,6 +89,6 @@ def test_lp_optimality_certificate_and_infeasibility():
 def test_source_read_ranges_and_hashes():
     log=read('sources/read-log.json')
     for source in log['sources']:
-        original=ROOT/source['project_path'];excerpt=BASE/source['excerpt_path']
+        original=asset_path(ROOT,source['project_path']);excerpt=BASE/source['excerpt_path']
         assert file_hash(original)==source['file_sha256'] and file_hash(excerpt)==source['excerpt_sha256']
         assert excerpt.read_text(encoding='utf-8')=='\n'.join(original.read_text(encoding='utf-8-sig').splitlines()[source['line_start']-1:source['line_end']])+'\n'

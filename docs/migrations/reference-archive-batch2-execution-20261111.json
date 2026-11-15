@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "batch": "Remaining F0 batch 2: retrieval logs and reference archives",
+  "status": "passed",
+  "relocations": [
+    "docs/migrations/reference-archive-20261111.json",
+    "docs/migrations/mcp-log-archive-20261111.json"
+  ],
+  "source_revisions": "docs/migrations/reference-archive-source-revisions-20261111.json",
+  "caller_backup": "tmp/repository-relocation-20261111/reference-archive-callers",
+  "historical_reference_files": 23,
+  "historical_log_files": 82,
+  "original_bytes_unchanged": 105,
+  "new_defaults": {
+    "references": "runs/references",
+    "mcp_logs": "runs/logs/mcp",
+    "data_root_environment": "MODELCREW_DATA_DIR"
+  },
+  "targeted_tests": {
+    "passed": 71
+  },
+  "full_regression": {
+    "passed": 594,
+    "skipped": 141,
+    "report": "tmp/reference-archive-batch2-regression-v1.xml"
+  },
+  "real_mcp": {
+    "status": "passed",
+    "historical_references_restored": 23,
+    "real_stdio_default_paths": true,
+    "host_subprocess_restart": true,
+    "new_logs": 2,
+    "audit_calls": 24,
+    "unchanged_historical_files": 105,
+    "old_stage_directories_recreated": false,
+    "network_calls": 0,
+    "paid_model_calls": 0,
+    "model_loaded": false
+  },
+  "real_executor_mcp_log": {
+    "status": "passed",
+    "real_stdio_executor_default_log": true,
+    "execution_dispatched": false,
+    "docker_started": false,
+    "old_log_directory_recreated": false
+  },
+  "original_audit_bindings": {
+    "matched": 23,
+    "total": 23,
+    "evidence": "tmp/reference-archive-batch2-audit-links-v1.json",
+    "scope": "Original call ID and reference ID found across moved shared logs and unmoved historical run logs"
+  },
+  "live_evidence": [
+    "tmp/reference-archive-batch2-live-v1/receipt.json",
+    "tmp/reference-archive-batch2-executor-log-v1/receipt.json"
+  ],
+  "relocation_verification": {
+    "status": "passed",
+    "records": 12,
+    "mapping_entries": 422
+  },
+  "historical_assembly": {
+    "verified_files": 827,
+    "original_manuscript_review": "approved",
+    "original_figure_review": "approved",
+    "current_context_matches_frozen": false,
+    "can_export_current": false,
+    "evidence": "tmp/reference-archive-batch2-historical-v1.json"
+  },
+  "layout_guard": "passed",
+  "approval_rewritten": false,
+  "database_bindings_rewritten": false,
+  "old_directories_recreated": false,
+  "paid_model_calls": 0,
+  "network_calls": 0,
+  "final_f0_accepted": false,
+  "limits": [
+    "Unadapted external scripts opening original physical paths must use the mapping resolver",
+    "Changing data root does not copy historical references into the new root",
+    "Execution mounts, custom historical verification folders and other frozen stage files await subsequent batches"
+  ]
+}

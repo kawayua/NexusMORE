@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "problem": {
+    "case_id": "environment-sum",
+    "subproblem_id": "q1",
+    "title": "Synthetic environment check",
+    "scope": "Compute two unitless inputs; environment probe only",
+    "objective": {
+      "kind": "analysis",
+      "description": "Check persistence without approving a model"
+    }
+  },
+  "sources": [
+    {
+      "id": "source",
+      "kind": "problem_statement",
+      "locator": "environment-input.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "input",
+      "source_id": "source",
+      "path": "environment-input.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "role": "problem_statement"
+    }
+  ],
+  "conventions": {
+    "length_unit": "unitless",
+    "time_unit": "not_applicable",
+    "coordinate_system": "not_applicable",
+    "time_origin": "not_applicable",
+    "direction": "not_applicable",
+    "indexing": "zero_based"
+  },
+  "parameters": [
+    {
+      "id": "a",
+      "value": 1,
+      "unit": "1",
+      "source_id": "source",
+      "origin": "given",
+      "derivation": null
+    },
+    {
+      "id": "b",
+      "value": 1,
+      "unit": "1",
+      "source_id": "source",
+      "origin": "given",
+      "derivation": null
+    }
+  ],
+  "variables": [
+    {
+      "id": "total",
+      "meaning": "sum",
+      "unit": "1",
+      "domain": "real"
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "finite",
+      "statement": "Both given values are finite",
+      "source_id": "source"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "sum",
+      "expression": "total = a + b",
+      "meaning": "addition identity",
+      "check_id": "check-sum"
+    }
+  ],
+  "method": {
+    "steps": [
+      "Add the two given values after explicit approval"
+    ],
+    "root_selection": "not_applicable",
+    "allowed_equivalent_changes": [
+      "Change internal variable names without changing meaning"
+    ],
+    "requires_new_confirmation": [
+      "Change input or expression"
+    ]
+  },
+  "outputs": [
+    {
+      "id": "result",
+      "path": "result.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "total",
+          "shape": [
+            1
+          ],
+          "unit": "1"
+        }
+      ],
+      "decimal_places": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check-sum",
+      "description": "Compare against exact integer arithmetic",
+      "method": "exact",
+      "tolerance": 0,
+      "unit": "1",
+      "evidence_required": "computed result with source identity",
+      "initial_status": "unknown"
+    }
+  ],
+  "risks": [
+    "Environment sample is not a scientific-quality assessment"
+  ],
+  "alternatives": [
+    "Manual exact arithmetic"
+  ]
+}

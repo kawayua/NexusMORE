@@ -1,8 +1,10 @@
 """Typeset authorized Q1/Q2 composition; original approvals remain individually bound."""
+from modelcrew.project_assets import asset_path
 import argparse,copy,json,os,re,shutil,subprocess,sys
 from pathlib import Path
 from datetime import datetime,timezone
 from modelcrew.config import ROOT
+from modelcrew.tool_discovery import discover_tool,tex_cache_directory
 from modelcrew.modeling_paper import sha,inside,writing_context,require_review_for_export
 
 
@@ -48,7 +50,7 @@ def verify_assembly_authorization(source):
         manuscript=reviews['manuscript_review'];selection=reviews['figure_selection_review']
         if manuscript['decision']!='approve' or selection['decision']!='approve':raise ValueError('Separate source approval absent')
         if manuscript['snapshot']['markdown_sha256']!=item['markdown_sha256'] or manuscript['snapshot']['embedded_figures_sha256']!=selection['snapshot']['sha256']:raise ValueError('Approval content binding differs')
-        if manuscript['snapshot']['policy_sha256']!=sha(ROOT/'resources/paper/chinese-modeling-policy.json'):raise ValueError('Source policy stale')
+        if manuscript['snapshot']['policy_sha256']!=sha(asset_path(ROOT,'resources/paper/chinese-modeling-policy.json')):raise ValueError('Source policy stale')
         oldcat=json.loads((original/'figure-catalog.json').read_text(encoding='utf-8'))
         if sorted(f['id'] for f in oldcat['figures'] if f['formal'])!=selection['snapshot']['selected_ids']:raise ValueError('Selected source figures differ')
         for f in oldcat['figures']:
@@ -62,6 +64,7 @@ def verify_assembly_authorization(source):
     return {'source_approval_checks':checks,'composition_mechanical_checks':report,'assembly_authorized':True,'combined_manuscript_user_approval_inferred':False,'W2':'pending'}
 
 def build(source,output,pandoc,compiler):
+    pandoc=discover_tool('pandoc',pandoc);compiler=discover_tool('tectonic',compiler)
     context=writing_context();source=source.resolve();output=output.resolve()
     approved=verify_assembly_authorization(source)
     catalog=json.loads((source/'figure-catalog.json').read_text(encoding='utf-8'))
@@ -235,16 +238,16 @@ def build(source,output,pandoc,compiler):
                     for run in p.runs:run.font.size=Pt(10)
     doc.save(output/'paper.docx')
     save(output/'build/conversion-log.json',calls)
-    cache=ROOT/'stage-c-plus/tex-cache';cache.mkdir(exist_ok=True)
+    cache=tex_cache_directory(ROOT);cache.mkdir(parents=True,exist_ok=True)
     command=[str(compiler.resolve()),'--untrusted','--keep-logs','--keep-intermediates','--outdir',str(output),str(tex)]
     env={**os.environ,'TECTONIC_CACHE_DIR':str(cache),'TEMP':str(cache),'TMP':str(cache)}
     result=subprocess.run(command,capture_output=True,timeout=600,env=env,cwd=output)
     (output/'build/latex.stdout.log').write_bytes(result.stdout);(output/'build/latex.stderr.log').write_bytes(result.stderr)
-    save(output/'build-command.json',{'command':command,'returncode':result.returncode,'cache':'stage-c-plus/tex-cache','network':'Compiler may provision missing TeX resources; no paper data sent to an LLM.'})
+    save(output/'build-command.json',{'command':command,'returncode':result.returncode,'cache':str(cache),'network':'Compiler may provision missing TeX resources; no paper data sent to an LLM.'})
     if result.returncode:raise RuntimeError('Actual Chinese LaTeX compile failed; inspect build logs')
     assert all(sha(source/name)==value for name,value in source_hashes.items())
     save(output/'build-manifest.json',{'created_at':datetime.now(timezone.utc).isoformat(),'source_bundle':str(source.relative_to(ROOT)),'source_hashes':source_hashes,'figures':embedded,'source_unchanged':True,'new_figures_generated':0,'compiler_sha256':sha(compiler),'pandoc_sha256':sha(pandoc),'script_sha256':sha(Path(__file__)),'layout':'Chinese A4 research paper; not verified against year-specific official submission rules','figure_count':len(embedded),'word_equations':'Native OMML; equation tags rendered as visible numbers','manual_review':'pending'})
     print(json.dumps({'output':str(output),'pdf':True,'tex':True,'docx':True,'figures':len(embedded)}))
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--pandoc',type=Path,default=ROOT/'stage-c-plus/tools/pandoc/pandoc.exe');p.add_argument('--compiler',type=Path,default=ROOT/'stage-c-plus/tools/tectonic.exe');a=p.parse_args();build(a.source,a.output,a.pandoc,a.compiler)
+    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--pandoc',type=Path,default=None);p.add_argument('--compiler',type=Path,default=None);a=p.parse_args();build(a.source,a.output,a.pandoc,a.compiler)

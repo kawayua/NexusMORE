@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-12",
+  "basis": "explicit_user_instruction_to_mark_current_supported_version_and_leave_other_engines_external_bibliography_and_arbitrary_conversion_unsupported",
+  "supported_baseline": {
+    "python": "3.13",
+    "compiler": {
+      "name": "tectonic",
+      "version": "0.17.0"
+    },
+    "pandoc": "3.6.4",
+    "PyMuPDF": "1.27.2.3",
+    "pypdf": "6.16.1",
+    "platform_verified": "Windows with existing local compiler/cache and native Word",
+    "word_route": "approved Markdown/AST to native OMML; not arbitrary LaTeX conversion",
+    "unsupported": [
+      "other_compilation_engines",
+      "external_bibtex_biber",
+      "arbitrary_latex_to_word"
+    ],
+    "unsupported_features_required_for_current_batch": false,
+    "runtime_executable_version_enforcement_claimed": false
+  },
+  "implementation_receipt": "docs/release/latex-tools-adaptation-20261112.json",
+  "historical_receipt_unchanged": true,
+  "runtime_or_frozen_resource_bytes_changed": false,
+  "source_ledger_unchanged": true
+}

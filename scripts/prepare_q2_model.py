@@ -1,4 +1,5 @@
 """Build a Q2 model proposal for independent M1; no numerical experiment."""
+from modelcrew.project_assets import asset_path
 import copy,json,uuid
 from pathlib import Path
 from modelcrew.config import ROOT
@@ -7,11 +8,11 @@ from modelcrew.mathematics import validate_package
 from modelcrew.writing_hand import read,new,rel
 from modelcrew.collaboration import sha_file
 
-BASE=ROOT/'stage-d/q2-modeling/proposal-v4'
+BASE=asset_path(ROOT,'stage-d/q2-modeling/proposal-v4')
 BASE.mkdir(parents=True,exist_ok=False)
-REF=ROOT/'stage-d/runs/references/d6-q1-to-q2-20261109-v2'
+REF=asset_path(ROOT,'stage-d/runs/references/d6-q1-to-q2-20261109-v2')
 source=read(REF/'question2-input-inventory.json')
-old=read(ROOT/'stage-d/runs/full/full-ed1a97c89d2c4aa3a4a2298a44a8ce77/contract.json')
+old=read(asset_path(ROOT,'stage-d/runs/full/full-ed1a97c89d2c4aa3a4a2298a44a8ce77/contract.json'))
 c=copy.deepcopy(old)
 c['problem']={'case_id':'CUMCM2024A','subproblem_id':'Q2','title':'板凳龙第二题：非相邻板凳外包络首次接触','scope':'沿给定螺线寻找非相邻矩形板凳首次接触，输出终止区间、接触对与极限位置速度；不以Q1的300秒作为终止或安全界。','objective':{'kind':'analysis','description':'在明确的实体外包络与相邻铰接豁免假设下定位最早非相邻接触；不把数值采样当全时域证明。'}}
 c['sources'][0]['locator']='用户提供原题PDF第1页实体尺寸、第3页问题2；题面未给出板厚、层高与接触容许标准。'
@@ -35,7 +36,7 @@ method_design=copy.deepcopy(c['method'])
 c['method']={'steps':[method_design['model'],method_design['algorithm'],*method_design['validation'],method_design['failure_policy']],'root_selection':method_design['root_selection'],'allowed_equivalent_changes':['不改变物理外包络与接触规则且保持全部容差的保守加速/独立复核'],'requires_new_confirmation':['相邻排除规则、孔洞处理、接触定义、几何参数或容差放宽','更改碰撞时刻定义或将未决区间当安全']}
 validate(c);new(BASE/'contract.json',c)
 # Create a complete mathematical handoff by reusing only applicable kinematics.
-p=read(ROOT/'stage-b-plus/examples/valid-bench-dragon.json');d=p['dossier'];d['id']='math:bench-dragon-q2';d['structure']='spiral_chain_collision'
+p=read(asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json'));d=p['dossier'];d['id']='math:bench-dragon-q2';d['structure']='spiral_chain_collision'
 d['problem_setting']={'scope':'Q2: 非相邻外矩形保守首次接触；无数值结果。','inputs':'Q1已确认模型参数、当前题面及D6版本绑定参考；不继承Q1无碰撞结论。','requested_conclusion':'首次接触时间区间、接触对、终态位置与速度左极限；用户确认前不求解。'}
 d['symbols']=[x for x in d['symbols']]
 for x in d['symbols']:
@@ -55,7 +56,7 @@ p['method_selection']['candidates'][0]['fallback']='若最早未决区间、分�
 p['validation_plan']=[{'id':'check:'+id,'description':desc,'threshold':tol,'unit':unit,'evidence_kind':'numerical' if id not in ['joint_policy'] else 'human_review'} for id,unit,tol,desc in checks]
 p['contract_links']=[{'equation_id':e['id'],'role':'explanatory','targets':[],'reason':'数学模型与推导；代码尚未实现，禁止宣称与可执行实现自动等价。'} for e in d['equations']]
 p['figures']=[]
-p['provenance']=[{'path':rel(REF/'question-context.json'),'sha256':sha_file(REF/'question-context.json'),'role':'已确认前题产物参考，仅运动学适配，不继承碰撞结论'},{'path':'resources/algorithms/numerical-geometry.md','sha256':sha_file(ROOT/'resources/algorithms/numerical-geometry.md'),'role':'几何求根与验证条件'}]
+p['provenance']=[{'path':rel(REF/'question-context.json'),'sha256':sha_file(REF/'question-context.json'),'role':'已确认前题产物参考，仅运动学适配，不继承碰撞结论'},{'path':'resources/algorithms/numerical-geometry.md','sha256':sha_file(asset_path(ROOT,'resources/algorithms/numerical-geometry.md')),'role':'几何求根与验证条件'}]
 validate_package(p,c);new(BASE/'mathematics.json',p)
-new(BASE/'model-design.json',{'scope':c['problem'],'physical_dimensions':read(ROOT/'stage-d/runs/full/full-ed1a97c89d2c4aa3a4a2298a44a8ce77/geometry-provenance.json')['physical_dimensions'],'new_assumptions':c['assumptions'][1:],'contact_definition':'首次非相邻完整外矩形接触；孤立相切也停，属于本方案保守模型约定。','eligible_pairs':{'board_indices':'0..222','rule':'i<j,j>=i+2','count':24531,'exclusions':'self and ALL adjacent pairs, no exemption for any other pair'},'continuous_search':{'domain':'从t=0开始，到首次经证明接触；解析上界T_origin=S(32pi)/v0，在上界前分支/分母失效则UNKNOWN不是碰撞。','state_enclosure':'外向舍入区间算术，对整个时间区间联立弧长与单调弦长约束作验证式根包围（区间Newton/单调括区收缩）；必须证明全区间存在唯一有效分支、D不含0；普通浮点密采样不能替代。','geometry_enclosure':'由位置区间得到每板中心、单位轴u=(Pnext-P)/L及完整四角区间；每板AABB取整个时间区间的角点包围。','safe_exclusion':'对每候选板对，若整区间AABB不交可排除；否则选固定轴（如中点姿态轴）并用四角投影的外向区间证明在整个时间区间严格分离。不同板对可用不同固定轴；只有全部24531对均证实分离才能丢弃该时间区间。','order':'从左到右处理时间区间；固定步长仅作候选调度不得跳过未决区间。不能假设g或G全局单调，不仅检查龙头。','event_witness':'最早未决区间必须先处理；用全部角-边/平行边接触特征的经验证根包围与接触条件确认存在接触，或有全局穿透见证G<0且前缀安全。无符号变号的切触也须检查；若无法证明存在或排除，则BLOCKED/UNKNOWN而非宣布终止。','root_refinement':'局部可证单根/横穿才可对该根二分或Brent；切触用区间特征隔离，不能强求异号。','budget':'最多2e6个时间区间/30分钟（待实现预算，不是已跑）；超出或最早未决区间仍不能判定即UNKNOWN，不能跳到更晚碰撞。','output_certificate':'safe prefix + earliest contact bracket <=1e-6s + all unresolved earlier intervals absent + contact pair set/witness；再以速度界与状态误差核对六位显示。','implementation_status':'proposed_not_implemented_or_executed'},'outputs':c['outputs'],'validation_plan':c['checks'],'user_confirmation':'pending','new_solver_runs':0,'Q1_0_to_300_s_not_extended_without_recompute':True})
+new(BASE/'model-design.json',{'scope':c['problem'],'physical_dimensions':read(asset_path(ROOT,'stage-d/runs/full/full-ed1a97c89d2c4aa3a4a2298a44a8ce77/geometry-provenance.json'))['physical_dimensions'],'new_assumptions':c['assumptions'][1:],'contact_definition':'首次非相邻完整外矩形接触；孤立相切也停，属于本方案保守模型约定。','eligible_pairs':{'board_indices':'0..222','rule':'i<j,j>=i+2','count':24531,'exclusions':'self and ALL adjacent pairs, no exemption for any other pair'},'continuous_search':{'domain':'从t=0开始，到首次经证明接触；解析上界T_origin=S(32pi)/v0，在上界前分支/分母失效则UNKNOWN不是碰撞。','state_enclosure':'外向舍入区间算术，对整个时间区间联立弧长与单调弦长约束作验证式根包围（区间Newton/单调括区收缩）；必须证明全区间存在唯一有效分支、D不含0；普通浮点密采样不能替代。','geometry_enclosure':'由位置区间得到每板中心、单位轴u=(Pnext-P)/L及完整四角区间；每板AABB取整个时间区间的角点包围。','safe_exclusion':'对每候选板对，若整区间AABB不交可排除；否则选固定轴（如中点姿态轴）并用四角投影的外向区间证明在整个时间区间严格分离。不同板对可用不同固定轴；只有全部24531对均证实分离才能丢弃该时间区间。','order':'从左到右处理时间区间；固定步长仅作候选调度不得跳过未决区间。不能假设g或G全局单调，不仅检查龙头。','event_witness':'最早未决区间必须先处理；用全部角-边/平行边接触特征的经验证根包围与接触条件确认存在接触，或有全局穿透见证G<0且前缀安全。无符号变号的切触也须检查；若无法证明存在或排除，则BLOCKED/UNKNOWN而非宣布终止。','root_refinement':'局部可证单根/横穿才可对该根二分或Brent；切触用区间特征隔离，不能强求异号。','budget':'最多2e6个时间区间/30分钟（待实现预算，不是已跑）；超出或最早未决区间仍不能判定即UNKNOWN，不能跳到更晚碰撞。','output_certificate':'safe prefix + earliest contact bracket <=1e-6s + all unresolved earlier intervals absent + contact pair set/witness；再以速度界与状态误差核对六位显示。','implementation_status':'proposed_not_implemented_or_executed'},'outputs':c['outputs'],'validation_plan':c['checks'],'user_confirmation':'pending','new_solver_runs':0,'Q1_0_to_300_s_not_extended_without_recompute':True})
 print('Q2 contract and mathematical package structural checks passed; no solver executed.')

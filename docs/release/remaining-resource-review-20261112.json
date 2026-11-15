@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-12",
+  "status": "remaining_23_static_audits_complete_user_adoption_implementation_permissions_separate",
+  "summary": {
+    "source_paths": 23,
+    "unique_contents": 20,
+    "python_scripts_ast_parsed": 13,
+    "findings": 28,
+    "pinned_modeling_matches": 17,
+    "local_modeling_differences": 3,
+    "reasoning_local_identity_only": 3,
+    "cumulative_audited": 139,
+    "unreviewed": 0,
+    "original_source_dispositions_unresolved": 139
+  },
+  "source_ledger": {
+    "path": "docs/release/resource-disposition-20261111.json",
+    "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+    "bytes": 181183
+  },
+  "support_decision": "docs/release/latex-support-decision-20261112.json",
+  "reports": [
+    {
+      "category": "paper-search",
+      "path": "docs/release/paper-search-review-20261112.json",
+      "sha256": "04a5c84f3867dca65d625d18f13281ec0b18c9ca13baca81b418e293a89499bd"
+    },
+    {
+      "category": "local-document-extensions",
+      "path": "docs/release/document-extensions-review-20261112.json",
+      "sha256": "f9e5d561d656bf3b28d40ba305875da66aefcaa17a34745576d324479eae5b04"
+    },
+    {
+      "category": "mathematical-reasoning",
+      "path": "docs/release/mathematical-reasoning-review-20261112.json",
+      "sha256": "0a7859554dc726bca555797b7c4230a84b2de0d9e37cecb7ade58780421c4d93"
+    },
+    {
+      "category": "entry-guides",
+      "path": "docs/release/entry-guides-review-20261112.json",
+      "sha256": "140069665721ec1f851369b21879ac07d607753cdd96d2cfa879b8c1948c79f2"
+    }
+  ],
+  "human_review": "docs/release/remaining-resource-review.md",
+  "source_code_executed_or_copied": false,
+  "new_runtime_capabilities_or_user_adoption_inferred": false,
+  "runtime_resources_changed": false,
+  "historical_receipts_changed": false,
+  "verification": {
+    "resources": {
+      "status": "passed",
+      "files": 186,
+      "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+    },
+    "official_documents": {
+      "status": "passed",
+      "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+      "files": 126,
+      "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+    },
+    "final_static_check": {
+      "path": "tmp/remaining-resource-review-20261112/review-check.json",
+      "sha256": "b6ae4e6c08a9e597d00cab086777b10131043d37d95a62a8fdf2b6cd3a66f7fa",
+      "status": "passed"
+    }
+  },
+  "next_action": "User category decisions on retained goals; independent project implementation/authorization and later packaging/routing acceptance remain separate."
+}

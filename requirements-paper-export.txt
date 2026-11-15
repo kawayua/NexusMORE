@@ -1,4 +1,0 @@
--r requirements-stage-c-plus.txt
-python-docx==1.2.0
-Pillow==12.2.0
-# Pandoc 3.6.4, Tectonic 0.17.0 and native Windows Word rendering are separately provisioned.

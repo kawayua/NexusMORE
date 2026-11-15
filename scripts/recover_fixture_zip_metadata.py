@@ -3,13 +3,14 @@
 No cell XML or numerical data are changed. Candidates are accepted ONLY against
 an independently recorded pre-existing SHA-256. Does not overwrite input files.
 """
+from modelcrew.project_assets import asset_path
 import hashlib,itertools,json,re,struct,time,zlib,zipfile
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from modelcrew.config import ROOT
 
 TARGET='d86a15905d3dc16658508adb5082bfc8d4688da64b7bda744165c94cf79168a4'
-RUN=ROOT/'stage-a/2024-A-problem-1/runs/bailian-20261101T150358548111Z'
+RUN=asset_path(ROOT,'stage-a/2024-A-problem-1/runs/bailian-20261101T150358548111Z')
 
 def raw_deflate(data):
     compressor=zlib.compressobj(-1,zlib.DEFLATED,-15)
@@ -42,7 +43,7 @@ def build_base(raw,infos,start_dir,core):
 def dos(value):return ((value.hour<<11)|(value.minute<<5)|(value.second//2),((value.year-1980)<<9)|(value.month<<5)|value.day)
 
 def main():
-    folder=ROOT/'stage-b/runs'/('fixture-metadata-recovery-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/('fixture-metadata-recovery-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));folder.mkdir(parents=True)
     source=RUN/'output/result1.xlsx';raw=source.read_bytes();source_hash=hashlib.sha256(raw).hexdigest()
     state=json.loads((RUN/'container-inspect.json').read_text(encoding='utf-8'))[0]['State']
     start=datetime.fromisoformat(state['StartedAt'].replace('Z','+00:00')).replace(microsecond=0)

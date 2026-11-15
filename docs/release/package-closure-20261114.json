@@ -1,0 +1,4101 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F2",
+  "status": "technical_acceptance_passed_private_distribution_closed",
+  "user_request": {
+    "source": "explicit_user_message_in_current_conversation",
+    "exact_text": "对F2进行最终汇总验收与收口",
+    "authorization": "perform final package acceptance and close agreed F2 scope",
+    "not_a_paper_or_publication_approval": true
+  },
+  "product": "枢模 · NexusMORE",
+  "distribution": "nexusmore",
+  "python_package_and_command": "modelcrew",
+  "version": "0.1.0.dev0",
+  "platform": {
+    "os": "Windows x86_64",
+    "python": "CPython3.13",
+    "actual_python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]"
+  },
+  "frozen_artifacts": {
+    "schema_version": "1.0.0",
+    "status": "passed",
+    "scope": "private development build; no public upload, full-knowledge or runtime gate acceptance",
+    "build_isolation": false,
+    "builder": "setuptools.build_meta; installed build requirements",
+    "wheel": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\package-closure-validation-20261114\\frozen-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "78dfdcfc6c91b5aab11e3aaaa5d107ce68dac649d535589ff5e3e0940bfa9153",
+      "bytes": 910659,
+      "members": 299,
+      "resource_files": 219,
+      "module_files": 74,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    },
+    "sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\package-closure-validation-20261114\\frozen-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "4b8feee584bfbab1d151c386890973019df5e358a2f9d215caf42863d6d14941",
+      "bytes": 910190,
+      "members": 433,
+      "status": "passed"
+    },
+    "wheel_from_sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\package-closure-validation-20261114\\frozen-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "4123eb0200e526af805061914aedf1159bdb914257057294c9b283cf2179fd89",
+      "bytes": 910659,
+      "members": 299,
+      "resource_files": 219,
+      "module_files": 74,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "id": "package-identity-and-entrypoints",
+      "status": "passed",
+      "details": "nexusmore 0.1.0.dev0; modelcrew console/module; Windows x64 CPython3.13; version/help/resources-check in three isolated installations"
+    },
+    {
+      "id": "wheel-sdist-and-rebuild",
+      "status": "passed",
+      "details": "Frozen wheel, sdist and rebuilt wheel exact allowlist; no private workspace/config/cache/historical input leakage"
+    },
+    {
+      "id": "runtime-resource-layout",
+      "status": "passed",
+      "details": "219 declared resources,74 Python modules,126 official document-tool files,21 collaboration guides,12 migrations; all installed package bytes match wheel"
+    },
+    {
+      "id": "dependency-groups",
+      "status": "passed",
+      "details": "Core plus six production extras; previous isolated per-group evidence and unchanged metadata/runtime mapping, new current-candidate union installation/pip check; dev remains separate"
+    },
+    {
+      "id": "declared-knowledge-baseline",
+      "status": "passed",
+      "details": "Original15 gap items have authored scope baselines: A1-A7,B1-B3,C1-C5; reads123 algorithm rows/39 mathematics topics; actual113+39 fixed computations and current paper writing context"
+    },
+    {
+      "id": "outside-source-installation",
+      "status": "passed",
+      "details": "Three independent venvs outside repository; no PYTHONPATH, user/system site or pytest; wheel and source-rebuilt wheel core plus all-production-extras environment"
+    },
+    {
+      "id": "repository-and-historical-preservation",
+      "status": "passed",
+      "details": "Final layout zero issues; old source ledger, gap inventory, approvals, candidates and guide bytes unchanged"
+    }
+  ],
+  "remaining_F2_in_scope_items": [],
+  "coverage": {
+    "runtime_resources": 219,
+    "python_modules": 74,
+    "document_tool_files": 126,
+    "collaboration_guides": 21,
+    "migrations": 12,
+    "authored_original_gap_items": 15,
+    "algorithm_source_rows": 123,
+    "canonical_algorithms": 113,
+    "mathematical_topics": 39,
+    "current_fixed_cases": 152,
+    "independent_gate_review_performed": false
+  },
+  "dependency_groups": [
+    {
+      "group": "core",
+      "python_dependency_status": "passed",
+      "source_record": "docs/release/package-installation-20261113.json",
+      "isolated_environment": {
+        "path": "tmp/package-installation-20261113/core-verified.json",
+        "sha256": "a85443b9a958a3e6fd50ba471c4cee78c1d6fe15c13585bb1a3efee6d168ec70",
+        "bytes": 8250
+      }
+    },
+    {
+      "group": "workflow",
+      "python_dependency_status": "passed",
+      "source_record": "docs/release/package-installation-20261113.json",
+      "isolated_environment": {
+        "path": "tmp/package-installation-20261113/workflow-verified.json",
+        "sha256": "79b00a4907434c50bedd9c590b5edb6b8f69417d5b83a6f1896668dbb0c8bdce",
+        "bytes": 13998
+      }
+    },
+    {
+      "group": "documents",
+      "python_dependency_status": "passed",
+      "engineering_function_status": "passed_for_fixed_probe",
+      "source_record": "docs/release/optional-dependency-validation-20261114.json"
+    },
+    {
+      "group": "figures",
+      "python_dependency_status": "passed",
+      "engineering_function_status": "passed_for_fixed_probe",
+      "source_record": "docs/release/optional-dependency-validation-20261114.json"
+    },
+    {
+      "group": "evidence",
+      "python_dependency_status": "passed",
+      "engineering_function_status": "passed_for_fixed_probe",
+      "source_record": "docs/release/optional-dependency-validation-20261114.json"
+    },
+    {
+      "group": "retrieval",
+      "python_dependency_status": "passed",
+      "engineering_function_status": "passed",
+      "source_record": "docs/release/retrieval-paper-validation-20261114.json",
+      "report": {
+        "path": "tmp/retrieval-paper-validation-20261114/verified/retrieval/probe.json",
+        "sha256": "8fe8d7203c5c5fa28d8731e4908f5a6be837a4389e78c4c717bc7ecee3626261",
+        "bytes": 22938
+      },
+      "scope": "Fixed synthetic embedding/local Qdrant probe, not production model/server"
+    },
+    {
+      "group": "paper",
+      "python_dependency_status": "passed",
+      "engineering_function_status": "partial",
+      "source_record": "docs/release/retrieval-paper-validation-20261114.json",
+      "report": {
+        "path": "tmp/retrieval-paper-validation-20261114/verified-python/paper/probe.json",
+        "sha256": "317f7c3f0dcf9951484215d8f5a7501118d7b91cb3b23059a2f488ada39b8197",
+        "bytes": 15531
+      },
+      "scope": "Python/export-structure probes passed; native Word rendering remains blocked and handed to F4/H2"
+    }
+  ],
+  "current_candidate_installation": {
+    "wheel-core": {
+      "status": "passed",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "machine": "AMD64",
+      "package": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\wheel-core\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+      "executable": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\wheel-core\\venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\wheel-core",
+      "isolated": true,
+      "user_site": false,
+      "system_site": false,
+      "pytest_installed": false,
+      "resources": {
+        "status": "passed",
+        "files": 219,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "document_tools": {
+        "status": "passed",
+        "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+        "files": 126,
+        "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+      },
+      "migrations": 12,
+      "algorithm_rows_read": 123,
+      "mathematical_topics_read": 39,
+      "distributions": [
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        }
+      ],
+      "optional_dependencies_absent": true,
+      "pip_check": "No broken requirements found.",
+      "installed_wheel": "D:\\big-third-up\\modelcrew\\tmp\\package-closure-validation-20261114\\frozen-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "wheel_sha256": "78dfdcfc6c91b5aab11e3aaaa5d107ce68dac649d535589ff5e3e0940bfa9153",
+      "cli": {
+        "--version": "nexusmore 0.1.0.dev0",
+        "--help": "usage: modelcrew [-h] [--version]\n                 {resources-check,init-db,validate,inspect-input,draft-inputs,resolve-input,generate-draft,math-show,math-publish,create,show,resume,versions,dossier,record,retrieve,discuss-references,tool-evidence,attach-solver,modeling-run,modeling-status,modeling-recheck,act} ...\n\npositional arguments:\n  {resources-check,init-db,validate,inspect-input,draft-inputs,resolve-input,generate-draft,math-show,math-publish,create,show,resume,versions,dossier,record,retrieve,discuss-references,tool-evidence,attach-solver,modeling-run,modeling-status,modeling-recheck,act}\n    resources-check     Verify declared bundled resources; no services\n                        required\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show program's version number and exit",
+        "resources-check": {
+          "status": "passed",
+          "files": 219,
+          "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+        }
+      },
+      "console_entrypoint": "nexusmore 0.1.0.dev0",
+      "wheel_members_matched": 294
+    },
+    "sdist-core": {
+      "status": "passed",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "machine": "AMD64",
+      "package": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\sdist-core\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+      "executable": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\sdist-core\\venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\sdist-core",
+      "isolated": true,
+      "user_site": false,
+      "system_site": false,
+      "pytest_installed": false,
+      "resources": {
+        "status": "passed",
+        "files": 219,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "document_tools": {
+        "status": "passed",
+        "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+        "files": 126,
+        "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+      },
+      "migrations": 12,
+      "algorithm_rows_read": 123,
+      "mathematical_topics_read": 39,
+      "distributions": [
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        }
+      ],
+      "optional_dependencies_absent": true,
+      "pip_check": "No broken requirements found.",
+      "installed_wheel": "D:\\big-third-up\\modelcrew\\tmp\\package-closure-validation-20261114\\frozen-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "wheel_sha256": "4123eb0200e526af805061914aedf1159bdb914257057294c9b283cf2179fd89",
+      "cli": {
+        "--version": "nexusmore 0.1.0.dev0",
+        "--help": "usage: modelcrew [-h] [--version]\n                 {resources-check,init-db,validate,inspect-input,draft-inputs,resolve-input,generate-draft,math-show,math-publish,create,show,resume,versions,dossier,record,retrieve,discuss-references,tool-evidence,attach-solver,modeling-run,modeling-status,modeling-recheck,act} ...\n\npositional arguments:\n  {resources-check,init-db,validate,inspect-input,draft-inputs,resolve-input,generate-draft,math-show,math-publish,create,show,resume,versions,dossier,record,retrieve,discuss-references,tool-evidence,attach-solver,modeling-run,modeling-status,modeling-recheck,act}\n    resources-check     Verify declared bundled resources; no services\n                        required\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show program's version number and exit",
+        "resources-check": {
+          "status": "passed",
+          "files": 219,
+          "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+        }
+      },
+      "console_entrypoint": "nexusmore 0.1.0.dev0",
+      "wheel_members_matched": 294
+    },
+    "wheel-full": {
+      "status": "passed",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "machine": "AMD64",
+      "package": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\wheel-full\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+      "executable": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\wheel-full\\venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\package-closure-validation-20261114\\wheel-full",
+      "isolated": true,
+      "user_site": false,
+      "system_site": false,
+      "pytest_installed": false,
+      "resources": {
+        "status": "passed",
+        "files": 219,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "document_tools": {
+        "status": "passed",
+        "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+        "files": 126,
+        "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+      },
+      "migrations": 12,
+      "algorithm_rows_read": 123,
+      "mathematical_topics_read": 39,
+      "distributions": [
+        {
+          "name": "annotated-doc",
+          "version": "0.0.6"
+        },
+        {
+          "name": "annotated-types",
+          "version": "0.8.0"
+        },
+        {
+          "name": "anyio",
+          "version": "4.14.2"
+        },
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "beautifulsoup4",
+          "version": "4.15.0"
+        },
+        {
+          "name": "certifi",
+          "version": "2026.10.23"
+        },
+        {
+          "name": "cffi",
+          "version": "2.1.1"
+        },
+        {
+          "name": "charset-normalizer",
+          "version": "3.5.2"
+        },
+        {
+          "name": "click",
+          "version": "8.5.1"
+        },
+        {
+          "name": "cloudpickle",
+          "version": "3.1.2"
+        },
+        {
+          "name": "colorama",
+          "version": "0.4.6"
+        },
+        {
+          "name": "contourpy",
+          "version": "1.4.0"
+        },
+        {
+          "name": "cryptography",
+          "version": "50.0.2"
+        },
+        {
+          "name": "cycler",
+          "version": "0.12.1"
+        },
+        {
+          "name": "defusedxml",
+          "version": "0.7.1"
+        },
+        {
+          "name": "distro",
+          "version": "1.9.0"
+        },
+        {
+          "name": "et_xmlfile",
+          "version": "2.0.0"
+        },
+        {
+          "name": "fastapi",
+          "version": "0.162.0"
+        },
+        {
+          "name": "filelock",
+          "version": "4.2.10"
+        },
+        {
+          "name": "fonttools",
+          "version": "4.68.0"
+        },
+        {
+          "name": "fsspec",
+          "version": "2026.9.0"
+        },
+        {
+          "name": "grpcio",
+          "version": "1.85.1"
+        },
+        {
+          "name": "h11",
+          "version": "0.16.0"
+        },
+        {
+          "name": "h2",
+          "version": "4.4.1"
+        },
+        {
+          "name": "hf-xet",
+          "version": "1.8.0"
+        },
+        {
+          "name": "hpack",
+          "version": "4.2.0"
+        },
+        {
+          "name": "httpcore",
+          "version": "1.0.9"
+        },
+        {
+          "name": "httpcore2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "httpx",
+          "version": "0.28.1"
+        },
+        {
+          "name": "httpx-sse",
+          "version": "0.4.3"
+        },
+        {
+          "name": "httpx2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "huggingface_hub",
+          "version": "1.33.0"
+        },
+        {
+          "name": "hyperframe",
+          "version": "6.1.0"
+        },
+        {
+          "name": "idna",
+          "version": "3.20"
+        },
+        {
+          "name": "Jinja2",
+          "version": "3.1.6"
+        },
+        {
+          "name": "joblib",
+          "version": "1.6.0"
+        },
+        {
+          "name": "jsonpatch",
+          "version": "1.47"
+        },
+        {
+          "name": "jsonpointer",
+          "version": "3.12"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "kiwisolver",
+          "version": "1.5.1"
+        },
+        {
+          "name": "langchain-core",
+          "version": "1.8.0"
+        },
+        {
+          "name": "langchain-protocol",
+          "version": "0.0.21"
+        },
+        {
+          "name": "langgraph",
+          "version": "1.2.10"
+        },
+        {
+          "name": "langgraph-checkpoint",
+          "version": "4.3.1"
+        },
+        {
+          "name": "langgraph-checkpoint-postgres",
+          "version": "3.2.0"
+        },
+        {
+          "name": "langgraph-prebuilt",
+          "version": "1.1.2"
+        },
+        {
+          "name": "langgraph-sdk",
+          "version": "0.4.14"
+        },
+        {
+          "name": "langsmith",
+          "version": "0.14.17"
+        },
+        {
+          "name": "lxml",
+          "version": "6.1.1"
+        },
+        {
+          "name": "markdown-it-py",
+          "version": "4.3.0"
+        },
+        {
+          "name": "MarkupSafe",
+          "version": "3.0.4"
+        },
+        {
+          "name": "matplotlib",
+          "version": "3.10.3"
+        },
+        {
+          "name": "mcp",
+          "version": "1.30.0"
+        },
+        {
+          "name": "mdurl",
+          "version": "0.1.2"
+        },
+        {
+          "name": "mpmath",
+          "version": "1.3.0"
+        },
+        {
+          "name": "narwhals",
+          "version": "2.28.0"
+        },
+        {
+          "name": "networkx",
+          "version": "3.7"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "numpy",
+          "version": "2.3.1"
+        },
+        {
+          "name": "openpyxl",
+          "version": "3.1.5"
+        },
+        {
+          "name": "opentelemetry-api",
+          "version": "1.45.2"
+        },
+        {
+          "name": "orjson",
+          "version": "3.13.0"
+        },
+        {
+          "name": "ormsgpack",
+          "version": "1.13.1"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "name": "pdfminer.six",
+          "version": "20260107"
+        },
+        {
+          "name": "pdfplumber",
+          "version": "0.11.10"
+        },
+        {
+          "name": "pillow",
+          "version": "12.2.0"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "portalocker",
+          "version": "4.4.2"
+        },
+        {
+          "name": "protobuf",
+          "version": "7.36.2"
+        },
+        {
+          "name": "psycopg",
+          "version": "3.3.4"
+        },
+        {
+          "name": "psycopg-binary",
+          "version": "3.3.4"
+        },
+        {
+          "name": "psycopg-pool",
+          "version": "3.3.3"
+        },
+        {
+          "name": "pycparser",
+          "version": "3.12"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.13.4"
+        },
+        {
+          "name": "pydantic-settings",
+          "version": "2.16.3"
+        },
+        {
+          "name": "pydantic_core",
+          "version": "2.46.4"
+        },
+        {
+          "name": "Pygments",
+          "version": "2.21.0"
+        },
+        {
+          "name": "PyJWT",
+          "version": "2.15.1"
+        },
+        {
+          "name": "PyMuPDF",
+          "version": "1.27.2.3"
+        },
+        {
+          "name": "pyparsing",
+          "version": "3.3.3"
+        },
+        {
+          "name": "pypdf",
+          "version": "6.16.1"
+        },
+        {
+          "name": "pypdfium2",
+          "version": "5.15.2"
+        },
+        {
+          "name": "python-dateutil",
+          "version": "4.0.0"
+        },
+        {
+          "name": "python-docx",
+          "version": "1.2.0"
+        },
+        {
+          "name": "python-dotenv",
+          "version": "1.2.4"
+        },
+        {
+          "name": "python-multipart",
+          "version": "0.0.33"
+        },
+        {
+          "name": "pywin32",
+          "version": "312"
+        },
+        {
+          "name": "PyYAML",
+          "version": "6.0.3"
+        },
+        {
+          "name": "qdrant-client",
+          "version": "1.20.0"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "regex",
+          "version": "2026.11.9"
+        },
+        {
+          "name": "requests",
+          "version": "2.34.2"
+        },
+        {
+          "name": "requests-toolbelt",
+          "version": "1.0.0"
+        },
+        {
+          "name": "rich",
+          "version": "15.0.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        },
+        {
+          "name": "safetensors",
+          "version": "0.8.0"
+        },
+        {
+          "name": "scikit-learn",
+          "version": "1.9.1"
+        },
+        {
+          "name": "scipy",
+          "version": "1.16.0"
+        },
+        {
+          "name": "sentence-transformers",
+          "version": "6.0.0"
+        },
+        {
+          "name": "setuptools",
+          "version": "84.2.1"
+        },
+        {
+          "name": "shellingham",
+          "version": "1.5.4"
+        },
+        {
+          "name": "sniffio",
+          "version": "1.3.1"
+        },
+        {
+          "name": "soupsieve",
+          "version": "4.1"
+        },
+        {
+          "name": "sse-starlette",
+          "version": "3.7.0"
+        },
+        {
+          "name": "starlette",
+          "version": "1.10.0"
+        },
+        {
+          "name": "sympy",
+          "version": "1.13.1"
+        },
+        {
+          "name": "tenacity",
+          "version": "9.2.1"
+        },
+        {
+          "name": "threadpoolctl",
+          "version": "3.8.0"
+        },
+        {
+          "name": "tokenizers",
+          "version": "0.23.3"
+        },
+        {
+          "name": "torch",
+          "version": "2.6.0"
+        },
+        {
+          "name": "tqdm",
+          "version": "4.70.1"
+        },
+        {
+          "name": "transformers",
+          "version": "5.23.0"
+        },
+        {
+          "name": "truststore",
+          "version": "0.10.5"
+        },
+        {
+          "name": "typer",
+          "version": "0.29.1"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.5"
+        },
+        {
+          "name": "typing_extensions",
+          "version": "4.16.0"
+        },
+        {
+          "name": "tzdata",
+          "version": "2026.6"
+        },
+        {
+          "name": "urllib3",
+          "version": "2.8.0"
+        },
+        {
+          "name": "uuid_utils",
+          "version": "0.19.0"
+        },
+        {
+          "name": "uvicorn",
+          "version": "0.52.1"
+        },
+        {
+          "name": "websockets",
+          "version": "17.4"
+        },
+        {
+          "name": "xxhash",
+          "version": "4.1.0"
+        },
+        {
+          "name": "zstandard",
+          "version": "0.25.0"
+        }
+      ],
+      "imported_modules": [
+        "modelcrew.workflow",
+        "modelcrew.hand_runtime",
+        "modelcrew.modeling_hand",
+        "modelcrew.assembly_builds",
+        "modelcrew.algorithm_retrieval",
+        "modelcrew.code_executor_mcp",
+        "modelcrew.paper_export",
+        "modelcrew.paper_render",
+        "modelcrew.figure_tools",
+        "modelcrew.office_tools",
+        "modelcrew.paper_discovery",
+        "sentence_transformers",
+        "qdrant_client",
+        "docx",
+        "fitz",
+        "matplotlib",
+        "numpy",
+        "scipy",
+        "sympy",
+        "psycopg",
+        "portalocker",
+        "mcp"
+      ],
+      "paper_context": {
+        "documents": 10,
+        "reference_version": "1.0.0",
+        "template": "resources/paper/templates/chinese-research/main.tex"
+      },
+      "algorithm_cases": {
+        "status": "passed",
+        "knowledge_version": "1.0.0",
+        "cases": 113,
+        "results": [
+          {
+            "id": "lp",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              1.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ip",
+            "status": "passed",
+            "actual": 7.0,
+            "expected": 7.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "milp",
+            "status": "passed",
+            "actual": 1.3,
+            "expected": 1.3,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "nlp",
+            "status": "passed",
+            "actual": [
+              2.0,
+              0.0
+            ],
+            "expected": [
+              2.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "binary-ip",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dynamic-programming",
+            "status": "passed",
+            "actual": 7.0,
+            "expected": 7.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "multi-objective",
+            "status": "passed",
+            "actual": [
+              3.0,
+              1.0
+            ],
+            "expected": [
+              3.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "qp",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0
+            ],
+            "expected": [
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "goal-programming",
+            "status": "passed",
+            "actual": [
+              4.0,
+              2.0
+            ],
+            "expected": [
+              4.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "robust-optimization",
+            "status": "passed",
+            "actual": [
+              0.5,
+              1.0
+            ],
+            "expected": [
+              0.5,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ga",
+            "status": "passed",
+            "actual": 0.25,
+            "expected": 0.25,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pso",
+            "status": "passed",
+            "actual": [
+              -1.5,
+              0.5
+            ],
+            "expected": [
+              -1.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sa",
+            "status": "passed",
+            "actual": [
+              0.36787944117144233,
+              1.0
+            ],
+            "expected": [
+              0.36787944117144233,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "aco",
+            "status": "passed",
+            "actual": [
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "expected": [
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "de",
+            "status": "passed",
+            "actual": [
+              2.0,
+              4.0
+            ],
+            "expected": [
+              2.0,
+              4.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "tabu",
+            "status": "passed",
+            "actual": [
+              3.0,
+              9.0
+            ],
+            "expected": [
+              3.0,
+              9.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "nsga2",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "linear-regression",
+            "status": "passed",
+            "actual": [
+              0.9999999999999997,
+              1.9999999999999998,
+              6.999999999999999
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              7.0
+            ],
+            "max_absolute_error": 8.881784197001252e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "polynomial-regression",
+            "status": "passed",
+            "actual": 4.000000000000001,
+            "expected": 4.0,
+            "max_absolute_error": 8.881784197001252e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "exponential-smoothing",
+            "status": "passed",
+            "actual": 12.5,
+            "expected": 12.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gm11",
+            "status": "passed",
+            "actual": [
+              -0.6666666666666669,
+              0.6666666666666669
+            ],
+            "expected": [
+              -0.6666666666666666,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 2.220446049250313e-16,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "arima",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sarima",
+            "status": "passed",
+            "actual": 8.0,
+            "expected": 8.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "var",
+            "status": "passed",
+            "actual": [
+              2.0,
+              1.0,
+              0.5
+            ],
+            "expected": [
+              2.0,
+              1.0,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "prophet",
+            "status": "passed",
+            "actual": 7.0,
+            "expected": 7.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "xgboost",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "lightgbm",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "catboost",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "lstm",
+            "status": "passed",
+            "actual": [
+              0.4,
+              0.18997448112761245
+            ],
+            "expected": [
+              0.4,
+              0.18997448112761245
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gru",
+            "status": "passed",
+            "actual": 0.7000000000000001,
+            "expected": 0.7,
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "tcn",
+            "status": "passed",
+            "actual": 11.0,
+            "expected": 11.0,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "transformer",
+            "status": "passed",
+            "actual": 5.0,
+            "expected": 5.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ahp",
+            "status": "passed",
+            "actual": [
+              0.14285714285714288,
+              0.28571428571428564,
+              0.5714285714285715,
+              0.0
+            ],
+            "expected": [
+              0.14285714285714285,
+              0.2857142857142857,
+              0.5714285714285714,
+              0.0
+            ],
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "entropy-weight",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "topsis",
+            "status": "passed",
+            "actual": [
+              0.75,
+              0.25
+            ],
+            "expected": [
+              0.75,
+              0.25
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "weighted-score",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "critic",
+            "status": "passed",
+            "actual": [
+              0.5,
+              0.5
+            ],
+            "expected": [
+              0.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pca",
+            "status": "passed",
+            "actual": [
+              2.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              2.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "factor-analysis",
+            "status": "passed",
+            "actual": [
+              [
+                2.0,
+                2.0
+              ],
+              [
+                2.0,
+                5.0
+              ]
+            ],
+            "expected": [
+              [
+                2.0,
+                2.0
+              ],
+              [
+                2.0,
+                5.0
+              ]
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "grey-relation",
+            "status": "passed",
+            "actual": 0.6666666666666666,
+            "expected": 0.6666666666666666,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "fuzzy-evaluation",
+            "status": "passed",
+            "actual": [
+              0.4,
+              0.6000000000000001
+            ],
+            "expected": [
+              0.4,
+              0.6
+            ],
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "vikor",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "promethee",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "electre",
+            "status": "passed",
+            "actual": [
+              0.6,
+              0.0
+            ],
+            "expected": [
+              0.6,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dea",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "malmquist",
+            "status": "passed",
+            "actual": 2.0,
+            "expected": 2.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dfs",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bfs",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dijkstra",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              3.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "floyd",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bellman-ford",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              -1.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              -1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "prim",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "kruskal",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dinic",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "min-cost-flow",
+            "status": "passed",
+            "actual": 9.0,
+            "expected": 9.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "hungarian",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pagerank",
+            "status": "passed",
+            "actual": [
+              0.5,
+              0.5
+            ],
+            "expected": [
+              0.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "louvain",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "k-shortest",
+            "status": "passed",
+            "actual": [
+              3.0,
+              4.0
+            ],
+            "expected": [
+              3.0,
+              4.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "graph-coloring",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "centrality",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "descriptive",
+            "status": "passed",
+            "actual": [
+              2.0,
+              1.0,
+              2.0
+            ],
+            "expected": [
+              2.0,
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "minmax",
+            "status": "passed",
+            "actual": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "zscore",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "imputation",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "knn-imputation",
+            "status": "passed",
+            "actual": 15.0,
+            "expected": 15.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "three-sigma",
+            "status": "passed",
+            "actual": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "iqr",
+            "status": "passed",
+            "actual": [
+              -2.0,
+              6.0
+            ],
+            "expected": [
+              -2.0,
+              6.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "lof",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0,
+              9.0
+            ],
+            "expected": [
+              1.0,
+              1.0,
+              9.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pearson",
+            "status": "passed",
+            "actual": 0.9999999999999998,
+            "expected": 1.0,
+            "max_absolute_error": 2.220446049250313e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "spearman",
+            "status": "passed",
+            "actual": -1.0,
+            "expected": -1.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "kendall",
+            "status": "passed",
+            "actual": 0.33333333333333337,
+            "expected": 0.3333333333333333,
+            "max_absolute_error": 5.551115123125783e-17,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ttest",
+            "status": "passed",
+            "actual": [
+              -1.224744871391589,
+              0.2878641347266908,
+              -1.0
+            ],
+            "expected": [
+              -1.224744871391589,
+              0.2878641347266908,
+              -1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "chi-square",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "anova",
+            "status": "passed",
+            "actual": 16.0,
+            "expected": 16.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bootstrap",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "logistic-regression",
+            "status": "passed",
+            "actual": [
+              0.75,
+              0.2876820724517809
+            ],
+            "expected": [
+              0.75,
+              0.2876820724517809
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "vif",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "adf",
+            "status": "passed",
+            "actual": -2.0,
+            "expected": -2.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "did",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "psm",
+            "status": "passed",
+            "actual": 2.5,
+            "expected": 2.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "monte-carlo",
+            "status": "passed",
+            "actual": 0.49825449597681654,
+            "expected": 0.5,
+            "max_absolute_error": 0.001745504023183464,
+            "scope": "stochastic_estimate",
+            "absolute_tolerance": 0.006,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "difference-equation",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.5,
+              1.75
+            ],
+            "expected": [
+              1.0,
+              1.5,
+              1.75
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ode",
+            "status": "passed",
+            "actual": 0.36787944117920773,
+            "expected": 0.36787944117144233,
+            "max_absolute_error": 7.765399434589426e-12,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "queueing",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              0.6666666666666666
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "markov",
+            "status": "passed",
+            "actual": [
+              0.8,
+              0.2,
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "expected": [
+              0.8,
+              0.2,
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "cellular-automata",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "system-dynamics",
+            "status": "passed",
+            "actual": [
+              11.0,
+              11.8
+            ],
+            "expected": [
+              11.0,
+              11.8
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "discrete-event",
+            "status": "passed",
+            "actual": 1.0,
+            "expected": 1.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "stochastic-process",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0,
+              0.36787944117144233
+            ],
+            "expected": [
+              1.0,
+              1.0,
+              0.36787944117144233
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bayesian-network",
+            "status": "passed",
+            "actual": [
+              0.24000000000000005,
+              0.6666666666666666
+            ],
+            "expected": [
+              0.24,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 5.551115123125783e-17,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "abm",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sensitivity",
+            "status": "passed",
+            "actual": 3.9999999999995595,
+            "expected": 4.0,
+            "max_absolute_error": 4.405364961712621e-13,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sobol",
+            "status": "passed",
+            "actual": [
+              0.2,
+              0.8
+            ],
+            "expected": [
+              0.2,
+              0.8
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "decision-tree",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "svm",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0
+            ],
+            "expected": [
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "knn",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "random-forest",
+            "status": "passed",
+            "actual": [
+              0.6666666666666666,
+              1.0
+            ],
+            "expected": [
+              0.6666666666666666,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "naive-bayes",
+            "status": "passed",
+            "actual": [
+              0.2,
+              0.8
+            ],
+            "expected": [
+              0.2,
+              0.8
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "adaboost",
+            "status": "passed",
+            "actual": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.5000000000000001
+            ],
+            "expected": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.5
+            ],
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gbdt",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "stacking",
+            "status": "passed",
+            "actual": 2.5,
+            "expected": 2.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "kmeans",
+            "status": "passed",
+            "actual": [
+              1.0,
+              9.0,
+              4.0
+            ],
+            "expected": [
+              1.0,
+              9.0,
+              4.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "hierarchical",
+            "status": "passed",
+            "actual": [
+              1.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dbscan",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gmm",
+            "status": "passed",
+            "actual": [
+              0.5,
+              0.5
+            ],
+            "expected": [
+              0.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "mean-shift",
+            "status": "passed",
+            "actual": 1.0,
+            "expected": 1.0,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "tsne",
+            "status": "passed",
+            "actual": 0.08228669264384184,
+            "expected": 0.08228669264325505,
+            "max_absolute_error": 5.867806240900109e-13,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "umap",
+            "status": "passed",
+            "actual": [
+              0.6,
+              0.2
+            ],
+            "expected": [
+              0.6,
+              0.2
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "mlp",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "cnn",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              -1.0
+            ],
+            "expected": [
+              -1.0,
+              -1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "rnn",
+            "status": "passed",
+            "actual": 0.7615941559557649,
+            "expected": 0.7615941559557649,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "autoencoder",
+            "status": "passed",
+            "actual": [
+              2.0,
+              1.0
+            ],
+            "expected": [
+              2.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          }
+        ],
+        "case_scope": "Fixed packaged educational examples; each result retains complete-solution vs component/update distinction",
+        "negative_boundaries": "Documented per algorithm; numeric boundary rejection separately tested, not all counterexamples executed",
+        "formal_approval": false,
+        "independent_review": "NOT_RUN",
+        "general_business_solvers_registered": false
+      },
+      "mathematical_cases": {
+        "status": "passed",
+        "knowledge_version": "1.0.0",
+        "cases": 39,
+        "results": [
+          {
+            "id": "domains",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              3.0,
+              3.0,
+              2.0
+            ],
+            "expected": [
+              3.0,
+              3.0,
+              2.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dimensions",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.5,
+              1.5,
+              1.0
+            ],
+            "expected": [
+              0.5,
+              1.5,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "linear-system",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.2,
+              0.6,
+              2.220446049250313e-16
+            ],
+            "expected": [
+              0.2,
+              0.6,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 2.220446049250313e-16,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "least-squares",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.9999999999999997,
+              1.9999999999999998,
+              6.999999999999999,
+              2.7755575615628914e-15
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              7.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 2.7755575615628914e-15,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "differentiation",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              0.0,
+              5.0,
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "expected": [
+              0.0,
+              5.0,
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "taylor",
+            "scope": "numerical_error_check",
+            "status": "passed",
+            "actual": [
+              1.105,
+              0.0001709180756477302,
+              1.0
+            ],
+            "expected": [
+              1.105,
+              0.0001709180756477302,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "integration-limits",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.5
+            ],
+            "expected": [
+              1.0,
+              0.5
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "probability",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.15384615384615385,
+              2.0,
+              1.6
+            ],
+            "expected": [
+              0.15384615384615385,
+              2.0,
+              1.6
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sensitivity-errors",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              3.0,
+              0.09013878188659974,
+              0.125
+            ],
+            "expected": [
+              3.0,
+              0.09013878188659974,
+              0.125
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ode-conditions",
+            "scope": "numerical_error_check",
+            "status": "passed",
+            "actual": 0.40600584971154013,
+            "expected": 0.4060058497098381,
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 1.7020274079015962e-12,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "constrained-optimality",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "numerical-error",
+            "scope": "numerical_error_check",
+            "status": "passed",
+            "actual": [
+              0.0016666666666666496,
+              0.0004166666666667318,
+              3.999999999999334
+            ],
+            "expected": [
+              0.0016666666666666668,
+              0.0004166666666666667,
+              4.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 6.661338147750939e-13,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "quantifiers",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "direct-proof",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              0.0,
+              4.0
+            ],
+            "expected": [
+              0.0,
+              4.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "contradiction",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": 0.0,
+            "expected": 0.0,
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "induction",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              55.0,
+              55.0
+            ],
+            "expected": [
+              55.0,
+              55.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "contrapositive",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "case-analysis",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "expected": [
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "constructive-proof",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              4.0,
+              4.0,
+              4.0,
+              12.0
+            ],
+            "expected": [
+              4.0,
+              4.0,
+              4.0,
+              12.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "existence-uniqueness",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "convexity",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              3.0,
+              3.0
+            ],
+            "expected": [
+              3.0,
+              3.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "descent-convergence",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              2.0,
+              0.5,
+              1.5
+            ],
+            "expected": [
+              2.0,
+              0.5,
+              1.5
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "fixed-point",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.75,
+              0.25,
+              0.25
+            ],
+            "expected": [
+              1.75,
+              0.25,
+              0.25
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "generalization",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.13581015157406195,
+              0.17308183826022852
+            ],
+            "expected": [
+              0.13581015157406195,
+              0.17308183826022852
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "design-estimand",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              6.0,
+              3.0,
+              1.5,
+              4.0
+            ],
+            "expected": [
+              6.0,
+              3.0,
+              1.5,
+              4.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "welch-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              -1.224744871391589,
+              0.2878641347266908,
+              -3.266957935527523,
+              1.2669579355275231,
+              -1.0
+            ],
+            "expected": [
+              -1.0,
+              -1.224744871391589,
+              0.2878641347266908,
+              -3.266957935527523,
+              1.2669579355275231,
+              -1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "paired-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              1.5,
+              5.196152422706632,
+              0.013846832988859047,
+              0.5813068844813005,
+              2.4186931155186997,
+              2.598076211353316
+            ],
+            "expected": [
+              1.5,
+              5.196152422706632,
+              0.013846832988859047,
+              0.5813068844813005,
+              2.4186931155186997,
+              2.598076211353316
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "anova-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              16.0,
+              0.02509457330439086,
+              0.9142857142857143,
+              -4.853102368216048,
+              7.853102368216048
+            ],
+            "expected": [
+              16.0,
+              0.02509457330439086,
+              0.9142857142857143,
+              -4.853102368216048,
+              7.853102368216048
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "fisher-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.03720908483238107,
+              0.0027594561852200836,
+              0.0006360029488741693,
+              0.4258664756963734
+            ],
+            "expected": [
+              0.03720908483238107,
+              0.0027594561852200836,
+              0.0006360029488741693,
+              0.4258664756963734
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "mcnemar-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.109375,
+              0.3,
+              0.2,
+              0.025210726326833497,
+              0.5560954623076415
+            ],
+            "expected": [
+              0.109375,
+              0.3,
+              0.2,
+              0.025210726326833497,
+              0.5560954623076415
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "rank-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.0,
+              0.1,
+              -1.0,
+              3.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              0.1,
+              -1.0,
+              3.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "regression-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.9000000000000001,
+              0.264575131106459,
+              -0.2383749100649204,
+              2.0383749100649204,
+              2.0
+            ],
+            "expected": [
+              0.9,
+              0.264575131106459,
+              -0.2383749100649204,
+              2.0383749100649204,
+              2.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 1.1102230246251565e-16,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bootstrap-inference",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.5,
+              0.0,
+              2.0
+            ],
+            "expected": [
+              1.0,
+              0.5,
+              0.0,
+              2.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "multiple-testing",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.04,
+              0.16,
+              0.12,
+              0.8,
+              0.04,
+              0.05333333333333334,
+              0.05333333333333334,
+              0.2
+            ],
+            "expected": [
+              0.04,
+              0.16,
+              0.12,
+              0.8,
+              0.04,
+              0.05333333333333334,
+              0.05333333333333334,
+              0.2
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "equivalence-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.0001012496610338204,
+              0.0015552141551929267,
+              -0.08331129326536332,
+              0.2833112932653633,
+              1.0
+            ],
+            "expected": [
+              0.0001012496610338204,
+              0.0015552141551929267,
+              -0.08331129326536332,
+              0.2833112932653633,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "cluster-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.5773502691896257,
+              1.0,
+              -11.706204736432095,
+              13.706204736432095
+            ],
+            "expected": [
+              1.0,
+              0.5773502691896257,
+              1.0,
+              -11.706204736432095,
+              13.706204736432095
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "missingness-inference",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              2.0,
+              2.0,
+              1.0
+            ],
+            "expected": [
+              2.0,
+              2.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "validation-inference",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              2.0,
+              3.0
+            ],
+            "expected": [
+              2.0,
+              3.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "complexity-proof",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              17.0,
+              17.0
+            ],
+            "expected": [
+              17.0,
+              17.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          }
+        ],
+        "evidence_scope": "Fixed inputs only; written proofs, finite checks and inference assumptions remain distinct",
+        "automatic_theorem_proof": false,
+        "statistical_design_verified": false,
+        "formal_approval": false,
+        "independent_review": "NOT_RUN"
+      },
+      "capabilities": [
+        {
+          "id": "paper-discovery",
+          "entry_available": true,
+          "status": "existing_search_tools_connected_conservative_candidate_grouping"
+        },
+        {
+          "id": "document-workspace",
+          "entry_available": true,
+          "status": "read_only_profile_and_unchanged_member_roundtrip_probes"
+        },
+        {
+          "id": "document-read-check",
+          "entry_available": true,
+          "status": "registered_tools_only_no_formula_recalculation"
+        },
+        {
+          "id": "latex-tooling",
+          "entry_available": true,
+          "status": "probes_and_existing_registered_formal_route"
+        },
+        {
+          "id": "algorithm-knowledge",
+          "entry_available": true,
+          "status": "versioned_references_and_fixed_educational_examples_only"
+        },
+        {
+          "id": "mathematical-knowledge",
+          "entry_available": true,
+          "status": "versioned_mathematical_references_and_fixed_educational_checks_only"
+        }
+      ],
+      "pip_check": "No broken requirements found.",
+      "installed_wheel": "D:\\big-third-up\\modelcrew\\tmp\\package-closure-validation-20261114\\frozen-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "wheel_sha256": "78dfdcfc6c91b5aab11e3aaaa5d107ce68dac649d535589ff5e3e0940bfa9153",
+      "probe_retry": "Initial combined full probe exceeded180s; retried with600s limit, stage diagnostics and bounded CPU threads; package/code/requirements unchanged",
+      "cli": {
+        "--version": "nexusmore 0.1.0.dev0",
+        "--help": "usage: modelcrew [-h] [--version]\n                 {resources-check,init-db,validate,inspect-input,draft-inputs,resolve-input,generate-draft,math-show,math-publish,create,show,resume,versions,dossier,record,retrieve,discuss-references,tool-evidence,attach-solver,modeling-run,modeling-status,modeling-recheck,act} ...\n\npositional arguments:\n  {resources-check,init-db,validate,inspect-input,draft-inputs,resolve-input,generate-draft,math-show,math-publish,create,show,resume,versions,dossier,record,retrieve,discuss-references,tool-evidence,attach-solver,modeling-run,modeling-status,modeling-recheck,act}\n    resources-check     Verify declared bundled resources; no services\n                        required\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show program's version number and exit",
+        "resources-check": {
+          "status": "passed",
+          "files": 219,
+          "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+        }
+      },
+      "console_entrypoint": "nexusmore 0.1.0.dev0",
+      "wheel_members_matched": 294
+    }
+  },
+  "installation_summary": {
+    "status": "passed",
+    "environments": [
+      {
+        "environment": "wheel-core",
+        "status": "passed",
+        "resources": 219,
+        "algorithm_rows": 123,
+        "math_topics": 39,
+        "cases": 0,
+        "pip_check": "No broken requirements found."
+      },
+      {
+        "environment": "sdist-core",
+        "status": "passed",
+        "resources": 219,
+        "algorithm_rows": 123,
+        "math_topics": 39,
+        "cases": 0,
+        "pip_check": "No broken requirements found."
+      },
+      {
+        "environment": "wheel-full",
+        "status": "passed",
+        "resources": 219,
+        "algorithm_rows": 123,
+        "math_topics": 39,
+        "cases": 152,
+        "pip_check": "No broken requirements found."
+      }
+    ],
+    "full_probe_retry": "Initial combined full probe exceeded180s; retried with600s limit, stage diagnostics and bounded CPU threads; package/code/requirements unchanged"
+  },
+  "artifact_and_regression_equivalence": {
+    "status": "passed",
+    "current_frozen_wheel_payload_byte_identical_to_127_test_basis": true,
+    "sdist_modified_since_127_test_basis": [
+      "docs/package-installation.md"
+    ],
+    "runtime_and_tests_unchanged_since_127_test_basis": true,
+    "regression_basis": {
+      "status": "passed",
+      "tests": 127,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "evidence": {
+        "path": "tmp\\mathematical-knowledge-validation-20261114\\regression.xml",
+        "sha256": "595a654ecdeaf7e33fa42a895269fa7e0606c65da748ca61828d9dd8a2f24cb2",
+        "bytes": 17532
+      },
+      "independent_numeric_checks": [
+        "Central difference crosscheck of symbolic gradient",
+        "Closed-form trapezoid h^2/6 error and grid-halving ratio",
+        "Normal equations and analytic affine fit",
+        "Welch statistic with interval target consistency",
+        "TOST dual one-sided tests with matching 90% CI",
+        "Exact McNemar p by integer binomial coefficients",
+        "BH permutation/tie mapping and monotonicity",
+        "Nonfinite/wrong-shape/error result cannot pass and remains strict-JSON serializable"
+      ]
+    },
+    "previous_paper_runtime_equivalence": {
+      "status": "passed",
+      "basis": "D:\\big-third-up\\modelcrew\\tmp\\paper-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "latest": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "modified": [
+        "modelcrew/resources/algorithms/index.md",
+        "modelcrew/resources/capabilities/registry.json",
+        "modelcrew/resources/resource-manifest.json"
+      ],
+      "added": [
+        "modelcrew/algorithm_examples.py",
+        "modelcrew/algorithm_knowledge.py",
+        "modelcrew/mathematical_examples.py",
+        "modelcrew/mathematical_knowledge.py",
+        "modelcrew/resources/algorithms/knowledge/catalog.json",
+        "modelcrew/resources/algorithms/knowledge/combinations.md",
+        "modelcrew/resources/algorithms/knowledge/evaluation.md",
+        "modelcrew/resources/algorithms/knowledge/graph.md",
+        "modelcrew/resources/algorithms/knowledge/machine-learning.md",
+        "modelcrew/resources/algorithms/knowledge/optimization.md",
+        "modelcrew/resources/algorithms/knowledge/prediction.md",
+        "modelcrew/resources/algorithms/knowledge/simulation.md",
+        "modelcrew/resources/algorithms/knowledge/statistics.md",
+        "modelcrew/resources/mathematics/catalog.json",
+        "modelcrew/resources/mathematics/formalization.md",
+        "modelcrew/resources/mathematics/index.md",
+        "modelcrew/resources/mathematics/proof-methods.md",
+        "modelcrew/resources/mathematics/statistical-reasoning.md"
+      ],
+      "removed": [],
+      "preexisting_python_modules_unchanged": true,
+      "preexisting_paper_document_figure_retrieval_resources_unchanged": true
+    },
+    "dependency_config_exact_match": {
+      "workflow": {
+        "source": "configs/dependencies/workflow-runtime.txt",
+        "requirements": [
+          "anyio==4.14.2",
+          "beautifulsoup4==4.15.0",
+          "httpx==0.28.1",
+          "jsonschema==4.26.0",
+          "langgraph-checkpoint-postgres==3.2.0",
+          "langgraph-checkpoint==4.3.1",
+          "langgraph==1.2.10",
+          "mcp==1.30.0",
+          "numpy==2.3.1",
+          "openpyxl==3.1.5",
+          "Pillow==12.2.0",
+          "portalocker==4.4.2",
+          "psycopg[binary]==3.3.4",
+          "pydantic==2.13.4",
+          "pypdf==6.16.1",
+          "qdrant-client==1.20.0",
+          "scipy==1.16.0",
+          "sympy==1.13.1"
+        ]
+      },
+      "documents": {
+        "source": "configs/dependencies/documents.txt",
+        "requirements": [
+          "defusedxml==0.7.1",
+          "lxml==6.1.1",
+          "openpyxl==3.1.5",
+          "pdfplumber==0.11.10",
+          "PyMuPDF==1.27.2.3",
+          "pypdf==6.16.1",
+          "python-docx==1.2.0"
+        ]
+      },
+      "figures": {
+        "source": "configs/dependencies/figures.txt",
+        "requirements": [
+          "matplotlib==3.10.3",
+          "numpy==2.3.1",
+          "openpyxl==3.1.5",
+          "Pillow==12.2.0",
+          "PyMuPDF==1.27.2.3",
+          "pypdf==6.16.1"
+        ]
+      },
+      "evidence": {
+        "source": "configs/dependencies/evidence.txt",
+        "requirements": [
+          "numpy==2.3.1",
+          "openpyxl==3.1.5",
+          "pydantic==2.13.4",
+          "scipy==1.16.0",
+          "sympy==1.13.1"
+        ]
+      },
+      "retrieval": {
+        "source": "configs/dependencies/retrieval.txt",
+        "requirements": [
+          "anyio==4.14.2",
+          "beautifulsoup4==4.15.0",
+          "fastapi==0.162.0",
+          "httpx==0.28.1",
+          "jsonschema==4.26.0",
+          "langgraph-checkpoint-postgres==3.2.0",
+          "langgraph-checkpoint==4.3.1",
+          "langgraph==1.2.10",
+          "mcp==1.30.0",
+          "numpy==2.3.1",
+          "openpyxl==3.1.5",
+          "Pillow==12.2.0",
+          "portalocker==4.4.2",
+          "psycopg[binary]==3.3.4",
+          "pydantic==2.13.4",
+          "pypdf==6.16.1",
+          "qdrant-client==1.20.0",
+          "sentence-transformers==6.0.0",
+          "uvicorn==0.52.1"
+        ]
+      },
+      "paper": {
+        "source": "configs/dependencies/paper-export.txt",
+        "requirements": [
+          "anyio==4.14.2",
+          "beautifulsoup4==4.15.0",
+          "defusedxml==0.7.1",
+          "fastapi==0.162.0",
+          "httpx==0.28.1",
+          "jsonschema==4.26.0",
+          "langgraph-checkpoint-postgres==3.2.0",
+          "langgraph-checkpoint==4.3.1",
+          "langgraph==1.2.10",
+          "lxml==6.1.1",
+          "matplotlib==3.10.3",
+          "mcp==1.30.0",
+          "numpy==2.3.1",
+          "openpyxl==3.1.5",
+          "pdfplumber==0.11.10",
+          "Pillow==12.2.0",
+          "portalocker==4.4.2",
+          "psycopg[binary]==3.3.4",
+          "pydantic==2.13.4",
+          "PyMuPDF==1.27.2.3",
+          "pypdf==6.16.1",
+          "python-docx==1.2.0",
+          "qdrant-client==1.20.0",
+          "scipy==1.16.0",
+          "sentence-transformers==6.0.0",
+          "sympy==1.13.1",
+          "uvicorn==0.52.1"
+        ]
+      }
+    },
+    "legacy_recipe_finding": {
+      "path": "configs/dependencies/workflow.txt",
+      "classification": "historical development/test recipe preserved; production exact match uses new workflow-runtime.txt",
+      "old_sha256": "cdeafd2ba004d1b851f83c93581cae15d72dbbea04d1dc64fa57e0ce650f4bae",
+      "production_extra_contains_pytest": false
+    },
+    "unchanged_requires_dist_since_paper_group_validation": true,
+    "historical_preservation": "all recorded identities matched",
+    "layout": {
+      "status": "passed",
+      "mode": "final",
+      "issues": 0,
+      "final_layout_accepted": true,
+      "final_f0_accepted": false
+    }
+  },
+  "regression": {
+    "status": "passed",
+    "tests": 127,
+    "execution": "Existing127-test result reused only after proving exact final wheel payload and sdist test/runtime identity; not claimed re-executed",
+    "basis": {
+      "path": "docs\\release\\mathematical-knowledge-supplement-20261114.json",
+      "sha256": "b2bc01023ac869c560325ffe03b2fae6602f2fb8a9f7f821c3d8a75e9228f9fb",
+      "bytes": 117016
+    },
+    "evidence": {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\regression.xml",
+      "sha256": "595a654ecdeaf7e33fa42a895269fa7e0606c65da748ca61828d9dd8a2f24cb2",
+      "bytes": 17532
+    }
+  },
+  "previous_protected_records_and_artifacts": [
+    {
+      "path": "docs/release/package-installation-20261113.json",
+      "sha256": "abca8e724619d5504a5ac2ccfa8c6cfec1f64416211f8dd8bbcdc7416eaedefc",
+      "bytes": 50208
+    },
+    {
+      "path": "docs/release/package-installation-approval-20261114.json",
+      "sha256": "ea57e868addbb2076aa6a375c53ac9da57dc1f26fb7243bea0724fee34316aa7",
+      "bytes": 4568
+    },
+    {
+      "path": "docs/release/optional-dependency-validation-20261114.json",
+      "sha256": "fa581fa609fbca87fc1fb04d5aa8f719c62c6f1c96951fa28dc1cea59165794c",
+      "bytes": 77122
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "dc01dbbc5fd1c053fb3ca65b83c2e0a05f5147e242ead96cc77e136dec93e7a1",
+      "bytes": 721088
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "908fefdbef86f9aec90abfdcd1107283a9ffa2c5762f9cc87b6d88b8f5ec25d2",
+      "bytes": 729389
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "559aa7b604a34e8956e1772553135fa09072780ae9d02b3b233899e3a3610d79",
+      "bytes": 721088
+    },
+    {
+      "path": "docs/release/retrieval-paper-validation-20261114.json",
+      "sha256": "afcff0d0b7d91be0c90a7457dc291132f31c47ce363077eb66e940317bb6837c",
+      "bytes": 88344
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\retrieval-paper-validation-20261114\\verified-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "e38b4d54cb7403f6bfb27e8d43284642149219c117ad508d8a2a2301910b057a",
+      "bytes": 719689
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\retrieval-paper-validation-20261114\\verified-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "6da00531f4b2157208ed3fd4fa2d8a6109254cce90836a962da988bdf8775b31",
+      "bytes": 732993
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\retrieval-paper-validation-20261114\\verified-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "a122c3ac75ca62642aef3cc2f0ffcca76901573ca9060b645c2075bbef969470",
+      "bytes": 719689
+    },
+    {
+      "path": "docs/release/paper-knowledge-supplement-20261114.json",
+      "sha256": "5e155997c95e38b7d65b6cd54ab2f03b9d8047dd6905e9d576cc4e11acf4d0e8",
+      "bytes": 68566
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\paper-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "9aff65d81e27b68403a83e2f73452fd2fc12f135aee791a59f2a1e6688d2d306",
+      "bytes": 734184
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\paper-knowledge-validation-20261114\\validated-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "93237b8556ce48a5af3ed9b50e3e2b2657d185ae8704f5a3af6607634259dddd",
+      "bytes": 745636
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\paper-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "2d1b48cce046624022ead0074eef9289edf931317b34bb51e8765c97172f82b6",
+      "bytes": 734184
+    },
+    {
+      "path": "docs/release/algorithm-knowledge-supplement-20261114.json",
+      "sha256": "fdc0a1d628bbd483f15beac31c0127bf49a814b762e51ff8bdfb7825e001cb7e",
+      "bytes": 103382
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "f693f0082d60295cc613cc454d624087e0458e38e1ada66b24d0995e6be99101",
+      "bytes": 856519
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "ba0fde2dce317440cebce3ade8b012f12ff5e5b57a3e071b78c49acd3048a8f5",
+      "bytes": 859391
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "b9a5438fd9953e8d3d5a2d6ff23823b75f143b4666430953e1c976cc3bebf742",
+      "bytes": 856519
+    },
+    {
+      "path": "docs/release/mathematical-knowledge-supplement-20261114.json",
+      "sha256": "b2bc01023ac869c560325ffe03b2fae6602f2fb8a9f7f821c3d8a75e9228f9fb",
+      "bytes": 117016
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "c7a1e27bcf289994313e7e9cd2cf681de9ed50a43c0190b991b8e2d05568a685",
+      "bytes": 910659
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "6a72caf6d912ab7a5cccf76746b5cd6e2bd6740b9ea7092c3506042a5d6953b6",
+      "bytes": 910032
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "2a91d6d1a957a3d69534b34e395096333ad5209cfe14179accbda5a98d539b07",
+      "bytes": 910659
+    },
+    {
+      "path": "docs/release/release-scope-closure-20261113.json",
+      "sha256": "301bc9b555ab365e9a2bd12f31047e8526cf7b7678c4e6ba84580a1d4fcd814a",
+      "bytes": 5196
+    },
+    {
+      "path": "docs/release/knowledge-supplement-plan-20261114.json",
+      "sha256": "5f54fd08128320027bd1704864e074054b5e65799475154df8c509fa881b5356",
+      "bytes": 15942
+    },
+    {
+      "path": "docs/release/resource-disposition-20261111.json",
+      "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+      "bytes": 181183
+    }
+  ],
+  "current_source_files": [
+    {
+      "path": "configs\\package-distribution.json",
+      "sha256": "98ecdc72eb15bacbeb71887e57e89e32f732cea4336719b97edd22ca87232c68",
+      "bytes": 9454
+    },
+    {
+      "path": "configs\\dependencies\\workflow-runtime.txt",
+      "sha256": "30223b3d97aa5add3c8add2ba7080c54d9610bc0c25dada61aa981e182127ebf",
+      "bytes": 434
+    },
+    {
+      "path": "configs\\dependencies\\workflow.txt",
+      "sha256": "cdeafd2ba004d1b851f83c93581cae15d72dbbea04d1dc64fa57e0ce650f4bae",
+      "bytes": 224
+    },
+    {
+      "path": "docs\\package-installation.md",
+      "sha256": "78ef9f65a5aa58de603eda25bf60f735b1f431a9584ae726d3d200b8b6a81393",
+      "bytes": 14171
+    },
+    {
+      "path": "docs\\open-source-harness-roadmap.md",
+      "sha256": "c7ac8ce08c3b60675bb62f57f5dce52479d1fe64d0a3a3f33c426f647801a381",
+      "bytes": 15434
+    },
+    {
+      "path": "docs\\builtin-capabilities.md",
+      "sha256": "7509e8c8e2c5ec31d884a7b15523e37aaddd63cfe1248f070b8d6ff7b0eab709",
+      "bytes": 10663
+    },
+    {
+      "path": "docs\\distribution-implementation.md",
+      "sha256": "1082b8bafbd2aff9b26a7fd9553a6e7f6e1e34df32e80cb40a4f4ac2806713d5",
+      "bytes": 25150
+    },
+    {
+      "path": "docs\\release\\package-closure-summary.md",
+      "sha256": "8e827e2816d76e486ae5087c42ec315e1b85a874d45daf7eaa602ffe7dfbff9e",
+      "bytes": 4114
+    }
+  ],
+  "previous_source_snapshots": [
+    {
+      "path": "tmp\\package-closure-validation-20261114\\before\\configs\\package-distribution.json",
+      "sha256": "752481434e54244c3fb2e5905e98fc2295471b627a9ff0fd89b3ca9c897b982f",
+      "bytes": 8125
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\before\\docs\\builtin-capabilities.md",
+      "sha256": "4f7ed9ebe715df7271e8db28d4c331b520e39e5e9d6a3e0c37a9d647aa0cacf2",
+      "bytes": 10380
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\before\\docs\\distribution-implementation.md",
+      "sha256": "9643925aafc4f7825cdd7f30ded38e5670e28ddaf5e542330462bc8300204a7d",
+      "bytes": 24549
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\before\\docs\\open-source-harness-roadmap.md",
+      "sha256": "8832ebbc2727a341edddb8f83e8451ce4ddd78727e021e543e4c00bcb98b00be",
+      "bytes": 15009
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\before\\docs\\package-installation.md",
+      "sha256": "633999cc89a0697cb833a8846a4b0d1fc8871637af8680f0d505277894024e35",
+      "bytes": 13627
+    }
+  ],
+  "new_evidence_files": [
+    {
+      "path": "tmp\\package-closure-validation-20261114\\acceptance-audit.json",
+      "sha256": "a1f0c89766f1691b2e48cc6ad3c192deb80e745920cca09c3f42fe700b8f2e81",
+      "bytes": 6772
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\installation-summary.json",
+      "sha256": "59d1daa117ec2e8c09e3d389bb62017f571e0d1beb29289b35ceaf68b1dc7133",
+      "bytes": 917
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\layout-check.json",
+      "sha256": "4fd2a3b04ff2922f56c086fe1d67e5d606dabe8ffdeb4e9ead78e3c58377d155",
+      "bytes": 325
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\paper-runtime-equivalence.json",
+      "sha256": "4deaf1a8f826ece1570371de70c279e079efe309ba45fdca1b6923538a90a547",
+      "bytes": 1690
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\preserve-before.json",
+      "sha256": "097d790acd1bba3251ccbe3e8ccf9732b9395461c200475066bf1626b697f56c",
+      "bytes": 5823
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\sdist-core-probe.json",
+      "sha256": "91dfdc7a6dcd2ddd8acba236834cbd6a6d965ad9d7f8ab24760bb0b74ec08c52",
+      "bytes": 3391
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\wheel-core-probe.json",
+      "sha256": "6420d417a0a8d10533c2887bdbbbb0949bbd5f9e16f72b9d2ef3a9a7466cecf7",
+      "bytes": 3380
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\wheel-full-probe.json",
+      "sha256": "92e93fa80d5167dc2f3afb9f14e59c419ca25a4d5a4a593006784b4074807e07",
+      "bytes": 72968
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\wheel-full-retry.stdout.json",
+      "sha256": "a537a1e7356908ba56ef1548c98762cd2d3a1fe32b8dfaca1a1856c2647528b9",
+      "bytes": 44504
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\sdist-core-install.log",
+      "sha256": "7cb3917324cbbe5fc44ddff941bc5ae49897560060460191ad61e7f46a14ef19",
+      "bytes": 1371
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\sdist-core-probe.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\wheel-core-install.log",
+      "sha256": "7715a3f45fe9ba26aa00a7ac938b7ae6ace9c3c32aa609550b41c72975415ae1",
+      "bytes": 1360
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\wheel-core-probe.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\wheel-full-install.log",
+      "sha256": "857593e2c76063b197bd02c26a7cd5fee181252f26210b486e641451b9ab6952",
+      "bytes": 29555
+    },
+    {
+      "path": "tmp\\package-closure-validation-20261114\\wheel-full-retry.stderr.log",
+      "sha256": "1ddf24eec944db66b886ce23dab470184f537f2f20d2b7087a892d3b24643cb5",
+      "bytes": 8536
+    }
+  ],
+  "followup": [
+    {
+      "milestone": "F3",
+      "task": "user-configuration-and-workspace-initialization",
+      "work": "Model endpoint/key/model, database/retrieval/executor/export settings; user-owned persistent directories; init/doctor and missing-dependency diagnostics; stop business writes to installation location"
+    },
+    {
+      "milestone": "F4",
+      "task": "managed-runtime-services-and-native-tools",
+      "work": "Python/native-tool preparation; PostgreSQL/Qdrant Docker initialization/health/migrations/recovery; Docker Linux executor and clean-machine workflow; native Word rendering permission/environment; required first-download/network disclosure"
+    },
+    {
+      "milestone": "F5",
+      "task": "public-license-and-third-party-attribution",
+      "work": "Project LICENSE and dependency/template/font permissions/attribution; original restricted source redistribution stays excluded"
+    },
+    {
+      "milestone": "F6",
+      "task": "automatic-knowledge-tool-routing-and-recovery",
+      "work": "New knowledge semantic indexing, stage/role/topic actual reads, executable-tool registration and mounts, production retrieval model setup/quality, version/hash/error/idempotency/recovery evidence"
+    },
+    {
+      "milestone": "G",
+      "task": "deepseek-harness-workflow-integration",
+      "work": "Real DeepSeek Harness MCP tool discovery/operations, trustworthy user events, product model/provider configuration, repeated calls/reconnect and artifact access"
+    },
+    {
+      "milestone": "H",
+      "task": "clean-environment-end-to-end-and-release-readiness",
+      "work": "Public sample/leave-out evaluation, complete natural-language-to-approved-paper run, full-page checks/independent gates, Quickstart and release checks"
+    }
+  ],
+  "next_milestone": "F3",
+  "next_milestone_implementation_started": false,
+  "historical_baseline_approval": "docs/release/package-installation-approval-20261114.json",
+  "public_upload_authorized": false,
+  "original_restricted_source_redistribution_approved": false,
+  "full_product_end_to_end_verified": false,
+  "full_automatic_routing_verified": false,
+  "native_Word_render_verified": false,
+  "actual_paper_content_or_figures_approved": false,
+  "independent_M1_P1_P2_W1_W2": "NOT_RUN_BY_THIS_ACCEPTANCE",
+  "scope": "Agreed F2 private package/resources/dependency/layout/outside-source acceptance only; no F3/F4/F5/F6/G/H gate substitution"
+}

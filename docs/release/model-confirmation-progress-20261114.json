@@ -1,0 +1,997 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F6.6",
+  "status": "coding_p1_failed_manual_repair_required",
+  "task_id": "production-allocation-live-20261114",
+  "user_statement": "同意这份任务以及建模方案",
+  "confirmation_record": {
+    "path": "runs/acceptance/production-allocation-live-20261114/user-model-confirmation-v002.json",
+    "sha256": "bd204510715f295c8ac446e097e164289ff07676121c689f6e38a83a99f7463f"
+  },
+  "model_version": 2,
+  "contract_sha256": "1e07c64330f64a47f56ca85bd4c5e6f1846a7debe996666c7741e607f3badf16",
+  "math_semantic_sha256": "af9eb60e95ba48c37c6c3276d4d388d75710c39e243e06b25f07eed86a6f5f87",
+  "same_model_as_user_reviewed": true,
+  "model_approved": true,
+  "model_approval_events": 1,
+  "result_approved": false,
+  "M1": {
+    "run_id": "706ed297-700a-4f74-8f5f-8336df14236f",
+    "status": "ready",
+    "receipt_sha256": "47f1945d67079c0aca4f20b2ffe47ffd503e6a0ad6d9a31b22b610317006343c",
+    "all_scope_questions_resolved": true
+  },
+  "coding": {
+    "run_id": "4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93",
+    "phase": "NEEDS_HUMAN",
+    "retries_used": 3,
+    "generated_code_attempts": 4,
+    "registered_docker_jobs": 4,
+    "execution_image_id": "sha256:3ab4a48959ac924eb8fd18f515c2f54e66eaa34e85a4e6718513365e7fae02a8",
+    "minimal_execution_status": "succeeded",
+    "minimal_exit_code": 0,
+    "minimal_execution_receipt": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93/minimal-3-execution.json",
+    "minimal_source": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93/minimal-3.py",
+    "P1_status": "FAIL",
+    "P1_receipt_sha256": "a704fbfbb1927ff2f0b2030d8975b029960507104152efe2a7533fdddbc9c316",
+    "P1_review": "runs/acceptance/production-allocation-live-20261114/independent-p1-review-v001.json",
+    "raw_minimal_observation": {
+      "production": [
+        40.0,
+        20.0
+      ],
+      "profit": [
+        2200.0
+      ],
+      "not_accepted_business_result": true
+    },
+    "operator_additional_findings": [
+      {
+        "path": "/checks/cross_consistency_input_files",
+        "finding": "JSON input is flat array fields, generated code expected parameter-id fields and reports failed consistency."
+      },
+      {
+        "path": "/scenarios",
+        "finding": "Minimal scope requested only baseline, but generated code additionally computed all11 scenarios; repair must restore declared phase scope."
+      }
+    ],
+    "no_new_hand_started_to_reset_budget": true
+  },
+  "real_provider_call_count": 26,
+  "provider_stage_counts": {
+    "Coder": 4,
+    "P1": 1,
+    "M1": 5,
+    "modeling": 9,
+    "planning": 7
+  },
+  "provider_calls": [
+    {
+      "path": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93/operations/code-minimal-0/Coder-b7b97773-bae5-4f81-8ce0-ce7a96877810-metadata.json",
+      "sha256": "77b38599ce2a9ab5485636065858b3784f7f34934df9824e9aff6a790995c3cf",
+      "call_id": "b7b97773-bae5-4f81-8ce0-ce7a96877810",
+      "context_id": "c76f9df6-e747-4a5d-9c12-a98843cdc439",
+      "stage": "Coder",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 20.201562700000068,
+      "response_sha256": "dd07959085d6c83199563eebfaed91c94563239b0f971480bd5dec1e449877bc",
+      "usage": {
+        "prompt_tokens": 26271,
+        "total_tokens": 30412,
+        "completion_tokens": 4141,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 26271
+        },
+        "completion_tokens_details": {
+          "text_tokens": 4141
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93/operations/code-minimal-1/Coder-6fc0ab24-dd86-4a76-9a0e-88755567766c-metadata.json",
+      "sha256": "ff61b82068c2c0cd46c0298dac4ac8b3fa6d46d9bd5acc87a342c8f3b09b0b12",
+      "call_id": "6fc0ab24-dd86-4a76-9a0e-88755567766c",
+      "context_id": "8f9c2660-18e8-4e0b-83a8-6ae32b227d9a",
+      "stage": "Coder",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 20.746315199998207,
+      "response_sha256": "0039439c847ffc13c74aaffb11aca84eef6ffea17df001921952b4f2718df21d",
+      "usage": {
+        "prompt_tokens": 31087,
+        "total_tokens": 35148,
+        "completion_tokens": 4061,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 31087
+        },
+        "completion_tokens_details": {
+          "text_tokens": 4061
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93/operations/code-minimal-2/Coder-6ad66d52-2e1e-4218-a8e7-0ec2c4bca37d-metadata.json",
+      "sha256": "89078f0b3ea99c5e836b0e7ed6c5482d7229188d31fb46e400efd629ddbd7e67",
+      "call_id": "6ad66d52-2e1e-4218-a8e7-0ec2c4bca37d",
+      "context_id": "1e053c32-3d66-4191-ace1-635688ebfcd5",
+      "stage": "Coder",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 23.18513990000065,
+      "response_sha256": "4de667f597b64ce1cc04e76c943a1676627179c5706d60bd2765d35cc4d7c1cc",
+      "usage": {
+        "prompt_tokens": 31159,
+        "total_tokens": 35732,
+        "completion_tokens": 4573,
+        "prompt_tokens_details": {
+          "cached_tokens": 12288,
+          "image_tokens": 0,
+          "text_tokens": 31159
+        },
+        "completion_tokens_details": {
+          "text_tokens": 4573
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93/operations/code-minimal-3/Coder-e045ed62-f8d0-4f11-8e0f-60ae6fbe66a1-metadata.json",
+      "sha256": "4f9f5473bade7381350f794f23a23a04929b107ed8149801932ddd658185e9a3",
+      "call_id": "e045ed62-f8d0-4f11-8e0f-60ae6fbe66a1",
+      "context_id": "86e1968e-def4-4e20-aeb0-bf120be24120",
+      "stage": "Coder",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 19.046949600000517,
+      "response_sha256": "88c588ac7265b21fef7eab93ca8cd2984cb627441a89c37698c2c9358e5c1dcd",
+      "usage": {
+        "prompt_tokens": 31441,
+        "total_tokens": 36138,
+        "completion_tokens": 4697,
+        "prompt_tokens_details": {
+          "cached_tokens": 12288,
+          "image_tokens": 0,
+          "text_tokens": 31441
+        },
+        "completion_tokens_details": {
+          "text_tokens": 4697
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93/operations/P1-3/P1-eff0bec1-959c-41a7-89c5-27174620c67a-metadata.json",
+      "sha256": "d2af6942ef9105318fd98211f1468af24c2a1350bd610f61bf7bfd6f88710475",
+      "call_id": "eff0bec1-959c-41a7-89c5-27174620c67a",
+      "context_id": "1b47b703-02e1-4e3c-8971-c4231f02382b",
+      "stage": "P1",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 5.729625700005272,
+      "response_sha256": "ba85302db408430536b88b21eb9c3c9c3552a9817813e62c8c06a4317873e37f",
+      "usage": {
+        "prompt_tokens": 28399,
+        "total_tokens": 29105,
+        "completion_tokens": 706,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 28399
+        },
+        "completion_tokens_details": {
+          "text_tokens": 706
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/36f5a76d-49a7-4bad-aa70-4310aa7e3eb7/attempt-0/M1-a28b38ae-ba0d-4c1c-88d2-b005016c88e3-metadata.json",
+      "sha256": "c5311094df200d4ab6f65c2e1dd4501b82165c91d1e9e48559f9bb6c0b68d9c7",
+      "call_id": "a28b38ae-ba0d-4c1c-88d2-b005016c88e3",
+      "context_id": "79193825-9eb6-4b41-910a-fc68d20febab",
+      "stage": "M1",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 5.58614650000527,
+      "response_sha256": "8b473980dc0f4ab26067e1e19d321086a07e21752d933fe8e8403aaf61b1d724",
+      "usage": {
+        "prompt_tokens": 17974,
+        "total_tokens": 18661,
+        "completion_tokens": 687,
+        "prompt_tokens_details": {
+          "cached_tokens": 9728,
+          "image_tokens": 0,
+          "text_tokens": 17974
+        },
+        "completion_tokens_details": {
+          "text_tokens": 687
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/36f5a76d-49a7-4bad-aa70-4310aa7e3eb7/modeling-08701a14-4bb2-4876-9401-60f6f6fbf996-metadata.json",
+      "sha256": "708298754a3385d6933ee3e925643419ed73f85db6858f0aaa9a06c3aac68197",
+      "call_id": "08701a14-4bb2-4876-9401-60f6f6fbf996",
+      "context_id": "efa64a7a-d7a1-48fb-81eb-acc8c749de41",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 12.481500699999742,
+      "response_sha256": "22e19947e82c3a24c03a5cc3101b127bc220906eddcc053fca5e8d76c49f3c7b",
+      "usage": {
+        "prompt_tokens": 29896,
+        "total_tokens": 31454,
+        "completion_tokens": 1558,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 29896
+        },
+        "completion_tokens_details": {
+          "text_tokens": 1558
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/36f5a76d-49a7-4bad-aa70-4310aa7e3eb7/planning-33a7d02a-342c-444f-88e5-85624732683d-metadata.json",
+      "sha256": "ce33705b08144bae7b97cf3e9c4a9ae804c431cf1b08810544285b4ee8765752",
+      "call_id": "33a7d02a-342c-444f-88e5-85624732683d",
+      "context_id": "22cac2a3-a0a9-4e60-9d02-5ec8f2a9276c",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 3.889275400004408,
+      "response_sha256": "2cfea56d06871cd2b93b07f2f22efce837850e46b35298ccf9bc3dd2a7df6017",
+      "usage": {
+        "prompt_tokens": 23733,
+        "total_tokens": 24093,
+        "completion_tokens": 360,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 23733
+        },
+        "completion_tokens_details": {
+          "text_tokens": 360
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/515e7c6a-2fe6-499d-9d46-eed281f46aae/attempt-0/M1-91c6c82b-8c60-4963-9ac2-289968248d23-metadata.json",
+      "sha256": "5a699a1c6e1d43e22fb1a4a0a9c39e967e778b9c7f75471d74adeb2f0e7ddc5a",
+      "call_id": "91c6c82b-8c60-4963-9ac2-289968248d23",
+      "context_id": "59d51d84-75ad-4645-9525-f98e5249aceb",
+      "stage": "M1",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 5.549369899999874,
+      "response_sha256": "ecd6029011dc822da3b469ed8ea7b8fa27db6526083eca0a5485c97f49b09bbd",
+      "usage": {
+        "prompt_tokens": 19443,
+        "total_tokens": 20112,
+        "completion_tokens": 669,
+        "prompt_tokens_details": {
+          "cached_tokens": 5120,
+          "image_tokens": 0,
+          "text_tokens": 19443
+        },
+        "completion_tokens_details": {
+          "text_tokens": 669
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/515e7c6a-2fe6-499d-9d46-eed281f46aae/modeling-911773f8-91e2-4380-bee6-1c02fc75c27f-metadata.json",
+      "sha256": "e82e7ee584b69f8a8f6b0afbfb7274d11b601f336691ce6ceee79ec88b600e78",
+      "call_id": "911773f8-91e2-4380-bee6-1c02fc75c27f",
+      "context_id": "faf2b252-0224-4a9c-b194-9845eb483081",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 9.784116399998311,
+      "response_sha256": "2e79b56d7a932671a604cf65aa20994d68ed3be42d8454d2f3a9b60a8415fa01",
+      "usage": {
+        "prompt_tokens": 29954,
+        "total_tokens": 31284,
+        "completion_tokens": 1330,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 29954
+        },
+        "completion_tokens_details": {
+          "text_tokens": 1330
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/515e7c6a-2fe6-499d-9d46-eed281f46aae/planning-f3a27f6c-2b1e-41b2-827d-bfb3c30bf151-metadata.json",
+      "sha256": "f790c63d9a242e0885bb2158be86520ec0b4f33b3e6cfe49e7046737cc286d5a",
+      "call_id": "f3a27f6c-2b1e-41b2-827d-bfb3c30bf151",
+      "context_id": "d7c108f2-893f-4c38-b6ae-b1472ad04a7e",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 4.903306899999734,
+      "response_sha256": "1f7dd499196f0ffcf8b8dd5710dd3490a7fa31a64c67dedcf77f4a4179265dcb",
+      "usage": {
+        "prompt_tokens": 23736,
+        "total_tokens": 24174,
+        "completion_tokens": 438,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 23736
+        },
+        "completion_tokens_details": {
+          "text_tokens": 438
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/515e7c6a-2fe6-499d-9d46-eed281f46aae/review-recheck/M1-220be6b7-f21e-46ae-a8ed-f9cf1c432e93-metadata.json",
+      "sha256": "e4bc1e9ed3f958aafe71a48a8c1e061ba81d786ca9e84286ccd64504ab7d4207",
+      "call_id": "220be6b7-f21e-46ae-a8ed-f9cf1c432e93",
+      "context_id": "2d4b8af3-9b42-4168-a943-977c761b67db",
+      "stage": "M1",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 5.065163400002348,
+      "response_sha256": "1b2beb19253209536cfbf6dc445566b1eabfc846e06355e156e2ee2b36dd95d0",
+      "usage": {
+        "prompt_tokens": 20394,
+        "total_tokens": 21127,
+        "completion_tokens": 733,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 20394
+        },
+        "completion_tokens_details": {
+          "text_tokens": 733
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/706ed297-700a-4f74-8f5f-8336df14236f/attempt-0/M1-1ef4d5b2-7a31-4f3b-a65e-55cca5c5a4a6-metadata.json",
+      "sha256": "a8b9973b8ed2aea7a118d0de07e197b84bdbf211bd140c1576c99fe5dcd36fa8",
+      "call_id": "1ef4d5b2-7a31-4f3b-a65e-55cca5c5a4a6",
+      "context_id": "407f4006-86ff-4695-abab-ece3ae369469",
+      "stage": "M1",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 6.443456700006209,
+      "response_sha256": "8b581f5d112600cc7654c65c3f901647b4884a9ea5509056d1dcb00e2c08b21d",
+      "usage": {
+        "prompt_tokens": 21433,
+        "total_tokens": 22255,
+        "completion_tokens": 822,
+        "prompt_tokens_details": {
+          "cached_tokens": 5120,
+          "image_tokens": 0,
+          "text_tokens": 21433
+        },
+        "completion_tokens_details": {
+          "text_tokens": 822
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/706ed297-700a-4f74-8f5f-8336df14236f/modeling-5d1f86d0-b976-4445-8dad-74f6a39c2a31-metadata.json",
+      "sha256": "66f4e6043ec5430f2bed55740d8fbac5aabf7249e15ec5fbdc3a4757f9f9ef98",
+      "call_id": "5d1f86d0-b976-4445-8dad-74f6a39c2a31",
+      "context_id": "194446de-28db-4c71-8e03-345d9fa2a254",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 15.792848500001128,
+      "response_sha256": "9e2b31b7336b525e3febe58a1e2d6e15a9942f523fd02111e2a692abcdd5c653",
+      "usage": {
+        "prompt_tokens": 29856,
+        "total_tokens": 31516,
+        "completion_tokens": 1660,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 29856
+        },
+        "completion_tokens_details": {
+          "text_tokens": 1660
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/706ed297-700a-4f74-8f5f-8336df14236f/planning-1fda6588-fab2-4b03-bd21-7aecbf75c9cb-metadata.json",
+      "sha256": "c64127804bafec7affce91b8e4065ccdd30a5c5bdadfb87e8400dac65c0a0204",
+      "call_id": "1fda6588-fab2-4b03-bd21-7aecbf75c9cb",
+      "context_id": "9e77d7e7-9a5e-46f1-a17d-7debe95817f2",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 4.903479299995524,
+      "response_sha256": "18799f302e9a3df1f68bac4800738a56dbda72a5d8dc903217e394ede235745e",
+      "usage": {
+        "prompt_tokens": 23723,
+        "total_tokens": 24054,
+        "completion_tokens": 331,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 23723
+        },
+        "completion_tokens_details": {
+          "text_tokens": 331
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/77f2e8c9-3f2c-4314-830b-67b3a6ef36fd/modeling-38f5e889-4c6d-4390-adf1-f3985552ab59-metadata.json",
+      "sha256": "b848460ee60cef9cf07e818342376d74dbdcd4081b6fe00130d7b63ccecb023a",
+      "call_id": "38f5e889-4c6d-4390-adf1-f3985552ab59",
+      "context_id": "03004f91-3bfb-47ef-ac34-3257234114d9",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 40.42608139999356,
+      "response_sha256": "9912eb7608d9ea35f5d84d040379d7b7322e2a2b89f246e9ebc43ad59339918d",
+      "usage": {
+        "prompt_tokens": 30327,
+        "total_tokens": 37410,
+        "completion_tokens": 7083,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30327
+        },
+        "completion_tokens_details": {
+          "text_tokens": 7083
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/77f2e8c9-3f2c-4314-830b-67b3a6ef36fd/modeling-9172b891-016e-45b4-97c1-113d2f3b1afa-metadata.json",
+      "sha256": "7cd9612cd3dd62e9aeb03892219cb025a177e47e804729c0164ef44525cf0021",
+      "call_id": "9172b891-016e-45b4-97c1-113d2f3b1afa",
+      "context_id": "dac36c84-f18a-42c3-99d4-ed44b5a6c73d",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 15.561419099998602,
+      "response_sha256": "c2756930e64d970012e4987d1c367cebf3470d3809a18b69d54ff80f2ddeed75",
+      "usage": {
+        "prompt_tokens": 30371,
+        "total_tokens": 32881,
+        "completion_tokens": 2510,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30371
+        },
+        "completion_tokens_details": {
+          "text_tokens": 2510
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/77f2e8c9-3f2c-4314-830b-67b3a6ef36fd/planning-26e390b8-ddf9-4b41-a961-59aa9c5118c6-metadata.json",
+      "sha256": "744dce19b40800db2cb67fd054c053cba39ecfb9eaeab91837aee068b02769ea",
+      "call_id": "26e390b8-ddf9-4b41-a961-59aa9c5118c6",
+      "context_id": "3b98993d-e007-4fe2-9406-4207ba49e17b",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 3.769982899997558,
+      "response_sha256": "f1d1f70d9fdaf895048f6adc84cf31a60176e20c3cb7c2d5e4d870c55a8bdd8e",
+      "usage": {
+        "prompt_tokens": 24367,
+        "total_tokens": 24689,
+        "completion_tokens": 322,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 24367
+        },
+        "completion_tokens_details": {
+          "text_tokens": 322
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/854bce60-8d12-41e8-ad68-814066afa5b8/modeling-abd6b6dd-53ba-40f8-acd2-2969af5f0c4c-metadata.json",
+      "sha256": "ddfe3d3d8ea2358328b5566b437d68c4d4e4805c3eb7d11f4b90b43f6f300754",
+      "call_id": "abd6b6dd-53ba-40f8-acd2-2969af5f0c4c",
+      "context_id": "6c56f125-a30f-4d9d-aa79-516eae7bb8a4",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "invalid_response",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "none",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 35.583661500000744,
+      "response_sha256": "d94a91479434dcd832975df0021717431d8feda26ebbabf4928409e185a4c0b4",
+      "usage": {
+        "prompt_tokens": 30184,
+        "total_tokens": 35851,
+        "completion_tokens": 5667,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30184
+        },
+        "completion_tokens_details": {
+          "text_tokens": 5667
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/854bce60-8d12-41e8-ad68-814066afa5b8/planning-f6c6f5fc-340c-4852-a85b-8b9f022c841e-metadata.json",
+      "sha256": "cab4b01f3cb716120c4f487659e4e815b58f9df2844db279d7cd85a0299556be",
+      "call_id": "f6c6f5fc-340c-4852-a85b-8b9f022c841e",
+      "context_id": "752f80f0-94a3-4f66-a475-2546faf4a982",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "none",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 6.997391199998674,
+      "response_sha256": "62a9d3f55318e0be165dd1554b2f0773dbc5aa14e097006aceb393573354d290",
+      "usage": {
+        "prompt_tokens": 24318,
+        "total_tokens": 24625,
+        "completion_tokens": 307,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 24318
+        },
+        "completion_tokens_details": {
+          "text_tokens": 307
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b/attempt-0/M1-82dc4d1a-f500-4856-9aa7-bd5dc8d38c59-metadata.json",
+      "sha256": "9d51f5cfe2e455151ddef5c904f3b1c23275cfec6477dd259550566ee211747e",
+      "call_id": "82dc4d1a-f500-4856-9aa7-bd5dc8d38c59",
+      "context_id": "a681dfd2-985f-4a03-bc3c-a6bb854d32b7",
+      "stage": "M1",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 5.6526633000030415,
+      "response_sha256": "256668a0fd91c0bc078914cc2ce07a06bf04a11f49f1f54bb01688cb22e4cd9c",
+      "usage": {
+        "prompt_tokens": 18443,
+        "total_tokens": 19237,
+        "completion_tokens": 794,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 18443
+        },
+        "completion_tokens_details": {
+          "text_tokens": 794
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b/modeling-5c879275-8072-47e3-804b-6f548a13173d-metadata.json",
+      "sha256": "fda5db1a76760efac27d18dc26eecc4e4965dea500728c53ab399df56966738b",
+      "call_id": "5c879275-8072-47e3-804b-6f548a13173d",
+      "context_id": "657b5c45-9371-4463-82d8-f3c571916574",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 18.304185499997402,
+      "response_sha256": "1f11f1d63821c9ff3dcf8a390ea8d45029e9f8ac75bd21b47b4c7bae439f1447",
+      "usage": {
+        "prompt_tokens": 30563,
+        "total_tokens": 32945,
+        "completion_tokens": 2382,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30563
+        },
+        "completion_tokens_details": {
+          "text_tokens": 2382
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b/planning-ed72c229-8b6c-42e8-b0c2-cb8592eaf4a2-metadata.json",
+      "sha256": "c22462457bfb517eb2845f5a8a7ba241f50a7b9c9138f9d57177675dd888e982",
+      "call_id": "ed72c229-8b6c-42e8-b0c2-cb8592eaf4a2",
+      "context_id": "7999beff-2c26-48bb-804b-cd25ef4a2e36",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 3.287138600004255,
+      "response_sha256": "12be3a82d14ceaadd8f449f36e45aea30839a33d99aae3c4131b74739cbaec08",
+      "usage": {
+        "prompt_tokens": 24514,
+        "total_tokens": 24843,
+        "completion_tokens": 329,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 24514
+        },
+        "completion_tokens_details": {
+          "text_tokens": 329
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/ee877442-d1ce-4523-9d01-fcb3d195ae45/modeling-18f61157-b1d2-4eab-ba79-6698e3f86389-metadata.json",
+      "sha256": "bfaba1868838ead4d5a0cde89bd21bc5295f81f8858b6c06ca4d53c01418869b",
+      "call_id": "18f61157-b1d2-4eab-ba79-6698e3f86389",
+      "context_id": "234fce28-0c90-4cb1-b01f-6e46dd398743",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 32.3123504000032,
+      "response_sha256": "d076d0b80f276dc0e076403bb26d429dcdb292f0a2445812bb7c9c860baac878",
+      "usage": {
+        "prompt_tokens": 30275,
+        "total_tokens": 35922,
+        "completion_tokens": 5647,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 30275
+        },
+        "completion_tokens_details": {
+          "text_tokens": 5647
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/ee877442-d1ce-4523-9d01-fcb3d195ae45/modeling-62b3c891-7aa8-467b-80ed-37da9a068380-metadata.json",
+      "sha256": "69889361f05df9da8fa7ac276745e457bbcd55a1c331bec1034ca8de4ce54024",
+      "call_id": "62b3c891-7aa8-467b-80ed-37da9a068380",
+      "context_id": "72694734-ebce-42e8-afe2-755211f7cde3",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 38.35272450000048,
+      "response_sha256": "0ce0ecf51e21b8f8301e5e6562e9f36b17cf1f1b7f8bcfb0fab8be8029d33afc",
+      "usage": {
+        "prompt_tokens": 30237,
+        "total_tokens": 35766,
+        "completion_tokens": 5529,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 30237
+        },
+        "completion_tokens_details": {
+          "text_tokens": 5529
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs/modeling/ee877442-d1ce-4523-9d01-fcb3d195ae45/planning-6cdcc1f9-1c7e-48e0-b2e7-bd1d6597a47e-metadata.json",
+      "sha256": "ed4b97828ea27da756a709486447fa23fc35579067e9bc5469bc67322af29c48",
+      "call_id": "6cdcc1f9-1c7e-48e0-b2e7-bd1d6597a47e",
+      "context_id": "706ba022-083f-413f-93d2-388fa9585db9",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 4.762609999997949,
+      "response_sha256": "4e3aa5b9b6e9bf6a750a5f183de24742d80072ef420c109549f3d349ee336a6e",
+      "usage": {
+        "prompt_tokens": 24332,
+        "total_tokens": 24682,
+        "completion_tokens": 350,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 24332
+        },
+        "completion_tokens_details": {
+          "text_tokens": 350
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    }
+  ],
+  "same_status_query_did_not_generate_or_execute": true,
+  "full_run_started": false,
+  "P2_started": false,
+  "writing_started": false,
+  "formal_exports_created": false,
+  "all_F6_6_completed": false,
+  "all_F6_completed": false,
+  "public_release_cleared": false,
+  "private_candidate_rebuilt": false,
+  "figure_executor_readiness": "tmp/three-hand-live-validation-20261114/figure-executor-readiness.json",
+  "next_required_work": "Targeted code repair and a separately traceable recovery of the exhausted implementation run; preserve approval binding and failed artifacts. Do not increase/reset the automatic budget or treat raw numerics as accepted.",
+  "protected_history_hashes_verified": [
+    {
+      "path": "docs/release/source-completeness-20261114.json",
+      "sha256": "cb8fa2de4ac0a25d0618f309b73bed654d20fa43f49df670a3ba5bfd54c25cab"
+    },
+    {
+      "path": "docs/release/agpl-combined-distribution-20261114.json",
+      "sha256": "03b92d2c4709fa0262886b5b3da7ca7f0a37806d5a87c31d93aba6ffa894e263"
+    },
+    {
+      "path": "docs/release/environment-validation-exception-20261114.json",
+      "sha256": "b263cd883ee7e120313d38b722ccd004b4d0e74d83ef2823fa2bbf209a192b08"
+    },
+    {
+      "path": "docs/release/resource-disposition-20261111.json",
+      "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c"
+    }
+  ],
+  "regressions": [
+    {
+      "path": "tmp/three-hand-live-validation-20261114/model-consent-final-pure.xml",
+      "sha256": "202ab41a2c01420c79ac83a01bf7583cd8978478270bc8760b1ebf94811fb8ee",
+      "passed": 90,
+      "skipped": 0,
+      "tests_are_program_regressions_not_live_quality_acceptance": true
+    },
+    {
+      "path": "tmp/three-hand-live-validation-20261114/user-confirmation-workflow-final.xml",
+      "sha256": "76e7db9ae9971123394d6c684ac21da095fa3a8af8c5c81f892be90e331b6430",
+      "passed": 27,
+      "skipped": 0,
+      "tests_are_program_regressions_not_live_quality_acceptance": true
+    }
+  ],
+  "repair_plan": {
+    "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-plan-v001.md",
+    "sha256": "9b771a32b5d9725d7641995f1f3b24bb817dd84c910094ea2848fcb6867893f7"
+  },
+  "changed_implementation": [
+    {
+      "path": "src/modelcrew/modeling_hand.py",
+      "sha256": "5dbeabcfcd127451461014b6d0d114ca03fb6cafa6eec5404d378309549a577d"
+    },
+    {
+      "path": "configs/executor/Dockerfile.figures",
+      "sha256": "234da9cad694abf9ac73a7f320643e9db24fe8aafdf8c02faa492b83e66db442"
+    },
+    {
+      "path": "tests/test_modeling_hand.py",
+      "sha256": "204bc5bd8006d89f2a7adce0e140d593c6388476a21107e4a74b75facebe542d"
+    },
+    {
+      "path": "tests/test_modeling_hand_workflow.py",
+      "sha256": "822544271cb3e9221831e651e40de430bf0a902394aa537a87e66c52e191d6c0"
+    }
+  ],
+  "repository_layout_final": "passed, 0 issues; not a complete F6 acceptance"
+}

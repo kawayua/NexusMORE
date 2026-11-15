@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "requirements-document-tools.txt",
+  "target": "docs/history/dependencies/requirements-document-tools.txt",
+  "purpose": "Historical helper or dependency input retained byte-identical; current dependency features use functional names",
+  "files": [
+    {
+      "old_path": "requirements-document-tools.txt",
+      "new_path": "docs/history/dependencies/requirements-document-tools.txt",
+      "sha256": "5b2c1775f2420826b3872d22e4d5647da309e8d19c40c2404f83587261d3b645",
+      "bytes": 162
+    }
+  ],
+  "approval_rewritten": false
+}

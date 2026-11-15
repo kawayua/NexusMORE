@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "requirements-paper-export.txt",
+  "target": "docs/history/dependencies/requirements-paper-export.txt",
+  "purpose": "Historical helper or dependency input retained byte-identical; current dependency features use functional names",
+  "files": [
+    {
+      "old_path": "requirements-paper-export.txt",
+      "new_path": "docs/history/dependencies/requirements-paper-export.txt",
+      "sha256": "d23f507346aaccb89745601a91ba74e1b3c63760915b17c9003ec037895e21b6",
+      "bytes": 203
+    }
+  ],
+  "approval_rewritten": false
+}

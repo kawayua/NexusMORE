@@ -4,15 +4,23 @@
 
 项目对外名称为「枢模 · NexusMORE」；Python 包和现有运行命令沿用 `modelcrew`，历史验收记录保留原名。
 
+## 内置能力与发行约定
+
+目标为单 Agent 安装，内置建模知识、数学论证和中文论文资料，无需另装外部技能包。按 `docs/builtin-capabilities.md` 和 F1/F2/F5/F6 逐项落实；当前未完成完整内置，不得宣称复制即接通。产品入口和用户说明使用本项目能力名称，合法必要的版权、许可及署名照实保留；受限材料不得靠改名后发行，历史通过记录不追改。
+
+Word、PDF、表格任务按类型实际读取 `src/modelcrew/resources/document-tools/upstream/{docx,pdf,xlsx}/SKILL.md`，再按需读取关联参考；这些是内置工具指南，不替代项目论文规范和审批。发行包须携带三个入口及其许可证/完整配套文件；官方固定版本下载和校验方法见 `docs/document-tool-integration.md`。不得把文件已存在说成自动路由已接通。
+
+新增项目文件按 `docs/repository-layout.md` 以用途命名，不在根目录继续新增 `stage-*` 目录。现有阶段目录按F0分批迁移，迁移前查明引用、哈希和历史恢复关系；不得以批量重命名或修改旧哈希破坏历史批准。规范入口和第三方原始文件名保留。
+
 ## 默认协作结构
 
-项目采用“三手协作＋独立质检”：建模手包含 Planner/Researcher/Modeler 职责，代码手承担 Coder，论文手承担 Writer。Validator/Reviewer 仅在 M1/P1/P2/W1/W2 节点以未参与被审产物编写的独立上下文只读审查，不是额外常驻业务 Agent；作者自检不能替代独立审查。程序编排器负责版本、路由和暂停恢复，不新增总指挥 Agent。实际职责与阶段实施边界见 `docs/three-hand-collaboration.md`；不得因配置已声明便宣称三手节点已实现。此处描述项目实现方式，不授权在仅讨论或修改文档时主动派发运行时质检 Agent。
+项目采用“三手协作＋独立质检”：建模手包含 Planner/Researcher/Modeler 职责，代码手承担 Coder，论文手承担 Writer。Validator/Reviewer 仅在 M1/P1/P2/W1/W2 节点以未参与被审产物编写的独立上下文只读审查，不是额外常驻业务 Agent；作者自检不能替代独立审查。程序编排器负责版本、路由和暂停恢复，不新增总指挥 Agent。实际职责与阶段实施边界见 `docs/three-hand-collaboration.md`；不得因配置已声明便宣称三手节点已实现。此处描述项目实现方式，不授权在仅讨论或修改文档时主动派发运行时质检 Agent。 新业务运行按 `docs/hand-guidance.md` 和包内 `resources/collaboration/manifest.json` 加载枢模本地规范，冻结规范与哈希；宿主共用同一入口。规范更新不改写旧运行、历史回执或用户批准，未接通工具不得因规范声明就登记为可用。
 
 ## 每次论文/配图任务的默认流程
 
-开始前实际读取 `resources/paper/workflow.json`、`resources/paper/writer-instructions.md`、`resources/paper/chinese-modeling-policy.json` 和 `docs/scientific-figure-contract.md`。算法选择先读取 `resources/algorithms/index.md`，再按问题结构读取相关章节，不加载全部算法全文。
+开始前实际读取 `src/modelcrew/resources/paper/workflow.json`、`src/modelcrew/resources/paper/writer-instructions.md`、`src/modelcrew/resources/paper/chinese-modeling-policy.json` 和 `docs/scientific-figure-contract.md`。算法选择先读取 `src/modelcrew/resources/algorithms/index.md`，再按问题结构读取相关章节，不加载全部算法全文。
 
-论文为中文数学建模体裁，按 math-modeling 论文手组织问题分析、模型、求解、结果、检验与评价。math-reasoning 仅用于公式推导、证明与核对，不能用其证明文章结构替代建模论文。
+论文为中文数学建模体裁，按项目中文论文库组织问题分析、模型、求解、结果、检验与评价。数学论证库仅用于公式推导、证明与核对，不能用其证明文章结构替代建模论文。
 
 只使用已确认的建模方案与结果，先交付 Markdown 审阅稿和配图候选清单。候选图按三类各至少 3 张、合计至少 9 张，正式入文至少 8 幅；这些是项目当前质量要求，用户明确修改或官方规则覆盖时记录依据。时间演化/几何问题应按题目或用户要求提供代表时刻位置图，并考虑实物轮廓、尺寸和局部细节；不对无关题型强制添加时间图，不把实物示意当成碰撞检验。
 
@@ -23,3 +31,18 @@
 ## 全局符号表约束
 
 整篇汇编论文只设置一个全局“符号说明”章节和一张统一符号表，集中放在模型假设之后、各题模型建立之前；不得按“问题一／问题二”分设符号子表。表中列明符号、含义、单位及适用范围，必要时补充维度、下标或定义域。相同含义且单位一致的符号核对后合并；同名异义或单位冲突必须先明确重命名或作用域映射，并同步更新正文、公式、图表及引用，不能仅凭符号同名自动合并。题目专用符号也收入同一表，用适用范围列区分；模型附近可解释局部新记号，但不得再重复铺设小题符号表。小题建模材料可保留局部符号表供追溯，正式全文必须按上述全局规则展示。符号调整和冲突处理留痕，修改后的稿件重新记录受影响审阅，不覆盖历史通过稿。
+
+
+## Python 与全页 PDF 准入
+
+2026-11-12 用户决定：后端、数据、数值求解、绘图和导出统一 Python，不声称支持 MATLAB 或 R；历史来源/冻结规范中的语言设想不属于当前能力。新任务读取版本化 collaboration 规范和 docs/figure-tools.md。所有候选图与正式论文的全部 PDF 均须完整页数核对、全页预览、全页检查并保留哈希；实际读图、独立 P2/W2 和用户确认仍分别执行，不把生成预览当审图通过。不使用上游 HTML 候选面板；沿用现有图目录与用户选图流程。旧冻结上下文、原始来源及历史通过记录保留字节，不批量改写。
+
+## LaTeX 工具适配
+
+2026-11-12：采用项目自行编写的 `modelcrew.latex_tools` 与 `docs/latex-tools.md`。原始 TeX 初始化/编译/校验仅为工程探针，正式导出只进入现有登记汇编与审批；禁止凭编译成功、工具存在或任意理由字符串放过警告和全页检查。新规范1.2.0仅作用于新冻结上下文，旧批准与来源许可不追改。
+
+2026-11-12 支持范围确认：当前LaTeX支持基线为Tectonic 0.17.0、Pandoc 3.6.4（Python 3.13，Windows实测）。其他编译引擎、外置BibTeX/Biber及任意LaTeX→Word暂不支持，不列为本批必补任务；已支持的是批准Markdown/AST同源导出及Word原生公式。工具存在/诊断通过或历史实验分支不扩大该范围。参见 `docs/latex-tools.md` 和 `docs/release/latex-support-decision-20261112.json`。
+
+## 本地能力与新任务资料
+
+2026-11-12 用户确认剩余23项目标按本地建议适配。共享能力入口为 `python -m modelcrew.capabilities`，说明为 `docs/capability-adaptation.md`。新任务冻结collaboration 1.3.0（21份指南、193项资源），保留旧冻结任务/审批字节。论文候选使用 `modelcrew.paper_discovery` 复用现有检索与引用档案，状态区分失败/部分/空结果；候选或DOI分组不代表真实性核验。文档工作区 `modelcrew.office_tools` 仅只读画像和成员未变的解包/重打包工程检查，编辑后工作区拒绝pack，不代结构校验、真实渲染、独立W2或正式发布。数学/统计/证明资料限模型论证，按现有契约处理配对/重复设计、检验前提、FDR/Bonferroni及完整命题条件，不自动证明或造结果。其他LaTeX引擎、外置BibTeX/Biber、任意TeX转Word仍暂不支持；公式重算、修订接受/合并及任意公式编辑未注册。

@@ -1,0 +1,704 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://modelcrew.local/contracts/mathematical-package-1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "method_selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+        },
+        "fingerprint": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "solver": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_candidate_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+              },
+              "decision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "premises": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "data": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "complexity": {
+                "type": "string",
+                "minLength": 1
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "validation": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "fallback": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "decision",
+              "premises",
+              "data",
+              "sources",
+              "reason",
+              "complexity",
+              "risks",
+              "validation",
+              "fallback"
+            ]
+          },
+          "minItems": 1
+        },
+        "coverage_gap": {
+          "type": "string"
+        },
+        "conditions_evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "fingerprint",
+        "model",
+        "solver",
+        "selected_candidate_id",
+        "candidates",
+        "coverage_gap",
+        "conditions_evidence"
+      ]
+    },
+    "dossier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+        },
+        "structure": {
+          "type": "string",
+          "minLength": 1
+        },
+        "problem_setting": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "inputs": {
+              "type": "string",
+              "minLength": 1
+            },
+            "requested_conclusion": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "scope",
+            "inputs",
+            "requested_conclusion"
+          ]
+        },
+        "symbols": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "latex": {
+                "type": "string",
+                "minLength": 1
+              },
+              "meaning": {
+                "type": "string",
+                "minLength": 1
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "domain": {
+                "type": "string",
+                "minLength": 1
+              },
+              "shape": {
+                "type": "string",
+                "minLength": 1
+              },
+              "first_definition": {
+                "type": "string",
+                "minLength": 1
+              },
+              "scope": {
+                "type": "string",
+                "minLength": 1
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+              }
+            },
+            "required": [
+              "latex",
+              "meaning",
+              "unit",
+              "domain",
+              "shape",
+              "first_definition",
+              "scope",
+              "id"
+            ]
+          },
+          "minItems": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "statement": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "impact": {
+                "type": "string",
+                "minLength": 1
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+              }
+            },
+            "required": [
+              "statement",
+              "type",
+              "source",
+              "impact",
+              "id"
+            ]
+          },
+          "minItems": 1
+        },
+        "equations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+              },
+              "latex": {
+                "type": "string",
+                "minLength": 1
+              },
+              "meaning": {
+                "type": "string",
+                "minLength": 1
+              },
+              "lhs_dimension": {
+                "type": "string",
+                "minLength": 1
+              },
+              "rhs_dimension": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "symbol_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+                },
+                "minItems": 1
+              },
+              "assumption_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+                },
+                "minItems": 0
+              },
+              "required_symbol_units": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "id",
+              "latex",
+              "meaning",
+              "lhs_dimension",
+              "rhs_dimension",
+              "evidence_type",
+              "symbol_ids",
+              "assumption_ids",
+              "required_symbol_units"
+            ]
+          },
+          "minItems": 1
+        },
+        "derivations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "equation_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+                },
+                "minItems": 1
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "status": {
+                "enum": [
+                  "derived",
+                  "proved",
+                  "conditional",
+                  "needs_review",
+                  "numerically_observed"
+                ]
+              },
+              "open_gaps": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              }
+            },
+            "required": [
+              "id",
+              "conditions",
+              "equation_ids",
+              "steps",
+              "status",
+              "open_gaps"
+            ]
+          },
+          "minItems": 1
+        },
+        "propositions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "equation_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+                },
+                "minItems": 1
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "status": {
+                "enum": [
+                  "derived",
+                  "proved",
+                  "conditional",
+                  "needs_review",
+                  "numerically_observed"
+                ]
+              },
+              "open_gaps": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              }
+            },
+            "required": [
+              "id",
+              "conditions",
+              "equation_ids",
+              "steps",
+              "status",
+              "open_gaps"
+            ]
+          },
+          "minItems": 0
+        },
+        "unproved_or_out_of_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "statistical_inference": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "structure",
+        "problem_setting",
+        "symbols",
+        "assumptions",
+        "equations",
+        "derivations",
+        "propositions",
+        "unproved_or_out_of_scope",
+        "statistical_inference"
+      ]
+    },
+    "contract_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "equation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+          },
+          "role": {
+            "enum": [
+              "executable",
+              "explanatory"
+            ]
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "group": {
+                  "enum": [
+                    "constraints",
+                    "parameters",
+                    "variables",
+                    "assumptions",
+                    "checks"
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "group",
+                "id"
+              ]
+            },
+            "minItems": 0
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "equation_id",
+          "role",
+          "targets",
+          "reason"
+        ]
+      },
+      "minItems": 1
+    },
+    "validation_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "threshold": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_kind": {
+            "enum": [
+              "numerical",
+              "analytical",
+              "structural",
+              "human_review"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "description",
+          "threshold",
+          "unit",
+          "evidence_kind"
+        ]
+      },
+      "minItems": 1
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "data_origin": {
+            "type": "string",
+            "minLength": 1
+          },
+          "data_sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "contract_version": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "result_revision": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "specification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "const": "planned"
+          }
+        },
+        "required": [
+          "id",
+          "question",
+          "data_origin",
+          "data_sha256",
+          "contract_version",
+          "result_revision",
+          "specification",
+          "status"
+        ]
+      },
+      "minItems": 0
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "equation_spacing": {
+          "enum": [
+            "normal",
+            "relaxed"
+          ]
+        }
+      },
+      "required": [
+        "equation_spacing"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_selection",
+    "dossier",
+    "contract_links",
+    "validation_plan",
+    "figures",
+    "provenance",
+    "presentation"
+  ]
+}

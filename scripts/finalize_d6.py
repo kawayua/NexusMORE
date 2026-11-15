@@ -1,4 +1,5 @@
 """Document D6 approved-reference delivery; do not approve or solve Q2."""
+from modelcrew.project_assets import asset_path
 import json,os,shutil
 from pathlib import Path
 from datetime import datetime,timezone
@@ -8,7 +9,7 @@ from modelcrew.collaboration import sha_file
 from scripts.run_d4_full import workflow
 from modelcrew.contracts import digest
 
-base=ROOT/'stage-d/d6';folder=ROOT/'stage-d/runs/references/d6-q1-to-q2-20261109-v2'
+base=asset_path(ROOT,'stage-d/d6');folder=asset_path(ROOT,'stage-d/runs/references/d6-q1-to-q2-20261109-v2')
 request=read(folder/'resume-request.json')
 with workflow() as w:
     context=w.question_context(**request)
@@ -64,17 +65,17 @@ doc.write_text('''# D6 更新：已确认前题产物供后题读取参考
 
 当前已实现可复用数据库引用与建模输入接口，实际问题一→问题二读取及恢复验证见[验收报告](../stage-d/d6/acceptance-report.md)。第二题只完成输入与引用准备，尚需自身建模、独立M1、用户确认与后续求解审查。历史D6其余能力和通用Agent/API完成情况不由本次范围更新自动视为通过。
 ''',encoding='utf-8')
-p=read(ROOT/'stage-d/progress.json');p['current_milestone']='D6_confirmed_Q1_references_available_to_Q2'
+p=read(asset_path(ROOT,'stage-d/progress.json'));p['current_milestone']='D6_confirmed_Q1_references_available_to_Q2'
 p['milestones']['D6']={'status':'updated_scope_implemented_and_verified','user_acceptance':'not_recorded','scope':'前题产物确认后，后题即可读取并参考使用','report':'stage-d/d6/acceptance-report.md','target_id':request['target_id'],'target_revision':1,'reference_count':2,'Q2_stage':'INTAKE_AND_REFERENCE_READY','Q2_model_approved':False,'Q2_result_approved':False,'legacy_full_D6_capabilities_claimed':False}
 p['next']='Q2 collision-model proposal and independent M1, then user confirms Q2 model before solving; E/W2 remain separate'
 p['approved_question_reference_access_implemented']=True
-path=ROOT/'stage-d/progress.next.json';new(path,p);os.replace(path,ROOT/'stage-d/progress.json')
-r=ROOT/'stage-d/README.md';s=r.read_text(encoding='utf-8');s=s.replace('| D6 多小题、定向返工与恢复 | 待实施 |','| D6 已确认前题产物供后题读取参考（用户更新） | 已实现并用Q1→Q2验证；第二题输入就绪，尚未确认或求解，见 [D6报告](d6/acceptance-report.md) |')
+path=asset_path(ROOT,'stage-d/progress.next.json');new(path,p);os.replace(path,asset_path(ROOT,'stage-d/progress.json'))
+r=asset_path(ROOT,'stage-d/README.md');s=r.read_text(encoding='utf-8');s=s.replace('| D6 多小题、定向返工与恢复 | 待实施 |','| D6 已确认前题产物供后题读取参考（用户更新） | 已实现并用Q1→Q2验证；第二题输入就绪，尚未确认或求解，见 [D6报告](d6/acceptance-report.md) |')
 s+='\nD6最新范围见[更新说明](../docs/d6-approved-question-references.md)。第一题结果、正文与九图的既有确认不变，第二题的模型与结果仍需单独确认。\n';r.write_text(s,encoding='utf-8')
 (base/'README.md').write_text('# D6 已确认前题产物复用\n\n第一题已确认产物已向第二题开放参考；实际读取与恢复验证完成，第二题未批准、未求解。\n\n[第二题输入交接](question2-handoff.md) · [执行报告](acceptance-report.md) · [当前状态](current-references.json)\n',encoding='utf-8')
 source_dir=base/'sources';source_dir.mkdir(exist_ok=True)
 code=['migrations/009_question_references.sql','modelcrew/question_references.py','modelcrew/workflow.py','modelcrew/modeling_hand.py','scripts/run_d6_references.py','scripts/finalize_d6.py','tests/test_question_references.py','tests/conftest.py']
 for name in code:shutil.copyfile(ROOT/name,source_dir/Path(name).name)
-paths=[*base.glob('*.json'),*base.glob('*.md'),*source_dir.glob('*'),*folder.glob('*'),ROOT/'stage-d/progress.json',r,doc,ROOT/'stage-d/d6-targeted-db.xml',ROOT/'stage-d/d6-regression.xml']
+paths=[*base.glob('*.json'),*base.glob('*.md'),*source_dir.glob('*'),*folder.glob('*'),asset_path(ROOT,'stage-d/progress.json'),r,doc,asset_path(ROOT,'stage-d/d6-targeted-db.xml'),asset_path(ROOT,'stage-d/d6-regression.xml')]
 new(base/'evidence.json',{'created_at':datetime.now(timezone.utc).isoformat(),'scope':'D6 updated requirement and actual Q1-to-Q2 reference verification','files':frozen_manifest([p for p in paths if p.is_file()])})
 print(json.dumps({'D6':'updated_scope_verified','Q2':'INTAKE_AND_REFERENCE_READY','references':2,'full_regression_passed':474,'new_solver_runs':0,'Q2_model_approved':False,'Q2_result_approved':False}))

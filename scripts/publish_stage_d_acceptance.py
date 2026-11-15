@@ -1,9 +1,10 @@
 """Publish a stage-D acceptance finding; this cannot grant user approval."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,hashlib,xml.etree.ElementTree as ET
 from datetime import datetime,timezone
 ROOT=Path(__file__).resolve().parents[1]
-BASE=ROOT/'stage-d/acceptance/20261109-v1'
+BASE=asset_path(ROOT,'stage-d/acceptance/20261109-v1')
 def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def save(p,value):
@@ -13,7 +14,7 @@ assert all(sha(ROOT/f['path'])==f['sha256'] for f in audit['evidence_files'])
 suites=list(ET.parse(BASE/'full-regression.xml').getroot().iter('testsuite'))
 counts={k:sum(int(s.attrib.get(k,0)) for s in suites) for k in ['tests','failures','errors','skipped']}
 assert counts=={'tests':491,'failures':0,'errors':0,'skipped':0}
-q2=ROOT/'stage-d/runs/full/q2full-eead56d48f5b4d07'
+q2=asset_path(ROOT,'stage-d/runs/full/q2full-eead56d48f5b4d07')
 additional=[]
 for name in ['review-recheck/independent-math-adjudication.md','review-final/independent-precision-recheck.md','review-final/independent-citation-audit.json','precision-supplement.json']:
     p=q2/name;p.read_bytes();additional.append({'path':p.relative_to(ROOT).as_posix(),'sha256':sha(p)})
@@ -88,7 +89,7 @@ status={'stage':'D','audit_status':'completed','engineering_verdict':'NOT_READY_
 save(BASE/'status.json',status)
 files=['acceptance-report.md','status.json','evidence-audit.json','supplementary-evidence.json','full-regression.xml','d1-verification/verification.json']
 save(BASE/'manifest.json',{'files':[{'path':(BASE/n).relative_to(ROOT).as_posix(),'sha256':sha(BASE/n)} for n in files],'audit_script_sha256':sha(ROOT/'scripts/audit_stage_d_acceptance.py'),'publisher_script_sha256':sha(Path(__file__)),'user_approval_created':False})
-pointer=ROOT/'stage-d/current-acceptance.json'
+pointer=asset_path(ROOT,'stage-d/current-acceptance.json')
 assert not pointer.exists()
 save(pointer,{**status,'manifest_sha256':sha(BASE/'manifest.json')})
 print(json.dumps({'audit':'completed','regression':counts,'engineering_verdict':status['engineering_verdict'],'user_stage_acceptance':'pending'}))

@@ -2,6 +2,7 @@
 
 Uses fixed numeric evidence and TEST_SIMULATED_USER only. No model/code execution.
 """
+from modelcrew.project_assets import asset_path
 import copy,json,os,subprocess,sys,uuid
 from datetime import datetime,timezone
 from modelcrew.config import ROOT
@@ -16,10 +17,10 @@ def cli(*args,expected_code=0):
     return json.loads(p.stdout if p.returncode==0 else p.stderr)
 
 def main():
-    run=ROOT/'stage-b/runs'/('execution-review-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));run.mkdir(parents=True)
+    run=asset_path(ROOT,'stage-b/runs')/('execution-review-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));run.mkdir(parents=True)
     task='test-execution-review-'+uuid.uuid4().hex
-    contract=json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8'))
-    array=ROOT/'stage-b/runs/solver-v2-20261104T131332959555Z/output/trajectories.npz'
+    contract=json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8'))
+    array=asset_path(ROOT,'stage-b/runs/solver-v2-20261104T131332959555Z/output/trajectories.npz')
     manifest={'contract_sha256':digest(contract),'description':'TEST_ONLY import fixed historical arrays, not a new solve','artifacts':[{'path':str(array),'sha256':file_hash(array),'role':'fixed_fixture'}]}
     manifest_path=run/'manifest.json';manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
     config={'manifest_path':str(manifest_path),'manifest_sha256':file_hash(manifest_path)}
@@ -67,6 +68,6 @@ def main():
             'same_execution_reused_for_all_interpretations':True,'pending_review_survived_restart':True,'duplicate_confirmation_idempotent':True,'counts':counts,
             'new_model_calls':0,'new_code_executions':0,'limitations':['Passed claims verify declared arithmetic predicates against fixed evidence, not physical model correctness.','Free narrative remains unknown until explicit human assessment.']}
     (run/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    (ROOT/'stage-b/executor-review-verification.json').write_text(json.dumps({'report_path':str((run/'report.json').relative_to(ROOT)),**report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    (asset_path(ROOT,'stage-b/executor-review-verification.json')).write_text(json.dumps({'report_path':str((run/'report.json').relative_to(ROOT)),**report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

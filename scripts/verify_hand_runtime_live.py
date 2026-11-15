@@ -1,4 +1,5 @@
 """Live configured-provider + Docker probe on NEW synthetic tasks, never Q1/Q2 approval."""
+from modelcrew.project_assets import asset_path
 import json,uuid,argparse
 from pathlib import Path
 from modelcrew.config import ROOT
@@ -6,11 +7,11 @@ from modelcrew.contracts import validate,digest
 from modelcrew.collaboration import sha_file
 from modelcrew.workflow import Workflow
 from modelcrew.hand_runtime import load,run_folder
-BASE=ROOT/'stage-d/runtime-integration/20261110-v1'
+BASE=asset_path(ROOT,'stage-d/runtime-integration/20261110-v1')
 
 def coding():
     BASE.mkdir(parents=True,exist_ok=True)
-    c=json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8-sig'))
+    c=json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8-sig'))
     source=BASE/'linear-input.json';source.write_text(json.dumps({'a':2,'b':1,'x':list(range(11))}),encoding='utf-8')
     c['problem']={'case_id':'SYNTHETIC_LINEAR_RUNTIME','subproblem_id':'Q1','title':'Synthetic linear runtime probe','scope':'Engineering-only: y=2*x+1 for integer x=0..10. Minimal scope first 3 values. No real competition answer.','objective':{'kind':'simulation','description':'Compute exact linear map and report residuals.'}}
     c['sources']=[{'id':'statement','kind':'problem_statement','locator':'Explicit synthetic engineering probe, not user competition data','sha256':sha_file(source)}]
@@ -38,7 +39,7 @@ def coding():
         print(json.dumps({'probe':'coding','phase':r['phase'],'record':str(BASE/('coding-live-'+r['run_id']+'.json'))}))
 
 def writing():
-    p=json.loads((ROOT/'stage-d/d5/current-writing.json').read_text(encoding='utf-8'))
+    p=json.loads((asset_path(ROOT,'stage-d/d5/current-writing.json')).read_text(encoding='utf-8'))
     task=p['binding']['task_id'];src=ROOT/p['run_dir']
     with Workflow() as w:
         t=w.task(task);art=w.db.execute('SELECT artifacts FROM mc_executions WHERE id=%s',(t['execution_id'],)).fetchone()['artifacts']

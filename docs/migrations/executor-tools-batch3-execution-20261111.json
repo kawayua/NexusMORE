@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "batch": "Remaining F0 batch 3: executor mounts, host tool discovery and cache separation",
+  "status": "passed",
+  "relocations": [
+    "docs/migrations/execution-data-20261111.json",
+    "docs/migrations/local-export-tools-20261111.json",
+    "docs/migrations/tex-cache-archive-20261111.json"
+  ],
+  "source_revisions": "docs/migrations/executor-tools-source-revisions-20261111.json",
+  "caller_backup": "tmp/repository-relocation-20261111/executor-tools-callers",
+  "preflight": {
+    "historical_jobs": 53,
+    "completed_runs": 53,
+    "unresolved_claims": 0,
+    "verified_artifacts": 95,
+    "containers_inspected": 12,
+    "migration_source_mount_conflicts": 0
+  },
+  "original_files_moved": 1110,
+  "new_defaults": {
+    "execution_root": "runs/execution",
+    "local_tools": "configs/local/tools",
+    "current_tex_cache": "configs/local/tex-cache",
+    "original_cache_archive": "archive/research/tex-cache/20261111"
+  },
+  "tool_discovery_priority": [
+    "explicit executable path",
+    "MODELCREW_PANDOC or MODELCREW_TECTONIC",
+    "PATH",
+    "local migrated executable"
+  ],
+  "tool_diagnostic_command": "python -m modelcrew.tool_discovery",
+  "executable_hashes_match_original_provenance": true,
+  "targeted_tests": {
+    "passed": 44
+  },
+  "full_regression": {
+    "passed": 599,
+    "skipped": 141,
+    "report": "tmp/executor-tools-batch3-regression-v1.xml"
+  },
+  "live_docker_and_mcp_probe": {
+    "status": "passed",
+    "synthetic_job": "f0-mount-75d77b11e6364c7f811f2e1742be9fb4",
+    "execution_root": "runs/execution",
+    "new_container_starts": 1,
+    "create_mount": "type=bind,source=D:\\big-third-up\\modelcrew\\runs\\execution\\jobs\\f0-mount-75d77b11e6364c7f811f2e1742be9fb4,target=/work/job,readonly",
+    "actual_job_mount": {
+      "Type": "bind",
+      "Source": "D:\\big-third-up\\modelcrew\\runs\\execution\\jobs\\f0-mount-75d77b11e6364c7f811f2e1742be9fb4",
+      "Destination": "/work/job",
+      "RW": false
+    },
+    "readonly_input": true,
+    "network_disabled": true,
+    "read_only_root": true,
+    "nonroot_user": true,
+    "cleanup_removed": true,
+    "sum_of_squares": 38,
+    "cached_execute_did_not_restart": true,
+    "host_mcp_status_recovery": true,
+    "historical_jobs_recovered_without_docker": 53,
+    "unchanged_original_files": 1110,
+    "cache_seed_verified": 412,
+    "tools": {
+      "status": "passed",
+      "tools": [
+        {
+          "name": "pandoc",
+          "status": "available",
+          "path": "D:\\big-third-up\\modelcrew\\configs\\local\\tools\\pandoc\\pandoc.exe",
+          "version": "pandoc.exe 3.6.4",
+          "sha256": "3d4405429aac6aa7563f452d2e1a670e0274d3620130087ca0402c8fb9595197"
+        },
+        {
+          "name": "tectonic",
+          "status": "available",
+          "path": "D:\\big-third-up\\modelcrew\\configs\\local\\tools\\tectonic.exe",
+          "version": "Tectonic 0.17.0",
+          "sha256": "99ffcfdbf1ebf8bdda9e791942e3d06aedb12463fddc33f07de6f5211c8bf08d"
+        }
+      ],
+      "downloaded": false
+    },
+    "old_stage_directories_recreated": false,
+    "formal_export_performed": false,
+    "paid_model_calls": 0,
+    "downloads": 0
+  },
+  "live_evidence": "tmp/executor-tools-batch3-live-v1/receipt.json",
+  "relocation_verification": {
+    "records": 15,
+    "mapping_entries": 1532,
+    "status": "passed"
+  },
+  "historical_assembly": {
+    "verified_files": 827,
+    "original_manuscript_review": "approved",
+    "original_figure_review": "approved",
+    "current_context_matches_frozen": false,
+    "can_export_current": false,
+    "evidence": "tmp/executor-tools-batch3-historical-v1.json"
+  },
+  "layout_guard": "passed",
+  "historical_jobs_reexecuted": 0,
+  "database_bindings_rewritten": false,
+  "approval_rewritten": false,
+  "formal_export_performed": false,
+  "paid_model_calls": 0,
+  "downloads": 0,
+  "final_f0_accepted": false,
+  "remaining": [
+    "Root execution helper/resource packaging and other resources",
+    "Other frozen stage runs and evidence",
+    "Final layout and clean-install acceptance"
+  ]
+}

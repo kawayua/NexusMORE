@@ -1,0 +1,331 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F6_first_batch_internal_resource_routing_implemented_private_validation_passed",
+  "product": "枢模 · NexusMORE",
+  "distribution": "nexusmore",
+  "python_package": "modelcrew",
+  "version": "0.1.0.dev0",
+  "public_upload_authorized": false,
+  "supported_installation_target": {
+    "os": "Windows x86_64",
+    "python": ">=3.13,<3.14"
+  },
+  "entrypoints": {
+    "console": "modelcrew",
+    "module": "python -m modelcrew",
+    "readonly_checks": [
+      "--version",
+      "--help",
+      "resources-check"
+    ],
+    "user_configuration": [
+      "init",
+      "config-show",
+      "doctor --profile core",
+      "doctor --profile workflow",
+      "doctor --profile full",
+      "doctor --profile full --services"
+    ],
+    "service_environment": [
+      "environment setup",
+      "environment status",
+      "environment restart",
+      "environment stop",
+      "environment embedding",
+      "environment retrieval",
+      "environment smoke",
+      "environment recover",
+      "environment documents"
+    ],
+    "legal_notices": [
+      "license-info",
+      "license-info --text agpl",
+      "license-info --text apache"
+    ],
+    "resource_routing": [
+      "route"
+    ]
+  },
+  "dependency_groups": [
+    "figures",
+    "workflow",
+    "retrieval",
+    "documents",
+    "paper",
+    "evidence",
+    "dev"
+  ],
+  "resource_count": 227,
+  "resource_manifest": "src/modelcrew/resources/resource-manifest.json",
+  "resource_location": "importlib.resources.files(modelcrew)/resources",
+  "js_distribution": {
+    "format": "private ESM resource, no npm publication",
+    "entry": "harness/nexusmore-workflow.js",
+    "metadata": "harness/package.json",
+    "live_harness_integration_verified": false
+  },
+  "packaged_export_modules": [
+    "modelcrew.paper_export",
+    "modelcrew.paper_render"
+  ],
+  "packaged_render_adapter": "rendering/render-word.ps1",
+  "deployment_resources": [
+    "deployment/Dockerfile.runtime",
+    "deployment/postgres.yaml",
+    "deployment/qdrant.yaml",
+    "deployment/managed-services.json"
+  ],
+  "exclude": [
+    "local secrets and .env",
+    "user runs and outputs",
+    "archive and historical benchmark datasets",
+    "external skills directories",
+    "restricted original upstream materials",
+    "native tools and model weights",
+    "virtual environments and caches"
+  ],
+  "readme": "docs/package-installation.md",
+  "evidence": "docs/release/agpl-combined-distribution-20261114.json",
+  "followup": [
+    {
+      "milestones": [
+        "F5"
+      ],
+      "work": "Public redistribution license, third-party permissions, attribution and fonts.",
+      "status": "deferred_by_user_not_passed"
+    },
+    {
+      "milestones": [
+        "F6"
+      ],
+      "work": "Internal canonical resource/read-only tool routes and recovery implemented; real model-driven three-hand acceptance remains. No claim of a complete 113-method semantic vector index.",
+      "status": "first_batch_implemented_business_acceptance_pending"
+    },
+    {
+      "milestones": [
+        "F4"
+      ],
+      "work": "Fresh Windows / empty Docker / complete first online preparation skipped by explicit user decision; not a verified capability.",
+      "status": "skipped_by_user"
+    },
+    {
+      "milestones": [
+        "G",
+        "H2"
+      ],
+      "work": "DeepSeek Harness integration and real model-driven end-to-end acceptance with all approvals."
+    }
+  ],
+  "historical_comparison_policy": "Case-specific full_numerics/solver_validation reference comparisons require intentionally excluded historical scripts/data; private installation does not claim historical fixture execution without explicit archive recovery",
+  "baseline_validation_status": "passed",
+  "last_verified_at": "2026-11-14",
+  "verified_dependency_groups": [
+    "core",
+    "workflow",
+    "documents",
+    "figures",
+    "evidence",
+    "retrieval",
+    "paper"
+  ],
+  "unverified_dependency_groups": [],
+  "current_candidate": "tmp/resource-routing-validation-20261114/private-candidate",
+  "installed_resource_count": 227,
+  "installed_guidance_files": 21,
+  "installed_document_tool_files": 126,
+  "installed_migration_files": 12,
+  "package_review": {
+    "status": "accepted_by_user",
+    "date": "2026-11-14",
+    "user_statement": "ok 那就明确这版 同意安装包的审核",
+    "scope": "Current 0.1.0.dev0 private package baseline and clarified delivery boundaries; not overall F2 completion",
+    "record": "docs/release/package-installation-approval-20261114.json",
+    "applies_to_candidate": "tmp/package-installation-20261113/verified-build"
+  },
+  "delivery_decisions": {
+    "postgresql": {
+      "deployment": "Docker",
+      "managed_initialization_start_health_recovery": "implemented_workspace_owned_compose_persistent_volumes_no_destructive_reset"
+    },
+    "qdrant": {
+      "deployment": "Docker",
+      "managed_initialization_start_health_recovery": "implemented_workspace_owned_compose_persistent_volumes_no_destructive_reset"
+    },
+    "docker": {
+      "current_prerequisite": "Docker Desktop with WSL2/Linux containers",
+      "automatic_installation_implemented": false
+    },
+    "harness": {
+      "download_installation": "user_managed_out_of_scope",
+      "live_integration_verified": false
+    },
+    "python_runtime": {
+      "supported_backend": "CPython 3.13",
+      "delivery_goal": "bundled_or_automatically_prepared",
+      "implemented_in_current_wheel": false,
+      "implemented_in_private_bootstrap": true,
+      "version": "3.13.5",
+      "method": "official_embedded_runtime_with_private_pip_and_production_extras_no_system_install"
+    },
+    "online_model_service": {
+      "local_service_installation_required": false,
+      "configuration": [
+        "API key",
+        "endpoint",
+        "model"
+      ]
+    },
+    "node": "only_if_required_by_verified_host_integration",
+    "native_export_tools": "verified_download_preparation_for_Pandoc_3.6.4_and_Tectonic_0.17.0; licensed_Word_and_fonts_are_host_prerequisites"
+  },
+  "current_candidate_review": {
+    "status": "F6_internal_routing_first_batch_validated_not_full_business_or_public_release",
+    "record": "docs/release/resource-routing-20261114.json",
+    "public_upload_authorized": false
+  },
+  "dependency_group_evidence": {
+    "core": "docs/release/package-installation-20261113.json",
+    "workflow": "docs/release/package-installation-20261113.json",
+    "documents": "docs/release/optional-dependency-validation-20261114.json",
+    "figures": "docs/release/optional-dependency-validation-20261114.json",
+    "evidence": "docs/release/optional-dependency-validation-20261114.json",
+    "retrieval": "docs/release/retrieval-paper-validation-20261114.json",
+    "paper": "docs/release/retrieval-paper-validation-20261114.json"
+  },
+  "formal_paper_export_status": "engineering_toolchain_only; formal_export_requires_current_approvals_and_independent_W2",
+  "native_toolchain_status": {
+    "tectonic": "0.17.0_real_new_workspace_online_and_cached_offline_compilation_passed",
+    "pandoc": "3.6.4_DOCX_native_OMML_passed",
+    "word_render": "native_Word_two_pages_and_all_page_checks_passed_outside_sandbox",
+    "scope": "engineering_probes_on_existing_Windows_host; fresh_VM_and_formal_approval_not_verified"
+  },
+  "knowledge_supplement_plan": "docs/release/knowledge-supplement-plan-20261114.json",
+  "paper_knowledge": {
+    "version": "1.0.0",
+    "workflow_version": "1.3.0",
+    "resources": 5,
+    "status": "independently_authored_runtime_integrated_not_user_content_approved",
+    "evidence": "docs/release/paper-knowledge-supplement-20261114.json"
+  },
+  "remaining_knowledge_items": {
+    "count": 0,
+    "ids": [],
+    "progress_evidence": "docs/release/mathematical-knowledge-supplement-20261114.json",
+    "original_15_item_inventory_unchanged": true
+  },
+  "algorithm_knowledge": {
+    "version": "1.0.0",
+    "index_version": "1.3.1",
+    "resources": 9,
+    "canonical_algorithms": 113,
+    "source_rows": 123,
+    "fixed_cases": 113,
+    "status": "independently_authored_references_and_educational_cases_not_general_business_solvers",
+    "evidence": "docs/release/algorithm-knowledge-supplement-20261114.json"
+  },
+  "mathematical_knowledge": {
+    "version": "1.0.0",
+    "resources": 5,
+    "groups": [
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "topics": 39,
+    "fixed_cases": 39,
+    "status": "independently_authored_references_and_fixed_checks_not_automatic_proof_or_design_approval",
+    "evidence": "docs/release/mathematical-knowledge-supplement-20261114.json"
+  },
+  "knowledge_baseline_scope": "15 original gap items have authored declared-scope baselines; not all mathematics, source licensing, automatic routing or end-to-end acceptance",
+  "baseline_evidence": "docs/release/package-installation-20261113.json",
+  "f2_closure": {
+    "status": "closed",
+    "date": "2026-11-14",
+    "record": "docs/release/package-closure-20261114.json",
+    "summary": "docs/release/package-closure-summary.md",
+    "remaining_in_scope_items": [],
+    "full_product_end_to_end_verified": false,
+    "public_release_approved": false
+  },
+  "next_milestone": "F6",
+  "next_milestone_implementation_started": true,
+  "dependency_group_config_sources": {
+    "workflow": "configs/dependencies/workflow-runtime.txt",
+    "documents": "configs/dependencies/documents.txt",
+    "figures": "configs/dependencies/figures.txt",
+    "evidence": "configs/dependencies/evidence.txt",
+    "retrieval": "configs/dependencies/retrieval.txt",
+    "paper": "configs/dependencies/paper-export.txt"
+  },
+  "legacy_workflow_recipe": {
+    "path": "configs/dependencies/workflow.txt",
+    "scope": "historical development/test recipe, not production installation requirements",
+    "preserved_bytes": true
+  },
+  "previous_candidate_review": {
+    "status": "AGPL_candidate_license_and_package_checks_passed_not_full_F5_clearance",
+    "record": "docs/release/agpl-combined-distribution-20261114.json",
+    "public_upload_authorized": false
+  },
+  "previous_candidate": "tmp\\agpl-combined-release-validation-20261114\\verified-build",
+  "user_initialization": {
+    "status": "implemented_and_technically_verified",
+    "settings_version": "1.0.0",
+    "guide": "docs/user-configuration.md",
+    "record": "docs/release/user-initialization-20261114.json",
+    "default_installed_workspace": "%LOCALAPPDATA%/NexusMORE/workspace",
+    "workspace_override": "MODELCREW_WORKSPACE or global --workspace",
+    "data_directory_scope": "inside selected user workspace; legacy explicit execution roots retained",
+    "model_calls_or_service_installation_during_init": false
+  },
+  "installed_module_count": 81,
+  "service_environment": {
+    "guide": "docs/environment-preparation.md",
+    "record": "docs/release/environment-preparation-20261114.json",
+    "private_bundle": "D:\\big-third-up\\modelcrew\\tmp\\agpl-combined-release-validation-20261114\\verified-build\\nexusmore-0.1.0.dev0-windows-x86_64-private.zip",
+    "automatic_Docker_WSL_installation": false,
+    "disaster_recovery_verified": false,
+    "fresh_Windows_VM_verified": false,
+    "clean_environment_validation": {
+      "status": "skipped_by_user_not_passed",
+      "record": "docs/release/environment-validation-exception-20261114.json"
+    },
+    "previous_private_bundle": "tmp/environment-preparation-validation-20261114/final-build/nexusmore-0.1.0.dev0-windows-x86_64-private.zip"
+  },
+  "licensing": {
+    "status": "AGPL_combined_distribution_adopted_remaining_items_deferred_by_user_not_cleared",
+    "guide": "docs/combined-distribution-license.md",
+    "record": "docs/release/licensing-review-20261114.json",
+    "project_license_selected": true,
+    "public_release_cleared": false,
+    "project_license": "AGPL-3.0-only",
+    "scope": "combined_distribution; prior_Apache_grant_for_original_work_and_third_party_terms_retained",
+    "adoption_record": "docs/release/project-license-adoption-20261114.json",
+    "pymupdf": {
+      "decision": "retain_current_backend",
+      "version": "1.27.2.3",
+      "replacement_planned": false,
+      "commercial_license_evidence": false,
+      "AGPL_compliance_completed": false,
+      "public_release_cleared": false,
+      "guide": "docs/pymupdf-licensing.md",
+      "record": "docs/release/pymupdf-retention-20261114.json",
+      "obligations_review": "completed_with_open_implementation_items",
+      "obligations_guide": "docs/agpl-obligations.md",
+      "obligations_record": "docs/release/agpl-obligations-review-20261114.json",
+      "combined_release_policy": "AGPLv3_approved_by_owner",
+      "complete_corresponding_source_ready": false,
+      "source_materials_archive": "tmp\\agpl-combined-release-validation-20261114\\source-materials\\nexusmore-0.1.0.dev0-agpl-source-materials.zip"
+    },
+    "retained_original_license": "Apache-2.0",
+    "combined_adoption_record": "docs/release/agpl-combined-distribution-20261114.json",
+    "deferral_record": "docs/release/licensing-deferral-20261114.json"
+  },
+  "resource_routing": {
+    "version": "1.0.0",
+    "record": "docs/release/resource-routing-20261114.json",
+    "guide": "docs/resource-routing.md",
+    "all_F6_completed": false,
+    "harness_end_to_end_verified": false
+  }
+}

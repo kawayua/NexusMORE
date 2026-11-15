@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path
 import json,xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
@@ -6,7 +7,7 @@ from modelcrew.inputs import file_hash
 from modelcrew.artifacts import snapshot_artifacts
 from modelcrew.workflow import Workflow
 
-stamp='20261106';stage=ROOT/'stage-b'
+stamp='20261106';stage=asset_path(ROOT,'stage-b')
 production=json.loads((stage/f'stage-b-production-audit-{stamp}.json').read_text(encoding='utf-8'))
 search=json.loads((stage/f'historical-artifact-copy-search-{stamp}.json').read_text(encoding='utf-8'))
 recovered=[]
@@ -34,7 +35,7 @@ criteria=[
  {'id':'B4','requirement':'CLI查看、确认、指导修改、拒绝、幂等与过期版本检查','status':'passed','evidence':['modelcrew/__main__.py','tests/test_workflow.py'],'scope':'重复/并发/过期请求、拒绝不推进、事务失败回滚及原始graph resume绕过拦截通过；actor仍是本地审计标签。'},
  {'id':'B5','requirement':'修改影响范围、解释复用计算并重审、等待点及跨事务恢复','status':'passed','evidence':['modelcrew/reviews.py','contracts/interpretation-claims-1.0.0.schema.json','stage-b/version-recovery-verification.json','stage-b/executor-review-verification.json'],'scope':'新模型或执行配置创建新待确认版本；解释修改复用execution_id，审核失败阻止确认，unknown需明确人工审阅；规范结构断言可通过。'},
  {'id':'B6','requirement':'初稿→用户补充→新契约→确认→求解/联调→结果确认的完整演练','status':'passed','evidence':['stage-b/method-comparison.md','stage-b/v2-confirmation.md','stage-b/v2-result-confirmation.json',f'stage-b/stage-b-production-audit-{stamp}.json','stage-b/executor-review-verification.json'],'scope':'实际v1/v2交互历史和v2既有受控求解保留；本次新演练是模拟用户+固定证据，不是新LLM或新求解。'}]
-source_paths=sorted({*ROOT.glob('modelcrew/*.py'),*ROOT.glob('migrations/*.sql'),*ROOT.glob('tests/*.py'),ROOT/'contracts/model-contract-1.0.0.schema.json',ROOT/'contracts/model-contract-1.1.0.schema.json',ROOT/'contracts/input-templates-1.0.0.json',ROOT/'contracts/interpretation-claims-1.0.0.schema.json'})
+source_paths=sorted({*ROOT.glob('modelcrew/*.py'),*ROOT.glob('migrations/*.sql'),*ROOT.glob('tests/*.py'),asset_path(ROOT,'contracts/model-contract-1.0.0.schema.json'),asset_path(ROOT,'contracts/model-contract-1.1.0.schema.json'),asset_path(ROOT,'contracts/input-templates-1.0.0.json'),asset_path(ROOT,'contracts/interpretation-claims-1.0.0.schema.json')})
 report={'date':datetime.now().astimezone().isoformat(),'stage':'B','conclusion':'conditional_pass','functional_conclusion':'passed_with_documented_scope','unconditional_closeout':False,
  'basis':'modelcrew-agent-plan.md / 阶段B：契约与人工关卡，及用户确认的输入结构、版本档案与回退补充要求',
  'tests':counts,'pytest_duration_seconds':sum(float(s.attrib.get('time',0)) for s in suites),'pytest_command':'python -m pytest tests --integration -q --junitxml=stage-b/runs/stage-b-final-acceptance-20261106.xml',

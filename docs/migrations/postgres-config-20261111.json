@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "stage-b/compose.yaml",
+  "target": "configs/services/postgres.yaml",
+  "purpose": "F0 move database deployment config; preserve existing Compose project identity",
+  "files": [
+    {
+      "old_path": "stage-b/compose.yaml",
+      "new_path": "configs/services/postgres.yaml",
+      "sha256": "22bbac14176ba180fdebf4046a23ce34397582d90aab79b3cba5fb955daaa3d0",
+      "bytes": 529
+    }
+  ],
+  "approval_rewritten": false
+}

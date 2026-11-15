@@ -1,8 +1,0 @@
--r requirements-stage-b.txt
-fastapi==0.162.0
-uvicorn==0.52.1
-qdrant-client==1.20.0
-sentence-transformers==6.0.0
-beautifulsoup4==4.15.0
-mcp==1.30.0
-portalocker==4.4.2

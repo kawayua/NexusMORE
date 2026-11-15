@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "stage-c/compose.yaml",
+  "target": "configs/services/qdrant.yaml",
+  "purpose": "F0 move retrieval deployment config; preserve existing Compose project identity",
+  "files": [
+    {
+      "old_path": "stage-c/compose.yaml",
+      "new_path": "configs/services/qdrant.yaml",
+      "sha256": "9a93ae6e1b9140ac977a61b460c42d0a7687540291083048b0304118e9c838d2",
+      "bytes": 240
+    }
+  ],
+  "approval_rewritten": false
+}

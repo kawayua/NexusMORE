@@ -1,0 +1,1262 @@
+{
+  "schema_version": "1.0.0",
+  "knowledge_version": "1.0.0",
+  "authorship": "NexusMORE independently authored; standard mathematical principles, no restricted upstream fulltext copied",
+  "groups": [
+    {
+      "id": "B1",
+      "title": "数学形式化与推导",
+      "path": "mathematics/formalization.md",
+      "topic_ids": [
+        "domains",
+        "dimensions",
+        "linear-system",
+        "least-squares",
+        "differentiation",
+        "taylor",
+        "integration-limits",
+        "probability",
+        "sensitivity-errors",
+        "ode-conditions",
+        "constrained-optimality",
+        "numerical-error"
+      ]
+    },
+    {
+      "id": "B2",
+      "title": "证明方法与反例",
+      "path": "mathematics/proof-methods.md",
+      "topic_ids": [
+        "quantifiers",
+        "direct-proof",
+        "contradiction",
+        "induction",
+        "contrapositive",
+        "case-analysis",
+        "constructive-proof",
+        "existence-uniqueness",
+        "convexity",
+        "descent-convergence",
+        "fixed-point",
+        "generalization",
+        "complexity-proof"
+      ]
+    },
+    {
+      "id": "B3",
+      "title": "统计论证与检验决策",
+      "path": "mathematics/statistical-reasoning.md",
+      "topic_ids": [
+        "design-estimand",
+        "welch-inference",
+        "paired-inference",
+        "anova-inference",
+        "fisher-inference",
+        "mcnemar-inference",
+        "rank-inference",
+        "regression-inference",
+        "bootstrap-inference",
+        "multiple-testing",
+        "equivalence-inference",
+        "cluster-inference",
+        "missingness-inference",
+        "validation-inference"
+      ]
+    }
+  ],
+  "topic_count": 39,
+  "topics": [
+    {
+      "id": "domains",
+      "title": "符号、定义域与等价变换",
+      "group": "B1",
+      "formula": "x\\in\\mathbb R\\setminus\\{1\\},\\quad (x^2-1)/(x-1)=x+1",
+      "assumptions": "x为实标量，分母x−1非零；整数/实数/随机变量、参数/观测值分别登记，公式注明适用题目和单位",
+      "derivation": "由平方差x²−1=(x−1)(x+1)，在x≠1上约去x−1；等式只在共同定义域成立，不能据化简给原式补上x=1。设u为实数，sqrt(u²)=|u|，仅u≥0时等于u。每个新记号先定义对象、索引、维度和范围，再使用；整篇符号仍归唯一全局表",
+      "failure_boundary": "在x=1约分掩盖未定义；u=−2时sqrt(u²)=2≠u。平方/开方会引入或丢失分支，除变量前检查是否为0，log要求正实数",
+      "example": {
+        "inputs_and_calculation": "x=2原式与化简式都3；u=−2时sqrt(u²)=2",
+        "expected": [
+          3,
+          3,
+          2
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "domains",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#domains",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "dimensions",
+      "title": "量纲、维度与无量纲化",
+      "group": "B1",
+      "formula": "\\rho=m/V,\\quad v=L/T,\\quad \\Pi=vT/L",
+      "assumptions": "m为质量，V为体积，L为长度，T为时间；单位需转换至共同体系，L/T中T非零；向量n×1与矩阵m×n区分",
+      "derivation": "质量守恒量纲给[ρ]=M L^−3，速度给[v]=L T^−1，故Π无量纲；量纲相同只是可相加的必要条件，物理含义也须一致。矩阵Ax需A列数等于x长度；指数/对数的自变量应是无量纲比值，温度零点等非纯乘法换算单独说明",
+      "failure_boundary": "不能相加3米与2秒；不能对带单位长度直接写log L；单看数值相同不合并同名异义符号；量纲正确不证明模型正确",
+      "example": {
+        "inputs_and_calculation": "m=2kg,V=4m³,L=3m,T=2s，ρ=.5，v=1.5，Π=1",
+        "expected": [
+          0.5,
+          1.5,
+          1
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "dimensions",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#dimensions",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "linear-system",
+      "title": "线性方程、秩与可识别性",
+      "group": "B1",
+      "formula": "Ax=b,\\quad \\operatorname{rank}(A)=\\operatorname{rank}([A|b])",
+      "assumptions": "A为m×n实矩阵，x为n维未知向量，b为m维已知向量；数据有限且单位相容",
+      "derivation": "行消元是可逆的初等行变换，故不改解集；一致性要求增广前后秩相同；一致时自由度为n−rank(A)，唯一解还需rank(A)=n。方阵满秩才可写A^−1b；实际用分解求解而非显式求逆。小残差不保证小前向误差，需条件数与输入误差",
+      "failure_boundary": "A=[[1,1],[2,2]],b=[1,3]无解；b=[1,2]有无穷解。病态矩阵虽可逆仍会放大测量误差，不凭机器阈值给精确秩定理",
+      "example": {
+        "inputs_and_calculation": "A=[[2,1],[1,3]],b=(1,2)，解(.2,.6)，残差0",
+        "expected": [
+          0.2,
+          0.6,
+          0
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "linear-system",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#linear-system",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "least-squares",
+      "title": "最小二乘推导与投影",
+      "group": "B1",
+      "formula": "\\min_\\beta\\|X\\beta-y\\|_2^2,\\quad X^TX\\hat\\beta=X^Ty",
+      "assumptions": "X为n×p设计矩阵，y为n维响应；最小二乘有最小范数解，系数唯一需列满秩；统计推断额外需要误差假设",
+      "derivation": "展开J=βᵀXᵀXβ−2βᵀXᵀy+yᵀy，求导得2Xᵀ(Xβ−y)=0；Hessian=2XᵀX半正定，故正规方程解为全局极小。列满秩时正定且唯一；残差与列空间正交。计算优先QR/SVD，正规方程会平方条件数",
+      "failure_boundary": "共线列使系数不唯一，但拟合投影仍唯一；正规方程不是因果识别；截距/权重/正则化改变目标和推断，不机械套同一公式",
+      "example": {
+        "inputs_and_calculation": "x=0,1,2，y=1,3,5，截距1、斜率2，x=3预测7，正交残差0",
+        "expected": [
+          1,
+          2,
+          7,
+          0
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "least-squares",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#least-squares",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "differentiation",
+      "title": "链式法则、梯度与Hessian",
+      "group": "B1",
+      "formula": "f(x,y)=x^2y+\\sin y,\\quad \\nabla f=(2xy,x^2+\\cos y)^T",
+      "assumptions": "x,y为实数，f二次连续可微；多元复合g∘h要求相应点可微且Jacobian形状可乘",
+      "derivation": "分别固定另一变量求偏导；再对梯度逐项求导得到H=[[2y,2x],[2x,−sin y]]。复合映射h:Rⁿ→Rᵐ、g:Rᵐ→R时列梯度为J_hᵀ∇g；混合偏导相等需正则条件。数值差分是近似核对，不能替代可微性假设",
+      "failure_boundary": "|x|在0不可微；只存在各方向导数不必全微分；梯度转置/矩阵形状错误会给错链式法则",
+      "example": {
+        "inputs_and_calculation": "在(2,0)梯度(0,5)，H按行展开为(0,4,4,0)，SymPy仅核对该显式函数",
+        "expected": [
+          0,
+          5,
+          0,
+          4,
+          4,
+          0
+        ],
+        "scope": "symbolic_identity_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "differentiation",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#differentiation",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "taylor",
+      "title": "Taylor余项与近似范围",
+      "group": "B1",
+      "formula": "e^h=1+h+h^2/2+e^\\xi h^3/6,\\quad \\xi\\in(0,h)",
+      "assumptions": "此式取h>0且exp在[0,h]三次可微；一般Taylor需展开点到目标点之间相应阶导数存在并有余项条件",
+      "derivation": "从带Lagrange余项的二阶展开写出精确等式；因exp单调，0<R≤exp(h)h³/6；若忽略R才改用近似号。一般多变量需方向导数/高阶张量或范数界，不能把一维余项无条件照抄",
+      "failure_boundary": "h很大时局部展开误差可能过大；只给O(h³)而无常数/范围不能给具体误差保证；渐近展开不总是收敛级数",
+      "example": {
+        "inputs_and_calculation": "h=.1，二阶近似1.105，实际余项.0001709180756477302且不超过exp(.1)*.001/6",
+        "expected": [
+          1.105,
+          0.0001709180756477302,
+          1
+        ],
+        "scope": "numerical_error_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "taylor",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#taylor",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "integration-limits",
+      "title": "积分、求导与极限交换",
+      "group": "B1",
+      "formula": "F(a)=\\int_0^1e^{ax}\\,dx,\\quad F'(a)=\\int_0^1xe^{ax}\\,dx",
+      "assumptions": "a为实参数，在任意有界邻域|a|≤A上，e^(ax)及参数导数由可积常数exp(A)控制；积分限固定",
+      "derivation": "先核对可测、可积和统一支配，再用积分下求导定理交换；在a=0，F(0)=∫1dx=1，F′(0)=∫x dx=1/2。Tonelli允许非负函数交换积分（结果可无穷），Fubini通常要求绝对可积；条件不同不能混用",
+      "failure_boundary": "f_n=n·1_(0,1/n)在(0,1)逐点趋0但积分恒1，缺统一可积支配时极限与积分不能随便交换；边界随参数变还需端点项",
+      "example": {
+        "inputs_and_calculation": "符号积分在a=0的函数和导数分别1与.5；反例单列分析不由软件证明定理",
+        "expected": [
+          1,
+          0.5
+        ],
+        "scope": "symbolic_identity_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "integration-limits",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#integration-limits",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "probability",
+      "title": "条件概率、期望与方差",
+      "group": "B1",
+      "formula": "P(D|+)={P(+|D)P(D)\\over P(+|D)P(D)+P(+|\\neg D)P(\\neg D)}",
+      "assumptions": "D为事件，+为阳性事件，分母P(+)>0；概率在[0,1]；期望存在、方差有限时才谈对应运算",
+      "derivation": "从联合概率P(D,+)=P(+|D)P(D)，按D/非D分割全概率，再除以P(+)得Bayes。E(aX+b)=aEX+b只需可积；独立和的方差可相加，相关时补2Cov。二项n次独立同率Bernoulli给EX=np，Var=np(1−p)",
+      "failure_boundary": "高灵敏度不代表高后验概率；概率为0的条件事件需更精细定义；Var(X+Y)在X=Y时不是2Var(X)，而是4Var(X)",
+      "example": {
+        "inputs_and_calculation": "患病率.01、灵敏度.9、假阳性率.05时后验2/13；二项n10,p.2均值2、方差1.6",
+        "expected": [
+          0.15384615384615385,
+          2,
+          1.6
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "probability",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#probability",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "sensitivity-errors",
+      "title": "误差传播与局部敏感性",
+      "group": "B1",
+      "formula": "\\operatorname{Var}(f(\\hat\\theta))\\approx g^T\\Sigma g,\\quad g=\\nabla f(\\theta)",
+      "assumptions": "θ为实参数向量，f在附近可微，估计误差足够小；Σ为同一尺度下协方差，必须包含相关项",
+      "derivation": "一阶Taylor给f(θ+δ)≈f(θ)+gᵀδ；线性组合方差为gᵀΣg。确定性误差若|δ_j|≤ε_j，局部最坏一阶界为Σ|g_j|ε_j；这是局部近似，不等于严格有限区间界。有限区间需控制全邻域导数/余项",
+      "failure_boundary": "分母靠近0、阈值不连续或误差大时线性化失效；相关误差不能当独立；数值误差、参数不确定性与模型误差分别报",
+      "example": {
+        "inputs_and_calculation": "f=x/y，x6,y2，独立标准差.1/.05；值3，一阶SE sqrt(.008125)，一阶绝对界.125",
+        "expected": [
+          3,
+          0.09013878188659974,
+          0.125
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "sensitivity-errors",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#sensitivity-errors",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "ode-conditions",
+      "title": "初值问题的存在唯一与解析核对",
+      "group": "B1",
+      "formula": "y'=-2y,\\quad y(0)=3,\\quad y(t)=3e^{-2t}",
+      "assumptions": "t≥0，f(t,y)=−2y连续且对y全局Lipschitz常数2；一般局部Lipschitz只先给局部唯一，延拓需排除爆破",
+      "derivation": "分离变量或积分因子给d(e^(2t)y)/dt=0，初值决定常数3；代回导数和初值核对。Picard–Lindelöf需相关矩形内连续和对状态局部Lipschitz；连续本身给适当条件下存在，不保证唯一或全局时间存在",
+      "failure_boundary": "y′=sqrt(|y|),y(0)=0有零解及延迟启动解，唯一性失败；y′=y²,y(0)=1在t=1爆破，不能从局部存在跳到全局",
+      "example": {
+        "inputs_and_calculation": "solve_ivp在t1应接近3exp(−2)=.4060058497098381，保留数值容差不是形式证明",
+        "expected": 0.4060058497098381,
+        "scope": "numerical_error_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "ode-conditions",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#ode-conditions",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "constrained-optimality",
+      "title": "拉格朗日、KKT与充分必要条件",
+      "group": "B1",
+      "formula": "L=f+\\lambda^Tg+\\nu^Th,\\quad \\nabla_xL=0,\\ g\\le0,\\ h=0,\\lambda\\ge0,\\lambda_i g_i=0",
+      "assumptions": "x连续，目标/约束可微，局部最优点满足相应约束资格才保证KKT必要；凸f/g及仿射h时满足KKT可给全局充分性",
+      "derivation": "原始可行、对偶可行、互补与站立四类条件逐一列出；例如min x²且1−x≤0，边界候选x1，站立2x−λ=0给λ2，互补为0。凸性给f(z)≥f(x)+∇f(x)ᵀ(z−x)，结合可行性与乘子符号可推出所有可行z目标不小于f(x)",
+      "failure_boundary": "非凸站立点可为极大；min x且x²≤0的唯一可行最优x0却无满足站立的λ，显示约束资格不能省；离散决策不套连续KKT",
+      "example": {
+        "inputs_and_calculation": "符号求解站立与活跃约束得x1,λ2,互补0",
+        "expected": [
+          1,
+          2,
+          0
+        ],
+        "scope": "symbolic_identity_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "constrained-optimality",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#constrained-optimality",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "numerical-error",
+      "title": "截断、舍入、残差与收敛阶",
+      "group": "B1",
+      "formula": "I=\\int_0^1x^2dx=1/3,\\quad T_h-I=h^2/6",
+      "assumptions": "复合梯形法等距h=1/n，函数二阶连续；精确算术下此多项式误差等式成立，浮点会叠加舍入",
+      "derivation": "每段积分二次函数与梯形面积相差h³/6，n段累加为h²/6；网格减半误差缩至1/4，由此核对二阶。对一般二阶光滑函数，|T_h−I|≤(b−a)h²max|f″|/12。报告输入误差、离散误差、停止容差和浮点误差，不把求解器success当精确结论",
+      "failure_boundary": "足够小h会遭遇舍入/消去，不能无限外推阶数；收敛到离散模型不代表物理模型正确；残差小可能因病态仍解误差大",
+      "example": {
+        "inputs_and_calculation": "n10/20梯形误差分别1/600、1/2400，比值4",
+        "expected": [
+          0.0016666666666666668,
+          0.0004166666666666667,
+          4
+        ],
+        "scope": "numerical_error_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "numerical-error",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/formalization.md#numerical-error",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "quantifiers",
+      "title": "命题、量词与否定",
+      "group": "B2",
+      "formula": "\\forall x\\in\\mathbb R\\ \\exists y\\in\\mathbb R:y>x;\\quad \\neg\\exists y\\in\\mathbb R\\ \\forall x\\in\\mathbb R:y>x",
+      "assumptions": "对象域是全体实数；第一句允许y依赖x，第二句要求固定y适配所有x",
+      "derivation": "对任意给定x构造y=x+1得到第一句；若假设第二句中存在固定y，则取x=y+1即有y>x和x>y矛盾，因此该存在句为假。否定∀x∃y P应写∃x∀y ¬P，不能仅给谓词加“不”。常数与概率事件的依赖关系写清",
+      "failure_boundary": "在有限网格逐点找到不同y不产生统一y；“对每个数据集存在参数”不等于“存在一组参数适配全部数据集”",
+      "example": {
+        "inputs_and_calculation": "x1000构造y1001；给固定y−2取x−1反驳上界，两项差都是1",
+        "expected": [
+          1,
+          1
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "quantifiers",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#quantifiers",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "direct-proof",
+      "title": "直接证明与非负证书",
+      "group": "B2",
+      "formula": "\\forall a,b\\in\\mathbb R,\\quad (a+b)^2-4ab=(a-b)^2\\ge0",
+      "assumptions": "a,b为任意实数，实数平方非负；若由此开方推a+b≥2sqrt(ab)，还需a,b≥0",
+      "derivation": "展开左式a²+2ab+b²−4ab=a²−2ab+b²，配方为(a−b)²，由实平方非负得不等式，等号当且仅当a=b。附加a,b≥0后两侧非负，才可合法开方得到算术/几何平均不等式",
+      "failure_boundary": "a=b=−1时a+b=−2<2sqrt(ab)=2，说明非负假设不能从平方不等式中省去；数值吻合不是任意实数证明",
+      "example": {
+        "inputs_and_calculation": "SymPy核对两多项式恒等差0；a1,b3时非负差4",
+        "expected": [
+          0,
+          4
+        ],
+        "scope": "symbolic_identity_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "direct-proof",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#direct-proof",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "contradiction",
+      "title": "反证法与不可约表示",
+      "group": "B2",
+      "formula": "\\sqrt2\\notin\\mathbb Q",
+      "assumptions": "反设sqrt2=p/q，其中p,q互质整数且q≠0；使用整数平方奇偶性引理",
+      "derivation": "平方得p²=2q²，因此p²偶从而p偶，写p=2r；代回得q²=2r²，所以q偶，与p,q互质矛盾。奇偶引理由奇数2k+1的平方仍奇给出，不把待证结论作为引理循环引用",
+      "failure_boundary": "没有互质条件时“p,q皆偶”本身不是矛盾；有限分母搜索失败不能证明无穷多个有理数均不等于sqrt2",
+      "example": {
+        "inputs_and_calculation": "只枚举1≤p≤30,1≤q≤20，等式p²=2q²的命中数0，仅作有限校验，完整证明是上段逻辑",
+        "expected": 0,
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "contradiction",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#contradiction",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "induction",
+      "title": "归纳法与递推不变量",
+      "group": "B2",
+      "formula": "\\forall n\\in\\mathbb N_{\\ge1},\\quad \\sum_{k=1}^n k=n(n+1)/2",
+      "assumptions": "n为正整数；基例、任意n的归纳假设与下一步必须齐全；程序循环不变量还需初始化/保持/终止",
+      "derivation": "n1时两边1；假设对某任意n成立，加n+1得n(n+1)/2+n+1=(n+1)(n+2)/2，因此对n+1成立，归纳得全体正整数。强归纳应明示使用哪些较小指标，不偷用n+1命题",
+      "failure_boundary": "只有递推步没有基例不能推出任何起点；检查前100项也不能单独构成归纳证明；递推关系不必保证程序终止",
+      "example": {
+        "inputs_and_calculation": "n10时直接求和55与闭式55，程序不据此声称任意n已自动证明",
+        "expected": [
+          55,
+          55
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "induction",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#induction",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "contrapositive",
+      "title": "逆否、逆命题与必要充分",
+      "group": "B2",
+      "formula": "n\\in\\mathbb Z:\\quad n^2\\text{为偶数}\\Rightarrow n\\text{为偶数}",
+      "assumptions": "整数可分为偶2k和奇2k+1；命题A⇒B等价于非B⇒非A，不等价于B⇒A",
+      "derivation": "以逆否证明：若n奇，n=2k+1，平方4k²+4k+1也是奇，故原命题成立。本题逆命题也成立但需要另证(2k)²偶，不能由逻辑形式直接取得。写iff时须分别证明两向或给等价变换链",
+      "failure_boundary": "“下雨⇒地湿”的逆命题不成立；一个反例足以推翻全称命题，但任意多个正例仍不充分",
+      "example": {
+        "inputs_and_calculation": "把奇数平方对2取多项式余数恒1；n7的平方也是奇数",
+        "expected": [
+          1,
+          1
+        ],
+        "scope": "symbolic_identity_check",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "contrapositive",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#contrapositive",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "case-analysis",
+      "title": "分类证明与边界覆盖",
+      "group": "B2",
+      "formula": "\\forall x,y\\in\\mathbb R,\\quad |x+y|\\le |x|+|y|",
+      "assumptions": "x,y为任意实数，分类包含零；绝对值/分段模型需覆盖所有边界及重叠处理",
+      "derivation": "若同号则|x+y|=|x|+|y|；若异号，按|x|≥|y|或相反，|x+y|等于较大绝对值减较小绝对值，必不超过两者之和。零可并入同号或任一边界，故分类穷尽。等号当xy≥0，包括零",
+      "failure_boundary": "只检查两者都正遗漏异号和零；程序分支必须与数学分区一致，浮点近零策略不改变精确分区定理",
+      "example": {
+        "inputs_and_calculation": "x取−2/+2、y取−3/+3，按笛卡尔序的松弛分别0,4,4,0",
+        "expected": [
+          0,
+          4,
+          4,
+          0
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "case-analysis",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#case-analysis",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "constructive-proof",
+      "title": "构造性存在与可行见证",
+      "group": "B2",
+      "formula": "n\\ge1,\\ B\\ge0,\\quad x_i=B/n\\Rightarrow x_i\\ge0,\\ \\sum_{i=1}^n x_i=B",
+      "assumptions": "n正整数，B是同单位可分割资源；只要求非负与总和约束，不额外要求整性/上下界",
+      "derivation": "直接定义每个xi=B/n，由n>0与B≥0知非负；n项相加为nB/n=B，给出可执行可行见证。构造时逐条复核完整约束；存在一个见证只证明可行，不证明最优、唯一或公平公理均满足",
+      "failure_boundary": "若B1且n2要求xi为整数，平均分配不合法；若每人容量小于B/n还需另构造；别把可行当最优",
+      "example": {
+        "inputs_and_calculation": "B12,n3，分配4,4,4，总和12",
+        "expected": [
+          4,
+          4,
+          4,
+          12
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "constructive-proof",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#constructive-proof",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "existence-uniqueness",
+      "title": "存在、唯一与可计算性分离",
+      "group": "B2",
+      "formula": "f\\text{连续于非空紧集}K\\Rightarrow\\exists x_*\\in K:\\ f(x_*)=\\min_K f",
+      "assumptions": "有限维实空间中紧等价闭且有界；唯一性进一步可用凸域上的严格凸性，非凸域不能直接套该结论",
+      "derivation": "先由极值定理在紧集上取得最小值；若严格凸函数在凸域有不同极小点x,y，中点仍可行且值严格小于两最小值平均，矛盾，故至多一个。存在与至多一个结合才得唯一；存在定理不必提供有效算法或复杂度",
+      "failure_boundary": "连续f(x)=x在开区间(0,1)只有下确界0未取到；常量函数在[0,1]极小点不唯一；严格凸函数在非凸集{−1,1}也可两点同小",
+      "example": {
+        "inputs_and_calculation": "f=(x−2)²在[0,1]，驻点2不在域，比较端点得唯一解1、值1",
+        "expected": [
+          1,
+          1
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "existence-uniqueness",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#existence-uniqueness",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "convexity",
+      "title": "凸性、一阶条件与Jensen",
+      "group": "B2",
+      "formula": "\\theta x^2+(1-\\theta)y^2-[\\theta x+(1-\\theta)y]^2=\\theta(1-\\theta)(x-y)^2\\ge0",
+      "assumptions": "x,y实数，θ∈[0,1]，凸域内凸组合可行；严格凸在x≠y且θ∈(0,1)严格",
+      "derivation": "展开平方并合并同类项，得到非负系数乘平方，因此x²凸。一般可微凸函数满足f(y)≥f(x)+∇f(x)ᵀ(y−x)，在凸可行域上可用此支撑不等式证全局性；二阶可微且Hessian半正定是相应开凸域的凸性判据",
+      "failure_boundary": "局部正定Hessian不证明整个域凸；凸性不等于强凸或严格凸；凹函数−x²在x−1,y1,θ.5时Jensen方向相反",
+      "example": {
+        "inputs_and_calculation": "x0,y4,θ.25，Jensen差3，右端也3",
+        "expected": [
+          3,
+          3
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "convexity",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#convexity",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "descent-convergence",
+      "title": "下降引理、求和界与收敛对象",
+      "group": "B2",
+      "formula": "f(x-\\eta g)\\le f(x)-\\eta(1-L\\eta/2)\\|g\\|^2,\\quad g=\\nabla f(x)",
+      "assumptions": "f在相关路径上梯度L-Lipschitz且L>0，0<η<2/L；谈累计界还需f有下界f_inf；精确梯度，无随机噪声",
+      "derivation": "光滑性给f(x+d)≤f(x)+gᵀd+(L/2)||d||²，代d=−ηg得单步式。对t0至T−1求和，下降望远镜，得Σ||g_t||²≤(f(x0)−f_inf)/[η(1−Lη/2)]，进而最小梯度范数平方≤右侧/T。它是驻点指标界，不自动给全局最优、迭代点收敛或随机梯度结论",
+      "failure_boundary": "η=3且f=x²/2时更新x→−2x目标变4倍；f无下界时下降不保证有限极限；不能不核对L就套速率或常数",
+      "example": {
+        "inputs_and_calculation": "f=x²/2,x2,L1,η.5，目标2→.5，理论下降界1.5且本例取等",
+        "expected": [
+          2,
+          0.5,
+          1.5
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "descent-convergence",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#descent-convergence",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "fixed-point",
+      "title": "压缩映射与后验误差",
+      "group": "B2",
+      "formula": "d(x_k,x_*)\\le {q^k\\over1-q}d(x_1,x_0),\\quad 0\\le q<1",
+      "assumptions": "(X,d)为非空完备度量空间，F:X→X且d(Fx,Fy)≤qd(x,y)；初点属于X",
+      "derivation": "连续两步距离≤q^k d(x1,x0)，三角不等式及几何级数使序列Cauchy；完备性给极限x*∈X，Lipschitz连续性令F(x*)=x*；若另一固定点y*，d(x*,y*)≤q d(x*,y*)迫使距离0。尾和给所列误差界",
+      "failure_boundary": "X=(0,1),F=x/2为压缩但不完备，固定点0不在X；q=1的F=x+1无固定点；收敛数值曲线不代空间与不变性条件",
+      "example": {
+        "inputs_and_calculation": "F=.5x+1从x0=0迭代3步得1.75，固定点2，误差.25，尾界.25",
+        "expected": [
+          1.75,
+          0.25,
+          0.25
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "fixed-point",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#fixed-point",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "generalization",
+      "title": "有限样本界与数据依赖",
+      "group": "B2",
+      "formula": "P(|\\hat R(f)-R(f)|>\\epsilon)\\le2e^{-2n\\epsilon^2}",
+      "assumptions": "Z_i独立同分布，固定f的损失在[0,1]；f独立于用于估计风险的样本；有限预先固定类H可用|H|=M作并集界",
+      "derivation": "对固定f应用Hoeffding得尾界，令右端δ解ε=sqrt(log(2/δ)/(2n))。对预先固定M个函数并集界得同时事件概率≤2M exp(−2nε²)，故ε=sqrt(log(2M/δ)/(2n))。数据选择的f若属于该固定有限类，可在同时事件内使用；无限或数据依赖类需相应复杂度/独立测试等新论证",
+      "failure_boundary": "用训练数据挑一个函数再套“固定函数”界会漏选择偏差；时序相关、无界重尾损失不满足本式；有限类M不能由训练后挑出的数量随意替换",
+      "example": {
+        "inputs_and_calculation": "n100,δ.05，固定函数ε=.1358101516；预先固定M10同时界ε=.1730818383",
+        "expected": [
+          0.13581015157406195,
+          0.17308183826022852
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "generalization",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#generalization",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "design-estimand",
+      "title": "估计目标、实验单位与采样设计",
+      "group": "B3",
+      "formula": "DEFF=1+(m-1)\\rho,\\quad n_{eff}\\approx n/DEFF",
+      "assumptions": "先定义目标总体、均值/均值差/风险差/关联或因果估计量；m等簇大小且交换型ICCρ时才用该方差膨胀近似；不是通用自由度公式",
+      "derivation": "按分配与采样机制识别独立单位，同一个人的前后测是配对，不是两独立组；重复/时间/空间/簇观测保留ID和对应关系。对m个同方差、组内相关ρ的观测和，方差=mσ²+m(m−1)ρσ²，相比独立情况得到DEFF。推断自由度依实际设计，不拿n_eff替换检验样本数",
+      "failure_boundary": "3人前后各一行共6行，独立受试者仍3；随机截距模型/配对差/簇重采样各有条件，不能逐行打乱；非概率抽样不自动代表总体",
+      "example": {
+        "inputs_and_calculation": "3个受试者各2次，行数6/受试者3；若m2,ICC.5，则DEFF1.5,近似有效数4，仅示范设计效应",
+        "expected": [
+          6,
+          3,
+          1.5,
+          4
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "design-estimand",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#design-estimand",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "welch-inference",
+      "title": "独立两组Welch、效应与区间",
+      "group": "B3",
+      "formula": "t={\\bar x-\\bar y\\over\\sqrt{s_x^2/n_x+s_y^2/n_y}},\\quad \\nu={(a+b)^2\\over a^2/(n_x-1)+b^2/(n_y-1)}",
+      "assumptions": "两组独立观测，均值是目标，方差有限；小样本正态模型下使用近似Welch自由度，a=sx²/nx,b=sy²/ny，n各≥2；双侧α=.05先声明",
+      "derivation": "Δ估计为均值差，SE=sqrt(a+b)，按H0:Δ=0计算t与Welch–Satterthwaite ν；区间Δ±t_(.975,ν)SE。效应同时报原单位Δ，可补Cohen d=Δ/合并样本SD，但它非Welch检验量且其区间需另法；不把d点估计当已完成其区间。不可由一个正态性p值自动认可前提",
+      "failure_boundary": "配对数据不能当独立；零总SE为退化情况，需明确模型/精确策略；p≥.05不证明等效，异常极值和重尾会影响小样本结果",
+      "example": {
+        "inputs_and_calculation": "x1,2,3与y2,3,4，Δ−1,ν4,t−1.2247448714,p.2878641347；Δ的95%CI[−3.2669579355,1.2669579355]，d−1",
+        "expected": [
+          -1,
+          -1.224744871391589,
+          0.2878641347266908,
+          -3.266957935527523,
+          1.2669579355275231,
+          -1
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "welch-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#welch-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "paired-inference",
+      "title": "配对差值与配对t推断",
+      "group": "B3",
+      "formula": "d_i=y_{i,after}-y_{i,before},\\quad t={\\bar d\\over s_d/\\sqrt n}",
+      "assumptions": "配对ID一一匹配，不同受试者之间独立；小样本精确t要求差值正态，检验的是差值而非两边边际；df=n−1且s_d>0",
+      "derivation": "先按ID对齐再作差，H0:E d=0；SE=sd/sqrt(n)，CI=均值差±t_(.975,n−1)SE；标准化配对效应dz=均值差/sd，明确与独立组d定义不同。缺一侧的对象不静默错配，完整配对与缺失机制/敏感性留痕",
+      "failure_boundary": "配对被打乱会改变sd和p；重复多时点不能反复套独立配对检验而不校正/建相关模型；全同差值的SE0须单独解释",
+      "example": {
+        "inputs_and_calculation": "before1,2,3,4；after2,4,4,6，差1,2,1,2；Δ1.5,t5.1961524,p.013846833,95%CI[.58130688,2.41869312],dz2.5980762",
+        "expected": [
+          1.5,
+          5.196152422706632,
+          0.013846832988859047,
+          0.5813068844813005,
+          2.4186931155186997,
+          2.598076211353316
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "paired-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#paired-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "anova-inference",
+      "title": "多组均值、总体检验与事后比较",
+      "group": "B3",
+      "formula": "F={SS_B/(k-1)\\over SS_W/(N-k)},\\quad \\eta^2=SS_B/(SS_B+SS_W)",
+      "assumptions": "k独立组，经典ANOVA要求独立正态误差与同方差，df=k−1,N−k；不等方差、重复/簇设计须用适配替代；α=.05",
+      "derivation": "按组均值与总均值拆平方和，总体H0为全部均值相同；F检验拒绝只说明至少一组不同。η²是解释样本总平方和比例的点估计，有偏且非因果。预设对比或事后比较另定检验族并校正；示例组均值CI是边际区间，不是η²区间，也不是全组同时区间",
+      "failure_boundary": "总体显著不意味着每对显著；重复测量不能用独立ANOVA；n2各组无法凭数据确认正态/同方差，本例条件为教学假设，不自动验真",
+      "example": {
+        "inputs_and_calculation": "组[1,2]/[3,4]/[5,6]，F16,p.0250945733,η².9142857143；第一组均值1.5的边际95%t区间[−4.85310237,7.85310237]，展示小样本不确定性",
+        "expected": [
+          16,
+          0.02509457330439086,
+          0.9142857142857143,
+          -4.853102368216048,
+          7.853102368216048
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "anova-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#anova-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "fisher-inference",
+      "title": "稀疏独立列联表与Fisher检验",
+      "group": "B3",
+      "formula": "P(A=a\\mid\\text{边际})={\\binom{r_1}{a}\\binom{r_2}{c_1-a}\\over\\binom N{c_1}}",
+      "assumptions": "独立单位计数2×2表，非负整数，条件于边际使用超几何模型；不是重复配对数据。双侧采用SciPy概率不大于观察表概率的求和定义",
+      "derivation": "边际固定后枚举可行左上角a，计算H0:OR=1的超几何概率；双侧汇总同等或更极端表。效应可报样本交叉比，也可报条件OR，但区间须与估计定义一致。本例同时使用条件OR估计和条件精确95%CI，不与样本OR=ad/bc混为一个估计量",
+      "failure_boundary": "零边际会让部分效应不可识别；不同软件双侧定义可能不同需版本留痕；稀疏不意味着任意设计都用Fisher，配对另用McNemar",
+      "example": {
+        "inputs_and_calculation": "表[[1,9],[11,3]]；条件OR .03720908483,p .002759456185，95%CI[.00063600295,.42586647570]",
+        "expected": [
+          0.03720908483238107,
+          0.0027594561852200836,
+          0.0006360029488741693,
+          0.4258664756963734
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "fisher-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#fisher-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "mcnemar-inference",
+      "title": "配对二分类与精确McNemar",
+      "group": "B3",
+      "formula": "B\\mid(B+C=d),H_0\\sim\\operatorname{Binomial}(d,1/2)",
+      "assumptions": "同一批受试者两次二分类，B为+→−人数、C为−→+人数；受试者独立且配对完整；d=B+C>0",
+      "derivation": "在边际同质H0下，给定不一致总数d，两种改变方向概率各1/2；使用双侧精确二项检验，而非把前后当独立样本。报告净正率变化(C−B)/N；不一致者中B方向概率可给Clopper–Pearson区间，此区间不是总体净变化区间",
+      "failure_boundary": "d0没有不一致变化，检验退化，不能给无穷效应；忽略配对会误估不确定性；不一致比例的CI不等于风险差CI",
+      "example": {
+        "inputs_and_calculation": "配对表[[5,2],[8,5]]，B2,C8,N20；p .109375，净正率差.3；B方向条件概率.2及95%精确CI[.0252107263,.5560954623]",
+        "expected": [
+          0.109375,
+          0.3,
+          0.2,
+          0.025210726326833497,
+          0.5560954623076415
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "mcnemar-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#mcnemar-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "rank-inference",
+      "title": "秩检验、效应方向与小样本分辨率",
+      "group": "B3",
+      "formula": "U=\\sum_{i,j}[\\mathbf1(x_i>y_j)+\\tfrac12\\mathbf1(x_i=y_j)],\\quad \\delta_C=2U/(mn)-1",
+      "assumptions": "两独立连续组，无并列时本例用精确Mann–Whitney；一般目标是分布/排序关系，只有相同形状的平移族才解释为位置差。配对Wilcoxon须对差值，位置解释常需对称性",
+      "derivation": "U计数跨组胜出与并列，H0相同连续分布下排列给精确p；Cliff δ为P(X>Y)−P(X<Y)的样本估计，非均值差。若额外假设位置平移，可给Hodges–Lehmann位置估计。本例m=n3的最小双侧p为2/C(6,3)=.1，故按此非随机化精确检验反演的95%平移区间是全实数；不能硬填有限95%CI",
+      "failure_boundary": "非正态不自动改检验目标；MW不是无条件中位数检验；并列需对应排列/渐近策略；小样本无显著不等价无分离",
+      "example": {
+        "inputs_and_calculation": "x1,2,3；y4,5,6，U0,p.1,Cliff−1，y−x位置估计3；最后标记1表示95%精确反演区间无有限端点，非数值丢失",
+        "expected": [
+          0,
+          0.1,
+          -1,
+          3,
+          1
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "rank-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#rank-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "regression-inference",
+      "title": "回归系数、区间与模型依赖",
+      "group": "B3",
+      "formula": "\\hat\\sigma^2={\\|y-X\\hat\\beta\\|^2\\over n-p},\\quad \\operatorname{Var}(\\hat\\beta\\mid X)=\\sigma^2(X^TX)^{-1}",
+      "assumptions": "固定/条件设计X列满秩且n>p；经典小样本t区间假定条件独立正态同方差误差，E[ε|X]=0；预测性能与因果识别另验",
+      "derivation": "由βhat=β+(XᵀX)^−1Xᵀε得协方差式，用SSE/(n−p)估计σ²；单系数SE为对应对角元开方，t区间用df=n−p。异方差、簇或时序相关必须改变协方差/模型；均值响应CI与单个新观测预测区间不同，后者额外含σ²",
+      "failure_boundary": "系数显著不代表因果；变量筛选后直接用未选择模型的p/CI忽略选择偏差；共线/自由度0/异方差不能用本例经典公式",
+      "example": {
+        "inputs_and_calculation": "x0,1,2,3，y1,2,2,4；截距与斜率均.9，斜率SE .2645751311，95%CI[−.2383749101,2.0383749101]，df2",
+        "expected": [
+          0.9,
+          0.264575131106459,
+          -0.2383749100649204,
+          2.0383749100649204,
+          2
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "regression-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#regression-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "bootstrap-inference",
+      "title": "重采样单位、精确枚举与区间",
+      "group": "B3",
+      "formula": "\\hat\\theta^{*(b)}=T(X^{*(b)}),\\quad SE_{boot}=\\operatorname{sd}(\\hat\\theta^*)",
+      "assumptions": "独立数据按独立单位抽，配对同时抽配对，簇抽簇，时间数据用适当块；B、种子、区间方法及全部预处理重拟合规则留痕",
+      "derivation": "经验分布代替总体后，有放回抽同样样本量，重算统计量；有限枚举得到的是精确经验重采样分布，不是总体抽样分布。Monte Carlo版本用足够重复并检查端点稳定；百分位、basic、BCa等假设与偏差不同，不能统称万能区间",
+      "failure_boundary": "逐行抽簇/重复测量会低估误差；小样本/极值/稀有事件的bootstrap可能失效；例中名义95%百分位区间不保证总体95%覆盖",
+      "example": {
+        "inputs_and_calculation": "经验样本0,2，每次抽2有放回，四种有序样本均值0,1,1,2；精确bootstrap均值1、方差.5；inverted_cdf百分位名义95%区间[0,2]",
+        "expected": [
+          1,
+          0.5,
+          0,
+          2
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "bootstrap-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#bootstrap-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "multiple-testing",
+      "title": "检验族、FWER与BH-FDR",
+      "group": "B3",
+      "formula": "p_i^{Bonf}=\\min(1,mp_i),\\quad p_{(i)}^{BH}=\\min(1,\\min_{j\\ge i}mp_{(j)}/j)",
+      "assumptions": "比较族与α/q预先定义，输入是有效p值；Bonferroni控制任意依赖FWER，经典BH需独立或相应正依赖等条件，不能承诺任意依赖",
+      "derivation": "Bonf由并集界得到族误报≤Σα/m=α；BH先稳定排序p，再从后往前取累积最小值并截到1，最后映射原顺序，拒绝调整p≤q。BH控制的是FDR，不是每组FWER或所有声明必真。缺失p不能静默缩小预设族，应说明未完成比较策略",
+      "failure_boundary": "把BH写成统一α/m是错法；只对“显著者”事后组成族会低估错误率；无效p值校正后也不变有效",
+      "example": {
+        "inputs_and_calculation": "p顺序.01,.04,.03,.2；Bonf .04,.16,.12,.8；BH .04,.0533333333,.0533333333,.2；α=q=.05仅第一项拒绝",
+        "expected": [
+          0.04,
+          0.16,
+          0.12,
+          0.8,
+          0.04,
+          0.05333333333333334,
+          0.05333333333333334,
+          0.2
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "multiple-testing",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#multiple-testing",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "equivalence-inference",
+      "title": "等效、非劣与未拒绝差异的区别",
+      "group": "B3",
+      "formula": "H_{0L}:\\Delta\\le-\\delta,\\quad H_{0U}:\\Delta\\ge\\delta",
+      "assumptions": "等效边界δ>0有预先业务/临床依据，单位与Δ一致；两单侧TOST各α=.05，总体等效用交并检验；n、设计和t/正态假设适配",
+      "derivation": "分别用tL=(Δhat+δ)/SE和tU=(Δhat−δ)/SE计算上尾/下尾p，二者都小于α才拒绝等效的联合原假设，等价于同模型90%双侧区间严格落在(−δ,δ)。非劣只检一侧并固定方向；边界不能见数据后放宽",
+      "failure_boundary": "差异p≥.05不证明等效；90%区间不冒充95%；TOST交并结构无需把两个单侧水平再除2，多个不同终点的族仍另处理",
+      "example": {
+        "inputs_and_calculation": "给定合法t充分统计量Δhat .1,SE .1,df9,δ .5；两单侧p .00010124966/.00155521416，90%CI[−.08331129,.28331129]，等效标记1；实际数据前提并未由该例验证",
+        "expected": [
+          0.0001012496610338204,
+          0.0015552141551929267,
+          -0.08331129326536332,
+          0.2833112932653633,
+          1
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "equivalence-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#equivalence-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "cluster-inference",
+      "title": "重复与簇相关的方差核对",
+      "group": "B3",
+      "formula": "SE(\\bar Z)=s_Z/\\sqrt G,\\quad Z_g=\\text{第g簇均值}",
+      "assumptions": "G独立簇、等权簇均值是目标，例中簇大小相同；簇层t区间需独立近似正态簇均值且G>1；小G不保证稳健渐近",
+      "derivation": "先按独立簇聚合再对簇均值作均值推断，df=G−1；这是一种受限等权分析，不替代任意不等簇大小/簇随机设计的混合模型或稳健协方差。簇稳健SE需要足够簇和小样本修正；样本行数不是独立簇数",
+      "failure_boundary": "把同一簇大量复制行会虚减逐行SE，但不增加独立信息；两簇教学例区间极宽，不声称真实数据可稳健估计任何ICC/处理效应",
+      "example": {
+        "inputs_and_calculation": "两簇[0,0]与[2,2]，均值1；错误独立行SE .5773502692，簇均值SE1；条件t模型95%CI[−11.7062047364,13.7062047364]",
+        "expected": [
+          1,
+          0.5773502691896257,
+          1,
+          -11.706204736432095,
+          13.706204736432095
+        ],
+        "scope": "statistical_calculation",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "cluster-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#cluster-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "missingness-inference",
+      "title": "缺失机制、排除与敏感性",
+      "group": "B3",
+      "formula": "MCAR:\\ R\\perp(X_{obs},X_{mis});\\quad MAR:\\ P(R|X)=P(R|X_{obs})",
+      "assumptions": "R为观测/缺失模式，Xobs/Xmis为在该模式下观测/未观测部分；MAR需按模式理解，忽略机制用于特定推断还需参数可分等条件；MNAR依赖未观测量",
+      "derivation": "先列入组/缺失/排除/完整配对数量与原因，再据估计目标选择完整案例、插补/多重插补、加权或联合模型，并声明识别/模型假设。均值单次填补压缩方差且不能反映插补不确定性；多重插补需合并组内/组间不确定性，不把M次当M倍样本",
+      "failure_boundary": "MCAR/MAR通常不能只凭观测数据完全证实；MNAR需敏感性或外部信息；异常值检测不是自动删点授权。只分析完整样本可能改变目标总体",
+      "example": {
+        "inputs_and_calculation": "观测1,缺失,3，完整案例均值2、样本方差2；均值填补后均值2、样本方差1，说明均值相同仍会改变方差，不推断真实缺失值",
+        "expected": [
+          2,
+          2,
+          1
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "missingness-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#missingness-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "validation-inference",
+      "title": "验证划分、数据泄漏与证据报告",
+      "group": "B3",
+      "formula": "z_{test}=(x_{test}-\\mu_{train})/s_{train}",
+      "assumptions": "时间/主体/空间划分符合部署目标，训练、调参验证和最终测试职责分开；所有拟合型预处理在训练折内完成，测试只最后评估",
+      "derivation": "保存行ID/时间界/数据哈希，训练估计填补/缩放/特征与模型，验证调超参；报告最终测试误差和适配设计的不确定性。重复CV折分不等于多份独立数据；数据依赖结论区分探索/验证，选择/停止规则与多重比较留痕",
+      "failure_boundary": "把全量数据标准化后再CV泄漏；同人跨折、未来特征、训练残差拟合Stacking都会夸大性能；固定几何问题不硬造统计CI",
+      "example": {
+        "inputs_and_calculation": "训练1,2,3给均值2、样本SD1；测试4,5转为2,3，冻结训练参数，不在测试重估",
+        "expected": [
+          2,
+          3
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "validation-inference",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/statistical-reasoning.md#validation-inference",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    },
+    {
+      "id": "complexity-proof",
+      "title": "复杂度、递推上界与计算模型",
+      "group": "B2",
+      "formula": "C(1)=0,\\quad C(n)=2C(n/2)+n-1\\le n\\log_2 n-n+1",
+      "assumptions": "n为2的幂，比较模型中合并两个已排序子表最多n−1次元素比较，递推C定义比较次数上界；单位代价假设需与数值位长/维度区分",
+      "derivation": "n1时闭式0；假定n/2的上界成立，代入2[(n/2)log2(n/2)−n/2+1]+n−1=nlog2n−n+1，故该递推上界为O(nlogn)。不同输入不必达到上界，常用归并还需O(n)辅助存储；若输入不是2的幂用上下取整递推再界定。迭代数依容差、矩阵维数、稀疏度和精度分别列明；最坏/平均/摊还口径不能交换",
+      "failure_boundary": "比较次数不是浮点位复杂度；n维矩阵求逆不可因一次API调用记O(1)；数学实数循环x←x/2从1永不恰好为0，浮点下溢停机不能当精确终止证明",
+      "example": {
+        "inputs_and_calculation": "按n2,4,8递推得比较次数上界17，与8log2(8)−8+1=17一致，只验证递推小例而非所有输入运行时间",
+        "expected": [
+          17,
+          17
+        ],
+        "scope": "finite_example",
+        "absolute_tolerance": 1e-08,
+        "relative_tolerance": 1e-06,
+        "id": "complexity-proof",
+        "dependencies": [
+          "numpy",
+          "scipy",
+          "sympy"
+        ]
+      },
+      "section": "mathematics/proof-methods.md#complexity-proof",
+      "source_status": "Project independently authored explanation, logical argument and fixed educational example",
+      "automatic_theorem_proof": false,
+      "formal_approval": false
+    }
+  ],
+  "limits": {
+    "automatic_theorem_proof": false,
+    "automatic_statistical_design_approval": false,
+    "formal_approval": false,
+    "independent_review": "NOT_RUN",
+    "general_business_tools_registered": false,
+    "full_automatic_routing": false
+  }
+}

@@ -1,4 +1,5 @@
 """Real public network -> separate stdio MCP -> immutable reference archive."""
+from modelcrew.project_assets import asset_path
 import argparse
 import json
 import sys
@@ -60,5 +61,5 @@ async def verify(folder):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=ROOT/'stage-c/runs'/('web-mcp-'+datetime.now().strftime('%Y%m%dT%H%M%S%f')))
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
     anyio.run(verify,parser.parse_args().output)

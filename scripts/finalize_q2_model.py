@@ -1,4 +1,5 @@
 """Publish the independently reviewed Q2 proposal, leaving user approval pending."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,os,shutil
 from datetime import datetime,timezone
@@ -9,7 +10,7 @@ from modelcrew.modeling_hand import assert_m1
 from modelcrew.mathematics import snapshot as math_snapshot
 from scripts.run_d4_full import workflow
 
-base=ROOT/'stage-d/q2-modeling';folder=ROOT/'stage-d/runs/modeling/q2-collision-20261109-v2'
+base=asset_path(ROOT,'stage-d/q2-modeling');folder=asset_path(ROOT,'stage-d/runs/modeling/q2-collision-20261109-v2')
 meta=read(folder/'run.json');admission=read(folder/'M1-admission.json')
 with workflow() as w:
     t=w.task(meta['task_id']);assert t['current_version']==2 and not t['model_approved'] and not t['result_approved'] and t['execution_id'] is None
@@ -66,13 +67,13 @@ report=f'''# 第二题碰撞模型与独立M1
 '''
 (base/'acceptance-report.md').write_text(report,encoding='utf-8')
 (base/'README.md').write_text('# 第二题方案审阅\n\n独立M1返工复验六项PASS，当前版本2等待用户确认，尚未求解。\n\n[方案审阅稿](../runs/modeling/q2-collision-20261109-v2/attempt-0/方案审阅.md) · [当前绑定](current-model.json) · [审查报告](acceptance-report.md)\n',encoding='utf-8')
-progress=read(ROOT/'stage-d/progress.json');progress['current_milestone']='Q2_collision_model_M1_passed_waiting_user_approval'
+progress=read(asset_path(ROOT,'stage-d/progress.json'));progress['current_milestone']='Q2_collision_model_M1_passed_waiting_user_approval'
 progress.setdefault('questions',{})['Q2']={'task_id':t['id'],'contract_version':2,'phase':'WAITING_MODEL_APPROVAL','independent_M1':'PASS_after_model_rework','model_approved':False,'result_approved':False,'new_solver_runs':0,'proposal':current['proposal'],'report':current['report'],'continuous_collision_algorithm':'designed_not_implemented'}
 progress['next']='User confirms Q2 contract v2 and its adjacent-exemption/filled-envelope/contact-stop assumptions; then Coder implementation and independent P1 before full solving'
-nextpath=ROOT/'stage-d/progress.next.json';new(nextpath,progress);os.replace(nextpath,ROOT/'stage-d/progress.json')
-r=ROOT/'stage-d/README.md';s=r.read_text(encoding='utf-8');s+='\n第二题进展：碰撞模型版本2已通过独立M1返工复验，等待用户确认方案，尚未求解。见[方案审阅与报告](q2-modeling/README.md)。\n';r.write_text(s,encoding='utf-8')
+nextpath=asset_path(ROOT,'stage-d/progress.next.json');new(nextpath,progress);os.replace(nextpath,asset_path(ROOT,'stage-d/progress.json'))
+r=asset_path(ROOT,'stage-d/README.md');s=r.read_text(encoding='utf-8');s+='\n第二题进展：碰撞模型版本2已通过独立M1返工复验，等待用户确认方案，尚未求解。见[方案审阅与报告](q2-modeling/README.md)。\n';r.write_text(s,encoding='utf-8')
 log=base/'sources';log.mkdir(exist_ok=True)
 for name in ['modelcrew/executors.py','modelcrew/workflow.py','scripts/prepare_q2_model.py','scripts/review_q2_model.py','scripts/finalize_q2_model.py','tests/test_pending_code.py','tests/test_workflow.py']:shutil.copyfile(ROOT/name,log/Path(name).name)
-paths=[*base.glob('*.json'),*base.glob('*.md'),*log.glob('*'),base/'regression.xml',base/'targeted-v2.xml',ROOT/'stage-d/progress.json',r,folder/'run.json',folder/'M1-response.json',folder/'M1-admission.json',folder/'registration.json',*list((folder/'attempt-0').glob('*'))]
+paths=[*base.glob('*.json'),*base.glob('*.md'),*log.glob('*'),base/'regression.xml',base/'targeted-v2.xml',asset_path(ROOT,'stage-d/progress.json'),r,folder/'run.json',folder/'M1-response.json',folder/'M1-admission.json',folder/'registration.json',*list((folder/'attempt-0').glob('*'))]
 new(base/'evidence.json',{'created_at':datetime.now(timezone.utc).isoformat(),'scope':'Q2 model v2 independent M1 PASS; no user approval or numerical solve','files':frozen_manifest([p for p in paths if p.is_file()])})
 print(json.dumps({'Q2_version':2,'M1':'PASS','phase':'WAITING_MODEL_APPROVAL','model_approved':False,'solver_runs':0,'regression_passed':477}))

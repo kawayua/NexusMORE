@@ -8,11 +8,11 @@
 
 | 想调整的内容 | 修改位置 | 修改后做什么 |
 |---|---|---|
-| 中文、建模论文结构、math-reasoning 职责、用户沟通方式 | [正文写作约束](../resources/paper/writer-instructions.md) | 下次任务重新加载，不手改已通过正文 |
-| 图数、三类覆盖、PNG DPI、必需章节等可检查指标 | [机器政策](../resources/paper/chinese-modeling-policy.json) | 正式变更时提升 policy_version，记录用户/规则依据并重新检查 |
-| 默认步骤、必须读取的资料、ABC+ 分工、时序图默认要求 | [工作流配置](../resources/paper/workflow.json) | 提升 workflow_version；用 writing_context 读取并保存快照 |
+| 中文、建模论文结构、math-reasoning 职责、用户沟通方式 | [正文写作约束](../src/modelcrew/resources/paper/writer-instructions.md) | 下次任务重新加载，不手改已通过正文 |
+| 图数、三类覆盖、PNG DPI、必需章节等可检查指标 | [机器政策](../src/modelcrew/resources/paper/chinese-modeling-policy.json) | 正式变更时提升 policy_version，记录用户/规则依据并重新检查 |
+| 默认步骤、必须读取的资料、ABC+ 分工、时序图默认要求 | [工作流配置](../src/modelcrew/resources/paper/workflow.json) | 提升 workflow_version；用 writing_context 读取并保存快照 |
 | 后续 Agent 每次都读取规范的项目约定 | [根目录 AGENTS.md](../AGENTS.md) | 保持为项目入口，不能只写在某次对话里 |
-| 中文稿的自动检查、审阅哈希和导出阻断 | [写作检查代码](../modelcrew/modeling_paper.py) | 修改后运行相关测试与回归 |
+| 中文稿的自动检查、审阅哈希和导出阻断 | [写作检查代码](../src/modelcrew/modeling_paper.py) | 修改后运行相关测试与回归 |
 | 某一道题的候选时刻、尺寸和推荐图 | 该任务的 FigureContract / 候选目录及题目参数 | 不污染全局为某一道题固定的时刻或尺寸 |
 
 改模板正文只影响对应题目的样稿。当前 `resources/paper/bench-dragon-review.md` 是板凳龙专用模板，不能把换题名当作通用 Writer。外部 math-modeling/nature-figure 目录继续作为参考，项目内的政策和用户最新要求才是本项目实际默认值。

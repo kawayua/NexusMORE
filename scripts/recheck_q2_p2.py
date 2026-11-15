@@ -1,4 +1,5 @@
 """Independent P2 recheck with compact keyed evidence; original raw response retained."""
+from modelcrew.project_assets import asset_path
 import json,uuid,shutil
 from pathlib import Path
 import httpx
@@ -27,7 +28,7 @@ def main():
     failed={x['directory']:receipt(x) for x in jobs['retained_failed_jobs']}
     write(sub/'execution.json',{'successful_jobs':success,'retained_failed_jobs':failed,'common_restrictions':next(iter(jobs['jobs']))['execution']['restrictions'],'host_verified_all_artifact_hashes_and_cleanup':True,'final_primary_key':'part-10g-final-bound','final_reproduction_key':'repro-16','actual_supplier_coding_call':read(folder/'supplier-coding-call.json')})
     final=folder/'part-10g-final-bound/generated_solver.py'
-    write(sub/'code.json',{'executed_final_source':final.read_text(encoding='utf-8'),'sha256':sha_file(final),'same_prefix_implementation':'previous successful primary partitions use original full-base.py; only final finite-feature proof is extended','prefix_base_sha256':sha_file(folder/'full-base.py'),'support_tail':(ROOT/'execution/q2_support_tail.py').read_text(encoding='utf-8-sig'),'trusted_validation_source':(ROOT/'scripts/validate_q2_full.py').read_text(encoding='utf-8-sig'),'proof':(folder/'continuous-proof.md').read_text(encoding='utf-8'),'authoring':'supplier generated two used functions; Codex integrated and made three equivalent implementation retries; no model/tolerance change'})
+    write(sub/'code.json',{'executed_final_source':final.read_text(encoding='utf-8'),'sha256':sha_file(final),'same_prefix_implementation':'previous successful primary partitions use original full-base.py; only final finite-feature proof is extended','prefix_base_sha256':sha_file(folder/'full-base.py'),'support_tail':(asset_path(ROOT,'execution/q2_support_tail.py')).read_text(encoding='utf-8-sig'),'trusted_validation_source':(ROOT/'scripts/validate_q2_full.py').read_text(encoding='utf-8-sig'),'proof':(folder/'continuous-proof.md').read_text(encoding='utf-8'),'authoring':'supplier generated two used functions; Codex integrated and made three equivalent implementation retries; no model/tolerance change'})
     validation=read(folder/'validation.json')
     write(sub/'result.json',validation)
     with __import__('numpy').load(folder/'results/terminal-state.npz',allow_pickle=False) as data:

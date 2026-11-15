@@ -1,0 +1,772 @@
+{
+  "schema_version": "1.0.0",
+  "source": "integrations/document_tools",
+  "target": "modelcrew/resources/document-tools",
+  "purpose": "F0 relocate pinned Apache-2.0 document tools into package resources; preserve all original bytes",
+  "files": [
+    {
+      "old_path": "integrations/document_tools/manifest.json",
+      "new_path": "modelcrew/resources/document-tools/manifest.json",
+      "sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad",
+      "bytes": 58266
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/LICENSE.txt",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/__init__.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/accept_changes.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/accept_changes.py",
+      "sha256": "0c991d2bc7304a1248e9f3bf9b1498f0b6e76641fc457e7cbd73c99b4eef3a74",
+      "bytes": 4051
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/comment.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/comment.py",
+      "sha256": "37d116e5f56bb142b208c6c6a4bbcf960495abf470ddb7c6675ccfac864ba3d7",
+      "bytes": 14054
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/merge_runs.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/merge_runs.py",
+      "sha256": "3ab367fd7fba4647943d0aa5e65203b15458551410f5ffc821d902616a4b9f40",
+      "bytes": 9398
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/helpers/__init__.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/helpers/__init__.py",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5",
+      "bytes": 3358
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/helpers/pptx_chart.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/helpers/pptx_chart.py",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964",
+      "bytes": 5862
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/helpers/pptx_slide.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/helpers/pptx_slide.py",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0",
+      "bytes": 1675
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/helpers/pptx_theme.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/helpers/pptx_theme.py",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03",
+      "bytes": 3510
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "sha256": "9e0b7209fc69ab11987900404540969976000c5ebe4d4f58c43dc3842886bf3a",
+      "bytes": 1963
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "sha256": "451958454e8588dfc7cd945981ada142ca06ff3307937f5700df059c2b307fa8",
+      "bytes": 2515
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "sha256": "6de111e11403f7cd49027400755bae0ea1cabef2815f09bd40a24f0017613b24",
+      "bytes": 2856
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "sha256": "f565adfef5a502044abc3a9153e157edc25af78304d335994afb958874b15e26",
+      "bytes": 1344
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "sha256": "41b93bd8857cc68b1e43be2806a872d736a9bdd6566900062d8fdb57d7bbb354",
+      "bytes": 74984
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "sha256": "3fd0586f2637b98bb9886f0e0b67d89e1cc987c2d158cc7deb5f5b9890ced412",
+      "bytes": 6956
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "sha256": "29b254ee0d10414a8504b5a08149c7baec35a60d5ff607d6b3f492aa36815f40",
+      "bytes": 51302
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "sha256": "5cb76dabd8b97d1e9308a1700b90c20139be4d50792d21a7f09789f5cccd6026",
+      "bytes": 624
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "sha256": "5375417f0f5394b8dd1a7035b9679151f19a6b65df309dec10cfb4a420cb00e9",
+      "bytes": 152039
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "sha256": "5d389d42befbebd91945d620242347caecd3367f9a3a7cf8d97949507ae1f53c",
+      "bytes": 1231
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "sha256": "b4532b6d258832953fbb3ee4c711f4fe25d3faf46a10644b2505f17010d01e88",
+      "bytes": 8862
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "sha256": "bdad416b096b61d37b71603b2c949484f9070c830bdaeba93bf35e15c8900614",
+      "bytes": 14795
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "sha256": "d173c3e5d61e42e2e3a97226c632fd2ab7cc481fc4e492365b87024ab546daff",
+      "bytes": 83612
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "sha256": "3c6709101c6aaa82888df5d8795c33f9e857196790eb320d9194e64be2b6bdd8",
+      "bytes": 1269
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "sha256": "0b364451dc36a48dd6dae0f3b6ada05fd9b71e5208211f8ee5537d7e51a587e2",
+      "bytes": 7328
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "sha256": "e2abacbb9a55ce1365f8961bc1b1395bbc811e512b111000d8c333f98458dece",
+      "bytes": 6382
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "sha256": "0ef4bb354ff44b923564c4ddbdda5987919d220225129ec94614a618ceafc281",
+      "bytes": 1248
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "sha256": "0d103b99a4a8652f8871552a69d42d2a3760ac6a5e3ef02d979c4273257ff6a4",
+      "bytes": 880
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "sha256": "9c085407751b9061c1f996f6c39ce58451be22a8d334f09175f0e89e42736285",
+      "bytes": 2608
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "sha256": "bc92e36ccd233722d4c5869bec71ddc7b12e2df56059942cce5a39065cc9c368",
+      "bytes": 3507
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "sha256": "7b5b7413e2c895b1e148e82e292a117d53c7ec65b0696c992edca57b61b4a74b",
+      "bytes": 7507
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "sha256": "3213ef1631606250f5010b42cad7ef716f7c59426367798e33c374c0ec391d3a",
+      "bytes": 23313
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "sha256": "12264f3c03d738311cd9237d212f1c07479e70f0cbe1ae725d29b36539aef637",
+      "bytes": 1367
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "sha256": "beffeed56945c22a77440122c8bdc426f3fcbe7f3b12ea0976c770d1f8d54578",
+      "bytes": 242277
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "sha256": "f5ee623b08b6a66935e5aced2f5d8ad0fc71bf9e8e833cd490150c0fa94b8763",
+      "bytes": 26148
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "sha256": "585bedc1313b40888dcc544cb74cd939a105ee674f3b1d3aa1cc6d34f70ff155",
+      "bytes": 25279
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "sha256": "133c9f64a5c5d573b78d0a474122b22506d8eadb5e063f67cdbbb8fa2f161d0e",
+      "bytes": 535
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "sha256": "6bdeb169c3717eb01108853bd9fc5a3750fb1fa5b82abbdd854d49855a40f519",
+      "bytes": 5712
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "sha256": "475dcae1e7d1ea46232db6f8481040c15e53a52a3c256831d3df204212b0e831",
+      "bytes": 4010
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "sha256": "c2dd9f61f892deae6acd8d20771ea79b12018af25f3bf8d06639c8542d218cfd",
+      "bytes": 171367
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "sha256": "a539aa2fb154fa50e0f5cc97e6ad7cbc66f8ec3e3746f61ec6a8b0d5d15ecdf2",
+      "bytes": 4646
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/mce/mc.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/mce/mc.xsd",
+      "sha256": "3a37e461ecf5a8670fdec34029703401f8728ab9c96ec1739a6ae58d55212413",
+      "bytes": 3127
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "sha256": "568b26ee156cb9549aa439ca2158965f77b7c1602b7e0316f40ac6cf586e35f2",
+      "bytes": 26549
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "sha256": "0fa75578a000439a7988ba0c59fdc69f774bbd416cbacc14d07125b3f686cb74",
+      "bytes": 3745
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "sha256": "be0ff793a22dd31384650c3a4da14c2fa8062751c2e97b0e5ee852bda13c60ad",
+      "bytes": 901
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "sha256": "fddc2b880cabb9005aebbc7e783e53c19fec1c03df7d0e2f2076a33a0fdfd081",
+      "bytes": 1778
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "sha256": "127ca209fa73d7cb708449cb355c871867948a96e4a74f7bf5811ef62d17991d",
+      "bytes": 1002
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "sha256": "842e7163409c8d74f4d7088a8bc99500d80bc75332681a0980055b08f374a604",
+      "bytes": 600
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "sha256": "16f6f8072249f431370723c2cd8974672e0d9c897e00e97dd918079df934871b",
+      "bytes": 745
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/soffice.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/soffice.py",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c",
+      "bytes": 5927
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/validate.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/validate.py",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e",
+      "bytes": 6142
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/validators/__init__.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987",
+      "bytes": 336
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/validators/base.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/validators/base.py",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea",
+      "bytes": 33756
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/validators/docx.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/validators/docx.py",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5",
+      "bytes": 17482
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/validators/pptx.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/validators/pptx.py",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299",
+      "bytes": 15966
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/office/validators/redlining.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/office/validators/redlining.py",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123",
+      "bytes": 11231
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/templates/comments.xml",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/templates/comments.xml",
+      "sha256": "a08ba83ee8790ac9e3dc61921f4988f19edd7e06ac09d6f1897a877c1581818d",
+      "bytes": 2603
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/templates/commentsExtended.xml",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/templates/commentsExtended.xml",
+      "sha256": "544eeecfeceed4b468fff163cd9c366d33641c8b8ab691ce002576197846afe8",
+      "bytes": 2611
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/templates/commentsExtensible.xml",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/templates/commentsExtensible.xml",
+      "sha256": "bad10b3283e6ad6e7ef6d1ca5169683721ed690ee331282c65df04017e080631",
+      "bytes": 2707
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/templates/commentsIds.xml",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/templates/commentsIds.xml",
+      "sha256": "db20f9616e004ec42ef736e80c2384e45db0f8d1194d31dc8b37c7d6ecdd6420",
+      "bytes": 2619
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/scripts/templates/people.xml",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/scripts/templates/people.xml",
+      "sha256": "056f63aa1197fd8c9dda980c9f1b9ff016fd5fa4a462df8aec5f384f39d23e37",
+      "bytes": 115
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/docx/SKILL.md",
+      "new_path": "modelcrew/resources/document-tools/upstream/docx/SKILL.md",
+      "sha256": "9e8202e2524a9ed87da67a5b3eaa76e8e6038f4171f8251ad6aaefd34e82a3df",
+      "bytes": 6897
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/forms.md",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/forms.md",
+      "sha256": "9530b3f57034792e0242a3abfe8b3c296466329551916f2ff6c5a70db78f7e44",
+      "bytes": 11854
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/LICENSE.txt",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/reference.md",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/reference.md",
+      "sha256": "03a5f964f8abecbbe156f363356e927e864d7ee964f1012c84ee1bfc8acbeb95",
+      "bytes": 16692
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/check_bounding_boxes.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/check_bounding_boxes.py",
+      "sha256": "0ced522402dd7b3c82a0be9518cf4e485fa9cc0467d7beab6ddb04cb36fcc3e1",
+      "bytes": 2774
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/check_fillable_fields.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/check_fillable_fields.py",
+      "sha256": "1fe10b9980a5493c9bbec8c20630c603eaa475b45403751c08f26738736647b8",
+      "bytes": 268
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/convert_pdf_to_images.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/convert_pdf_to_images.py",
+      "sha256": "7f58e292a67e18a8ff000d30bad2469389546731f7e8a698cc1d0aed001ea15d",
+      "bytes": 1008
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/create_validation_image.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/create_validation_image.py",
+      "sha256": "8fa9fd7962c9f940045b81cf6b991e7c1057c1838e3f9cc6d305007a222ffebf",
+      "bytes": 1258
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/extract_form_field_info.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/extract_form_field_info.py",
+      "sha256": "bb235b36f497bbb1c7c6821cecf527bbba7213520de11219da99f7b13a38c109",
+      "bytes": 4300
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/extract_form_structure.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/extract_form_structure.py",
+      "sha256": "6814e3fe8f78c2b16d766c132b5a727ff7a31b71d76a7d46bd6e40fe50bc97c5",
+      "bytes": 3945
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/fill_fillable_fields.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/fill_fillable_fields.py",
+      "sha256": "d140872c2e92e41b1e05370ae8d270c5b7f5ebdf55d9905f03bc974a9c708ff5",
+      "bytes": 3819
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "sha256": "8a56e063a49ed53c0b0e1d312ecf8023af76816ed139486ec3b539873de202fd",
+      "bytes": 3235
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/pdf/SKILL.md",
+      "new_path": "modelcrew/resources/document-tools/upstream/pdf/SKILL.md",
+      "sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee",
+      "bytes": 8058
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/LICENSE.txt",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/helpers/__init__.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/helpers/__init__.py",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5",
+      "bytes": 3358
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/helpers/pptx_chart.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/helpers/pptx_chart.py",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964",
+      "bytes": 5862
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/helpers/pptx_slide.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/helpers/pptx_slide.py",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0",
+      "bytes": 1675
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/helpers/pptx_theme.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/helpers/pptx_theme.py",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03",
+      "bytes": 3510
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "sha256": "9e0b7209fc69ab11987900404540969976000c5ebe4d4f58c43dc3842886bf3a",
+      "bytes": 1963
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "sha256": "451958454e8588dfc7cd945981ada142ca06ff3307937f5700df059c2b307fa8",
+      "bytes": 2515
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "sha256": "6de111e11403f7cd49027400755bae0ea1cabef2815f09bd40a24f0017613b24",
+      "bytes": 2856
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "sha256": "f565adfef5a502044abc3a9153e157edc25af78304d335994afb958874b15e26",
+      "bytes": 1344
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "sha256": "41b93bd8857cc68b1e43be2806a872d736a9bdd6566900062d8fdb57d7bbb354",
+      "bytes": 74984
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "sha256": "3fd0586f2637b98bb9886f0e0b67d89e1cc987c2d158cc7deb5f5b9890ced412",
+      "bytes": 6956
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "sha256": "29b254ee0d10414a8504b5a08149c7baec35a60d5ff607d6b3f492aa36815f40",
+      "bytes": 51302
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "sha256": "5cb76dabd8b97d1e9308a1700b90c20139be4d50792d21a7f09789f5cccd6026",
+      "bytes": 624
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "sha256": "5375417f0f5394b8dd1a7035b9679151f19a6b65df309dec10cfb4a420cb00e9",
+      "bytes": 152039
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "sha256": "5d389d42befbebd91945d620242347caecd3367f9a3a7cf8d97949507ae1f53c",
+      "bytes": 1231
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "sha256": "b4532b6d258832953fbb3ee4c711f4fe25d3faf46a10644b2505f17010d01e88",
+      "bytes": 8862
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "sha256": "bdad416b096b61d37b71603b2c949484f9070c830bdaeba93bf35e15c8900614",
+      "bytes": 14795
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "sha256": "d173c3e5d61e42e2e3a97226c632fd2ab7cc481fc4e492365b87024ab546daff",
+      "bytes": 83612
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "sha256": "3c6709101c6aaa82888df5d8795c33f9e857196790eb320d9194e64be2b6bdd8",
+      "bytes": 1269
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "sha256": "0b364451dc36a48dd6dae0f3b6ada05fd9b71e5208211f8ee5537d7e51a587e2",
+      "bytes": 7328
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "sha256": "e2abacbb9a55ce1365f8961bc1b1395bbc811e512b111000d8c333f98458dece",
+      "bytes": 6382
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "sha256": "0ef4bb354ff44b923564c4ddbdda5987919d220225129ec94614a618ceafc281",
+      "bytes": 1248
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "sha256": "0d103b99a4a8652f8871552a69d42d2a3760ac6a5e3ef02d979c4273257ff6a4",
+      "bytes": 880
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "sha256": "9c085407751b9061c1f996f6c39ce58451be22a8d334f09175f0e89e42736285",
+      "bytes": 2608
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "sha256": "bc92e36ccd233722d4c5869bec71ddc7b12e2df56059942cce5a39065cc9c368",
+      "bytes": 3507
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "sha256": "7b5b7413e2c895b1e148e82e292a117d53c7ec65b0696c992edca57b61b4a74b",
+      "bytes": 7507
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "sha256": "3213ef1631606250f5010b42cad7ef716f7c59426367798e33c374c0ec391d3a",
+      "bytes": 23313
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "sha256": "12264f3c03d738311cd9237d212f1c07479e70f0cbe1ae725d29b36539aef637",
+      "bytes": 1367
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "sha256": "beffeed56945c22a77440122c8bdc426f3fcbe7f3b12ea0976c770d1f8d54578",
+      "bytes": 242277
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "sha256": "f5ee623b08b6a66935e5aced2f5d8ad0fc71bf9e8e833cd490150c0fa94b8763",
+      "bytes": 26148
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "sha256": "585bedc1313b40888dcc544cb74cd939a105ee674f3b1d3aa1cc6d34f70ff155",
+      "bytes": 25279
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "sha256": "133c9f64a5c5d573b78d0a474122b22506d8eadb5e063f67cdbbb8fa2f161d0e",
+      "bytes": 535
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "sha256": "6bdeb169c3717eb01108853bd9fc5a3750fb1fa5b82abbdd854d49855a40f519",
+      "bytes": 5712
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "sha256": "475dcae1e7d1ea46232db6f8481040c15e53a52a3c256831d3df204212b0e831",
+      "bytes": 4010
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "sha256": "c2dd9f61f892deae6acd8d20771ea79b12018af25f3bf8d06639c8542d218cfd",
+      "bytes": 171367
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "sha256": "a539aa2fb154fa50e0f5cc97e6ad7cbc66f8ec3e3746f61ec6a8b0d5d15ecdf2",
+      "bytes": 4646
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/mce/mc.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/mce/mc.xsd",
+      "sha256": "3a37e461ecf5a8670fdec34029703401f8728ab9c96ec1739a6ae58d55212413",
+      "bytes": 3127
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "sha256": "568b26ee156cb9549aa439ca2158965f77b7c1602b7e0316f40ac6cf586e35f2",
+      "bytes": 26549
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "sha256": "0fa75578a000439a7988ba0c59fdc69f774bbd416cbacc14d07125b3f686cb74",
+      "bytes": 3745
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "sha256": "be0ff793a22dd31384650c3a4da14c2fa8062751c2e97b0e5ee852bda13c60ad",
+      "bytes": 901
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "sha256": "fddc2b880cabb9005aebbc7e783e53c19fec1c03df7d0e2f2076a33a0fdfd081",
+      "bytes": 1778
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "sha256": "127ca209fa73d7cb708449cb355c871867948a96e4a74f7bf5811ef62d17991d",
+      "bytes": 1002
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "sha256": "842e7163409c8d74f4d7088a8bc99500d80bc75332681a0980055b08f374a604",
+      "bytes": 600
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "sha256": "16f6f8072249f431370723c2cd8974672e0d9c897e00e97dd918079df934871b",
+      "bytes": 745
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/soffice.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/soffice.py",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c",
+      "bytes": 5927
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/validate.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/validate.py",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e",
+      "bytes": 6142
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/validators/__init__.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987",
+      "bytes": 336
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/validators/base.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/validators/base.py",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea",
+      "bytes": 33756
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/validators/docx.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/validators/docx.py",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5",
+      "bytes": 17482
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/validators/pptx.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/validators/pptx.py",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299",
+      "bytes": 15966
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/office/validators/redlining.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/office/validators/redlining.py",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123",
+      "bytes": 11231
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/scripts/recalc.py",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/scripts/recalc.py",
+      "sha256": "66f6e726d5a53cfabea0b6471d6669deb95e54e96cb7913b687e4388da1bb3d9",
+      "bytes": 10670
+    },
+    {
+      "old_path": "integrations/document_tools/upstream/xlsx/SKILL.md",
+      "new_path": "modelcrew/resources/document-tools/upstream/xlsx/SKILL.md",
+      "sha256": "caa1e1c29cf974c8d874bf3d0a70838445e7342b570f856ddb3e4a21ef7c7e8b",
+      "bytes": 8584
+    }
+  ],
+  "approval_rewritten": false,
+  "local_cache_files_backed_up_not_release_resources": 6
+}

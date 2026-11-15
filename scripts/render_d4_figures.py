@@ -1,4 +1,5 @@
 """Python-only D4 candidate figures from frozen numerical arrays and verified inputs."""
+from modelcrew.project_assets import asset_path
 import argparse,json,math,hashlib,platform
 from pathlib import Path
 import numpy as np
@@ -207,5 +208,5 @@ def render(folder, only=None):
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--run',type=Path,required=True);parser.add_argument('--only',choices=[item[0] for item in SPECS]);args=parser.parse_args()
     folder=args.run.resolve()
-    if folder.parent!=(ROOT/'stage-d/runs/full').resolve():raise ValueError('Unexpected full run path')
+    if folder.parent!=(asset_path(ROOT,'stage-d/runs/full')).resolve():raise ValueError('Unexpected full run path')
     render(folder,args.only)

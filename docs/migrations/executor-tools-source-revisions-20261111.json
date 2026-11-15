@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Original source-layout identity before executor/tool discovery changes",
+  "files": [
+    {
+      "path": "src/modelcrew/docker_executor.py",
+      "sha256": "eb6f2631bd29cd915912b0c7e2f24b3c0781f344031c60b623c4245666b34860",
+      "bytes": 22208,
+      "snapshot": "archive/research/source-snapshots/executor-tools-20261111/docker_executor.py"
+    },
+    {
+      "path": "src/modelcrew/assembly_builds.py",
+      "sha256": "cf7fa08f41a1f066cfdc6b553e2bbd54b93b5266996878830886a6c1aee1421a",
+      "bytes": 32930,
+      "snapshot": "archive/research/source-snapshots/executor-tools-20261111/assembly_builds.py"
+    }
+  ]
+}

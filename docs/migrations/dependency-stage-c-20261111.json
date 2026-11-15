@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "requirements-stage-c.txt",
+  "target": "docs/history/dependencies/requirements-stage-c.txt",
+  "purpose": "Historical helper or dependency input retained byte-identical; current dependency features use functional names",
+  "files": [
+    {
+      "old_path": "requirements-stage-c.txt",
+      "new_path": "docs/history/dependencies/requirements-stage-c.txt",
+      "sha256": "304ac56d6e2ca770f67dd18e186bdbd3f338fc68a31cb6a227198df121f0f9b1",
+      "bytes": 170
+    }
+  ],
+  "approval_rewritten": false
+}

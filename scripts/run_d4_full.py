@@ -1,4 +1,5 @@
 """D4 case-specific full Q1 execution, export, validation and result submission."""
+from modelcrew.project_assets import asset_path
 import argparse,hashlib,json,shutil,uuid,sys,platform
 from pathlib import Path
 from datetime import datetime
@@ -16,9 +17,9 @@ from modelcrew.mcp_workflow import trace_call
 from modelcrew.full_numerics import load_arrays,numeric_checks,workbook_checks
 from scripts.run_d3_minimal import approved,static_check,read,write
 
-BASE=ROOT/'stage-d/runs/full'
+BASE=asset_path(ROOT,'stage-d/runs/full')
 TASK='d2-bench-q1-20261108'
-PARENT=ROOT/'stage-d/runs/coding/minimal-f3630a0b71e246b686a0017e5cd3a69b'
+PARENT=asset_path(ROOT,'stage-d/runs/coding/minimal-f3630a0b71e246b686a0017e5cd3a69b')
 
 
 def workflow():return Workflow(url=make_conninfo(database_url(),connect_timeout=5))
@@ -34,7 +35,7 @@ def prepare(task=TASK):
     if receipt.status!='PASS' or origin.accept_review(receipt,admission['snapshot_sha256'])!=admission['receipt_sha256']:
         raise ValueError('Current minimal P1 PASS required')
     if sha_file(PARENT/'generated_solver.py')!=previous['code_sha256']:raise ValueError('P1 source changed')
-    user_confirmation=ROOT/'stage-d/d3/confirmations/user-minimal-result-confirmation-9463202292597fcf4946/approval.json'
+    user_confirmation=asset_path(ROOT,'stage-d/d3/confirmations/user-minimal-result-confirmation-9463202292597fcf4946/approval.json')
     if read(user_confirmation)['P1_receipt_sha256']!=admission['receipt_sha256']:raise ValueError('Minimal confirmation binding mismatch')
     with workflow() as w,w.lock(task):
         state=approved(w,task,previous['contract_version'],previous['contract_sha256'])
@@ -42,7 +43,7 @@ def prepare(task=TASK):
         (folder/'output').mkdir();(folder/'sources').mkdir()
         source=(PARENT/'generated_solver.py').read_text(encoding='utf-8')
         core=source[:source.index('def run_checks():')]
-        code=core+'\n'+(ROOT/'execution/full_q1_tail.py').read_text(encoding='utf-8-sig')
+        code=core+'\n'+(asset_path(ROOT,'execution/full_q1_tail.py')).read_text(encoding='utf-8-sig')
         static_check(code)
         (folder/'numerical-core.py').write_text(core,encoding='utf-8')
         (folder/'generated_solver.py').write_text(code,encoding='utf-8')

@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "Binding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "task_id": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Task Id",
+          "type": "string"
+        },
+        "contract_version": {
+          "minimum": 1,
+          "title": "Contract Version",
+          "type": "integer"
+        },
+        "contract_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Contract Sha256",
+          "type": "string"
+        },
+        "execution_id": {
+          "anyOf": [
+            {
+              "maxLength": 300,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Execution Id"
+        },
+        "result_revision": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Result Revision"
+        }
+      },
+      "required": [
+        "task_id",
+        "contract_version",
+        "contract_sha256"
+      ],
+      "title": "Binding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "gate": {
+      "enum": [
+        "M1",
+        "P1",
+        "P2",
+        "W1",
+        "W2"
+      ],
+      "title": "Gate",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "binding": {
+      "$ref": "#/$defs/Binding"
+    },
+    "reviewer_call_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "title": "Reviewer Call Id",
+      "type": "string"
+    },
+    "required_checks": {
+      "items": {
+        "maxLength": 300,
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Required Checks",
+      "type": "array"
+    },
+    "policy_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Policy Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "gate",
+    "snapshot_sha256",
+    "binding",
+    "reviewer_call_id",
+    "required_checks",
+    "policy_sha256"
+  ],
+  "title": "Ticket",
+  "type": "object"
+}

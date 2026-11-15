@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-11",
+  "status": "user_direction_recorded_redesign_in_progress",
+  "supersedes": {
+    "path": "docs/release/host-plugin-review-20261111.json",
+    "sha256": "2ac1093257083d95f28e7377416e18410bff65eb07f1eb051c06618ea330fd10",
+    "scope": "The previous 11-item exclusion-only recommendation is superseded, not accepted by user."
+  },
+  "user_direction": "Target Codex, DSH and Claude Code; redesign DSH integration rather than copying; author NexusMORE-specific business JS for largely shared business capabilities.",
+  "target_harnesses": [
+    {
+      "name": "Codex",
+      "version": null,
+      "compatibility": "planned_not_verified"
+    },
+    {
+      "name": "DSH",
+      "version": null,
+      "compatibility": "planned_not_verified"
+    },
+    {
+      "name": "Claude Code",
+      "version": null,
+      "compatibility": "planned_not_verified"
+    }
+  ],
+  "summary": {
+    "redesign_required": 11,
+    "host_design_and_delivery_items": 10,
+    "business_js_items": 1,
+    "remaining_non_runtime_unreviewed": 27,
+    "pending_other_sources": 139
+  },
+  "source_ledger": {
+    "path": "docs/release/resource-disposition-20261111.json",
+    "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+    "preserved_initial_snapshot": true
+  },
+  "files": [
+    {
+      "resource_id": "resource-012",
+      "source_path": "dsh-plugin/math-modeling-agent/agent.cordis.yml",
+      "source_sha256": "a6817076b0f759a7f71d39c213f6b46a44134187db6396204ec761a61b93861e",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "DSH 宿主注册与能力组合",
+      "implementation_plan": "G：按选定 DSH 版本设计注册配置，只暴露枢模能力，业务流程复用枢模。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-013",
+      "source_path": "dsh-plugin/math-modeling-agent/package.json",
+      "source_sha256": "1bf0e53fc74b05f1aade7451fbac72f1944b067d4229d96bae7a225519a250e4",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "自有 JS 模块与发行清单",
+      "implementation_plan": "本轮建立 src/harness/package.json 开发清单；F2/G 再决定正式分发形式。",
+      "implementation_status": "foundation_implemented_remaining_integration_pending"
+    },
+    {
+      "resource_id": "resource-014",
+      "source_path": "dsh-plugin/math-modeling-agent/plugins/dsh-math-modeling-ui/client/client.js",
+      "source_sha256": "abface6d2e06bd76194e8f43a9ba9e2ded5a3cb7565b0c14999197ec7eefcb24",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "DSH 进度与待确认看板",
+      "implementation_plan": "G/H4：自主设计阶段、进度、下一动作和用户确认呈现，不复制上游 UI。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-015",
+      "source_path": "dsh-plugin/math-modeling-agent/plugins/dsh-math-modeling-ui/cordis.patch.yml",
+      "source_sha256": "b4c21345f8a29005a6886e477c62da95c37475064b8ad82c78f364b6dc4c7607",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "DSH 插件加载配置",
+      "implementation_plan": "G：以实测宿主接口设计并验证，不直接搬原补丁。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-016",
+      "source_path": "dsh-plugin/math-modeling-agent/plugins/dsh-math-modeling-ui/lib/index.js",
+      "source_sha256": "7279d64054fdc15310472aa17759bd29c4d1ab01584de8c5912bcb134ba74f50",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "DSH 宿主服务端适配",
+      "implementation_plan": "G：把宿主交互映射到枢模权威接口，不读旧插件 state.json。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-017",
+      "source_path": "dsh-plugin/math-modeling-agent/plugins/dsh-math-modeling-ui/package.json",
+      "source_sha256": "9380587779d59200921726765f382189b2c927288cb5e9cca382b7706ecb756b",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "DSH 看板模块依赖与发布清单",
+      "implementation_plan": "G：按新实现和宿主版本编写依赖清单，不沿用上游依赖通配或许可证声明。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-018",
+      "source_path": "dsh-plugin/math-modeling-agent/plugins/math-modeling.js",
+      "source_sha256": "f23a99926ba3281916370d760f13c4870bba95488cb5a75d3dd810d67732212d",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "枢模自有业务能力 JS",
+      "implementation_plan": "本轮原创基础入口 src/harness/nexusmore-workflow.js；后续 F6/G 完善能力注册、传输及宿主绑定，不复制旧业务引擎。",
+      "implementation_status": "foundation_implemented_remaining_integration_pending"
+    },
+    {
+      "resource_id": "resource-019",
+      "source_path": "dsh-plugin/math-modeling-agent/preset.yml",
+      "source_sha256": "746ea15f2f6810329d94bf0493e4fe747fe39f0f16ef3f1b414ce7819f568442",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "枢模预设标识与元数据",
+      "implementation_plan": "G：使用枢模产品标识和已验证的能力描述。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-067",
+      "source_path": "dsh-plugin/math-modeling-agent/ui-dock/UI设计与现状.md",
+      "source_sha256": "d5880d0aa3c3f11980b74a2eee4bf546f42e5b8266eb5eefddd45355997304ec",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "枢模 DSH 界面设计说明",
+      "implementation_plan": "G/H4：按真实产品交互设计，进度展示与真实用户确认分别处理。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-068",
+      "source_path": "dsh-plugin/math-modeling-agent/ui-dock/安装说明.md",
+      "source_sha256": "f2866bf5bb6da5991f5012474fffacd9efd604ce1446915e5eb9f4216e0b2862",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "DSH 安装与诊断文档",
+      "implementation_plan": "F3/G/H4：基于固定宿主版本、实际安装及恢复测试编写。",
+      "implementation_status": "planned_not_implemented"
+    },
+    {
+      "resource_id": "resource-069",
+      "source_path": "dsh-plugin/README.md",
+      "source_sha256": "81ecb33d6eb32c1af94900ccd7acac89f12a9f6dda8c07a990a0b41543104f99",
+      "disposition": "independent_project_redesign_required",
+      "source_implementation_reused": false,
+      "source_redistribution_approved": false,
+      "capability": "多宿主安装与使用导航",
+      "implementation_plan": "G/H4：分别记录 Codex、DSH、Claude Code 的配置和兼容边界。",
+      "implementation_status": "planned_not_implemented"
+    }
+  ],
+  "authored_foundation": {
+    "path": "src/harness/nexusmore-workflow.js",
+    "contract_version": "0.1.0",
+    "scope": "Transport-injected, host-neutral business entry mapping 10 operations to existing modelcrew.api routes; core remains authoritative",
+    "implemented": [
+      "project/task creation routing",
+      "task status and explicit resume routing",
+      "modeling run/status routing",
+      "coding/writing start, status and one-step advance routing",
+      "artifact list routing",
+      "explicit request/version validation and uncertain-outcome no-retry behavior"
+    ],
+    "not_implemented": [
+      "HTTP transport and MCP server binding",
+      "DSH registration and UI",
+      "Codex/Claude Code host setup",
+      "trusted user confirmation channel",
+      "complete F6 knowledge/tool routing",
+      "generic formal export",
+      "wheel/sdist bundling of this JavaScript entry"
+    ],
+    "verification": {
+      "command": "node --test tests/harness/test-workflow.mjs",
+      "node_version": "24.15.0",
+      "passed": 5,
+      "failed": 0,
+      "scope": "injected transport boundary tests only; no real host/database/model execution"
+    },
+    "files": [
+      {
+        "path": "src/harness/nexusmore-workflow.js",
+        "sha256": "67c155f1a420b3fe20ac9787d1c50325a56aa2fe03872e8ac3a24952138491ab"
+      },
+      {
+        "path": "src/harness/package.json",
+        "sha256": "01d15954c518a17286d42bdd0921985f9197684b97787ba73ffb41295ebc1943"
+      },
+      {
+        "path": "tests/harness/test-workflow.mjs",
+        "sha256": "f4c4fceef21c0e39dcff2bc939a4119d2927b59cb9ecf0b500e3d27bfceec245"
+      }
+    ]
+  },
+  "public_release_approved": false
+}

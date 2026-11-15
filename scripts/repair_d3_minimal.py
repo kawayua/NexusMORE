@@ -3,6 +3,7 @@
 The revision is explicitly Codex-authored, not misreported as fresh model output.
 Independent P1 still runs in a new stateless model context after real execution.
 """
+from modelcrew.project_assets import asset_path
 import argparse
 import uuid
 from pathlib import Path
@@ -15,7 +16,7 @@ from modelcrew.workflow import Workflow
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('source',type=Path);args=parser.parse_args()
     source=args.source.resolve()
-    if source.parent!=(ROOT/'stage-d/runs/coding').resolve() or source.is_symlink():raise ValueError('Invalid source')
+    if source.parent!=(asset_path(ROOT,'stage-d/runs/coding')).resolve() or source.is_symlink():raise ValueError('Invalid source')
     previous=read(source/'run.json')
     if previous.get('attempt',1)>=3:raise ValueError('Repair budget exhausted')
     code=(source/'generated_solver.py').read_text(encoding='utf-8')
@@ -71,7 +72,7 @@ def main():
     static_check(code)
     with Workflow() as w,w.lock(previous['task_id']):
         approved(w,previous['task_id'],previous['contract_version'],previous['contract_sha256'])
-        folder=ROOT/'stage-d/runs/coding'/('minimal-'+uuid.uuid4().hex);folder.mkdir(parents=True)
+        folder=asset_path(ROOT,'stage-d/runs/coding')/('minimal-'+uuid.uuid4().hex);folder.mkdir(parents=True)
         store=CollaborationStore(folder/'records');priorstore=CollaborationStore(source/'records')
         # Copy immutable records by their schema, preserving all author identities.
         import shutil

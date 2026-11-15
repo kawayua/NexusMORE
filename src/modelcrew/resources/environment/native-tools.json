@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "platform": "Windows x86_64",
+  "downloads": {
+    "pandoc": {
+      "url": "https://github.com/jgm/pandoc/releases/download/3.6.4/pandoc-3.6.4-windows-x86_64.zip",
+      "sha256": "a9e5feb3d56d2fb0e3e765d1c33b8ee6b72e6963d7de31504edeec8cd1be34b1",
+      "bytes": 37790321,
+      "filename": "pandoc-3.6.4-windows-x86_64.zip",
+      "checksum_basis": "project lock from official HTTPS download; no separate upstream checksum attestation",
+      "version": "3.6.4",
+      "executable": "pandoc.exe"
+    },
+    "tectonic": {
+      "url": "https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.17.0/tectonic-0.17.0-x86_64-pc-windows-msvc.zip",
+      "sha256": "f61ce51f0b0ade1015b7de7ef368541c5424e9756ecbd0d7af97d6d48030845f",
+      "bytes": 21060223,
+      "filename": "tectonic-0.17.0-x86_64-pc-windows-msvc.zip",
+      "checksum_basis": "GitHub published asset digest",
+      "version": "0.17.0",
+      "executable": "tectonic.exe"
+    },
+    "python-embedded": {
+      "url": "https://www.python.org/ftp/python/3.13.5/python-3.13.5-embed-amd64.zip",
+      "sha256": "7d2650fd9d1b9d002d4a315d5f354247fd6a44f30517c7ef577b08f57a0fb6d9",
+      "bytes": 10903542,
+      "filename": "python-3.13.5-embed-amd64.zip",
+      "checksum_basis": "project lock from official HTTPS download; no separate upstream checksum attestation",
+      "version": "3.13.5"
+    },
+    "pip": {
+      "url": "https://files.pythonhosted.org/packages/29/a2/d40fb2460e883eca5199c62cfc2463fd261f760556ae6290f88488c362c0/pip-25.1.1-py3-none-any.whl",
+      "sha256": "2913a38a2abf4ea6b64ab507bd9e967f3b53dc1ede74b01b0931e1ce548751af",
+      "bytes": 1825227,
+      "filename": "pip-25.1.1-py3-none-any.whl",
+      "checksum_basis": "PyPI metadata",
+      "version": "25.1.1"
+    }
+  },
+  "embedding": {
+    "repo_id": "BAAI/bge-base-zh-v1.5",
+    "revision": "f03589ceff5aac7111bd60cfc7d497ca17ecac65",
+    "files": [
+      "config.json",
+      "config_sentence_transformers.json",
+      "modules.json",
+      "sentence_bert_config.json",
+      "special_tokens_map.json",
+      "tokenizer_config.json",
+      "tokenizer.json",
+      "vocab.txt",
+      "pytorch_model.bin",
+      "1_Pooling/config.json"
+    ],
+    "estimated_weight_bytes": 409138989,
+    "first_download_requires_network": true
+  }
+}

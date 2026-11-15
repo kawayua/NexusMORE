@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "source": "migrations",
+  "target": "src/modelcrew/resources/migrations",
+  "purpose": "Project runtime resource or deployment recipe; original bytes retained, private fixtures excluded",
+  "files": [
+    {
+      "old_path": "migrations/001_stage_b.sql",
+      "new_path": "src/modelcrew/resources/migrations/001_stage_b.sql",
+      "sha256": "5381e4f373ae6cd281b03d8f18f9035171cf96dbacc45328b734fae3a68914d7",
+      "bytes": 3159
+    },
+    {
+      "old_path": "migrations/002_real_solver.sql",
+      "new_path": "src/modelcrew/resources/migrations/002_real_solver.sql",
+      "sha256": "8a8e252e7fc859303cbcd35f9fabb1bc3642364d3d3017b13122f75d460e7abc",
+      "bytes": 753
+    },
+    {
+      "old_path": "migrations/003_version_dossiers.sql",
+      "new_path": "src/modelcrew/resources/migrations/003_version_dossiers.sql",
+      "sha256": "0d3592083961aea274029a6fe0b5abc4d00b9bf62238b1b30590ce2909b5aa90",
+      "bytes": 950
+    },
+    {
+      "old_path": "migrations/004_execution_receipts.sql",
+      "new_path": "src/modelcrew/resources/migrations/004_execution_receipts.sql",
+      "sha256": "3294ac4d10f2c379bde35b2728ebd6b04f78b50e8b0ca23fc00007ed927b018d",
+      "bytes": 1326
+    },
+    {
+      "old_path": "migrations/005_version_executor_settings.sql",
+      "new_path": "src/modelcrew/resources/migrations/005_version_executor_settings.sql",
+      "sha256": "7fe9e7099ee39b095e5d150ae4381be16da7119054c2b44696b7ee835082769a",
+      "bytes": 161
+    },
+    {
+      "old_path": "migrations/006_mcp_workflow.sql",
+      "new_path": "src/modelcrew/resources/migrations/006_mcp_workflow.sql",
+      "sha256": "e3ce33892edbc5c4e17f68a8d7c76497987319916f92efea2efec3d1833b877f",
+      "bytes": 1719
+    },
+    {
+      "old_path": "migrations/007_mathematical_packages.sql",
+      "new_path": "src/modelcrew/resources/migrations/007_mathematical_packages.sql",
+      "sha256": "3e6d268402dd2184203d4d4f4293258169d8e1547ea76cd90f285ac4ba4b0945",
+      "bytes": 792
+    },
+    {
+      "old_path": "migrations/008_modeling_hand.sql",
+      "new_path": "src/modelcrew/resources/migrations/008_modeling_hand.sql",
+      "sha256": "15a3a366357f18298f505e7a8d407d9f972f6b0f1f15d76bbe06a23edd3a9330",
+      "bytes": 1153
+    },
+    {
+      "old_path": "migrations/009_question_references.sql",
+      "new_path": "src/modelcrew/resources/migrations/009_question_references.sql",
+      "sha256": "63ab8a842b68afc1e7fb3f0a9271d2fc8160e0d4ccd88f2a7970ae5c8889878b",
+      "bytes": 976
+    },
+    {
+      "old_path": "migrations/010_hand_runtime.sql",
+      "new_path": "src/modelcrew/resources/migrations/010_hand_runtime.sql",
+      "sha256": "c826a42434fc4dcb2f0e0c037ba6837d607c8a8f8a5db8b5a51ec2fc264af7c4",
+      "bytes": 839
+    },
+    {
+      "old_path": "migrations/011_assembly_inputs.sql",
+      "new_path": "src/modelcrew/resources/migrations/011_assembly_inputs.sql",
+      "sha256": "ed18295b19060c6ac7d39ec014cd230563d51954cf9bae374aa42f7a6d22e080",
+      "bytes": 462
+    },
+    {
+      "old_path": "migrations/012_assembly_builds.sql",
+      "new_path": "src/modelcrew/resources/migrations/012_assembly_builds.sql",
+      "sha256": "f3b354699036bcca0f79456e043d23095f90826f300e79e487e64b04fa5a04c4",
+      "bytes": 837
+    }
+  ],
+  "approval_rewritten": false
+}

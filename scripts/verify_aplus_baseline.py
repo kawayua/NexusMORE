@@ -1,4 +1,5 @@
 """Reproduce A+ mathematical/method checks without new LLM or solver-code execution."""
+from modelcrew.project_assets import asset_path
 import copy,json,math,platform,sys,importlib.metadata,re
 from pathlib import Path
 from datetime import datetime,timezone
@@ -11,7 +12,7 @@ from modelcrew.config import ROOT
 from modelcrew.inputs import file_hash
 from modelcrew.contracts import digest
 
-BASE=ROOT/'stage-a-plus'
+BASE=asset_path(ROOT,'stage-a-plus')
 def load(relative):return json.loads((ROOT/relative).read_text(encoding='utf-8-sig'))
 def symbolic_checks():
     theta=sp.symbols('theta',real=True);b,r,ell=sp.symbols('b r ell',positive=True);delta=sp.symbols('delta',real=True)
@@ -79,7 +80,7 @@ def main():
     # Bind ONLY existing project arrays; the original stored hash is independently retained.
     confirmation=load('stage-b/v2-result-confirmation.json');contract=load('stage-b/runs/solver-v2-20261104T131332959555Z/contract.json')
     audit=load('stage-b/stage-b-production-audit-20261106.json')
-    array_path=ROOT/'stage-b/runs/solver-v2-20261104T131332959555Z/output/trajectories.npz'
+    array_path=asset_path(ROOT,'stage-b/runs/solver-v2-20261104T131332959555Z/output/trajectories.npz')
     registered=next(a for a in audit['artifacts'] if a['execution_id']==confirmation['execution_id'] and Path(a['path']).name=='trajectories.npz')
     check('existing_result_binding',confirmation['result_approved'] and digest(contract)==confirmation['contract_sha256'] and file_hash(array_path)==registered['registered_sha256'],execution_id=confirmation['execution_id'],version=confirmation['version'],revision=confirmation['result_revision'],array_sha256=file_hash(array_path))
     with np.load(array_path,allow_pickle=False) as arrays:
@@ -125,7 +126,7 @@ def main():
     check('algebra_sign_mutation_detected',abs(correct-wrong)>1,absolute_discrepancy_m2=abs(correct-wrong),scope='One deliberately injected sign defect; not a mathematical defect detection rate.')
     report={'date':datetime.now().astimezone().isoformat(),'status':'passed' if all(c['passed'] for c in checks) else 'failed','check_count':len(checks),'checks':checks,'method_cases':choices,'counterexamples':counters,'lint_counterexamples':broken,'finite_difference':fd,'reference_refinement':refinement,'quadrature_max_error_estimate_m':max(quad_errors),'lp':lp_report,'result_binding':confirmation,'environment':{'python':platform.python_version(),'dependencies':{p:importlib.metadata.version(p) for p in ['numpy','scipy','sympy']}},'execution_mode':'Existing confirmed project arrays + new read-only diagnostics and human-authored synthetic LP; no model solver code executed','new_llm_calls':0,'new_contest_solver_runs':0,'new_synthetic_lp_solves':3,'new_reference_diagnostic_calls':'finite differences/refinement; not fresh full301x224 run','formal_prover_used':False,'latex_compilation':'not_run_A+_source_only_C+_deferred','historical_confirmation_modified':False,'limitations':['Finite authored structures, not universal routing or LLM Modeler integration.','Symbolic identities and declared-unit lint are limited checks, not a universal proof or semantic parser.','Proof text is assistant-authored review; no independent human peer review claimed.','Historical fixed-fixture Excel exception remains; A+uses unchanged confirmed v2 NPZ, not that workbook.']}
     (run/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
-    binding={'input_files':{str(p.relative_to(ROOT)):file_hash(p) for p in [ROOT/'stage-a/2024-A-problem-1/parameters.json',ROOT/'stage-a/2024-A-problem-1/input-manifest.json',array_path,ROOT/'stage-b/v2-result-confirmation.json']},'baseline_artifacts':{str(p.relative_to(ROOT)):file_hash(p) for folder in ['math','cases','sources'] for p in (BASE/folder).glob('*') if p.is_file()},'sources_read_log':file_hash(BASE/'sources/read-log.json'),'author_code':{str(p.relative_to(ROOT)):file_hash(p) for p in [Path(__file__),ROOT/'modelcrew/aplus.py',ROOT/'scripts/reference_2024_a_q1.py']}}
+    binding={'input_files':{str(p.relative_to(ROOT)):file_hash(p) for p in [asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json'),asset_path(ROOT,'stage-a/2024-A-problem-1/input-manifest.json'),array_path,asset_path(ROOT,'stage-b/v2-result-confirmation.json')]},'baseline_artifacts':{str(p.relative_to(ROOT)):file_hash(p) for folder in ['math','cases','sources'] for p in (BASE/folder).glob('*') if p.is_file()},'sources_read_log':file_hash(BASE/'sources/read-log.json'),'author_code':{str(p.relative_to(ROOT)):file_hash(p) for p in [Path(__file__),ROOT/'modelcrew/aplus.py',ROOT/'scripts/reference_2024_a_q1.py']}}
     (run/'manifest.json').write_text(json.dumps(binding,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (BASE/'verification-summary.json').write_text(json.dumps({'report_path':str((run/'verification.json').relative_to(ROOT)),'report_sha256':file_hash(run/'verification.json'),'manifest_path':str((run/'manifest.json').relative_to(ROOT)),'status':report['status'],'check_count':len(checks),'date':report['date'],'new_llm_calls':0,'latex_compilation':report['latex_compilation']},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'status':report['status'],'checks':len(checks),'failed':[c for c in checks if not c['passed']],'lp_optimum':lp_report['x_kg'],'lp_objective':lp_report['objective_currency'],'report':str(run/'verification.json')},ensure_ascii=False,indent=2))

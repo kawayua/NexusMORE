@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-15",
+  "task_id": "production-allocation-live-20261114",
+  "binding": {
+    "task_id": "production-allocation-live-20261114",
+    "execution_id": "0d048340-f0f4-491f-bcf4-c638ebc0951a",
+    "contract_sha256": "1e07c64330f64a47f56ca85bd4c5e6f1846a7debe996666c7741e607f3badf16",
+    "result_revision": 1,
+    "contract_version": 2
+  },
+  "user_statement": "接受这批计算结果 9张图都审核通过",
+  "result_approved": true,
+  "figure_selection_approved": true,
+  "selected_ids": [
+    "f01",
+    "f02",
+    "f03",
+    "f04",
+    "f05",
+    "f06",
+    "f07",
+    "f08",
+    "f09"
+  ],
+  "writing_run_id": "6597e507-1c80-475e-b886-cd32086ded43",
+  "writing_phase": "WAITING_MANUSCRIPT_AND_FIGURES",
+  "W1": {
+    "status": "PASS",
+    "receipt_sha256": "456778ff690696fbdf4ad7092615fd1b3757a60962e9d2e260e8d33666e196db",
+    "snapshot_sha256": "b692dcf39844eef4df81023969ad36911599560d72d5c2cd3eeb534b2e0dd81d"
+  },
+  "manuscript": "runs/hands/6597e507-1c80-475e-b886-cd32086ded43/单题论文-中文审阅稿.md",
+  "manuscript_sha256": "41f22baaac8c0cefded6b2fff4d2b7138f96158871a64c603b810d1cdf15c753",
+  "manuscript_approved": false,
+  "formal_export_permitted": false,
+  "mechanical_paper_check": {
+    "status": "passed",
+    "findings": [],
+    "policy_version": "1.1.0",
+    "policy_sha256": "6b95ed10ae065c8b3a2896df8bcc320463a08910125b28f1662bfdaf0280ea65",
+    "markdown_sha256": "41f22baaac8c0cefded6b2fff4d2b7138f96158871a64c603b810d1cdf15c753",
+    "catalog_sha256": "16aff118d233d2801f65a811e42a0f5140e8858855073d10ffd66bf334a6e8b2",
+    "language_ratio": 0.890862538006081,
+    "candidate_figures": 9,
+    "categories": {
+      "raw": 3,
+      "process": 3,
+      "result": 3
+    },
+    "formal_figures": 9,
+    "minimum_formal_effective": 8,
+    "policy_override": null,
+    "user_review": "pending",
+    "scope": "Mechanical genre/Chinese/image checks, not scientific or visual approval"
+  },
+  "editorial_readback": {
+    "scope": "编辑上下文的正文核对，非独立W2，不授予正文通过。",
+    "numerical_table": "11行/6列与已批准实际结果在四位小数显示精度内一致",
+    "figures": "9张按1..9各嵌入一次；用户批准的27个图文件哈希与原批次一致",
+    "global_symbol_table": "唯一符号章/表且位置正确；epsilon新增局部记号仍需补入表",
+    "follow_up_editorial_items": [
+      {
+        "location": "符号说明",
+        "issue": "误差分析使用机器精度epsilon，当前统一符号表未列该符号；下版应补含义、无量纲单位和适用范围。"
+      },
+      {
+        "location": "问题重述/参考文献",
+        "issue": "已列给定题面资料[1]，正文还需添加对应[1]引注，不能把文末列项当成正文引用已核对。"
+      }
+    ],
+    "manuscript_approved": false,
+    "formal_export_permitted": false
+  },
+  "history": {
+    "files_checked": 245,
+    "changed": []
+  },
+  "writer_failures_preserved": [
+    "plan-0: nonexistent pointer/reference aliases",
+    "draft-1: original false-positive body-reference findings; actual out-of-order image also identified",
+    "draft-2: actual out-of-order images"
+  ],
+  "final_writer_draft": "draft-3 actual configured provider output, not edited or synthesized by operator",
+  "automatic_retries": 3,
+  "budget_reset": false,
+  "tests": {
+    "writer_paper_navigation_pure": 43,
+    "targeted_runtime_integration": {
+      "passed": 3,
+      "deselected": 33,
+      "seconds": 106.57,
+      "scope": "真实PostgreSQL；供应商和执行器为明确合成夹具"
+    }
+  },
+  "implementation": {
+    "src/modelcrew/hand_runtime.py": "b6fc902ba5b5e4d40d8170b5fda48d7ac7123eb0d924ad7ba372af73ad14ac50",
+    "src/modelcrew/modeling_paper.py": "ded97b3f4300f1e1c205cb55733393cc214884347b7d99314b1074b6b849ab4a",
+    "tests/test_writer_transport.py": "4bbaff8803f82e9ce113a42d534d95781968214622b9516a31e311b787752030",
+    "tests/test_modeling_paper.py": "59e123b6a85a03a6920666d673cfa7871dec025e117f4d28503277737e4bb702"
+  },
+  "evidence_folder": "runs/acceptance/production-allocation-live-20261114/writing-review-v001",
+  "next": "修订两个已识别的正文编辑项后提交新正文审阅；已批准数值及图内容不变时不要求重批。"
+}

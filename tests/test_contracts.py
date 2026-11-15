@@ -1,7 +1,8 @@
+from modelcrew.project_assets import asset_path,local_history
 import copy,json
 import pytest
 from modelcrew.contracts import ROOT,validate,bench_review,ContractError
-EX=ROOT/'contracts/examples'
+EX=asset_path(ROOT,'contracts/examples')
 def load(name):return json.loads((EX/name).read_text(encoding='utf-8'))
 def test_valid_contract_does_not_claim_math_approval():
     assert validate(load('valid-2024-a-q1.json'))

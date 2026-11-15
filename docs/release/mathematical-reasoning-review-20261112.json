@@ -1,0 +1,300 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-12",
+  "category": "mathematical-reasoning",
+  "status": "static_review_complete_user_goal_adoption_implementation_and_source_permission_separate",
+  "source_ledger": {
+    "path": "docs/release/resource-disposition-20261111.json",
+    "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+    "bytes": 181183
+  },
+  "summary": {
+    "source_paths_reviewed": 3,
+    "unique_contents": 3,
+    "all_intake_hashes_and_bytes_verified": true,
+    "pinned_modeling_matches": 0,
+    "pinned_modeling_differences": 0,
+    "no_pinned_upstream_comparison": 3
+  },
+  "upstream_comparison": {
+    "modeling_repository": "https://github.com/XiaoMaColtAI/math-modeling-skill",
+    "modeling_commit": "7632751d49c7019107c0964ffb076204e6123df2",
+    "cached_tree": {
+      "path": "tmp/builtin-source-review-20261110-v1/modeling-tree.txt",
+      "sha256": "11bf1abd85cc78dddb5765cbd81500dd7e20d8c66e702bd8280c210599423943",
+      "bytes": 88890
+    },
+    "reasoning_pinned_remote_snapshot_available": false,
+    "live_network_or_current_api_validation": false
+  },
+  "files": [
+    {
+      "resource_id": "resource-249",
+      "source": "reasoning",
+      "source_path": "references/notation-guide.md",
+      "source_sha256": "8bae2a7bdde0ed5f254777b235ad9431f0090120ff86ee25b1994e62aa7ea639",
+      "bytes": 4055,
+      "lines": 121,
+      "category": "mathematical-reasoning",
+      "intake_identity_verified": true,
+      "normalized_git_blob": "342462938daafe0d1f327ce623125160871783a0",
+      "pinned_upstream_git_blob": null,
+      "pinned_upstream_match": null,
+      "official_document_tool_counterpart_exists": false,
+      "source_redistribution_approved": false,
+      "source_copied_modified_imported_or_executed": false,
+      "capability_goal": "符号约定与统计检验选择",
+      "project_recommendation": "保留目标但重写数学/统计口径：唯一全局符号表含单位/范围；检验先识别配对、重复测量、独立性与方差等，区分 Welch/配对检验与 FDR/Bonferroni；示例数值不得当结果。",
+      "current_project_coverage": "已有符号/维度/单位/范围契约及全局符号政策；统计决策库与全文内置尚未接通。",
+      "user_adoption_of_this_category_recorded": false,
+      "review_mode": "full_text_read_and_python_ast_without_source_execution",
+      "same_content_source_ids": []
+    },
+    {
+      "resource_id": "resource-250",
+      "source": "reasoning",
+      "source_path": "references/proof-templates.md",
+      "source_sha256": "4ffeb9f44a2e4622eb4b33a56b3e6c97848195243ab7b68152e1ba35b022b974",
+      "bytes": 3123,
+      "lines": 126,
+      "category": "mathematical-reasoning",
+      "intake_identity_verified": true,
+      "normalized_git_blob": "81486ccfd38dca47dbc2a6db8d456de53a158f5c",
+      "pinned_upstream_git_blob": null,
+      "pinned_upstream_match": null,
+      "official_document_tool_counterpart_exists": false,
+      "source_redistribution_approved": false,
+      "source_copied_modified_imported_or_executed": false,
+      "capability_goal": "证明方法和条件清单",
+      "project_recommendation": "保留推导/证明框架目标，补完整适用假设、常数与出处并逐题推导；不能直接用不完整收敛界/泛化界作为结论，长证明按需放附录，不替代建模论文结构。",
+      "current_project_coverage": "已有数学包的条件/步骤/open_gaps/语义版本和M1审查；不是自动定理证明器。",
+      "user_adoption_of_this_category_recorded": false,
+      "review_mode": "full_text_read_and_python_ast_without_source_execution",
+      "same_content_source_ids": []
+    },
+    {
+      "resource_id": "resource-251",
+      "source": "reasoning",
+      "source_path": "SKILL.md",
+      "source_sha256": "d148489deb82f6e5b798eeaa87fc32fec39368bdecb67666cbcf07e2b0ee4e45",
+      "bytes": 2626,
+      "lines": 53,
+      "category": "mathematical-reasoning",
+      "intake_identity_verified": true,
+      "normalized_git_blob": "c5d95fdb71345aba5375907eb9f882537b8bc3a6",
+      "pinned_upstream_git_blob": null,
+      "pinned_upstream_match": null,
+      "official_document_tool_counterpart_exists": false,
+      "source_redistribution_approved": false,
+      "source_copied_modified_imported_or_executed": false,
+      "capability_goal": "数学论证能力导航",
+      "project_recommendation": "改为枢模包内相对资源和按需入口；限于公式推导、证明与核对，不引入 ~/.claude 路径、外部技能依赖或 ML 论文体裁，不单独重复输出小题符号表。",
+      "current_project_coverage": "现有 mathematics 与 modeling_hand 已约束数学包用途；完整资料自动路由仍待对应阶段。",
+      "user_adoption_of_this_category_recorded": false,
+      "review_mode": "full_text_read_and_python_ast_without_source_execution",
+      "same_content_source_ids": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "MATHREF-001",
+      "severity": "high",
+      "resource_ids": [
+        "resource-249"
+      ],
+      "source_locations": [
+        {
+          "resource_id": "resource-249",
+          "line": 94,
+          "anchor": "Statistical Tests Decision Tree"
+        }
+      ],
+      "assessment": "按正态/非正态二分不足以选择检验，遗漏配对/独立/重复测量、差值或残差分布、方差不齐与Welch；Kruskal-Wallis也非所有条件不满足时的通用替代。",
+      "project_adaptation_recommendation": "先识别设计、分析单位、效应估计与前提，再选择检验；统计声明来自真实Python结果并说明区间和效应量。",
+      "runtime_fix_or_user_adoption_inferred": false
+    },
+    {
+      "id": "MATHREF-002",
+      "severity": "high",
+      "resource_ids": [
+        "resource-249"
+      ],
+      "source_locations": [
+        {
+          "resource_id": "resource-249",
+          "line": 112,
+          "anchor": "Multiple comparisons"
+        }
+      ],
+      "assessment": "将Bonferroni和BH FDR并列后统一给alpha/k，不能表达BH按排序p值的控制程序；示例N=5与p值/效应量不是本项目结果。",
+      "project_adaptation_recommendation": "明确比较族和错误率目标，区分FWER/FDR及适用条件，禁止照搬示例数值。",
+      "runtime_fix_or_user_adoption_inferred": false
+    },
+    {
+      "id": "MATHREF-003",
+      "severity": "high",
+      "resource_ids": [
+        "resource-250"
+      ],
+      "source_locations": [
+        {
+          "resource_id": "resource-250",
+          "line": 94,
+          "anchor": "Convergence Proof"
+        }
+      ],
+      "assessment": "收敛界模板仅指向未展开的平滑/方差假设，步长与常数缺条件；泛化界未说明有界损失、采样独立同分布和函数类等必要口径，不能作为即用定理。",
+      "project_adaptation_recommendation": "仅吸收证明方法框架，完整列假设/定义/步长常数/出处和未证明缺口，按当前题目逐步推导并独立审查。",
+      "runtime_fix_or_user_adoption_inferred": false
+    },
+    {
+      "id": "MATHREF-004",
+      "severity": "medium",
+      "resource_ids": [
+        "resource-249",
+        "resource-251"
+      ],
+      "source_locations": [
+        {
+          "resource_id": "resource-251",
+          "line": 3,
+          "anchor": "notation"
+        }
+      ],
+      "assessment": "ML符号表不能替代题目物理量/单位/范围；Hypothesis space展示字符与LaTeX列不同，固定偏ML记号易与全局表冲突。",
+      "project_adaptation_recommendation": "使用唯一全局符号表，在模型假设之后、模型之前集中展示；同名异义先重命名映射，不按名字自动合并。",
+      "runtime_fix_or_user_adoption_inferred": false
+    },
+    {
+      "id": "MATHREF-005",
+      "severity": "medium",
+      "resource_ids": [
+        "resource-250",
+        "resource-251"
+      ],
+      "source_locations": [
+        {
+          "resource_id": "resource-251",
+          "line": 36,
+          "anchor": "References"
+        }
+      ],
+      "assessment": "入口引用~/.claude和未内置关联技能；证明环境示例未给完整宏包/环境定义，数学论证体裁不能控制中文建模论文。",
+      "project_adaptation_recommendation": "改为项目资源定位与按需加载；限推导、证明和核对，符号/章节/图数/审批仍由枢模本地契约负责。",
+      "runtime_fix_or_user_adoption_inferred": false
+    },
+    {
+      "id": "MATHREF-006",
+      "severity": "high",
+      "resource_ids": [
+        "resource-249",
+        "resource-250",
+        "resource-251"
+      ],
+      "source_locations": [],
+      "assessment": "三项本机来源身份可核验，但当前目录没有LICENSE，未取得可再发行许可或固定远端提交比对。",
+      "project_adaptation_recommendation": "保留能力目标供用户审定；获得授权或独立编写后再纳入发行，不声称完整数学知识已内置。",
+      "runtime_fix_or_user_adoption_inferred": false
+    }
+  ],
+  "project_evidence": [
+    {
+      "path": "src/modelcrew/paper_search_mcp.py",
+      "sha256": "6b9a2f5352defa6695152deab741896239909eaa42bbc8278155388d99c786d8",
+      "bytes": 16698
+    },
+    {
+      "path": "src/modelcrew/web_references.py",
+      "sha256": "5935bfd8343f33c94be4bb37adeab9cd48ec1c8b28aa3317ffb6a33bf422d883",
+      "bytes": 12975
+    },
+    {
+      "path": "src/modelcrew/retrieval.py",
+      "sha256": "ff0e07d3d55b84525097d0a506ef943cc4dd1351376680d3ae858a84cc8c1463",
+      "bytes": 10633
+    },
+    {
+      "path": "src/modelcrew/document_tools.py",
+      "sha256": "3efe733f0d5f898fc1734853f99e7faf1a0a21de189bd19be3009c7bf7dbe91e",
+      "bytes": 11421
+    },
+    {
+      "path": "src/modelcrew/figure_data.py",
+      "sha256": "8c8c03c9183ef834977ac1ee8eddd8d3da2a14e236d05ee3d4f36ae7a6d9546a",
+      "bytes": 5650
+    },
+    {
+      "path": "src/modelcrew/mathematics.py",
+      "sha256": "e63e8ae1e340466ad53f800b608e10353c1c37263754ed41f26f8803816878fd",
+      "bytes": 9897
+    },
+    {
+      "path": "src/modelcrew/modeling_hand.py",
+      "sha256": "c0f3f2249be9a55bcafd408a236ab7e9e4f8ad5137342c35571725023f98dac5",
+      "bytes": 37782
+    },
+    {
+      "path": "src/modelcrew/resources/paper/workflow.json",
+      "sha256": "43637df8fa4c30f738e9e41cb2a6ed950b7f5727da64ce73ff0d5e8199a43698",
+      "bytes": 5859
+    },
+    {
+      "path": "src/modelcrew/resources/paper/writer-instructions.md",
+      "sha256": "6ce1810a35935eb006a2412820952438c78af34f5f8cceca90f4a9a33415c721",
+      "bytes": 7524
+    },
+    {
+      "path": "src/modelcrew/resources/paper/chinese-modeling-policy.json",
+      "sha256": "6b95ed10ae065c8b3a2896df8bcc320463a08910125b28f1662bfdaf0280ea65",
+      "bytes": 2354
+    },
+    {
+      "path": "src/modelcrew/resources/collaboration/manifest.json",
+      "sha256": "7fe80f7fbd8aa750cc016cd47c8e2fff58f66c8987bc42ad8b55461279449bc1",
+      "bytes": 5375
+    },
+    {
+      "path": "src/modelcrew/latex_tools.py",
+      "sha256": "d4ad300bdea2a71d4f45aedab707919b6366a4a839d8d544f1758fda76322343",
+      "bytes": 26047
+    },
+    {
+      "path": "scripts/export_approved_paper.py",
+      "sha256": "ecdf95eaf46a54d717eee29712f40df8e064a35d96e3b2842ab0c04a5a009d77",
+      "bytes": 24659
+    },
+    {
+      "path": "scripts/render_assembly_export.py",
+      "sha256": "5b88ce223ed411185027817f8c9b755860bad8fcc86f8b5044309949c34584d7",
+      "bytes": 5693
+    }
+  ],
+  "verification": {
+    "runtime_resource_verification": {
+      "status": "passed",
+      "files": 186,
+      "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+    },
+    "official_document_bundle_verification": {
+      "status": "passed",
+      "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+      "files": 126,
+      "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+    },
+    "runtime_or_frozen_resource_bytes_changed": false,
+    "upstream_sources_executed": false,
+    "new_tests_or_network_calls_run": false,
+    "independent_runtime_review_dispatched": false,
+    "source_redistribution_or_full_builtin_knowledge_approved": false,
+    "existing_approvals_or_historical_receipts_rewritten": false
+  },
+  "source_license_evidence": {
+    "local_root_license_file_found": false,
+    "local_root_entries": [
+      "SKILL.md",
+      "references"
+    ],
+    "remote_license_grant_established": false,
+    "scope": "No redistribution permission inferred from local skill installation."
+  }
+}

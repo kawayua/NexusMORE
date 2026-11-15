@@ -1,4 +1,5 @@
 """Finalize an independently verified Q2 P2 receipt, then submit for user confirmation."""
+from modelcrew.project_assets import asset_path
 import json
 from pathlib import Path
 from datetime import datetime
@@ -32,7 +33,7 @@ def main():
         if task['phase']!='WAITING_RESULT_APPROVAL' or task['result_approved'] is not False:raise ValueError('unexpected result gate')
         execution_id=str(task['execution_id']);revision=task['result_revision']
     m=read(f/'run.json');m['status']='awaiting_result_confirmation';write(f/'run.json',m)
-    out=ROOT/'stage-d/q2-full';out.mkdir(exist_ok=True)
+    out=asset_path(ROOT,'stage-d/q2-full');out.mkdir(exist_ok=True)
     event=read(f/'collision-event.json');v=read(f/'validation.json');sp=read(f/'precision-supplement.json');p2=read(f/'P2-admission.json')
     summary={'task_id':TASK,'contract_version':2,'contract_sha256':m['contract_sha256'],'folder':f.relative_to(ROOT).as_posix(),'execution_id':execution_id,'result_revision':revision,'phase':'WAITING_RESULT_APPROVAL','P2_status':'PASS','P2_receipt_sha256':p2['receipt_sha256'],'time_interval_s':event['time_interval_s'],'time_estimate_s':event['time_estimate_s'],'active_board_pairs_zero_based':event['active_board_pairs'],'result_user_approval':'pending','figure_selection_user_approval':'pending','figure_count':9,'workbook':(f/'results/result2.xlsx').relative_to(ROOT).as_posix(),'created_at':datetime.now(ZoneInfo('Asia/Shanghai')).isoformat()}
     write(out/'current-run.json',summary)

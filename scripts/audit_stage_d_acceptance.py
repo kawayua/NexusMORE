@@ -1,9 +1,11 @@
 ﻿"""Stage D evidence audit; never dispatches a provider call or numerical job."""
+from modelcrew.project_assets import asset_path
 import argparse,hashlib,json
 from pathlib import Path
 from datetime import datetime,timezone
 from psycopg.conninfo import make_conninfo
 from modelcrew.config import ROOT,database_url
+from modelcrew.repository_migration import resolve_repository_path
 from modelcrew.workflow import Workflow
 from modelcrew import writing_hand as wh
 from modelcrew.collaboration import CollaborationStore,Receipt,Snapshot,Ticket
@@ -16,11 +18,11 @@ def read(p):return json.loads(Path(p).read_text(encoding='utf-8-sig'))
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def audit(out):
     out=Path(out).resolve();out.mkdir(exist_ok=True,parents=True)
-    assert out.is_relative_to(ROOT/'stage-d/acceptance')
+    assert out.is_relative_to(asset_path(ROOT,'stage-d/acceptance'))
     checks=[];evidence={}
     def pin(path):
         p=Path(path);p=p if p.is_absolute() else ROOT/p
-        key=p.relative_to(ROOT).as_posix();evidence[key]=sha(p);return p
+        key=p.relative_to(ROOT).as_posix();p=resolve_repository_path(ROOT,key);evidence[key]=sha(p);return p
     def check(name,fn):
         value=fn();assert value is not False,name
         checks.append({'id':name,'status':'passed','details':value})
@@ -49,9 +51,9 @@ def audit(out):
         assert store.accept_review(r,a['snapshot_sha256'])==a['receipt_sha256']
         for kind,key in [('Receipt',a['receipt_sha256']),('Snapshot',a['snapshot_sha256']),('Ticket',r.ticket_sha256)]:pin(folder/'records'/kind/(key+'.json'))
         return {'status':expected,'receipt_sha256':a['receipt_sha256'],'snapshot_sha256':a['snapshot_sha256'],'check_count':len(r.checks),'binding':snap.binding.model_dump(mode='json')}
-    for name,folder,gn in [('q1_P1',ROOT/'stage-d/runs/coding/minimal-f3630a0b71e246b686a0017e5cd3a69b','P1'),('q2_P1',ROOT/'stage-d/runs/coding/q2-minimal-027eb6ae1c3642a185725e844f745fcf','P1'),('q1_P2',q1,'P2'),('q2_P2',q2,'P2'),('q2_M1',ROOT/'stage-d/runs/modeling/q2-collision-20261109-v2','M1'),('q1_W1',ROOT/pointers['q1_write']['run_dir'],'W1'),('q2_W1',ROOT/pointers['q2_write']['run_dir'],'W1')]:
+    for name,folder,gn in [('q1_P1',asset_path(ROOT,'stage-d/runs/coding/minimal-f3630a0b71e246b686a0017e5cd3a69b'),'P1'),('q2_P1',asset_path(ROOT,'stage-d/runs/coding/q2-minimal-027eb6ae1c3642a185725e844f745fcf'),'P1'),('q1_P2',q1,'P2'),('q2_P2',q2,'P2'),('q2_M1',asset_path(ROOT,'stage-d/runs/modeling/q2-collision-20261109-v2'),'M1'),('q1_W1',ROOT/pointers['q1_write']['run_dir'],'W1'),('q2_W1',ROOT/pointers['q2_write']['run_dir'],'W1')]:
         check(name,lambda folder=folder,gn=gn:gate(folder,gn))
-    for name,folder,gn in [('M1_failure_retained',ROOT/'stage-d/runs/modeling/q2-collision-20261109-v1','M1'),('W1_failure_retained',ROOT/'stage-d/runs/writing/d5-q1-20261108-v2','W1')]:
+    for name,folder,gn in [('M1_failure_retained',asset_path(ROOT,'stage-d/runs/modeling/q2-collision-20261109-v1'),'M1'),('W1_failure_retained',asset_path(ROOT,'stage-d/runs/writing/d5-q1-20261108-v2'),'W1')]:
         check(name,lambda folder=folder,gn=gn:gate(folder,gn,'FAIL'))
     tasks={}
     with Workflow(url=make_conninfo(database_url(),connect_timeout=5)) as w:

@@ -1,4 +1,5 @@
 """Generate solver implementation for the approved stage-B contract, not an independent baseline."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,time,re,ast,hashlib,sys
 from datetime import datetime,timezone
@@ -14,9 +15,9 @@ def main():
   s=w.inspect('dragon-q1')
   if s['task']['current_version']!=2 or not s['task']['model_approved'] or s['task']['result_approved']:raise ValueError('Need approved v2 awaiting result')
   contract=s['contract']['content'];sha=s['contract']['sha256']
- run=ROOT/'stage-b/runs'/datetime.now(timezone.utc).strftime('solver-v2-%Y%m%dT%H%M%S%fZ');run.mkdir(parents=True)
+ run=asset_path(ROOT,'stage-b/runs')/datetime.now(timezone.utc).strftime('solver-v2-%Y%m%dT%H%M%S%fZ');run.mkdir(parents=True)
  (run/'contract.json').write_text(json.dumps(contract,ensure_ascii=False,indent=2),encoding='utf-8')
- parent=ROOT/'stage-a/2024-A-problem-1/runs/bailian-20261101T150358548111Z/generated_solver.py'
+ parent=asset_path(ROOT,'stage-a/2024-A-problem-1/runs/bailian-20261101T150358548111Z/generated_solver.py')
  prompt='''实现已由用户确认的v2契约，只输出一个完整Python代码块，不执行。你之前v1代码附后作为修改起点，不是独立生成实验。必须实际实现全部新增检查，不能只写声明。
 只可读取/work/input/result1.xlsx；所有产物写/work/output。无网络、子进程、环境读取或安装依赖。可用numpy/scipy/openpyxl和标准库。独立函数solve(t,xtol)供非整数时刻差分与加严复算，不把六位小数舍入带入内部。
 具体实现要求：

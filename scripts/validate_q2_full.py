@@ -1,4 +1,5 @@
 """Trusted Q2 postprocessing: fresh references, immutable certificates and template readback."""
+from modelcrew.project_assets import asset_path
 import argparse,json,math,uuid,shutil,subprocess
 from pathlib import Path
 import numpy as np
@@ -12,7 +13,7 @@ from modelcrew.mcp_client import executor_root
 from scripts.run_d3_minimal import read,write
 from scripts.run_q2_full import active
 from scripts.reference_2024_a_q1 import solve
-PARAMETERS=read(ROOT/'stage-a/2024-A-problem-1/parameters.json')
+PARAMETERS=read(asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json'))
 
 def artifacts(folder,key):
     sub=folder/key;execution=read(sub/'execution.json');registered=read(sub/'job.json');_,live=DockerExecutor(executor_root()).job(registered['job_id'])

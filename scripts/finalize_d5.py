@@ -1,4 +1,5 @@
 """Register a pending D5 manuscript without granting user consent or exporting."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,hashlib,shutil
 from datetime import datetime,timezone
@@ -6,7 +7,7 @@ from modelcrew.config import ROOT
 from modelcrew import writing_hand as wh
 from scripts.run_d4_full import workflow
 
-folder=ROOT/'stage-d/runs/writing/d5-q1-20261108-v4';base=ROOT/'stage-d/d5'
+folder=asset_path(ROOT,'stage-d/runs/writing/d5-q1-20261108-v4');base=asset_path(ROOT,'stage-d/d5')
 with workflow() as w:
     state=wh.status(folder,w);meta=wh.read(folder/'run.json');admission=wh.read(folder/'W1-admission.json')
     assert state['state']['phase']=='WAITING_MANUSCRIPT_APPROVAL' and not state['state']['reviews']['can_export']
@@ -61,17 +62,17 @@ W1通过后才生成v3全文。作者检查发现式(1)矩阵换行转义问题�
 通用供应商Writer生成API、HTTP写作接口、多题汇编、跨题D6及正式导出E/W2尚未实现或未验收；当前仅声明本开发题真实路径及可复用的本地生命周期入口。不生成正式PDF、Word或LaTeX，不启动W2，不改历史正式论文。
 '''
 (base/'acceptance-report.md').write_text(report,encoding='utf-8')
-p=wh.read(ROOT/'stage-d/progress.json');p['current_milestone']='D5_case_W1_passed_waiting_manuscript_review'
+p=wh.read(asset_path(ROOT,'stage-d/progress.json'));p['current_milestone']='D5_case_W1_passed_waiting_manuscript_review'
 p['milestones']['D5']={'status':'single_case_writing_review_ready','user_acceptance':'not_recorded','report':'stage-d/d5/acceptance-report.md','task_id':meta['binding']['task_id'],'run_dir':wh.rel(folder),'independent_W1':'PASS_after_writing_rework','W1_receipt_sha256':admission['receipt_sha256'],'manuscript_review':'pending_user','figure_selection':'approved_all_nine_from_D4','generic_autonomous_Writer_API':'not_implemented','formal_export':'not_started','W2':'not_started'}
 p['case_specific_writing_runner_implemented']=True;p['next']='User reviews current D5 Chinese manuscript; existing nine-figure consent remains valid; D6/E/W2 require subsequent work'
 # Preserve historical evidence records; this mutable pointer describes only the latest state.
-temp=ROOT/'stage-d/progress.next.json';wh.new(temp,p);import os;os.replace(temp,ROOT/'stage-d/progress.json')
-r=ROOT/'stage-d/README.md';s=r.read_text(encoding='utf-8');s=s.replace('通用代码手及论文手仍待后续集成','当前开发题论文手与独立W1也已完成并等待新正文审阅；通用代码手及自主Writer/API仍待后续集成')
+temp=asset_path(ROOT,'stage-d/progress.next.json');wh.new(temp,p);import os;os.replace(temp,asset_path(ROOT,'stage-d/progress.json'))
+r=asset_path(ROOT,'stage-d/README.md');s=r.read_text(encoding='utf-8');s=s.replace('通用代码手及论文手仍待后续集成','当前开发题论文手与独立W1也已完成并等待新正文审阅；通用代码手及自主Writer/API仍待后续集成')
 s=s.replace('| D5 论文手、W1 与写作审批状态图 | 待实施 |','| D5 论文手、W1 与写作审批状态图 | 当前开发题W1真实FAIL→论文手返工→PASS；中文稿待用户审阅，九图确认保留，见 [D5报告](d5/acceptance-report.md) |');r.write_text(s,encoding='utf-8')
 for name in ['modelcrew/writing_hand.py','scripts/run_d5_writing.py','scripts/build_d5_draft.py','scripts/check_d5_delivery.py','tests/test_writing_hand.py']:
  target=base/'sources'/Path(name).name
  if not target.exists():shutil.copyfile(ROOT/name,target)
-paths=[base/'README.md',base/'acceptance-report.md',base/'current-writing.json',base/'registration.json',base/'delivery-check.json',base/'source-read-log.json',ROOT/'stage-d/progress.json',r,ROOT/'stage-d/d5-regression-tests.xml',ROOT/'stage-d/d5-lifecycle-final.xml']
+paths=[base/'README.md',base/'acceptance-report.md',base/'current-writing.json',base/'registration.json',base/'delivery-check.json',base/'source-read-log.json',asset_path(ROOT,'stage-d/progress.json'),r,asset_path(ROOT,'stage-d/d5-regression-tests.xml'),asset_path(ROOT,'stage-d/d5-lifecycle-final.xml')]
 paths += list((base/'sources').glob('*'))+[folder/'单题论文-中文审阅稿.md',folder/'run.json',folder/'publication.json',folder/'W1-admission.json',folder/'W1-response.json',folder/'revision.json',folder/'figure-selection-review.json']
 wh.new(base/'evidence.json',{'created_at':datetime.now(timezone.utc).isoformat(),'binding':meta['binding'],'scope':'D5 engineering/delivery; authoritative W1 evidence lives in content-addressed snapshots','files':wh.frozen_manifest(paths)})
 print(json.dumps({'manuscript':current['manuscript_path'],'W1':'PASS_after_rework','user_review':'pending','figures':'nine_approved','formal_exports':0,'entry_id':entry['entry_id']},ensure_ascii=False))

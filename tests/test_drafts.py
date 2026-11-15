@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path,local_history
 import json,uuid
 import pytest
 from modelcrew.contracts import ROOT,validate
@@ -5,13 +6,13 @@ from modelcrew.drafts import generate_draft
 
 @pytest.fixture
 def scratch():
-    p=ROOT/'stage-b/runs'/('draft-tests-'+uuid.uuid4().hex);p.mkdir(parents=True);return p
+    p=asset_path(ROOT,'stage-b/runs')/('draft-tests-'+uuid.uuid4().hex);p.mkdir(parents=True);return p
 
 class FakeClient:
     def __init__(self,truncate=False,change=False):self.truncate=truncate;self.change=change
     def post(self,url,**kwargs):
         request=json.loads(kwargs['json']['messages'][1]['content'])
-        c=json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8'))
+        c=json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8'))
         c['sources']=request['authoritative_sources'];c['inputs']=[{k:v for k,v in x.items() if k!='structure'} for x in request['inputs_with_observed_structures']]
         for group in ['parameters','assumptions']:
             for item in c[group]:item['source_id']='source0'

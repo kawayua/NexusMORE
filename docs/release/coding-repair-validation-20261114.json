@@ -1,0 +1,314 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "scope": "F6.6 operator minimal implementation repair and new independent P1 only",
+  "targeted_repair_status": "passed",
+  "broader_suite_all_green": false,
+  "F6_6_complete": false,
+  "release_ready": false,
+  "task_id": "production-allocation-live-20261114",
+  "run_id": "4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93",
+  "binding": {
+    "task_id": "production-allocation-live-20261114",
+    "execution_id": "0d048340-f0f4-491f-bcf4-c638ebc0951a",
+    "contract_sha256": "1e07c64330f64a47f56ca85bd4c5e6f1846a7debe996666c7741e607f3badf16",
+    "result_revision": 1,
+    "contract_version": 2
+  },
+  "phase": "GENERATE_FULL",
+  "authorization": {
+    "statement": "进入修复环节 按点修复",
+    "kind": "explicit operator repair request; not a new model/result approval"
+  },
+  "repairs": {
+    "json_array_mapping": "passed",
+    "unit_matched_dual_roundoff": "passed",
+    "baseline_only_minimal_scope": "passed",
+    "failure_nonzero_exit": "passed",
+    "explicit_operator_recovery_seam": "passed"
+  },
+  "implementation_origin": "operator_supplied_code; no new Coder provider generation",
+  "automatic_retries_before": 3,
+  "automatic_retries_after": 3,
+  "operator_repairs": 1,
+  "new_attempt": 4,
+  "new_business_docker_executions": 1,
+  "new_actual_model_calls": 1,
+  "model_call": {
+    "stage": "P1",
+    "configured_model": "deepseek-v4.1-flash-1017",
+    "http_status": 200,
+    "status": "completed",
+    "independent_stateless_request": true,
+    "image_count": 0,
+    "provider_call_id": "728d254d-50b3-4083-814f-19238218427a",
+    "author_call_id": "operator-repair-5ab4f6db4a2c5350aca5fd99ed945b52",
+    "reviewer_call_id": "42e36644-a55d-4f7e-95fd-43ada4485718"
+  },
+  "minimal_result": {
+    "production": [
+      40.0,
+      20.0
+    ],
+    "profit": [
+      2200.0
+    ],
+    "checks_pass": true,
+    "execution_scope": {
+      "baseline_solver_calls": 1,
+      "figures_generated": 0,
+      "scenario_inputs_read": 11,
+      "scenario_solver_calls": 0
+    },
+    "dual_signed_slack": [
+      0.0,
+      -3.552713678800501e-15
+    ],
+    "dual_roundoff_thresholds": [
+      1.1368683772161603e-12,
+      8.526512829121202e-13
+    ],
+    "abs_dual_gap": 0.0,
+    "feasibility_tolerance": 1e-07,
+    "objective_gap_tolerance": 1e-06,
+    "checks": {
+      "cross_consistency_input_files": {
+        "mapped_parameters": {
+          "hours_a": 2.0,
+          "hours_b": 1.0,
+          "material_a": 1.0,
+          "material_b": 2.0,
+          "profit_a": 40.0,
+          "profit_b": 30.0
+        },
+        "product_order": [
+          "A",
+          "B"
+        ],
+        "scenario_inputs_read": 11,
+        "statement_facts": [
+          "可为非负实数",
+          "40/30元",
+          "2/1小时",
+          "1/2千克",
+          "100小时、原料80千克",
+          "总收益最大化",
+          "不考虑需求上限、固定成本、整数或随机性",
+          "80、84、88、92、96、100、104、108、112、116、120小时"
+        ],
+        "status": "passed",
+        "units": [
+          "CNY/unit",
+          "hour/unit",
+          "kg/unit",
+          "hour",
+          "kg"
+        ]
+      },
+      "feasibility": {
+        "nonnegative_slack": [
+          40.0,
+          20.0
+        ],
+        "resource_slack": [
+          0.0,
+          0.0
+        ],
+        "status": "passed",
+        "tolerance": 1e-07,
+        "units": [
+          "hour",
+          "kg",
+          "unit"
+        ]
+      },
+      "objective": {
+        "recalculated": 2200.0,
+        "solver_objective_negated": 2200.0,
+        "status": "passed",
+        "tolerance": 1e-06,
+        "unit": "CNY"
+      },
+      "optimality": {
+        "abs_dgap": 0.0,
+        "dual_feasible": true,
+        "gap_tolerance": 1e-06,
+        "gap_unit": "CNY",
+        "status": "passed",
+        "vertex_consistent": true
+      }
+    }
+  },
+  "docker": {
+    "run_id": "hand-4b5d1f79d7ef4bb1ba591706b4fbaa93-minimal-4",
+    "image_id": "sha256:3ab4a48959ac924eb8fd18f515c2f54e66eaa34e85a4e6718513365e7fae02a8",
+    "status": "succeeded",
+    "exit_code": 0,
+    "cleanup": {
+      "removed": true
+    }
+  },
+  "independent_P1": {
+    "status": "PASS",
+    "receipt_sha256": "7ec079431e76ba291792e8edaac7aa0a3598ac150eed77797f189cdfd38f1d8e",
+    "snapshot_sha256": "e69e89ac6bb7bcb15794b5a08bb46007449fffeaf731eb0ef4dcc38cdaf507a4",
+    "checks": {
+      "execution": "PASS",
+      "input_output": "PASS",
+      "constraints": "PASS",
+      "numerics": "PASS",
+      "units": "PASS"
+    }
+  },
+  "history": {
+    "protected_files_unchanged": 117,
+    "original_review_and_operation_records_unchanged": true,
+    "model_version_unchanged": true,
+    "model_approval_repeated": false,
+    "result_approved": false,
+    "business_result_revision": 0,
+    "repeated_repair_created_events": 0
+  },
+  "tests": {
+    "runtime": {
+      "path": "tmp/three-hand-live-validation-20261114/operator-repair-runtime.xml",
+      "sha256": "d67d46eba7b2b6a13541a149f2e2b356f6e301c25a3e6bcf91771cfb9ba836e8",
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "repair_subset": {
+      "path": "tmp/three-hand-live-validation-20261114/operator-repair-focused.xml",
+      "sha256": "75c0788a648121af55aaa8af8eb272423a4bda4425f3e3cf1455933cceee7826",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "related_pure": {
+      "path": "tmp/three-hand-live-validation-20261114/operator-repair-pure.xml",
+      "sha256": "11c25ec11230e7c0930c4d63f27f50877760b35b6047999d7b2b8494195d6b14",
+      "tests": 68,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "extended_integrity": {
+      "path": "tmp/three-hand-live-validation-20261114/operator-repair-integrity.xml",
+      "sha256": "cfcacda9215bd9b3f11af13f5a245e51464b5e61b94b06a40cbdfcb1406282cd",
+      "tests": 68,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "docker_negative_tests": {
+    "path": "tmp/three-hand-live-validation-20261114/repair-negative-tests/report.json",
+    "status": "passed",
+    "cases": 6
+  },
+  "separate_legacy_failures": {
+    "status": "blocked_legacy_entrypoint",
+    "catalog_path": "D:\\big-third-up\\modelcrew\\runs\\algorithm-retrieval\\catalog.json",
+    "catalog_index_sha256": "4f88f1dc3a300fcccfc8b9d6ea06cd96ad330c1d1991526267b32a336baaeb53",
+    "current_index_sha256": "00be1c1f5e7b8e2f14740c5b96dbeba521389fa4b77704f975c0546c7cc9e1ea",
+    "entrypoint": "modelcrew.collaboration_retrieval.algorithm_context",
+    "new_runtime_entrypoint": "modelcrew.resource_routing.installed_algorithm_context",
+    "new_runtime_regression": "tests/test_resource_routing.py passed in operator-repair-pure.xml",
+    "action": "Preserved fail-closed hash check and frozen catalog; not rewritten as part of minimal coding repair",
+    "failures": [
+      "test_algorithm_context_preserves_conditions_locations_and_citations",
+      "test_uncovered_excluded_and_unknown_are_distinct",
+      "test_card_profiles_are_versioned_and_include_operational_limits"
+    ]
+  },
+  "remaining": [
+    "Full 11 scenarios and candidate figures",
+    "Actual full reproduction and P2",
+    "Real user result approval",
+    "Writing/W1/manuscript and figure decisions/export/W2",
+    "Legacy algorithm_context catalog/index binding repair",
+    "Rebuild and validate private distribution separately; F5 deferral remains"
+  ],
+  "source_files": [
+    {
+      "path": "src/modelcrew/hand_repair.py",
+      "sha256": "dc5ebb1c48f1eb11b839f24125697122bb1283d6a89c051d22eb1ab10c39f6bc"
+    },
+    {
+      "path": "src/modelcrew/workflow.py",
+      "sha256": "e0478b66638c0b2f2bd15a26eb7bbe23540859482f059bef6858cce832e03417"
+    },
+    {
+      "path": "src/modelcrew/api.py",
+      "sha256": "748e4c8035afbbbeedf1226c0d835f99080adde63f817b1120451364e0fc8d59"
+    },
+    {
+      "path": "scripts/run_hand.py",
+      "sha256": "06fe007f0bb175b3b52084b25ce7fe9cdaaf6182cca124b633965d34bd5716e3"
+    },
+    {
+      "path": "tests/test_hand_runtime.py",
+      "sha256": "834bcc3a39f970f6747494cf426389f25df68673967e247d9af39cc0f89ad7cb"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/docker-execution-progress.json",
+      "sha256": "39a0da3384d8fff5313cd128218ff82a37c361809f42b8a94ab13bbbf47c9e04"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/independent-p1-progress.json",
+      "sha256": "594ceedfc74bfacd4fb43dfbef53074bafbbd1bdaf7cdc360a74122ecab2ab54"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/independent-p1-review.json",
+      "sha256": "ef15b5f6a045e216004821e9f87840b33d05c8ce99a1edaa082d7bd1cb14693a"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/minimal-execution-receipt.json",
+      "sha256": "361782524442a4d8b5b67ee8e8a9fc0cea5cbc56b9e9921aeaf5813aa1aca946"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/minimal-repaired-result.json",
+      "sha256": "8b49506515b2b01c40b7cba0ac480a297a29a294b786d62d0d0c427b852839bd"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/minimal.py",
+      "sha256": "3221f5cade849f43e6a7abf9a28c4a1595bf4f0923b74af89f8df745c9a19f14"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/post-repair-runtime.json",
+      "sha256": "ce57a7100723f8897f3f089818f567fc14e37a29ea7419f5979fcb33446d27a2"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/protected-before.json",
+      "sha256": "e044a921f017a592bad45da1d4c1ef65ac3ee730bddd8991e0d4bdaab8c5c325"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/protected-history-verification.json",
+      "sha256": "3d951452ee99d9c0061945fc412625d63ddb17e64726ad7ce92c469f0f5006d7"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/repair-import-receipt.json",
+      "sha256": "73de886b0e614a040b3ff9ad29a943a07c9a2de3890e26fdd9766e4f8ed2e176"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/repair-request.json",
+      "sha256": "1c766131bf1ceccf8a2ecf65c581a851d1d7b70206357407778141299094960c"
+    },
+    {
+      "path": "runs/acceptance/production-allocation-live-20261114/coding-repair-v001/runtime-before.json",
+      "sha256": "c34130a0879d6a6124f90ee355466d20a80dc8fbc343af6aa5e9543d6d3131e4"
+    },
+    {
+      "path": "tmp/three-hand-live-validation-20261114/repair-negative-tests/report.json",
+      "sha256": "773a2eceae3b456d2f81c84ed09a3134cbd04794db6b4555bb5bc45d20a21eb6"
+    },
+    {
+      "path": "tmp/three-hand-live-validation-20261114/legacy-algorithm-context-observation.json",
+      "sha256": "ae7d665dabc96c50ada3c39767c734af12832c050fede69b28be53842958aa26"
+    }
+  ]
+}

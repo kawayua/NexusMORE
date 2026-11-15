@@ -1,4 +1,5 @@
 """Feedback repair of a rejected generated v2 implementation, preserving parent evidence."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,hashlib,time,re,ast,sys
 from datetime import datetime,timezone
@@ -6,7 +7,7 @@ import httpx
 from generate_2024_a_q1 import config
 ROOT=Path(__file__).resolve().parents[1]
 def main():
- c=config();key=c['MODELCREW_LLM_API_KEY'];parent=sorted((ROOT/'stage-b/runs').glob('solver-v2-*'))[-1]
+ c=config();key=c['MODELCREW_LLM_API_KEY'];parent=sorted((asset_path(ROOT,'stage-b/runs')).glob('solver-v2-*'))[-1]
  issues='''静态审阅拒绝当前代码，请修订全部问题后仅输出完整Python代码，不执行。
 F1 THETA_I错误为2π*(16+1)，必须为2π*16=32π，初始坐标必须与明确常量[8.8,0]核对，不用同一错误公式自证。
 F2 head_theta用F0-F(theta)=t遗漏B，必须B*(F0-F(theta))=HEAD_SPEED*t。quad和闭式核验都必须使用B*sqrt(1+theta²)和B*(F0-F)，单位米，不能同错自证。
@@ -19,7 +20,7 @@ F8 可删无用函数、重复导数重写及多余全时刻差分循环，代�
 保留契约要求、固定物理参数、只读输入/只写output、自身__file__用于代码哈希。不要给出硬编码误差结果。参考答案与论文未提供。'''
  review={'code_sha256':hashlib.sha256((parent/'generated_solver.py').read_bytes()).hexdigest(),'security_review':{'passed':True,'scope':'Manual static review: permitted input/output and code-self-hash only.'},'math_review':{'passed':False,'findings':issues},'decision':'rejected_before_execution'}
  (parent/'review.json').write_text(json.dumps(review,ensure_ascii=False,indent=2),encoding='utf-8');m=json.loads((parent/'metadata.json').read_text(encoding='utf-8'));m['status']='rejected_at_math_review';(parent/'metadata.json').write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding='utf-8')
- run=ROOT/'stage-b/runs'/datetime.now(timezone.utc).strftime('solver-v2-%Y%m%dT%H%M%S%fZ');run.mkdir()
+ run=asset_path(ROOT,'stage-b/runs')/datetime.now(timezone.utc).strftime('solver-v2-%Y%m%dT%H%M%S%fZ');run.mkdir()
  (run/'contract.json').write_bytes((parent/'contract.json').read_bytes());(run/'feedback.txt').write_text(issues,encoding='utf-8')
  req=json.loads((parent/'request.json').read_text(encoding='utf-8'))
  req['messages'] +=[{'role':'assistant','content':(parent/'response.md').read_text(encoding='utf-8')},{'role':'user','content':issues}]

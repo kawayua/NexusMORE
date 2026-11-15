@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path
 import copy,json
 from pathlib import Path
 root=Path.cwd()
@@ -24,8 +25,8 @@ variants=[]
 for kind,obs in observations.items():
  props=copy.deepcopy(base);props['template_id']={'const':kind};props['observed']=obs
  entry=obj(props);variants.append(entry);registry['templates'][kind]={'version':'1.0.0','schema':entry}
-(root/'contracts/input-templates-1.0.0.json').write_text(json.dumps(registry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-schema=json.loads((root/'contracts/model-contract-1.0.0.schema.json').read_text())
+(asset_path(root,'contracts/input-templates-1.0.0.json')).write_text(json.dumps(registry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+schema=json.loads((asset_path(root,'contracts/model-contract-1.0.0.schema.json')).read_text())
 schema['properties']['schema_version']={'const':'1.1.0'};schema['$id']='https://modelcrew.local/schemas/model-contract/1.1.0';schema['title']='Model Contract v1.1.0'
 schema['properties']['inputs']['items']['properties']['structure']={'oneOf':variants};schema['properties']['inputs']['items']['required'].append('structure')
-(root/'contracts/model-contract-1.1.0.schema.json').write_text(json.dumps(schema,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(asset_path(root,'contracts/model-contract-1.1.0.schema.json')).write_text(json.dumps(schema,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

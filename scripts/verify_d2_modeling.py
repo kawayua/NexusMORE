@@ -3,6 +3,7 @@
 Existing baseline is intentionally supplied. Development guidance is constructed
 by the verification operator, not attributed to an actual user discussion.
 """
+from modelcrew.project_assets import asset_path
 import argparse
 import json
 from pathlib import Path
@@ -22,8 +23,8 @@ def verify(task, request_id, recheck_run=None, rationale_file=None):
         w.setup()
         existing=w.db.execute('SELECT * FROM mc_tasks WHERE id=%s',(task,)).fetchone()
         if existing is None:
-            contract=json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'))
-            package=json.loads((ROOT/'stage-b-plus/examples/valid-bench-dragon.json').read_text(encoding='utf-8'))
+            contract=json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'))
+            package=json.loads((asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json')).read_text(encoding='utf-8'))
             w.create(task,contract,project='stage-d2-development',math_package=package)
         elif existing['project_id']!='stage-d2-development':
             raise ValueError('Refusing to use a task outside the D2 development project')

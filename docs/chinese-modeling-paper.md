@@ -12,7 +12,7 @@
 
 `modelcrew.mathematics.render` 与 `scripts.build_cplus_export` 仍负责数学交接和工程编译探针，不作为论文生成器。其历史英文输出不是论文风格模板。新的论文内容由 math-modeling 论文手与中文数学建模模板约束，math-reasoning 仅参与公式推导、必要证明及公式核对，不能主导论文大纲、语言或排版。
 
-正式规范位于 [writer-instructions.md](../resources/paper/writer-instructions.md)，机器规则位于 [chinese-modeling-policy.json](../resources/paper/chinese-modeling-policy.json)，原文/模板快照与来源记录位于 resources/paper/reference 和 [provenance.json](../resources/paper/provenance.json)。复制的 SKILL.md 是评估参考，不是项目运行时执行指令。用户要求的“中文、先 MD 审阅”优先于外部技能默认 Word 交付方式；本次没有核验某届官方提交格式。
+正式规范位于 [writer-instructions.md](../src/modelcrew/resources/paper/writer-instructions.md)，机器规则位于 [chinese-modeling-policy.json](../src/modelcrew/resources/paper/chinese-modeling-policy.json)，原文/模板快照与来源记录位于 resources/paper/reference 和 [provenance.json](../archive/research/knowledge/paper-provenance.json)。复制的 SKILL.md 是评估参考，不是项目运行时执行指令。用户要求的“中文、先 MD 审阅”优先于外部技能默认 Word 交付方式；本次没有核验某届官方提交格式。
 
 正文组织为标题、摘要、关键词、问题重述、问题分析、模型假设、符号说明、模型建立、模型求解、结果分析、误差分析与模型检验、模型评价与推广、结论和参考文献。正文重心是如何回答题目、如何求解、得到什么结果、如何验证。较长证明放附录；内部 JSON 快照、检查点、编译日志和哈希不进入论文。
 

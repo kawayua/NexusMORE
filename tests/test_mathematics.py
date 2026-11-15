@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path,local_history
 import copy,json
 import pytest
 from jsonschema import Draft202012Validator
@@ -6,23 +7,23 @@ from modelcrew.contracts import digest,validate
 from modelcrew.mathematics import validate_package,classify_change,render,semantic_hash,MathematicsError
 
 @pytest.fixture
-def contract():return json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'))
+def contract():return json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'))
 @pytest.fixture
-def package():return json.loads((ROOT/'stage-b-plus/examples/valid-bench-dragon.json').read_text(encoding='utf-8'))
+def package():return json.loads((asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json')).read_text(encoding='utf-8'))
 
 @pytest.mark.parametrize('name',['bench-dragon','resource'])
 def test_valid_formal_examples(contract,name):
-    p=json.loads((ROOT/f'stage-b-plus/examples/valid-{name}.json').read_text(encoding='utf-8'))
-    if name=='resource':contract=json.loads((ROOT/'stage-b-plus/examples/resource-contract.json').read_text(encoding='utf-8'))
+    p=json.loads((asset_path(ROOT,f'stage-b-plus/examples/valid-{name}.json')).read_text(encoding='utf-8'))
+    if name=='resource':contract=json.loads((asset_path(ROOT,'stage-b-plus/examples/resource-contract.json')).read_text(encoding='utf-8'))
     validate(contract)
     assert validate_package(p,contract)==p
     for key,stem in [('method_selection','method-selection'),('dossier','mathematical-dossier')]:
-        schema=json.loads((ROOT/f'contracts/{stem}-1.0.0.schema.json').read_text(encoding='utf-8'))
+        schema=json.loads((asset_path(ROOT,f'contracts/{stem}-1.0.0.schema.json')).read_text(encoding='utf-8'))
         Draft202012Validator(schema).validate(p[key])
 
 @pytest.mark.parametrize('name',['symbol','dimension','proof-premise','contract-link'])
 def test_invalid_examples(contract,name):
-    p=json.loads((ROOT/f'stage-b-plus/examples/invalid-{name}.json').read_text(encoding='utf-8'))
+    p=json.loads((asset_path(ROOT,f'stage-b-plus/examples/invalid-{name}.json')).read_text(encoding='utf-8'))
     with pytest.raises(MathematicsError):validate_package(p,contract)
 
 @pytest.mark.parametrize('mutation',[
@@ -70,7 +71,7 @@ def test_old_contract_hash_unchanged(contract):
     validate(contract)
     assert digest(contract)=='44e23c6a10b7581d82a2b2697159e7aaee1625d8486cb177bd541a9a36d2e61e'
     for version in ['1.0.0','1.1.0']:
-        original=json.loads((ROOT/f'contracts/model-contract-{version}.schema.json').read_text(encoding='utf-8'))
+        original=json.loads((asset_path(ROOT,f'contracts/model-contract-{version}.schema.json')).read_text(encoding='utf-8'))
         assert 'mathematical_package' not in original.get('properties',{})
 
 @pytest.mark.parametrize('mutation',[

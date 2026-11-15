@@ -1,0 +1,142 @@
+{
+  "workflow_version": "1.3.0",
+  "default_language": "zh-CN",
+  "first_delivery": "markdown",
+  "must_load": [
+    "resources/algorithms/index.md",
+    "resources/paper/writer-instructions.md",
+    "resources/paper/chinese-modeling-policy.json",
+    "docs/scientific-figure-contract.md",
+    "docs/three-hand-collaboration.md",
+    "resources/paper/reference/chapter-template.md",
+    "resources/paper/reference/writing-guidelines.md",
+    "resources/paper/reference/paper-format.md",
+    "resources/paper/reference/latex-format.md",
+    "resources/paper/templates/chinese-research/main.tex"
+  ],
+  "math_reasoning_scope": "equation derivation, proof and formula checking only",
+  "steps": [
+    "read_algorithm_index_and_problem_sources",
+    "load_matching_algorithm_sections",
+    "verify_model_and_results_approved",
+    "plan_claims_and_candidate_figures",
+    "write_chinese_modeling_markdown",
+    "run_genre_evidence_and_figure_checks",
+    "ask_user_to_review_manuscript_and_discuss_figures",
+    "freeze_explicitly_approved_manuscript_and_selected_figures",
+    "export_from_same_source_and_visually_review"
+  ],
+  "stage_owners": {
+    "A+": "plan question-specific evidence views, representative times and geometry fidelity",
+    "B+": "bind text/figure decisions and version invalidation; preserve explicit user approvals",
+    "C+": "produce candidates, Markdown and check reports; enforce pre-export review",
+    "D5": "integrate writing hand with W1, Chinese Markdown, separate manuscript/figure review and resume",
+    "E": "writing-hand assembly/export integration and independent W2 after explicit approvals",
+    "D1": "define three primary handoffs, internal responsibility labels and independent QA contexts",
+    "D2": "integrate modeling hand with planning/research/modeling steps, M1 and user model approval",
+    "D3/D4": "integrate coding hand, controlled execution, P1/P2 and user result approval"
+  },
+  "figure_selection_requires_explicit_user_approval": true,
+  "time_dependent_geometry": {
+    "enabled_when_relevant": true,
+    "choose_times_from_problem_or_user": true,
+    "default_selection": "start, representative intermediate times, end; record rationale",
+    "body_dimensions_only_from_verified_inputs": true,
+    "overview_and_local_detail": true,
+    "same_overview_scale_across_times": true,
+    "schematic_not_collision_evidence": true
+  },
+  "review_invalidation": {
+    "add_unselected_candidates": "preserve unchanged manuscript approval; new candidate selection remains pending",
+    "change_manuscript_or_embedded_figures": "new manuscript review required",
+    "change_final_selection_or_figure_bytes": "new figure-selection approval required"
+  },
+  "limits": "Three-hand organization is declared and loaded as context; actual primary-agent and independent-QA workflow nodes remain Stage D implementation. Existing manuscript/figure approvals and single-paper exports are preserved.",
+  "collaboration": {
+    "architecture": "three_primary_agents_with_independent_quality_checks",
+    "primary_agents": [
+      {
+        "id": "modeling",
+        "name_zh": "建模手",
+        "responsibility_labels": [
+          "Planner",
+          "Researcher",
+          "Modeler"
+        ]
+      },
+      {
+        "id": "coding",
+        "name_zh": "代码手",
+        "responsibility_labels": [
+          "Coder"
+        ]
+      },
+      {
+        "id": "writing",
+        "name_zh": "论文手",
+        "responsibility_labels": [
+          "Writer"
+        ]
+      }
+    ],
+    "quality_checks": {
+      "mode": "temporary_read_only_independent_calls",
+      "resident_business_agents": false,
+      "gates": {
+        "M1": "Validator",
+        "P1": "Reviewer",
+        "P2": "Reviewer",
+        "W1": "Reviewer",
+        "W2": "Reviewer"
+      },
+      "author_context_must_not_review_own_artifact": true,
+      "reviewer_must_not_modify_authoritative_artifact": true
+    },
+    "orchestrator": "programmatic_routing_and_state_management_not_fourth_primary_agent",
+    "implementation_status": "design_and_context_configuration_updated_runtime_agent_nodes_pending_stage_D"
+  },
+  "layout_requirements": {
+    "stage": "E0_before_formal_typesetting",
+    "read_actual_files_and_record_hashes": true,
+    "template_priority": [
+      "user_provided_current_official_template",
+      "verified_current_official_template",
+      "bundled_chinese_research_baseline"
+    ],
+    "preserve_approved_content_and_figures": true,
+    "baseline_is_not_official_compliance": true,
+    "acceptance": [
+      "template_read_log_and_hashes",
+      "format_requirement_mapping",
+      "real_compile_and_resolved_references",
+      "editable_equations_for_docx",
+      "continuous_figure_table_equation_references",
+      "rendered_page_size_fonts_margins_and_page_counts",
+      "page_by_page_visual_review",
+      "independent_W2",
+      "full_paper_abstract_and_keywords_on_first_page_body_on_second",
+      "one_global_symbol_table_without_question_subtables_and_no_unresolved_symbol_conflicts"
+    ],
+    "abstract_pagination": {
+      "source": "user_explicit_requirement_2026-11-10",
+      "scope": "full_paper_title_abstract_and_keywords",
+      "max_pages": 1,
+      "body_starts_new_page": true,
+      "merge_question_abstracts_by_rewriting": true,
+      "shrink_fonts_to_fit": false,
+      "verify_actual_render": [
+        "latex_pdf",
+        "native_word_pdf"
+      ]
+    },
+    "global_symbol_table": {
+      "policy": "resources/paper/chinese-modeling-policy.json#symbol_table",
+      "one_global_section_and_logical_table": true,
+      "per_question_subtables_forbidden": true,
+      "conflicts_require_explicit_mapping": true,
+      "check_full_text_consistency": true
+    }
+  },
+  "paper_reference_version": "1.0.0",
+  "paper_reference_authorship": "NexusMORE independently authored private-development research baseline; not an official competition template"
+}

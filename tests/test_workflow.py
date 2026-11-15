@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path,local_history
 import copy,json,os,subprocess,sys,uuid
 from concurrent.futures import ThreadPoolExecutor
 import pytest
@@ -5,7 +6,7 @@ from modelcrew.workflow import Workflow,WorkflowError
 from modelcrew.config import database_url,ROOT
 
 @pytest.fixture
-def example():return json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8'))
+def example():return json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8'))
 @pytest.fixture
 def task(example):
     task='test-'+uuid.uuid4().hex
@@ -124,7 +125,7 @@ def fake_validated_solver(monkeypatch):
     def fake(run,contract):
         return {'passed':True,'test_only':True},[{'path':'TEST_ONLY_NOT_REAL_ARTIFACT','sha256':'0'*64,'role':'simulated_validator_for_transaction_test'}]
     monkeypatch.setattr(solver_validation,'validate_run',fake)
-    return ROOT/'stage-b/runs'/('simulated-solver-'+uuid.uuid4().hex)
+    return asset_path(ROOT,'stage-b/runs')/('simulated-solver-'+uuid.uuid4().hex)
 
 def test_solver_attach_requires_current_model_approval(task,fake_validated_solver):
     with Workflow() as w:
@@ -159,7 +160,7 @@ def test_solver_attachment_validation_failure_keeps_pending_fixture(task,monkeyp
     monkeypatch.setattr(solver_validation,'validate_run',failed)
     with Workflow() as w:
         before=act(w,task)
-        with pytest.raises(solver_validation.ResultError):w.attach_solver_result(task,version=1,run_dir=ROOT/'stage-b/runs/bad-simulated-test')
+        with pytest.raises(solver_validation.ResultError):w.attach_solver_result(task,version=1,run_dir=asset_path(ROOT,'stage-b/runs/bad-simulated-test'))
         after=w.inspect(task)
         assert after['task']['execution_id']==before['task']['execution_id']
         assert after['task']['result_revision']==1 and not after['task']['result_approved']
@@ -221,7 +222,7 @@ def test_restore_creates_new_version_and_replays_after_crash(task,example):
 
 def test_restore_refuses_changed_original_inputs(example):
     from modelcrew.inputs import file_hash
-    folder=ROOT/'stage-b/runs'/('restore-input-'+uuid.uuid4().hex);folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/('restore-input-'+uuid.uuid4().hex);folder.mkdir(parents=True)
     path=folder/'input.txt';path.write_text('TEST_ONLY original',encoding='utf-8')
     c=copy.deepcopy(example);c['inputs']=[{**c['inputs'][0],'path':str(path),'sha256':file_hash(path)}]
     task='test-restore-input-'+uuid.uuid4().hex
@@ -294,7 +295,7 @@ def test_interpretation_rechecks_artifacts_at_approval(task,monkeypatch):
 def test_recorded_artifact_remains_available_when_source_is_overwritten(task):
     from modelcrew.inputs import file_hash
     from modelcrew.reviews import artifact_status
-    folder=ROOT/'stage-b/runs'/('entry-artifact-'+uuid.uuid4().hex);folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/('entry-artifact-'+uuid.uuid4().hex);folder.mkdir(parents=True)
     p=folder/'code.py';p.write_text('# TEST_ONLY '+uuid.uuid4().hex,encoding='utf-8')
     artifact={'path':str(p),'sha256':file_hash(p),'role':'code'}
     kwargs=dict(version=1,kind='code',text='TEST_ONLY preserved source',actor='TEST_SIMULATED_USER',request_id='code-snapshot',artifacts=[artifact])
@@ -308,7 +309,7 @@ def test_recorded_artifact_remains_available_when_source_is_overwritten(task):
 def test_manifest_backend_selected_and_resumed_in_fresh_cli(example):
     from modelcrew.contracts import digest
     from modelcrew.inputs import file_hash
-    folder=ROOT/'stage-b/runs'/('manifest-test-'+uuid.uuid4().hex);folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/('manifest-test-'+uuid.uuid4().hex);folder.mkdir(parents=True)
     artifact=folder/'fixed.json';artifact.write_text('{"TEST_ONLY":true}',encoding='utf-8')
     manifest=folder/'manifest.json';manifest.write_text(json.dumps({'contract_sha256':digest(example),'artifacts':[{'path':str(artifact),'sha256':file_hash(artifact),'role':'fixed_fixture'}],'description':'TEST_ONLY fixture'}),encoding='utf-8')
     config={'manifest_path':str(manifest),'manifest_sha256':file_hash(manifest)};task='test-manifest-'+uuid.uuid4().hex
@@ -428,7 +429,7 @@ def test_backend_recovery_query_resolves_unknown_without_second_dispatch(example
 
 def test_manifest_contract_mismatch_records_failure_and_no_result(example):
     from modelcrew.inputs import file_hash
-    folder=ROOT/'stage-b/runs'/('bad-manifest-'+uuid.uuid4().hex);folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/('bad-manifest-'+uuid.uuid4().hex);folder.mkdir(parents=True)
     path=folder/'manifest.json';path.write_text(json.dumps({'contract_sha256':'0'*64,'artifacts':[],'description':'TEST_ONLY wrong binding'}),encoding='utf-8')
     task='test-bad-manifest-'+uuid.uuid4().hex
     with Workflow() as w:
@@ -441,7 +442,7 @@ def test_manifest_contract_mismatch_records_failure_and_no_result(example):
 def test_reviewed_run_backend_preserves_solver_mode_and_requires_validator(example,monkeypatch):
     from modelcrew import solver_validation
     from modelcrew.inputs import file_hash
-    folder=ROOT/'stage-b/runs'/('reviewed-backend-test-'+uuid.uuid4().hex);folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/('reviewed-backend-test-'+uuid.uuid4().hex);folder.mkdir(parents=True)
     path=folder/'TEST_ONLY.json';path.write_text('{"test":true}',encoding='utf-8')
     calls=[]
     def validate_existing(run,contract):
@@ -488,7 +489,7 @@ def test_D4_submission_keeps_user_gate_and_rechecks_P2_on_result_approval(task,m
     with Workflow() as w:
         pending=act(w,task,defer_execution=True)
         assert pending['execution'] is None
-        state=w.attach_solver_result(task,version=1,run_dir=ROOT/'stage-d/runs/full'/name)
+        state=w.attach_solver_result(task,version=1,run_dir=asset_path(ROOT,'stage-d/runs/full')/name)
         assert str(state['task']['execution_id'])==execution_id and state['task']['result_revision']==1
         assert state['task']['phase']=='WAITING_RESULT_APPROVAL' and not state['task']['result_approved']
         assert state['result']['review']['kind']=='d4_P2_review'
@@ -509,7 +510,7 @@ def test_D4_failed_validation_cannot_create_result(task,monkeypatch):
     with Workflow() as w:
         act(w,task,defer_execution=True)
         with pytest.raises(ValueError,match='P2 PASS'):
-            w.attach_solver_result(task,version=1,run_dir=ROOT/'stage-d/runs/full'/('simulated-D4-fail-'+uuid.uuid4().hex))
+            w.attach_solver_result(task,version=1,run_dir=asset_path(ROOT,'stage-d/runs/full')/('simulated-D4-fail-'+uuid.uuid4().hex))
         assert w.task(task)['result_revision']==0 and w.inspect(task)['execution'] is None
 
 def test_pending_code_creation_is_pending_without_fixture_dispatch(example):

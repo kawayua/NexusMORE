@@ -1,4 +1,5 @@
 """Real PostgreSQL + HTTP workflow using new fixed evidence and simulated actors."""
+from modelcrew.project_assets import asset_path,local_history
 import copy
 import json
 import uuid
@@ -16,8 +17,8 @@ def test_http_workflow_preserves_gates_and_versions():
     key = uuid.uuid4().hex
     project = 'test-api-' + key
     task = 'test-api-task-' + key
-    contract = json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8-sig'))
-    folder = ROOT/'stage-c/runs'/key
+    contract = json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8-sig'))
+    folder = asset_path(ROOT,'stage-c/runs')/key
     folder.mkdir(parents=True)
     artifact = folder/'fixed.json'
     artifact.write_text('{"TEST_ONLY":true}', encoding='utf-8')

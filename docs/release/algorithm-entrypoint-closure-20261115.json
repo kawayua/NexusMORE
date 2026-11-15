@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0.0",
+  "completed_at": "2026-11-15T00:06:54.491757+08:00",
+  "status": "passed",
+  "scope": "New/default algorithm entrypoints and explicit legacy preservation; developer source environment",
+  "default_backend": "installed_literal_lookup",
+  "canonical_algorithms": 113,
+  "categories": 7,
+  "geometry_supplement": true,
+  "shared_context": "modelcrew.algorithm_lookup.builtin_context",
+  "MCP_entrypoint": "algorithm_search",
+  "legacy_selection": "explicit AlgorithmRetriever(config=...), MODELCREW_ALGORITHM_CONFIG/settings or explicit catalog_path; no automatic loading/fallback",
+  "default_embedding_or_qdrant_required": false,
+  "113_algorithm_vector_semantic_index_built": false,
+  "citations": {
+    "builtin": "builtin_project_reference",
+    "external": "external_reference",
+    "old_archive_bytes_changed": false
+  },
+  "tests": {
+    "related_regression": {
+      "path": "tmp/algorithm-entrypoint-closure-20261114/final-entrypoint-regression.xml",
+      "sha256": "65b20e0174889b9dfb372f0479f20335aeb06f2c23a2867ba44ecafe1ab6ecdc",
+      "tests": 206,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 205,
+      "skip_reasons": [
+        {
+          "name": "test_link_directory_rejected_when_supported",
+          "reason": "OS does not permit unprivileged symbolic links"
+        }
+      ]
+    },
+    "workflow_integration": {
+      "path": "tmp/algorithm-entrypoint-closure-20261114/workflow-regression.xml",
+      "sha256": "69c8f07d57d45e404797f94f60fb347178dc179819251f0f6de811b9ded2da2d",
+      "tests": 41,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 41,
+      "skip_reasons": []
+    },
+    "complete_id_and_assets": {
+      "path": "tmp/algorithm-entrypoint-closure-20261114/final-full-id-and-assets.xml",
+      "sha256": "b395ea88999769c4504ae0cf702d797efbbcd334c34631d04b1036d96e11b67a",
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 30,
+      "skip_reasons": []
+    }
+  },
+  "test_groups_overlap": true,
+  "all_113_canonical_ids_resolved": true,
+  "real_final_validation": {
+    "implementation_sha256": {
+      "src/modelcrew/algorithm_lookup.py": "f7755d7dd9903c1b968bd5fdcdb4dfda554ab92e73c73dd390446a07cece677b",
+      "src/modelcrew/algorithm_retrieval.py": "e47d84941ff0d9e708b448e32e4f8d8f9e8556bf7ccd86e2e570164c215ea91f",
+      "src/modelcrew/collaboration_retrieval.py": "90d637f7e8b9cadd0a5709f64b98165079814aead54b66e6ff5bb4728a46c76c",
+      "src/modelcrew/paper_search_mcp.py": "30eb722fc6787befd3522b56662aaf4d5c1ed2744d6c3c5de9fa02c314defa81",
+      "src/modelcrew/mcp_client.py": "9db7dd28ee27b36a4d438921bb21859b41764fef499e37375b0fa6196d04e8b9",
+      "src/modelcrew/web_references.py": "a6721859f33be47208c095276afc7527fc88fb7448e7a8e8e76310c193d29d3d",
+      "src/modelcrew/mcp_workflow.py": "5647a1712d58a1fa285b34a998d00974eed27d5f4883fbefd59b534e81602eda"
+    },
+    "status": "passed",
+    "checks": [
+      {
+        "id": "installed_optimization",
+        "passed": true,
+        "algorithm": "lp"
+      },
+      {
+        "id": "installed_prediction",
+        "passed": true,
+        "algorithm": "linear-regression"
+      },
+      {
+        "id": "installed_evaluation",
+        "passed": true,
+        "algorithm": "ahp"
+      },
+      {
+        "id": "installed_graph",
+        "passed": true,
+        "algorithm": "dfs"
+      },
+      {
+        "id": "installed_statistics",
+        "passed": true,
+        "algorithm": "descriptive"
+      },
+      {
+        "id": "installed_simulation",
+        "passed": true,
+        "algorithm": "monte-carlo"
+      },
+      {
+        "id": "installed_machine-learning",
+        "passed": true,
+        "algorithm": "linear-regression"
+      },
+      {
+        "id": "explicit_noncontinuous_lp_excluded",
+        "passed": true
+      },
+      {
+        "id": "false_geometry_premise_excluded",
+        "passed": true
+      },
+      {
+        "id": "unknown_query_empty",
+        "passed": true
+      },
+      {
+        "id": "archive_recovery_same_binding",
+        "passed": true
+      },
+      {
+        "id": "real_workflow_mcp_and_reference_binding",
+        "passed": true
+      },
+      {
+        "id": "idempotent_no_extra_mcp",
+        "passed": true
+      },
+      {
+        "id": "engineering_no_approval_or_solver",
+        "passed": true
+      },
+      {
+        "id": "production_task_unchanged",
+        "passed": true
+      }
+    ],
+    "actual_stdio_calls": 11,
+    "actual_workflow_mcp_calls": 1,
+    "categories": 7,
+    "new_model_calls": 0,
+    "new_solver_runs": 0,
+    "user_approvals_created": 0,
+    "embedding_or_vector_index_used": false,
+    "production_phase": "GENERATE_FULL",
+    "scope": "Installed literal references, actual stdio/archive/real PostgreSQL idempotency; not semantic ranking, modeling review or full solving"
+  },
+  "real_validation_evidence": "tmp/algorithm-entrypoint-closure-20261114/final-live-validation/verification.json",
+  "earlier_real_validation": {
+    "path": "tmp/algorithm-entrypoint-closure-20261114/live-entrypoint-validation/verification.json",
+    "stdio_calls": 10,
+    "workflow_mcp_calls": 1
+  },
+  "historical_protection": {
+    "status": "passed",
+    "files_unchanged": 173,
+    "old_catalog_config_and_P1_rewritten": false
+  },
+  "production_continuity": {
+    "status": "passed",
+    "state": {
+      "run_id": "4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93",
+      "task_id": "production-allocation-live-20261114",
+      "version": 2,
+      "hand": "coding",
+      "phase": "GENERATE_FULL",
+      "binding": {
+        "task_id": "production-allocation-live-20261114",
+        "execution_id": "0d048340-f0f4-491f-bcf4-c638ebc0951a",
+        "contract_sha256": "1e07c64330f64a47f56ca85bd4c5e6f1846a7debe996666c7741e607f3badf16",
+        "result_revision": 1,
+        "contract_version": 2
+      },
+      "folder": "runs/hands/4b5d1f79-d7ef-4bb1-ba59-1706b4fbaa93",
+      "attempt": 4,
+      "rework_target": null,
+      "failure_domain": null,
+      "approvals_created_by_agent": false
+    },
+    "automatic_retries": 3,
+    "model_approved": true,
+    "result_approved": false,
+    "old_P1_receipt_unchanged": true,
+    "full_generation_started": false
+  },
+  "user_approvals_created": 0,
+  "new_model_calls": 0,
+  "new_solver_runs": 0,
+  "package_resources": {
+    "status": "passed",
+    "files": 227
+  },
+  "repository_layout": {
+    "status": "passed",
+    "issues": 0
+  },
+  "distribution_rebuilt": false,
+  "F6_6_complete": false,
+  "release_ready": false,
+  "source_files": [
+    {
+      "path": "src/modelcrew/algorithm_lookup.py",
+      "sha256": "f7755d7dd9903c1b968bd5fdcdb4dfda554ab92e73c73dd390446a07cece677b"
+    },
+    {
+      "path": "src/modelcrew/algorithm_retrieval.py",
+      "sha256": "e47d84941ff0d9e708b448e32e4f8d8f9e8556bf7ccd86e2e570164c215ea91f"
+    },
+    {
+      "path": "src/modelcrew/collaboration_retrieval.py",
+      "sha256": "90d637f7e8b9cadd0a5709f64b98165079814aead54b66e6ff5bb4728a46c76c"
+    },
+    {
+      "path": "src/modelcrew/modeling_hand.py",
+      "sha256": "0ae64bb89aad954cd2e90ead684dccaa1ddf3aaec712ecbe85f67b8d03ca6b79"
+    },
+    {
+      "path": "src/modelcrew/paper_search_mcp.py",
+      "sha256": "30eb722fc6787befd3522b56662aaf4d5c1ed2744d6c3c5de9fa02c314defa81"
+    },
+    {
+      "path": "src/modelcrew/mcp_client.py",
+      "sha256": "9db7dd28ee27b36a4d438921bb21859b41764fef499e37375b0fa6196d04e8b9"
+    },
+    {
+      "path": "src/modelcrew/web_references.py",
+      "sha256": "a6721859f33be47208c095276afc7527fc88fb7448e7a8e8e76310c193d29d3d"
+    },
+    {
+      "path": "src/modelcrew/mcp_workflow.py",
+      "sha256": "5647a1712d58a1fa285b34a998d00974eed27d5f4883fbefd59b534e81602eda"
+    },
+    {
+      "path": "src/modelcrew/user_workspace.py",
+      "sha256": "7d8a3b8e7464135d14f4b97c067007e492665ccf8d832f8229b4392cd13eb494"
+    },
+    {
+      "path": "src/modelcrew/retrieval_paths.py",
+      "sha256": "7ee052b2556bfba3c978c3a0140d15d3c7e554a621664307002dd9373d73e115"
+    },
+    {
+      "path": "scripts/index_algorithms.py",
+      "sha256": "962b307a92fa46c38a7047b9ce02ee816db4af8b7ec937b6b1a2d8ec6448fe71"
+    },
+    {
+      "path": "scripts/prepare_algorithm_catalog.py",
+      "sha256": "236376438067668101ea5a5510bfa0e8ff6cfee6e0488458a2c9fc864e0ff4fe"
+    },
+    {
+      "path": "scripts/verify_cplus_retrieval.py",
+      "sha256": "e36b0f9f0fec2773a14294d78e1fa9b84abbbff66b8703ad66c1d156edee392f"
+    },
+    {
+      "path": "scripts/verify_cplus_workflow.py",
+      "sha256": "27c22688f5118dc8052e372a28f8881bb565ae3039cc7e07c69cb19dfdb02eeb"
+    },
+    {
+      "path": "scripts/verify_d1_collaboration.py",
+      "sha256": "0e3ea7eda470f71aa89481761333a24c04dfcedb8a535b2f3fd9eaa20d765f89"
+    },
+    {
+      "path": "scripts/validate_algorithm_entrypoints.py",
+      "sha256": "f58bacf62fe9a1a9e479d5203361c6538f0587ac34f97607ba63466aca54c8b0"
+    },
+    {
+      "path": "tests/test_algorithm_lookup.py",
+      "sha256": "71cd2cda18a5bf0b83bf15ca5ee5e0f479a900f7625714a8e423b2e2e86ba5d6"
+    },
+    {
+      "path": "tests/test_collaboration.py",
+      "sha256": "0d8316ba9dfde844ab5668877044c753f5d7293068f8f3c4d5a2cd2350ddcc11"
+    },
+    {
+      "path": "tests/test_cplus.py",
+      "sha256": "1f72a3ae11e9bf7a7e080c57a8896db8c9a3204c3932f36cad7260c71d4a93d4"
+    },
+    {
+      "path": "tests/test_mcp_workflow.py",
+      "sha256": "50f0e8e100e3f6cbbd5ba9a9b4998bc237a69083b6ea804cebd218dac4265917"
+    }
+  ],
+  "next_business_step": "Full 11 scenarios and 9 candidate figures, full-page PDF checks, actual reproduction and independent P2; then real user result confirmation",
+  "deferred": [
+    "113-algorithm semantic vector indexing",
+    "Private distribution rebuild and validation",
+    "Harness end-to-end and F5 deferred licensing checks"
+  ]
+}

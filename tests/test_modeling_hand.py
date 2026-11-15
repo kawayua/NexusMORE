@@ -1,4 +1,5 @@
 """Pure parsing and model-transport boundaries; no paid calls."""
+from modelcrew.project_assets import asset_path,local_history
 import copy
 import json
 from pathlib import Path
@@ -11,12 +12,12 @@ from modelcrew.config import ROOT
 from modelcrew.model_client import JsonModel, ModelCallError
 from modelcrew.modeling_hand import (Edit, Plan, Proposal, SourceDecision, TaskNode,
     apply_edits, graph_check, pointer, validate_decisions)
-from modelcrew.collaboration_retrieval import algorithm_context
+from modelcrew.resource_routing import installed_algorithm_context as algorithm_context
 
 
 def baseline():
-    return (json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8')),
-            json.loads((ROOT/'stage-b-plus/examples/valid-bench-dragon.json').read_text(encoding='utf-8')))
+    return (json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8')),
+            json.loads((asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json')).read_text(encoding='utf-8')))
 
 
 @pytest.mark.parametrize('path', ['contract-v2-snapshot.json'])
@@ -116,3 +117,40 @@ def test_invalid_modeling_API_requests_never_reach_model(extra):
     with TestClient(create_app(Guard)) as client:
         reply=client.post('/tasks/q/modeling/runs',json={**{'version':1,'actor':'test','request_id':'id','guidance':'guidance'},**extra})
         assert reply.status_code==422
+
+
+@pytest.mark.parametrize("ids", [[], ["algorithm:lp:research-hash"]])
+def test_proposal_schema_separates_frozen_background_from_research_decisions(ids):
+    from modelcrew.modeling_hand import proposal_schema
+    references={"cards":[{"citation_id":key} for key in ids]}
+    schema=proposal_schema(references)
+    assert schema["properties"]["source_decisions"]["minItems"]==len(ids)
+    assert schema["properties"]["source_decisions"]["maxItems"]==len(ids)
+    if ids:
+        from jsonschema import Draft202012Validator
+        value={"task_graph":[{"id":"q","scope":"model","conclusion_type":"proposal"}],"proposal":"未批准模型", "edits":[], "questions":[], "source_decisions":[{"citation_id":"algorithm:lp:background-hash","decision":"adopted","reason":"reason","adaptation":"adaptation","limitations":"limits"}]}
+        assert list(Draft202012Validator(schema).iter_errors(value))
+        value["source_decisions"][0]["citation_id"]=ids[0]
+        assert not list(Draft202012Validator(schema).iter_errors(value))
+
+
+def test_proposal_schema_rejects_bare_edit_paths_and_omitted_decisions():
+    from modelcrew.modeling_hand import proposal_schema
+    from jsonschema import Draft202012Validator
+    schema=proposal_schema({"cards":[]}); validator=Draft202012Validator(schema)
+    value={"task_graph":[{"id":"q","scope":"scope","conclusion_type":"proposal"}],"proposal":"proposal","questions":[],"source_decisions":[],"edits":[{"op":"replace","path":"/method/steps","value":[]}]}
+    assert list(validator.iter_errors(value))
+    value["edits"][0]["path"]="/contract/method/steps"
+    assert not list(validator.iter_errors(value))
+    del value["source_decisions"]
+    assert list(validator.iter_errors(value))
+
+
+def test_m1_pointer_navigation_preserves_root_paths_before_large_subtrees():
+    from modelcrew.modeling_hand import review_pointer_navigation
+    value={"dossier":{"symbols":[{"id":str(i),"meaning":"symbol","unit":"u"} for i in range(100)],"equations":[{"latex":"x"} for _ in range(100)]},"figures":[],"provenance":[],"presentation":{},"contract_links":[],"schema_version":"1.0.0","validation_plan":[{"id":"check"}],"method_selection":{"model":"LP"}}
+    paths=review_pointer_navigation(value)
+    assert len(paths)<=60 and "/validation_plan" in paths and "/method_selection" in paths
+    assert paths[:len(value)]==["/"+key for key in value]
+    assert "/dossier/validation_plan" not in paths
+    for path in paths: pointer(value,path)

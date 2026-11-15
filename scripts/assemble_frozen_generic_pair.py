@@ -1,10 +1,11 @@
 """Compose approved generic Writer snapshots; preserve originals and record transformations."""
+from modelcrew.project_assets import asset_path
 import json,re,shutil
 from pathlib import Path
 from modelcrew.config import ROOT
 from modelcrew.collaboration import sha_file
 from modelcrew.modeling_paper import writing_context,validate_draft
-BASE=ROOT/'stage-e/runs/generic-q1-q2-20261110-v1'
+BASE=asset_path(ROOT,'stage-e/runs/generic-q1-q2-20261110-v1')
 OUT=BASE/'assembly/source-v6'
 def save(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent=2),encoding='utf-8')
 def main():

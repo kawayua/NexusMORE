@@ -1,4 +1,5 @@
 """D4 independent numerical and immutable result boundaries; no model or Docker calls."""
+from modelcrew.project_assets import asset_path,local_history
 import copy,json
 from pathlib import Path
 import numpy as np
@@ -12,8 +13,8 @@ from scripts.reference_2024_a_q1 import solve
 
 @pytest.fixture(scope='module')
 def numerical_fixture():
-    contract=json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'))
-    parameters=json.loads((ROOT/'stage-a/2024-A-problem-1/parameters.json').read_text(encoding='utf-8'))
+    contract=json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'))
+    parameters=json.loads((asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json')).read_text(encoding='utf-8'))
     rows=[solve(t,parameters) for t in range(301)]
     arrays={'time_s':np.arange(301,dtype=float),'theta_rad':np.stack([r[0] for r in rows]),'position_m':np.stack([r[1] for r in rows]),'velocity_m_s':np.stack([r[2] for r in rows])}
     arrays['speed_m_s']=np.linalg.norm(arrays['velocity_m_s'],axis=2)

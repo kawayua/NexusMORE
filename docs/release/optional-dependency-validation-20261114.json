@@ -1,0 +1,1928 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "timezone": "Asia/Shanghai",
+  "milestone": "F2",
+  "status": "documents_figures_evidence_isolated_groups_verified_F2_in_progress",
+  "user_instruction": "那就先处理文档、绘图和数值核验",
+  "groups": [
+    "documents",
+    "figures",
+    "evidence"
+  ],
+  "artifact_review_status": "new_candidate_not_user_reviewed; previous approval unchanged",
+  "public_upload_authorized": false,
+  "platform": {
+    "os": "Windows",
+    "machine": "AMD64",
+    "python": "3.13.5"
+  },
+  "candidate": {
+    "schema_version": "1.0.0",
+    "status": "passed",
+    "scope": "private development build; no public upload, full-knowledge or runtime gate acceptance",
+    "build_isolation": false,
+    "builder": "setuptools.build_meta; installed build requirements",
+    "wheel": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "dc01dbbc5fd1c053fb3ca65b83c2e0a05f5147e242ead96cc77e136dec93e7a1",
+      "bytes": 721088,
+      "members": 276,
+      "resource_files": 200,
+      "module_files": 70,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    },
+    "sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "908fefdbef86f9aec90abfdcd1107283a9ffa2c5762f9cc87b6d88b8f5ec25d2",
+      "bytes": 729389,
+      "members": 401,
+      "status": "passed"
+    },
+    "wheel_from_sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "559aa7b604a34e8956e1772553135fa09072780ae9d02b3b233899e3a3610d79",
+      "bytes": 721088,
+      "members": 276,
+      "resource_files": 200,
+      "module_files": 70,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    }
+  },
+  "group_results": {
+    "documents": {
+      "status": "passed",
+      "group": "documents",
+      "scope": "isolated installed dependency-group engineering probe; no paper, independent gate, user approval or native toolchain acceptance",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "executable": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\documents-venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\optional-dependencies-20261114",
+      "package_path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\documents-venv\\Lib\\site-packages\\modelcrew",
+      "system_site_packages": false,
+      "user_site_enabled": false,
+      "unrelated_dependencies_absent": [
+        "matplotlib",
+        "scipy",
+        "sympy",
+        "pytest"
+      ],
+      "candidate_files_compared": 271,
+      "resources": {
+        "status": "passed",
+        "files": 200,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "checks": {
+        "doctor": {
+          "status": "passed",
+          "dependencies": [
+            {
+              "module": "docx",
+              "package": "python-docx",
+              "version": "1.2.0",
+              "available": true
+            },
+            {
+              "module": "lxml",
+              "package": "lxml",
+              "version": "6.1.1",
+              "available": true
+            },
+            {
+              "module": "defusedxml",
+              "package": "defusedxml",
+              "version": "0.7.1",
+              "available": true
+            },
+            {
+              "module": "openpyxl",
+              "package": "openpyxl",
+              "version": "3.1.5",
+              "available": true
+            }
+          ],
+          "scope": "Office workbench plus registered document checks prerequisites; no native renderer/export compatibility assertion",
+          "native_render_verified": false,
+          "downloaded": false
+        },
+        "docx_profile": "passed",
+        "docx_structural_validation": {
+          "tool": "docx_validate",
+          "input_sha256": "b2c0a2c2d23634c765e9406e09d9abc271241ed483b590a0db58f8e488a1b0ad",
+          "bundle": {
+            "status": "passed",
+            "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+            "files": 126,
+            "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+          },
+          "output_dir": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\documents\\docx-validation",
+          "scope": "document_tool_check_not_scientific_or_visual_approval",
+          "status": "passed",
+          "returncode": 0
+        },
+        "roundtrip_member_identity": true,
+        "edited_workspace": {
+          "status": "rejected_as_required",
+          "error": "Workspace edited; byte-preserving pack refuses changed members"
+        },
+        "xlsx_rows": 36,
+        "xlsx_complete": true,
+        "formula_recalculation_registered": false,
+        "pdf_field_count": 1,
+        "pdf_tools": {
+          "pdf_fields": {
+            "tool": "pdf_fields",
+            "input_sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+            "bundle": {
+              "status": "passed",
+              "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+              "files": 126,
+              "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+            },
+            "output_dir": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\documents\\pdf_fields",
+            "scope": "document_tool_check_not_scientific_or_visual_approval",
+            "status": "passed",
+            "returncode": 0
+          },
+          "pdf_structure": {
+            "tool": "pdf_structure",
+            "input_sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+            "bundle": {
+              "status": "passed",
+              "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+              "files": 126,
+              "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+            },
+            "output_dir": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\documents\\pdf_structure",
+            "scope": "document_tool_check_not_scientific_or_visual_approval",
+            "status": "passed",
+            "returncode": 0
+          }
+        },
+        "pdf_page_count": 3,
+        "omitted_last_page": {
+          "status": "rejected_as_required",
+          "error": "PDF preview page coverage incomplete"
+        },
+        "all_generated_pdfs": {
+          "status": "passed",
+          "documents": [
+            {
+              "source": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\documents\\pdf_fields\\input.pdf",
+              "status": "passed",
+              "page_count": 3,
+              "report": "pdf-0001/pdf-check.json",
+              "report_sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013"
+            },
+            {
+              "source": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\documents\\pdf_structure\\input.pdf",
+              "status": "passed",
+              "page_count": 3,
+              "report": "pdf-0002/pdf-check.json",
+              "report_sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013"
+            },
+            {
+              "source": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\documents\\synthetic-three-pages.pdf",
+              "status": "passed",
+              "page_count": 3,
+              "report": "pdf-0003/pdf-check.json",
+              "report_sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013"
+            }
+          ],
+          "visual_review": "PENDING",
+          "independent_review": "NOT_RUN"
+        },
+        "native_word_render": "NOT_RUN",
+        "formal_approval": false
+      },
+      "pip_check": "No broken requirements found.",
+      "distributions": [
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "cffi",
+          "version": "2.1.1"
+        },
+        {
+          "name": "charset-normalizer",
+          "version": "3.5.2"
+        },
+        {
+          "name": "cryptography",
+          "version": "50.0.2"
+        },
+        {
+          "name": "defusedxml",
+          "version": "0.7.1"
+        },
+        {
+          "name": "et_xmlfile",
+          "version": "2.0.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "lxml",
+          "version": "6.1.1"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "openpyxl",
+          "version": "3.1.5"
+        },
+        {
+          "name": "pdfminer.six",
+          "version": "20260107"
+        },
+        {
+          "name": "pdfplumber",
+          "version": "0.11.10"
+        },
+        {
+          "name": "pillow",
+          "version": "12.2.0"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "pycparser",
+          "version": "3.12"
+        },
+        {
+          "name": "PyMuPDF",
+          "version": "1.27.2.3"
+        },
+        {
+          "name": "pypdf",
+          "version": "6.16.1"
+        },
+        {
+          "name": "pypdfium2",
+          "version": "5.15.2"
+        },
+        {
+          "name": "python-docx",
+          "version": "1.2.0"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        },
+        {
+          "name": "typing_extensions",
+          "version": "4.16.0"
+        }
+      ],
+      "visual_review": "PENDING",
+      "independent_review": "NOT_RUN",
+      "formal_approval": false
+    },
+    "figures": {
+      "status": "passed",
+      "group": "figures",
+      "scope": "isolated installed dependency-group engineering probe; no paper, independent gate, user approval or native toolchain acceptance",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "executable": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\figures-venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\optional-dependencies-20261114",
+      "package_path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\figures-venv\\Lib\\site-packages\\modelcrew",
+      "system_site_packages": false,
+      "user_site_enabled": false,
+      "unrelated_dependencies_absent": [
+        "scipy",
+        "sympy",
+        "docx",
+        "pytest"
+      ],
+      "candidate_files_compared": 271,
+      "resources": {
+        "status": "passed",
+        "files": 200,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "checks": {
+        "source_rows": 3,
+        "numeric_profile": {
+          "source_sha256": "65e93544d7299b674245b78128c672c1368bc84eae7b5296f75fe83ffc1d8feb",
+          "row_count": 3,
+          "columns": [
+            {
+              "index": 0,
+              "unit": "s",
+              "observed_n": 3,
+              "missing_n": 0
+            },
+            {
+              "index": 1,
+              "unit": "m",
+              "observed_n": 3,
+              "missing_n": 0
+            }
+          ],
+          "pairwise": [
+            {
+              "columns": [
+                0,
+                0
+              ],
+              "retained_n": 3,
+              "missing_pair_rows": 0,
+              "pearson_r": 1.0,
+              "undefined_reason": null
+            },
+            {
+              "columns": [
+                0,
+                1
+              ],
+              "retained_n": 3,
+              "missing_pair_rows": 0,
+              "pearson_r": 0.5,
+              "undefined_reason": null
+            },
+            {
+              "columns": [
+                1,
+                1
+              ],
+              "retained_n": 3,
+              "missing_pair_rows": 0,
+              "pearson_r": 1.0,
+              "undefined_reason": null
+            }
+          ],
+          "transformations": [],
+          "correlation_policy": "pairwise_observed_with_explicit_N"
+        },
+        "three_formats": "passed",
+        "deterministic_reexport": true,
+        "png_dimensions": [
+          1200,
+          900
+        ],
+        "png_dpi": 300,
+        "grayscale_separate": true,
+        "global_plot_settings_restored": true,
+        "changed_input": {
+          "status": "rejected_as_required",
+          "error": "Figure data or code changed"
+        },
+        "small_text": {
+          "status": "rejected_as_required",
+          "error": "Figure text below 5 pt"
+        },
+        "all_generated_pdfs": {
+          "status": "passed",
+          "documents": [
+            {
+              "source": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\figures\\export\\synthetic-installation.pdf",
+              "status": "passed",
+              "page_count": 1,
+              "report": "pdf-0001/pdf-check.json",
+              "report_sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620"
+            },
+            {
+              "source": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\verified\\figures\\repeat-export\\synthetic-installation.pdf",
+              "status": "passed",
+              "page_count": 1,
+              "report": "pdf-0002/pdf-check.json",
+              "report_sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620"
+            }
+          ],
+          "visual_review": "PENDING",
+          "independent_review": "NOT_RUN"
+        },
+        "visual_review": "PENDING",
+        "independent_review": "NOT_RUN",
+        "formal_approval": false
+      },
+      "pip_check": "No broken requirements found.",
+      "distributions": [
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "contourpy",
+          "version": "1.4.0"
+        },
+        {
+          "name": "cycler",
+          "version": "0.12.1"
+        },
+        {
+          "name": "et_xmlfile",
+          "version": "2.0.0"
+        },
+        {
+          "name": "fonttools",
+          "version": "4.68.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "kiwisolver",
+          "version": "1.5.1"
+        },
+        {
+          "name": "matplotlib",
+          "version": "3.10.3"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "numpy",
+          "version": "2.3.1"
+        },
+        {
+          "name": "openpyxl",
+          "version": "3.1.5"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "name": "pillow",
+          "version": "12.2.0"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "PyMuPDF",
+          "version": "1.27.2.3"
+        },
+        {
+          "name": "pyparsing",
+          "version": "3.3.3"
+        },
+        {
+          "name": "pypdf",
+          "version": "6.16.1"
+        },
+        {
+          "name": "python-dateutil",
+          "version": "4.0.0"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        },
+        {
+          "name": "tzdata",
+          "version": "2026.6"
+        }
+      ],
+      "visual_review": "PENDING",
+      "independent_review": "NOT_RUN",
+      "formal_approval": false
+    },
+    "evidence": {
+      "status": "passed",
+      "group": "evidence",
+      "scope": "isolated installed dependency-group engineering probe; no paper, independent gate, user approval or native toolchain acceptance",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "executable": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\evidence-venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\optional-dependencies-20261114",
+      "package_path": "D:\\big-third-up\\modelcrew\\tmp\\optional-dependencies-20261114\\evidence-venv\\Lib\\site-packages\\modelcrew",
+      "system_site_packages": false,
+      "user_site_enabled": false,
+      "unrelated_dependencies_absent": [
+        "matplotlib",
+        "fitz",
+        "docx",
+        "pytest"
+      ],
+      "candidate_files_compared": 271,
+      "resources": {
+        "status": "passed",
+        "files": 200,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "checks": {
+        "symbolic_integral": "1/3",
+        "quadrature": {
+          "value": 0.33333333333333337,
+          "reported_error": 3.700743415417189e-15,
+          "absolute_error": 5.551115123125783e-17
+        },
+        "root": {
+          "value": 1.414213562373095,
+          "residual": 4.440892098500626e-16
+        },
+        "linear_solution": [
+          2.0,
+          3.0
+        ],
+        "linear_residual": 0.0,
+        "one_sample_t_test": {
+          "statistic": 0.0,
+          "pvalue": 1.0,
+          "sample_count": 5,
+          "assumptions": "Synthetic library identity probe only; no inference on user data"
+        },
+        "nonfinite_input": {
+          "status": "rejected_as_required",
+          "error": "Nonfinite numeric data"
+        },
+        "historical_validator_module_import": "passed",
+        "historical_benchmark_execution": "NOT_RUN",
+        "automatic_proof_or_model_gate": "NOT_CLAIMED"
+      },
+      "pip_check": "No broken requirements found.",
+      "distributions": [
+        {
+          "name": "annotated-types",
+          "version": "0.8.0"
+        },
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "et_xmlfile",
+          "version": "2.0.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "mpmath",
+          "version": "1.3.0"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "numpy",
+          "version": "2.3.1"
+        },
+        {
+          "name": "openpyxl",
+          "version": "3.1.5"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.13.4"
+        },
+        {
+          "name": "pydantic_core",
+          "version": "2.46.4"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        },
+        {
+          "name": "scipy",
+          "version": "1.16.0"
+        },
+        {
+          "name": "sympy",
+          "version": "1.13.1"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.5"
+        },
+        {
+          "name": "typing_extensions",
+          "version": "4.16.0"
+        }
+      ],
+      "visual_review": "NOT_APPLICABLE",
+      "independent_review": "NOT_RUN",
+      "formal_approval": false
+    }
+  },
+  "installation_method": "Three separate venvs initially empty except pip; no system/user site packages. Dependency and candidate repairs applied within each isolated venv; final installed modules/resources matched new candidate byte for byte. Tests invoked with -I outside repository, unrelated libraries and pytest absent. pip check passed for all three.",
+  "fixed_dependency_declarations": {
+    "documents": [
+      "python-docx==1.2.0 for existing office doctor and fixture reading",
+      "PyMuPDF==1.27.2.3 for full PDF preview/check"
+    ],
+    "evidence": [
+      "openpyxl==3.1.5 for existing numerical validation workbook import",
+      "pydantic==2.13.4 for existing full_numerics collaboration contract import"
+    ]
+  },
+  "fixture_correction": {
+    "initial_failure": "Official DOCX schema correctly rejected missing w:zoom/@w:percent in python-docx default template",
+    "resolution": "Set explicit zoom percent on synthetic fixture before saving; no change to upstream validator, source document repair behavior or production approval rules",
+    "first_failure_preserved": "tmp/optional-dependencies-20261114/documents/docx-validation/stdout.txt"
+  },
+  "pdf_checks": {
+    "status": "passed",
+    "documents": 5,
+    "physical_pages": 11,
+    "every_pdf_and_page_checked": true,
+    "files": [
+      {
+        "source": {
+          "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_fields/input.pdf",
+          "sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+          "bytes": 46288
+        },
+        "page_count": 3,
+        "report": {
+          "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0001/pdf-check.json",
+          "sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013",
+          "bytes": 1810
+        },
+        "warnings": [
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "source": {
+          "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_structure/input.pdf",
+          "sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+          "bytes": 46288
+        },
+        "page_count": 3,
+        "report": {
+          "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0002/pdf-check.json",
+          "sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013",
+          "bytes": 1810
+        },
+        "warnings": [
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "source": {
+          "path": "tmp/optional-dependencies-20261114/verified/documents/synthetic-three-pages.pdf",
+          "sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+          "bytes": 46288
+        },
+        "page_count": 3,
+        "report": {
+          "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0003/pdf-check.json",
+          "sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013",
+          "bytes": 1810
+        },
+        "warnings": [
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "source": {
+          "path": "tmp/optional-dependencies-20261114/verified/figures/export/synthetic-installation.pdf",
+          "sha256": "8a5d3f1adeb213076f16c91a58b50d88a57377a08121f289dded4524e7803b34",
+          "bytes": 11380
+        },
+        "page_count": 1,
+        "report": {
+          "path": "tmp/optional-dependencies-20261114/verified/figures-pdf-audit/pdf-0001/pdf-check.json",
+          "sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620",
+          "bytes": 873
+        },
+        "warnings": [
+          []
+        ]
+      },
+      {
+        "source": {
+          "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/synthetic-installation.pdf",
+          "sha256": "8a5d3f1adeb213076f16c91a58b50d88a57377a08121f289dded4524e7803b34",
+          "bytes": 11380
+        },
+        "page_count": 1,
+        "report": {
+          "path": "tmp/optional-dependencies-20261114/verified/figures-pdf-audit/pdf-0002/pdf-check.json",
+          "sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620",
+          "bytes": 873
+        },
+        "warnings": [
+          []
+        ]
+      }
+    ],
+    "engineering_visual_observation": {
+      "status": "all_four_distinct_preview_images_viewed",
+      "images": [
+        {
+          "path": "tmp/optional-dependencies-20261114/verified/documents/pdf-pages/page-0001.png",
+          "sha256": "651f272dd0236171af72b602dc3fc2804b51e6488fdcf8af833fffaa9a1ed7d2",
+          "bytes": 12533
+        },
+        {
+          "path": "tmp/optional-dependencies-20261114/verified/documents/pdf-pages/page-0002.png",
+          "sha256": "1b02f98530ac64ff7665b50e31c7cb7def64dd5f12ab53a7ff0848be19fc2ce1",
+          "bytes": 12112
+        },
+        {
+          "path": "tmp/optional-dependencies-20261114/verified/documents/pdf-pages/page-0003.png",
+          "sha256": "7529e98df5eecccd138686e8a3d5d4cb38a54f1ccde2e0e41cf050abb2c037a6",
+          "bytes": 12181
+        },
+        {
+          "path": "tmp/optional-dependencies-20261114/verified/figures/export/pdf-preview/page-0001.png",
+          "sha256": "cb9182e8358966d489909476789de97a9d3b69914cbf88924216efe3950e0cf8",
+          "bytes": 21949
+        }
+      ],
+      "duplicate_policy": "Identical source PDF copies and deterministic repeated figure export verified by exact source/preview hashes; all 11 physical pages mechanically checked",
+      "observations": "Synthetic document pages 1/2/3 readable and complete; chart labels, units and plotted synthetic values readable without apparent clipping",
+      "formal_visual_approval": false,
+      "independent_review": "NOT_RUN"
+    }
+  },
+  "regression": {
+    "passed": 74,
+    "skipped": [
+      {
+        "name": "test_real_docx_schema_check",
+        "reason": "Install declared document-tool dependencies for real DOCX validation"
+      },
+      {
+        "name": "test_official_comment_definitions_roundtrip_xml_and_invalid_reply_keeps_input",
+        "reason": "Install the declared documents dependencies for official comment validation"
+      }
+    ],
+    "failed": 0,
+    "total_collected": 76,
+    "latest_metadata_tests_passed": 15,
+    "latest_tests_overlap_existing_suite": true,
+    "suite_evidence": {
+      "path": "tmp/optional-dependencies-20261114/regression-tests.xml",
+      "sha256": "0997f1afa8a4c2b2aa12611a879d1aa5864238077aec7fea389254571e21cd0c",
+      "bytes": 11016
+    },
+    "metadata_evidence": {
+      "path": "tmp/optional-dependencies-20261114/package-tests-final.xml",
+      "sha256": "7dc87d2351b3add347782871d3593f895f0aa3f384e851b4cae2ad697082856f",
+      "bytes": 2688
+    },
+    "note": "Two host-environment official DOCX/comment tests lacked declared dependencies; current isolated documents probe actually executed DOCX schema validation. Official comment integration is not promoted to a registered capability."
+  },
+  "source_files": [
+    {
+      "path": "pyproject.toml",
+      "sha256": "7acb2bc6a7174f02cb20c8d730994c4d65ac33e039911de0e4fe5f2a7fe17aa1",
+      "bytes": 18518
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "11ea334fc8061815175c4278f7874378fcb5400b9a1e54f7001d787f4c21184a",
+      "bytes": 18337
+    },
+    {
+      "path": "scripts/build_distribution.py",
+      "sha256": "80ce40f5abb2a46b71b7a3483507a7e1cdf29d4db1742dc120bcefb3bb190f3e",
+      "bytes": 5103
+    },
+    {
+      "path": "scripts/probe_optional_dependencies.py",
+      "sha256": "aa6c847f1684b0dfead4760c5cb26a32446517bede4fa2612a60ee4fd0348683",
+      "bytes": 11606
+    },
+    {
+      "path": "tests/test_package_distribution.py",
+      "sha256": "5f26042750bf2b17bc8f9b6cf422c96ab1fa784f8d9053a2714009a839e5f173",
+      "bytes": 4516
+    },
+    {
+      "path": "configs/dependencies/documents.txt",
+      "sha256": "88556accec96991dd2fab7236de7aea9b0a3f7cc86abe27309017858d05d324b",
+      "bytes": 193
+    },
+    {
+      "path": "configs/dependencies/figures.txt",
+      "sha256": "52fb964d7c99a1f55a9b77b05a2be588bc230aadb944e40c4a4d3b509087b855",
+      "bytes": 169
+    },
+    {
+      "path": "configs/dependencies/evidence.txt",
+      "sha256": "5f45b8f3864c13fc2c36c99abec88bfb6819f3cc8a522eb7ade808ba9494f31f",
+      "bytes": 149
+    },
+    {
+      "path": "configs/package-distribution.json",
+      "sha256": "599709df5fc4719df1efb8d8994cf9e26a588e7db77b1430ef69b4eaa251e191",
+      "bytes": 5812
+    },
+    {
+      "path": "docs/package-installation.md",
+      "sha256": "c0ad3358aa4bcd84cbacf7b1a90d1c2755f783e180c8918023621db7cc41e0ff",
+      "bytes": 9803
+    },
+    {
+      "path": "docs/open-source-harness-roadmap.md",
+      "sha256": "ad3f71950ba336814b135245667107dc08e0380c55508b59655258b3049e5494",
+      "bytes": 14377
+    }
+  ],
+  "read_policy_files": [
+    {
+      "path": "src/modelcrew/resources/document-tools/upstream/docx/SKILL.md",
+      "sha256": "9e8202e2524a9ed87da67a5b3eaa76e8e6038f4171f8251ad6aaefd34e82a3df",
+      "bytes": 6897
+    },
+    {
+      "path": "src/modelcrew/resources/document-tools/upstream/pdf/SKILL.md",
+      "sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee",
+      "bytes": 8058
+    },
+    {
+      "path": "src/modelcrew/resources/document-tools/upstream/xlsx/SKILL.md",
+      "sha256": "caa1e1c29cf974c8d874bf3d0a70838445e7342b570f856ddb3e4a21ef7c7e8b",
+      "bytes": 8584
+    },
+    {
+      "path": "src/modelcrew/resources/paper/workflow.json",
+      "sha256": "43637df8fa4c30f738e9e41cb2a6ed950b7f5727da64ce73ff0d5e8199a43698",
+      "bytes": 5859
+    },
+    {
+      "path": "src/modelcrew/resources/paper/writer-instructions.md",
+      "sha256": "6ce1810a35935eb006a2412820952438c78af34f5f8cceca90f4a9a33415c721",
+      "bytes": 7524
+    },
+    {
+      "path": "src/modelcrew/resources/paper/chinese-modeling-policy.json",
+      "sha256": "6b95ed10ae065c8b3a2896df8bcc320463a08910125b28f1662bfdaf0280ea65",
+      "bytes": 2354
+    },
+    {
+      "path": "docs/scientific-figure-contract.md",
+      "sha256": "34976d9abcc3e2831f3bdd889c314981cde8f981166077c45657fe3454e9c2ea",
+      "bytes": 5528
+    },
+    {
+      "path": "docs/figure-tools.md",
+      "sha256": "dbde9a5e646743d2cf83ebe047ea42cf8e621aeef6eeaf4f60639cd969e15ccb",
+      "bytes": 6140
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "tmp/optional-dependencies-20261114/documents-install.log",
+      "sha256": "b4ef07db792b2bd89a17d9f8bc608fe7c65820cd1e36dce8e86a848f972d585b",
+      "bytes": 5158
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/documents-probe.log",
+      "sha256": "888951c71d2668d432e0e61efc65e210ea99aa67bebfb921552c0b03604d5d9e",
+      "bytes": 1186
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/documents-verified-0.log",
+      "sha256": "130fa9efc6cb7488f52c08f0c16051ec6fbef3c3b0bb9ebc449859188de469a4",
+      "bytes": 572
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/documents-verified-1.log",
+      "sha256": "510fd3127be6cd5d9ba46b50c4543a0cc7e830d15994ab57e7cb85356fe0f38f",
+      "bytes": 5264
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/documents-verified-2.log",
+      "sha256": "3f822c4192b8703aee36a06475c520554a3b1375b32ad262be5bd5f663e866de",
+      "bytes": 155
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/download.log",
+      "sha256": "6f7b4aeda7d845b637cc2d663501843f5894a512a52b143fe1cabc5fa94c4270",
+      "bytes": 10721
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/evidence-install.log",
+      "sha256": "9763997ddfdc27ba94a9d83d539dce525f68c35b15e61ea1235c8f09918a77c7",
+      "bytes": 2760
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/evidence-probe.log",
+      "sha256": "b3e14b940e7c03c5cf75b53d4eadeece8835a8edbb4346b9ec367e7cd199f0e1",
+      "bytes": 949
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/evidence-verified-0.log",
+      "sha256": "130fa9efc6cb7488f52c08f0c16051ec6fbef3c3b0bb9ebc449859188de469a4",
+      "bytes": 572
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/evidence-verified-1.log",
+      "sha256": "ad2cc6826b83c02356faf703eb1494eaa048a6c4d9c5d6a2b57073aa9a88bd65",
+      "bytes": 4057
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/evidence-verified-2.log",
+      "sha256": "ed1ee0e1aa2a2c373822caefbd4b4d1de4598b0f9135a7b70b7c00594fac117b",
+      "bytes": 153
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/figures-install.log",
+      "sha256": "358e55e738ce921115f038206424d2b58187347127f4123ab57460dca665c996",
+      "bytes": 4763
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/figures-probe.log",
+      "sha256": "eb7281db3de789ea83242b2e7faa042bebe3ce4f334fe2465d75398e2ad8abf6",
+      "bytes": 205
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/figures-verified-0.log",
+      "sha256": "130fa9efc6cb7488f52c08f0c16051ec6fbef3c3b0bb9ebc449859188de469a4",
+      "bytes": 572
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/figures-verified-1.log",
+      "sha256": "09fe6aaf6185de1262655ede0cf5589d2ad91d6749f464d62a958241cfcd6c1d",
+      "bytes": 4849
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/figures-verified-2.log",
+      "sha256": "a340d1452b21b82ffa606aaef007d514941f407ce7b7ec67fe5e1b139634cbfd",
+      "bytes": 151
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/regression-tests.log",
+      "sha256": "271e522859807e099942d0faaed980381eddd39d36b68887f414d0d51c4327b4",
+      "bytes": 194
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/requirements.txt",
+      "sha256": "b4e9eada5741ddef706c03e5edc1d7017da9b0bbc4d575b0db81e88ed01d0721",
+      "bytes": 192
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/requirements-fixed.txt",
+      "sha256": "15714d187a4d48d61c27f4db8f967c851bbd2f279cb918030c79b5f797cdcdf5",
+      "bytes": 209
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/regression-tests.xml",
+      "sha256": "0997f1afa8a4c2b2aa12611a879d1aa5864238077aec7fea389254571e21cd0c",
+      "bytes": 11016
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/package-tests-final.xml",
+      "sha256": "7dc87d2351b3add347782871d3593f895f0aa3f384e851b4cae2ad697082856f",
+      "bytes": 2688
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified-results.json",
+      "sha256": "2000b5325c337f02e6a6da48b20254f05b939c6ab192428c9ab8bc32f3dbf120",
+      "bytes": 531
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/installation-results.json",
+      "sha256": "149632ede5c9229981d712ae4777db588b139ec0565bdc10d0a012db6fb58e5a",
+      "bytes": 285
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified-build/build-audit.json",
+      "sha256": "11917592d8a10801b3ecfdac675fc8e4b6704ab8ed5d93f6bbc1f93f5bab539d",
+      "bytes": 10321
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified-build/build.log",
+      "sha256": "533b33b55d350508c3d5e207782a1db987d7a36462ab91377cd83fa8d2c54392",
+      "bytes": 163593
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified-build/sdist-build.log",
+      "sha256": "b92cb52dd852fae62776a98982d30c9b4158f8f9b2546632572c33a4d7b26157",
+      "bytes": 113194
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-roundtrip/pack-check.json",
+      "sha256": "d64b30da77e96bb81fab7faa0f0ac9d3631df89809cf9146d4b79d2202620c0b",
+      "bytes": 418
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-roundtrip/roundtrip.docx",
+      "sha256": "8121f8bb5f1ea9eca71cd3fc615457eafcf194a448b1b1daa0b1339338cdc850",
+      "bytes": 36662
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-validation/input.docx",
+      "sha256": "b2c0a2c2d23634c765e9406e09d9abc271241ed483b590a0db58f8e488a1b0ad",
+      "bytes": 36662
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-validation/receipt.json",
+      "sha256": "8d5d29b6aefa880b07f4252fff19a939116870a128de1745c1a2498e47981654",
+      "bytes": 570
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-validation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-validation/stdout.txt",
+      "sha256": "71815d271a80711b74dea9866d9afa9f1da484a93670beec0ee2d8e5a28dd01d",
+      "bytes": 42
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/[Content_Types].xml",
+      "sha256": "66c84fb7a6aa3c4ead49f895e4a7044df1fb57de1ed76d09b2686e91f5bed5b4",
+      "bytes": 1738
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/_rels/.rels",
+      "sha256": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+      "bytes": 734
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/customXml/_rels/item1.xml.rels",
+      "sha256": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+      "bytes": 295
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/customXml/item1.xml",
+      "sha256": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+      "bytes": 262
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/customXml/itemProps1.xml",
+      "sha256": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+      "bytes": 354
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/docProps/app.xml",
+      "sha256": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+      "bytes": 1132
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/docProps/core.xml",
+      "sha256": "d14be8284e406d14dc2a576b19f15e7f637b955f9e27a3d9ed871ec99606f7ba",
+      "bytes": 721
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/docProps/thumbnail.jpeg",
+      "sha256": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+      "bytes": 8324
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/_rels/document.xml.rels",
+      "sha256": "1e7f0eb144a98e199249314f61ff32a8de2a27e56d8e9ee6b524e1c6b235d377",
+      "bytes": 1227
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/document.xml",
+      "sha256": "c53007395fa4b6c0979ea35bc8696512764bd3f459785b8e1e6b132030a370b3",
+      "bytes": 35
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/fontTable.xml",
+      "sha256": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+      "bytes": 2811
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/numbering.xml",
+      "sha256": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+      "bytes": 5513
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/settings.xml",
+      "sha256": "39d0ab34096a9e241a0e1ff6eecfa681291661a8fe62c6e2de90af239efa6d7a",
+      "bytes": 2551
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/styles.xml",
+      "sha256": "02d71a68ddb92c055e84526d6a9e45700be3872781ababf759241694bc30e384",
+      "bytes": 349458
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/stylesWithEffects.xml",
+      "sha256": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+      "bytes": 438131
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/theme/theme1.xml",
+      "sha256": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+      "bytes": 10939
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/word/webSettings.xml",
+      "sha256": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+      "bytes": 438
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/docx-workspace/workspace.json",
+      "sha256": "addab294c59c8052ffc19dd7ca5eaebcb41230d5114c302df4ac1f3fa93246f8",
+      "bytes": 2076
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/office-doctor/doctor.json",
+      "sha256": "884611199bc5ae6224c3edaf85e20020f4d7587c10142570405daf6f6030babb",
+      "bytes": 710
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf-pages/page-0001.png",
+      "sha256": "651f272dd0236171af72b602dc3fc2804b51e6488fdcf8af833fffaa9a1ed7d2",
+      "bytes": 12533
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf-pages/page-0002.png",
+      "sha256": "1b02f98530ac64ff7665b50e31c7cb7def64dd5f12ab53a7ff0848be19fc2ce1",
+      "bytes": 12112
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf-pages/page-0003.png",
+      "sha256": "7529e98df5eecccd138686e8a3d5d4cb38a54f1ccde2e0e41cf050abb2c037a6",
+      "bytes": 12181
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf-pages/pdf-check.json",
+      "sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013",
+      "bytes": 1810
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_fields/fields.json",
+      "sha256": "e47921fdf578acf8a75a662cfe35a2b501e3af6463b6c487d80213e1477fbda7",
+      "bytes": 151
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_fields/input.pdf",
+      "sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+      "bytes": 46288
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_fields/receipt.json",
+      "sha256": "88a50302a5568d6bd68daff35ddd8ebcd6167f99a99c212e9726fd8ee58e819b",
+      "bytes": 562
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_fields/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_fields/stdout.txt",
+      "sha256": "f25439ad5c1b33ec70706a404fd1d6f49284744ffd68b0b1656cc668d0822ce4",
+      "bytes": 122
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_structure/input.pdf",
+      "sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+      "bytes": 46288
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_structure/receipt.json",
+      "sha256": "701995f0572a6f17b1efd07b447d7f7ea227e4ac331a0c3d2f21047b2c608eff",
+      "bytes": 568
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_structure/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_structure/stdout.txt",
+      "sha256": "107e633f8384e44dad7757e8b22a3c62771c464a220fdac044b4dd6f112e73f8",
+      "bytes": 358
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/pdf_structure/structure.json",
+      "sha256": "e4214a7344e7208a93769b70e951f5c041e7f06ad8568dda56ddaaf1299505ea",
+      "bytes": 5378
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/probe.json",
+      "sha256": "945c58c9f9f1c9944e2c4349536a8946fcc622ea742d11072f4f3558da3c00f1",
+      "bytes": 7608
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/profile/template-profile.json",
+      "sha256": "e3a67ebad7c2657c8e78487f23d1d038b6e44a2011daf1d7f741f41388ddf7ef",
+      "bytes": 242771
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/synthetic-three-pages.pdf",
+      "sha256": "a125872ea549c36f778c7b5487673a80086d77aa39154b1dce2e49236856e545",
+      "bytes": 46288
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/synthetic.docx",
+      "sha256": "b2c0a2c2d23634c765e9406e09d9abc271241ed483b590a0db58f8e488a1b0ad",
+      "bytes": 36662
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/synthetic.xlsx",
+      "sha256": "ba80cd4b96fbb5b16e4cbdfd4d9212e550695accfbe10c692c6f23231962e863",
+      "bytes": 5312
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-read/input.xlsx",
+      "sha256": "ba80cd4b96fbb5b16e4cbdfd4d9212e550695accfbe10c692c6f23231962e863",
+      "bytes": 5312
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-read/receipt.json",
+      "sha256": "b8dcc64a637eca059c39928d07313376bb9bab274c3815070d641f0ec4520264",
+      "bytes": 560
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-read/rows.json",
+      "sha256": "30ce84a78141c8fa4194f326b6ca5c105b2499199d56edca1c64e56dca6ac225",
+      "bytes": 2172
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-roundtrip/pack-check.json",
+      "sha256": "5d3acaa3ff1aba1b49e24a5e3f2854964a543799ba9b4d5081b3e3f33cc6f030",
+      "bytes": 418
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-roundtrip/roundtrip.xlsx",
+      "sha256": "5d7693c3dddfe75bfc0869c8fa4b90bc073ba4488d4d9f3833146cd2758ce986",
+      "bytes": 5312
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/[Content_Types].xml",
+      "sha256": "ba5af858089dd3357b4e4408a86694ff0a62ec37f21ef57a3a09544dc0ab18c4",
+      "bytes": 975
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/_rels/.rels",
+      "sha256": "c545941ba36c15fcdce4ae4568c663f3ced1a2226ad5082d3fd66b178bfac11a",
+      "bytes": 531
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/docProps/app.xml",
+      "sha256": "209fca6b00afe72a5029754b94be5953d8f16d96f67130325566b9366ad4ccc5",
+      "bytes": 205
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/docProps/core.xml",
+      "sha256": "5369303699e108c3031473123da69c4525021afb54101114910c9d3916ddf607",
+      "bytes": 555
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/workspace.json",
+      "sha256": "4a2e4a540ae2744710568ff68c91674db3abd0782b4ec5aa7fbb0b4bbe2b1a41",
+      "bytes": 1289
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/xl/_rels/workbook.xml.rels",
+      "sha256": "26ad8fcc38d41229833e624496df364492772697ad2e5d6696e1738f05ba225f",
+      "bytes": 504
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/xl/styles.xml",
+      "sha256": "ceabc26839ae8c5285c667366bffa538562f76e219eb4f2f5188626232d96900",
+      "bytes": 2550
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/xl/theme/theme1.xml",
+      "sha256": "d15e8ebf78ef7b9720839d7ae8fdc81a7df5bc24706d8e137df61a5683c358d9",
+      "bytes": 10140
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/xl/workbook.xml",
+      "sha256": "8c426232afc537a58990b1e5aa1be710bc59c917de3ec2c559d0997e3ff66be2",
+      "bytes": 553
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents/xlsx-workspace/xl/worksheets/sheet1.xml",
+      "sha256": "bb18f5c1846deaa79ce89c40b26970b8fc18e41a4ecb4a580a94549e4c0c905f",
+      "bytes": 3300
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0001/page-0001.png",
+      "sha256": "651f272dd0236171af72b602dc3fc2804b51e6488fdcf8af833fffaa9a1ed7d2",
+      "bytes": 12533
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0001/page-0002.png",
+      "sha256": "1b02f98530ac64ff7665b50e31c7cb7def64dd5f12ab53a7ff0848be19fc2ce1",
+      "bytes": 12112
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0001/page-0003.png",
+      "sha256": "7529e98df5eecccd138686e8a3d5d4cb38a54f1ccde2e0e41cf050abb2c037a6",
+      "bytes": 12181
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0001/pdf-check.json",
+      "sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013",
+      "bytes": 1810
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0002/page-0001.png",
+      "sha256": "651f272dd0236171af72b602dc3fc2804b51e6488fdcf8af833fffaa9a1ed7d2",
+      "bytes": 12533
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0002/page-0002.png",
+      "sha256": "1b02f98530ac64ff7665b50e31c7cb7def64dd5f12ab53a7ff0848be19fc2ce1",
+      "bytes": 12112
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0002/page-0003.png",
+      "sha256": "7529e98df5eecccd138686e8a3d5d4cb38a54f1ccde2e0e41cf050abb2c037a6",
+      "bytes": 12181
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0002/pdf-check.json",
+      "sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013",
+      "bytes": 1810
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0003/page-0001.png",
+      "sha256": "651f272dd0236171af72b602dc3fc2804b51e6488fdcf8af833fffaa9a1ed7d2",
+      "bytes": 12533
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0003/page-0002.png",
+      "sha256": "1b02f98530ac64ff7665b50e31c7cb7def64dd5f12ab53a7ff0848be19fc2ce1",
+      "bytes": 12112
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0003/page-0003.png",
+      "sha256": "7529e98df5eecccd138686e8a3d5d4cb38a54f1ccde2e0e41cf050abb2c037a6",
+      "bytes": 12181
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-0003/pdf-check.json",
+      "sha256": "d255326f4921deead874c55fc36c790162f9b8dd9b3445e1e9021de69fe11013",
+      "bytes": 1810
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/documents-pdf-audit/pdf-tree-check.json",
+      "sha256": "bfbe03df128f17f85d36b258b00938da2beeccde010e9c366d61839f94687251",
+      "bytes": 1087
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/evidence/probe.json",
+      "sha256": "12e7a13073d742550254fde1cdae04b8d3cd2045803132ccd5572fc9a5dcd25a",
+      "bytes": 3383
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/export/figure-export.json",
+      "sha256": "fca9a1b2eb2ef91b786d0d17f0c4b3eccb9c46b9836360454e359e962c49c8b5",
+      "bytes": 1732
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/export/pdf-preview/page-0001.png",
+      "sha256": "cb9182e8358966d489909476789de97a9d3b69914cbf88924216efe3950e0cf8",
+      "bytes": 21949
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/export/pdf-preview/pdf-check.json",
+      "sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620",
+      "bytes": 873
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/export/synthetic-installation-grayscale.png",
+      "sha256": "e054336b3eb677c736853a50fe851b8f0728e093597beb79d54f04a2c3d7681e",
+      "bytes": 28924
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/export/synthetic-installation.pdf",
+      "sha256": "8a5d3f1adeb213076f16c91a58b50d88a57377a08121f289dded4524e7803b34",
+      "bytes": 11380
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/export/synthetic-installation.png",
+      "sha256": "20b46f14854f5db27093c997c54be839ce09d05098c1cf7e41c1783d979c5a19",
+      "bytes": 60352
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/export/synthetic-installation.svg",
+      "sha256": "8812a4b23dcc3e747636097a73fe56c1b843247f2367a8858bab557f51b254e9",
+      "bytes": 10171
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/probe-source.py",
+      "sha256": "9fa92575e5f986014c488acbce86d00e5a7b0604756ea87b811b4083136ee4db",
+      "bytes": 36
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/probe.json",
+      "sha256": "2b210a33c680b38ebb6afb1aeba000c8490c1fe934a254661c28fcbf4669f41a",
+      "bytes": 5482
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/figure-export.json",
+      "sha256": "fca9a1b2eb2ef91b786d0d17f0c4b3eccb9c46b9836360454e359e962c49c8b5",
+      "bytes": 1732
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/pdf-preview/page-0001.png",
+      "sha256": "cb9182e8358966d489909476789de97a9d3b69914cbf88924216efe3950e0cf8",
+      "bytes": 21949
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/pdf-preview/pdf-check.json",
+      "sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620",
+      "bytes": 873
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/synthetic-installation-grayscale.png",
+      "sha256": "e054336b3eb677c736853a50fe851b8f0728e093597beb79d54f04a2c3d7681e",
+      "bytes": 28924
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/synthetic-installation.pdf",
+      "sha256": "8a5d3f1adeb213076f16c91a58b50d88a57377a08121f289dded4524e7803b34",
+      "bytes": 11380
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/synthetic-installation.png",
+      "sha256": "20b46f14854f5db27093c997c54be839ce09d05098c1cf7e41c1783d979c5a19",
+      "bytes": 60352
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/repeat-export/synthetic-installation.svg",
+      "sha256": "8812a4b23dcc3e747636097a73fe56c1b843247f2367a8858bab557f51b254e9",
+      "bytes": 10171
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/synthetic.csv",
+      "sha256": "65e93544d7299b674245b78128c672c1368bc84eae7b5296f75fe83ffc1d8feb",
+      "bytes": 27
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures/too-small/figure-export-failed.json",
+      "sha256": "8805d4e196beb80aff4805f2c3e27df0d106500489a181a08544c5dc48178738",
+      "bytes": 62
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures-pdf-audit/pdf-0001/page-0001.png",
+      "sha256": "cb9182e8358966d489909476789de97a9d3b69914cbf88924216efe3950e0cf8",
+      "bytes": 21949
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures-pdf-audit/pdf-0001/pdf-check.json",
+      "sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620",
+      "bytes": 873
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures-pdf-audit/pdf-0002/page-0001.png",
+      "sha256": "cb9182e8358966d489909476789de97a9d3b69914cbf88924216efe3950e0cf8",
+      "bytes": 21949
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures-pdf-audit/pdf-0002/pdf-check.json",
+      "sha256": "5e1142221ca9f1be232b68e6471f3e8cb435569ac67e2b9086690bb10d621620",
+      "bytes": 873
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/verified/figures-pdf-audit/pdf-tree-check.json",
+      "sha256": "600be81f0d4b2f22736b0f7f87bcfb9b9c205dbad78a14b40454913172c014fa",
+      "bytes": 786
+    }
+  ],
+  "downloaded_wheels": [
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/annotated_types-0.8.0-py3-none-any.whl",
+      "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0",
+      "bytes": 13427
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/cffi-2.1.1-cp313-cp313-win_amd64.whl",
+      "sha256": "1aa5645c30469b09530c4ebca77ebf8f17618293c58f8549cb1a543a50236e7d",
+      "bytes": 185688
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/charset_normalizer-3.5.2-cp313-cp313-win_amd64.whl",
+      "sha256": "78456a747de8dc58360ffa581f30a002baf5aa28cb262536545e91f113ed7639",
+      "bytes": 206489
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/contourpy-1.4.0-cp313-cp313-win_amd64.whl",
+      "sha256": "6507a016976a75a15aee47809a34605de6244ccc056e6164bf9fb14b27eecad4",
+      "bytes": 234084
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+      "sha256": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c",
+      "bytes": 3824692
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/cycler-0.12.1-py3-none-any.whl",
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+      "bytes": 8321
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/defusedxml-0.7.1-py2.py3-none-any.whl",
+      "sha256": "a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61",
+      "bytes": 25604
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/et_xmlfile-2.0.0-py3-none-any.whl",
+      "sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa",
+      "bytes": 18059
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/fonttools-4.68.0-cp313-cp313-win_amd64.whl",
+      "sha256": "6ed796b220654b4d37ad20af73419ec7969b669dd678cab88afb602c5683a331",
+      "bytes": 2531658
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/kiwisolver-1.5.1-cp313-cp313-win_amd64.whl",
+      "sha256": "dc23390afe9f4ef9ac3bcc72a03a56eebbde03f4c571a32cb38f859cff9a6524",
+      "bytes": 70758
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/lxml-6.1.1-cp313-cp313-win_amd64.whl",
+      "sha256": "a10bd2fd62e8ce916ececb342f348f190724a098c1faa056fdfb2a22ad5e8660",
+      "bytes": 3995869
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/matplotlib-3.10.3-cp313-cp313-win_amd64.whl",
+      "sha256": "151d89cb8d33cb23345cd12490c76fd5d18a56581a16d950b48c6ff19bb2ab93",
+      "bytes": 8068034
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/mpmath-1.3.0-py3-none-any.whl",
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "bytes": 536198
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/numpy-2.3.1-cp313-cp313-win_amd64.whl",
+      "sha256": "8d5ee6eec45f08ce507a6570e06f2f879b374a552087a4179ea7838edbcbfa42",
+      "bytes": 12731565
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/openpyxl-3.1.5-py2.py3-none-any.whl",
+      "sha256": "5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2",
+      "bytes": 250910
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/packaging-26.3-py3-none-any.whl",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "bytes": 129956
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pdfminer_six-20260107-py3-none-any.whl",
+      "sha256": "366585ba97e80dffa8f00cebe303d2f381884d8637af4ce422f1df3ef38111a9",
+      "bytes": 6592252
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pdfplumber-0.11.10-py3-none-any.whl",
+      "sha256": "7741ea81bf165b474b153e6789d10d18e06b6ddcf3ec84289c3ef2fed6802580",
+      "bytes": 60047
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pillow-12.2.0-cp313-cp313-win_amd64.whl",
+      "sha256": "390ede346628ccc626e5730107cde16c42d3836b89662a115a921f28440e6a3b",
+      "bytes": 7081266
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pycparser-3.12-py3-none-any.whl",
+      "sha256": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e",
+      "bytes": 62600
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pydantic-2.13.4-py3-none-any.whl",
+      "sha256": "45a282cde31d808236fd7ea9d919b128653c8b38b393d1c4ab335c62924d9aba",
+      "bytes": 472262
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pydantic_core-2.46.4-cp313-cp313-win_amd64.whl",
+      "sha256": "6b3ace8194b0e5204818c92802dcdca7fc6d88aabbb799d7c795540d9cd6d292",
+      "bytes": 2071819
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pymupdf-1.27.2.3-cp310-abi3-win_amd64.whl",
+      "sha256": "d20f68ef15195e073071dbc4ae7455257c7889af7584e39df490c0a92728526e",
+      "bytes": 19249102
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pyparsing-3.3.3-py3-none-any.whl",
+      "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4",
+      "bytes": 126420
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pypdf-6.16.1-py3-none-any.whl",
+      "sha256": "63fec31c4092ae50b6729beedcb469055b60d20c834bde1c402df241f371f644",
+      "bytes": 382924
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/pypdfium2-5.15.2-py3-none-win_amd64.whl",
+      "sha256": "74d1bace34fb01c660d0b64344d5a4b7d276942b7c6623c88ab59ea21c5acfbd",
+      "bytes": 4187589
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/python_dateutil-4.0.0-py3-none-any.whl",
+      "sha256": "a5e246f79eb80475e691bf93862cead98decd8a498cf53ba0516fcdc0f50dc1c",
+      "bytes": 92853
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/python_docx-1.2.0-py3-none-any.whl",
+      "sha256": "3fd478f3250fbbbfd3b94fe1e985955737c145627498896a8a6bf81f4baf66c7",
+      "bytes": 252987
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/scipy-1.16.0-cp313-cp313-win_amd64.whl",
+      "sha256": "79a3c13d43c95aa80b87328a46031cf52508cf5f4df2767602c984ed1d3c6bbe",
+      "bytes": 38403710
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/sympy-1.13.1-py3-none-any.whl",
+      "sha256": "db36cdc64bf61b9b24578b6f7bab1ecdd2452cf008f34faa33776680c26d66f8",
+      "bytes": 6189177
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "bytes": 45571
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/typing_inspection-0.4.5-py3-none-any.whl",
+      "sha256": "bc210535442b39e1bf2805e0c7a17dfd6a4ace760c84c7f7d16245d23a6b1c39",
+      "bytes": 14874
+    },
+    {
+      "path": "tmp/optional-dependencies-20261114/wheelhouse/tzdata-2026.6-py2.py3-none-any.whl",
+      "sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+      "bytes": 348210
+    }
+  ],
+  "preserved_records": [
+    {
+      "path": "docs/release/package-installation-approval-20261114.json",
+      "sha256": "ea57e868addbb2076aa6a375c53ac9da57dc1f26fb7243bea0724fee34316aa7",
+      "bytes": 4568
+    },
+    {
+      "path": "docs/release/package-installation-20261113.json",
+      "sha256": "abca8e724619d5504a5ac2ccfa8c6cfec1f64416211f8dd8bbcdc7416eaedefc",
+      "bytes": 50208
+    },
+    {
+      "path": "docs/release/resource-disposition-20261111.json",
+      "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+      "bytes": 181183
+    }
+  ],
+  "preserved_approved_artifacts": {
+    "wheel": {
+      "path": "tmp/package-installation-20261113/verified-build/wheel/nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "4bf62655593d871913b79e955d275544d02e34f5988f32fbd88723bbd84ed43f",
+      "bytes": 721071
+    },
+    "sdist": {
+      "path": "tmp/package-installation-20261113/verified-build/sdist/nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "f4070644029f0d98ce5cec2887e1b5a5c7e4e1a298c0c636eb53e430f2515bf3",
+      "bytes": 724718
+    },
+    "wheel_from_sdist": {
+      "path": "tmp/package-installation-20261113/verified-build/wheel-from-sdist/nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "57043877233990ccfe99825b77cb937fd4d57272dbd7c21acbd9788abe7740f7",
+      "bytes": 721071
+    }
+  },
+  "remaining_optional_groups": [
+    "retrieval",
+    "paper"
+  ],
+  "boundaries": [
+    "Only fixed synthetic engineering input; no new user model/result, mathematical proof or statistical assumptions accepted",
+    "OCR, formula recalculation, arbitrary formula editing, revision merge, native Word rendering, Chinese font coverage and formal paper export not accepted by this batch",
+    "Original upstream document scripts/resources/licenses unchanged; 200 declared resources and 126 official tool files still verified",
+    "F3 installed data/workspace isolation, F4 Docker service initialization/recovery, F5 complete knowledge licensing/authorship, F6 routing and G/H2 harness/end-to-end remain pending",
+    "No database, Docker service, live model or harness was invoked; no external publication"
+  ]
+}

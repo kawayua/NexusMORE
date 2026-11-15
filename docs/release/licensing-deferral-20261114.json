@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F5_to_F6",
+  "decision": "defer_remaining_F5_items_and_begin_F6_private_development",
+  "exact_user_request": "先跳过这些缺点 我们进入F6阶段",
+  "prior_source_review": {
+    "path": "docs/release/source-completeness-20261114.json",
+    "sha256": "cb8fa2de4ac0a25d0618f309b73bed654d20fa43f49df670a3ba5bfd54c25cab"
+  },
+  "deferred_items": [
+    {
+      "id": "native-wheel-component-provenance",
+      "examples": [
+        "PDFium 159.0.8149.0 toolchained build has null source hash",
+        "psycopg Windows vcpkg baseline and patches",
+        "lxml/Pillow/numerical/Rust wheel external build inputs"
+      ],
+      "status": "pending_exact_component_mapping"
+    },
+    {
+      "id": "torch-non-git-native-inputs",
+      "examples": [
+        "MKL2025.0.1 linkage and applicable redistribution materials",
+        "non-Git downloaded build inputs"
+      ],
+      "status": "pending_not_declared_incompatible"
+    },
+    {
+      "id": "official-pymupdf-binary-build-mapping",
+      "status": "local_rebuild_passed_official_build_mapping_and_distribution_artifact_selection_pending"
+    },
+    {
+      "id": "tools-images-weights-fonts",
+      "status": "fixed_main_licenses_collected_nested_and_actual_distribution_scope_pending"
+    },
+    {
+      "id": "matching-complete-source-access",
+      "status": "local_private_evidence_prepared_no_public_source_endpoint_or_written_offer_published"
+    }
+  ],
+  "verification_status": "deferred_by_explicit_user_decision_not_passed",
+  "overall_progress": "F6_started",
+  "all_F5_completed": false,
+  "public_release_cleared": false,
+  "not_waived": [
+    "public redistribution licensing and matching source delivery",
+    "M1/P1/P2/W1/W2 independent read-only reviews",
+    "explicit user model/result/manuscript/figure approvals",
+    "resource integrity and controlled execution",
+    "actual Harness and end-to-end validation"
+  ],
+  "public_upload_authorized": false,
+  "historical_receipts_rewritten": false
+}

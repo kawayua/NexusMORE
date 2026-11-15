@@ -1,4 +1,5 @@
 """Explicitly migrate reviewed A+ material to B+ samples; no user approval or model call."""
+from modelcrew.project_assets import asset_path
 import copy,json
 from pathlib import Path
 from modelcrew.config import ROOT
@@ -67,7 +68,7 @@ def main():
         target=c['content'] if name=='bench-dragon' else resource_contract()
         if name=='resource':write('stage-b-plus/examples/resource-contract.json',target)
         p=build(target,name);write(f'stage-b-plus/examples/valid-{name}.json',p)
-        md,tex=render(p);out=ROOT/'stage-b-plus/proposals';out.mkdir(exist_ok=True)
+        md,tex=render(p);out=asset_path(ROOT,'stage-b-plus/proposals');out.mkdir(exist_ok=True)
         (out/f'{name}.md').write_text(md,encoding='utf-8');(out/f'{name}-fragments.tex').write_text(tex,encoding='utf-8')
     bad=build(c['content']);bad['dossier']['equations'][0]['symbol_ids'].append('sym:undefined');write('stage-b-plus/examples/invalid-symbol.json',bad)
     bad=build(c['content']);bad['dossier']['equations'][0]['rhs_dimension']='s';write('stage-b-plus/examples/invalid-dimension.json',bad)

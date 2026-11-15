@@ -1,4 +1,5 @@
 """Record the user's approval of the exact delivered Q2 prose; preserve prior figure consent."""
+from modelcrew.project_assets import asset_path
 import json,os,shutil
 from modelcrew.config import ROOT
 from modelcrew import writing_hand as wh
@@ -10,7 +11,7 @@ def mutable(path,value):
     temporary=path.with_name(path.name+'.next');wh.new(temporary,value);os.replace(temporary,path)
 
 def main():
-    base=ROOT/'stage-d/q2-full';pointer=base/'current-writing.json';current=wh.read(pointer);folder=ROOT/current['run_dir']
+    base=asset_path(ROOT,'stage-d/q2-full');pointer=base/'current-writing.json';current=wh.read(pointer);folder=ROOT/current['run_dir']
     md=folder/'单题论文-中文审阅稿.md';catalog=folder/'figure-catalog.json'
     if wh.sha(md)!=current['manuscript_sha256']:raise ValueError('Delivered manuscript changed')
     figure_hash=wh.sha(folder/'figure-selection-review.json');catalog_hash=wh.sha(catalog)

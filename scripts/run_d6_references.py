@@ -1,4 +1,5 @@
 """Read approved Q1 artifacts into a Q2 intake. No Q2 model approval or solving."""
+from modelcrew.project_assets import asset_path
 import argparse,json
 from pathlib import Path
 from modelcrew.config import ROOT
@@ -11,7 +12,7 @@ TARGET='d6-bench-q2-20261109'
 
 def prepare(folder):
     folder=Path(folder).resolve();folder.mkdir(parents=True,exist_ok=False)
-    source=read(ROOT/'stage-d/d6/question2-statement.json')
+    source=read(asset_path(ROOT,'stage-d/d6/question2-statement.json'))
     page=source['pages'][0];excerpt=page['text'].split('问题3',1)[0].strip()
     (folder/'问题二题面.txt').write_text(excerpt+'\n',encoding='utf-8')
     with workflow() as w:

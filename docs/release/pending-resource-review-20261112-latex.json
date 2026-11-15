@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-12",
+  "source_ledger": {
+    "path": "docs/release/resource-disposition-20261111.json",
+    "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c"
+  },
+  "source_files_total": 139,
+  "category_files_audited": 116,
+  "category_files_unreviewed": 23,
+  "source_dispositions_still_unresolved": 139,
+  "categories": [
+    {
+      "category": "algorithm-reference",
+      "files": 16,
+      "audit_status": "audited_permission_unresolved",
+      "report": "docs/release/algorithm-reference-review-20261111.json",
+      "user_decision": "docs/release/algorithm-retention-decision-20261112.json"
+    },
+    {
+      "category": "roles-and-workflow",
+      "files": 62,
+      "audit_status": "audited_local_guidance_adapted_auxiliary_features_and_source_permissions_separate",
+      "report": "docs/release/roles-workflow-review-20261112.json",
+      "adaptation_report": "docs/release/roles-workflow-adaptation-20261112.json"
+    },
+    {
+      "category": "figures",
+      "files": 31,
+      "audit_status": "project_python_foundation_adapted_html_excluded_source_permissions_separate",
+      "report": "docs/release/figure-tools-review-20261112.json",
+      "adaptation_report": "docs/release/figure-tools-adaptation-20261112.json",
+      "excluded_source_ids": [
+        "resource-191"
+      ]
+    },
+    {
+      "category": "latex",
+      "files": 7,
+      "audit_status": "static_audit_complete_local_adoption_and_source_permissions_separate",
+      "report": "docs/release/latex-tools-review-20261112.json"
+    },
+    {
+      "category": "paper-search",
+      "files": 5,
+      "audit_status": "not_reviewed",
+      "report": null
+    },
+    {
+      "category": "local-document-extensions",
+      "files": 10,
+      "audit_status": "not_reviewed",
+      "report": null
+    },
+    {
+      "category": "mathematical-reasoning",
+      "files": 3,
+      "audit_status": "not_reviewed",
+      "report": null
+    },
+    {
+      "category": "entry-guides",
+      "files": 5,
+      "audit_status": "not_reviewed",
+      "report": null
+    }
+  ],
+  "scope": "Category audit progress does not reduce authorization/replacement backlog unless a supported disposition is actually completed.",
+  "previous_index": "docs/release/pending-resource-review-20261112-figure-adaptation.json",
+  "figure_decision_layer": {
+    "source_paths": 31,
+    "project_goal_paths_mapped": 30,
+    "html_excluded": 1,
+    "original_source_ledger_not_rewritten": true
+  }
+}

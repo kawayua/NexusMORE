@@ -1,4 +1,5 @@
 """Verify the real local BGE + remote Qdrant loop and save transparent evidence."""
+from modelcrew.project_assets import asset_path
 import json
 import time
 from datetime import datetime
@@ -12,7 +13,7 @@ from modelcrew.retrieval import Retriever, RetrievalUnavailable, from_config, in
 def main():
     started = time.monotonic()
     service = from_config()
-    queries = json.loads((ROOT/'stage-c/corpus/queries.json').read_text(encoding='utf-8-sig'))
+    queries = json.loads((asset_path(ROOT,'stage-c/corpus/queries.json')).read_text(encoding='utf-8-sig'))
     checks = []
     for query in queries:
         result = service.search(query['query'], limit=3, filters=query['filters'],
@@ -57,7 +58,7 @@ def main():
         api_ok = response.status_code == 200 and bool(payload.get('hits')) and payload['hits'][0]['kind'] == 'algorithm'
     checks.append({'id': 'http_real_embedding_and_server', 'passed': api_ok, 'result': payload})
     # Reuse the already-created index without re-embedding or adding duplicate points.
-    corpus_path = ROOT/'stage-c/runs/corpus-independent-20261106/corpus.json'
+    corpus_path = asset_path(ROOT,'stage-c/runs/corpus-independent-20261106/corpus.json')
     corpus = json.loads(corpus_path.read_text(encoding='utf-8-sig'))
     before = service.client.count(service.collection, exact=True).count
     repeated = ingest(service.client, service.embedder, corpus)
@@ -80,7 +81,7 @@ def main():
               'checks': checks, 'seconds': round(time.monotonic()-started, 2),
               'new_llm_api_calls': 0, 'new_solve_executions': 0,
               'scope': 'Reference-assisted retrieval smoke test against the unchanged 3-source index. Not an independent modeling evaluation.'}
-    target = ROOT/'stage-c/runs'/('c2-reference-retrieval-'+datetime.now().strftime('%Y%m%dT%H%M%S%f')+'.json')
+    target = asset_path(ROOT,'stage-c/runs')/('c2-reference-retrieval-'+datetime.now().strftime('%Y%m%dT%H%M%S%f')+'.json')
     target.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps({k:v for k,v in report.items() if k != 'checks'}, ensure_ascii=True))
     print(json.dumps([{'id':c['id'],'passed':c['passed'],'rank':c.get('expected_rank')} for c in checks]))

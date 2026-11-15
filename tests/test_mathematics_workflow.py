@@ -1,4 +1,5 @@
 """Real PostgreSQL/checkpointer/HTTP tests; TEST_SIMULATED_USER only, no actual solve."""
+from modelcrew.project_assets import asset_path,local_history
 import copy,json,os,subprocess,sys,uuid
 from concurrent.futures import ThreadPoolExecutor
 import pytest
@@ -18,8 +19,8 @@ class FixedBackend:
 def workflow():return Workflow(executors={'bplus-test':FixedBackend()})
 @pytest.fixture
 def bundle(tmp_path):
-    c=json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'))
-    p=json.loads((ROOT/'stage-b-plus/examples/valid-bench-dragon.json').read_text(encoding='utf-8'))
+    c=json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'))
+    p=json.loads((asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json')).read_text(encoding='utf-8'))
     f=tmp_path/'fixture.json';f.write_text('{"TEST_ONLY":true}',encoding='utf-8')
     task='test-bplus-'+uuid.uuid4().hex
     config={'path':str(f),'sha256':file_hash(f)}

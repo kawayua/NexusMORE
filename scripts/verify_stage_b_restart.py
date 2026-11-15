@@ -1,4 +1,5 @@
 """Explicit real database restart drill using simulated test tasks only."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,subprocess,sys,os,uuid,time
 from datetime import datetime,timezone
@@ -17,7 +18,7 @@ def restart():
         time.sleep(.5)
     raise RuntimeError('Database failed to become ready')
 def main():
-    contract=json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8'))
+    contract=json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8'))
     task='test-db-restart-'+uuid.uuid4().hex
     with Workflow() as w:
         first=w.create(task,contract,project='automated-tests')
@@ -35,5 +36,5 @@ def main():
         assert w.db.execute('SELECT count(*) AS n FROM mc_executions WHERE task_id=%s',(task,)).fetchone()['n']==1
         assert not w.db.execute('SELECT 1 FROM mc_summaries WHERE task_id=%s',(task,)).fetchone()
     report={'date':datetime.now(timezone.utc).isoformat(),'task_id':task,'actor':'TEST_SIMULATED_USER','database_restarts':2,'fresh_cli_processes':2,'model_wait_restored':True,'result_wait_restored':True,'thread_and_contract_preserved':True,'execution_not_duplicated':True,'result_not_auto_approved':True,'mode':'historical_fixture_only','passed':True}
-    (ROOT/'stage-b/database-restart-verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(report,ensure_ascii=False,indent=2))
+    (asset_path(ROOT,'stage-b/database-restart-verification.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

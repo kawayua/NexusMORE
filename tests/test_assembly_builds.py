@@ -574,3 +574,26 @@ def test_v2_cached_raw_response_recovers_without_schema_or_verdict_repair(w2_rea
     with pytest.raises(ModelCallError):assembly_w2.start(w,'p',bid,model=model,**req)
     result=assembly_w2.start(w,'p',bid,model=model,**req)
     assert result['W2']=='BLOCKED' and model.calls==1
+
+def test_w2_rejects_omitted_physical_pages(w2_ready):
+    """A valid complete PDF audit cannot hide missing pages in the W2 image list."""
+    import fitz
+    from modelcrew import assembly_w2
+    from modelcrew.pdf_checks import inspect_pdf
+    w,bid,args=w2_ready
+    row=ab.load(w,'p',bid)
+    p=row['payload'];qa=ab.ROOT/p['renders']['render']['folder']
+    out=ab.ROOT/p['exports']['exp']['output']
+    # Synthetic test export only: replace the fixture's fake PDF with 3 real pages.
+    with fitz.open() as doc:
+        for n in range(3):doc.new_page().insert_text((40,80),'SYNTHETIC physical page '+str(n+1),fontsize=12)
+        doc.save(out/'actual-three-pages.pdf',no_new_id=True)
+    (out/'paper.pdf').write_bytes((out/'actual-three-pages.pdf').read_bytes())
+    p['sealed'][ab.rel(out/'paper.pdf')]=sha_file(out/'paper.pdf')
+    complete=inspect_pdf(out/'paper.pdf',qa/'latex-pdf-check')
+    p['renders']['render']['result']['formats']['latex']['pdf_check']=complete
+    # render['pages'] still contains only page 1, despite 3 actual physical pages.
+    base=ab.folder(bid)/'w2-missing-page-fixture';base.mkdir()
+    request=assembly_w2.W2Request.model_validate(args)
+    with pytest.raises(WorkflowError,match='complete PDF'):
+        assembly_w2.packet(row,request,base)

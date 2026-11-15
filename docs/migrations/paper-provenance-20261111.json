@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "resources/paper/provenance.json",
+  "target": "archive/research/knowledge/paper-provenance.json",
+  "purpose": "Local reference provenance or private historical fixture; excluded from wheel, original bytes retained",
+  "files": [
+    {
+      "old_path": "resources/paper/provenance.json",
+      "new_path": "archive/research/knowledge/paper-provenance.json",
+      "sha256": "2ea70af61034cb55ba642ed6ffadb10126a003ed8104b64f870cb464e1badb7a",
+      "bytes": 1931
+    }
+  ],
+  "approval_rewritten": false
+}

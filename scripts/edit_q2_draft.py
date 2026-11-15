@@ -1,11 +1,12 @@
 """Editorial integration under admitted W1; preserve raw provider text and verified results."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import re,json
 from decimal import Decimal,ROUND_FLOOR,ROUND_CEILING
 from modelcrew.config import ROOT
 from modelcrew.collaboration import sha_file
 from modelcrew import writing_hand as wh
-f=ROOT/'stage-d/runs/writing/d6-q2-20261109-v2';p=f/'author-draft.md'
+f=asset_path(ROOT,'stage-d/runs/writing/d6-q2-20261109-v2');p=f/'author-draft.md'
 text=p.read_text(encoding='utf-8');before=sha_file(p)
 text=re.sub(r'图\s+(\d+)',r'图\1',text)
 text=text.replace('**关键词**：','## 关键词\n\n')

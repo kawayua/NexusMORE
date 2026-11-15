@@ -34,7 +34,7 @@ def test_valid_draft_is_still_pending_user_review(bundle):
     assert report['status'] == 'passed'
     assert report['user_review'] == 'pending'
 
-@pytest.mark.parametrize('defect', ['missing_category', 'lost_image', 'duplicate_content', 'escape_path', 'missing_caption', 'english'])
+@pytest.mark.parametrize('defect', ['missing_category', 'lost_image', 'duplicate_content', 'escape_path', 'missing_caption', 'english', 'low_dpi', 'changed_bytes', 'duplicate_id', 'noncontinuous_numbers', 'internal_terms', 'placeholder', 'unknown_question'])
 def test_defects_cannot_be_released(bundle, defect):
     md, catalog = bundle
     data = json.loads(catalog.read_text(encoding='utf-8'))
@@ -48,6 +48,23 @@ def test_defects_cannot_be_released(bundle, defect):
         data['figures'][0]['files']['svg']['path'] = '../outside.svg'
     elif defect == 'missing_caption':
         md.write_text(md.read_text(encoding='utf-8').replace('\n图1 数据说明。', ''), encoding='utf-8')
+    elif defect == 'low_dpi':
+        asset = md.parent / data['figures'][0]['files']['png']['path']
+        Image.new('RGB', (4, 4), (1, 2, 3)).save(asset, dpi=(72, 72))
+        data['figures'][0]['files']['png']['sha256'] = sha(asset)
+    elif defect == 'changed_bytes':
+        asset = md.parent / data['figures'][0]['files']['svg']['path']
+        asset.write_text('changed after review', encoding='utf-8')
+    elif defect == 'duplicate_id':
+        data['figures'][1]['id'] = data['figures'][0]['id']
+    elif defect == 'noncontinuous_numbers':
+        data['figures'][0]['number'] = 99
+    elif defect == 'internal_terms':
+        md.write_text(md.read_text(encoding='utf-8') + '\n' + policy()['internal_terms_forbidden'][0], encoding='utf-8')
+    elif defect == 'placeholder':
+        md.write_text(md.read_text(encoding='utf-8') + '\nTODO: 待补充', encoding='utf-8')
+    elif defect == 'unknown_question':
+        data['figures'][0]['question_ids'] = ['unrelated-question']
     else:
         md.write_text(md.read_text(encoding='utf-8') + ' This is a theorem proof article.' * 1000, encoding='utf-8')
     catalog.write_text(json.dumps(data), encoding='utf-8')
@@ -97,3 +114,27 @@ def test_adding_unselected_candidates_keeps_manuscript_but_requires_new_selectio
     record['figure_selection_decision'] = 'approve'
     with pytest.raises(ValueError, match='Stale'):
         require_review_for_export(md, catalog, record)
+
+
+def test_body_paragraph_starting_with_figure_number_is_not_stripped(bundle):
+    md,catalog=bundle;text=md.read_text(encoding='utf-8')
+    for n in range(1,9):
+        text=text.replace(f'正文通过图{n}说明对应结果和数据含义。', f'图{n} 展示对应结果，正文进一步解释数据含义。')
+    md.write_text(text,encoding='utf-8')
+    assert validate_draft(md,catalog)['status']=='passed'
+
+
+def test_captions_alone_never_count_as_body_references(bundle):
+    md,catalog=bundle;text=md.read_text(encoding='utf-8')
+    for n in range(1,9):text=text.replace(f'正文通过图{n}说明对应结果和数据含义。','')
+    md.write_text(text,encoding='utf-8')
+    findings=validate_draft(md,catalog)['findings']
+    assert len([f for f in findings if 'not referenced in body' in f])==8
+
+
+def test_figure_appearance_order_must_match_numbering(bundle):
+    md,catalog=bundle;text=md.read_text(encoding='utf-8')
+    a='![图1 数据说明](candidate-0.png)';b='![图2 数据说明](candidate-1.png)'
+    text=text.replace(a,'SWAP_IMAGE').replace(b,a).replace('SWAP_IMAGE',b)
+    md.write_text(text,encoding='utf-8')
+    assert 'Formal figures must appear in catalog numbering order' in validate_draft(md,catalog)['findings']

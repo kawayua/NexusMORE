@@ -4,6 +4,7 @@ No network, subprocesses, or generated code execution. Reads a fixed case and
 Excel template, writes only to stage-a/2024-A-problem-1/runs/<run_id>.
 """
 from __future__ import annotations
+from modelcrew.project_assets import asset_path
 import argparse
 from datetime import datetime, timezone
 import hashlib
@@ -22,7 +23,7 @@ from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 
 ROOT = Path(__file__).resolve().parents[1]
-CASE = ROOT / 'stage-a' / '2024-A-problem-1'
+CASE = asset_path(ROOT,'stage-a') / '2024-A-problem-1'
 
 
 def arc(theta: float, b: float) -> float:

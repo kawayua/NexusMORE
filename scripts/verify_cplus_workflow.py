@@ -17,10 +17,10 @@ def verify(output):
         args=dict(version=1,tool='algorithm_search',arguments={'query':'连续资源分配的线性规划适用条件与求解接口','category':'optimization','facts':{'linear_objective_constraints':True,'continuous_variables':True,'integer_variables':False},'variable_count':2,'available_dependencies':['scipy']},actor='CPLUS_ENGINEERING_PROBE',request_id='algorithm-query')
         result=w.retrieve_references(task,**args)
         assert result['envelope']['status']=='ok'
-        hits=result['envelope']['data']['hits'];selected=next(h for h in hits if h['doc_id']=='continuous-lp')
-        assert selected['applicability']['status']=='premises_satisfied'
+        hits=result['envelope']['data']['hits'];selected=next(h for h in hits if h['doc_id']=='lp')
+        assert selected['applicability']['status']=='needs_review'
         assert w.retrieve_references(task,**args)==result
-        discussion=w.discuss_references(task,version=1,kind='proposal',text='Engineering-authored proposal only: consider continuous LP because this synthetic B+ package has divisible continuous variables, fixed linear objective and linear capacity constraints. Integer LP is unnecessary. This external excerpt supports method selection; it is not modeler-original work, an autonomous modeler discussion, or user approval.',references=[{'reference_id':h['citation']['reference_id'],'decision':'adopted' if h is selected else 'rejected'} for h in hits],actor='CPLUS_ENGINEERING_PROBE',request_id='method-reason')
+        discussion=w.discuss_references(task,version=1,kind='proposal',text='Engineering-authored proposal only: consider continuous LP because this synthetic B+ package has divisible continuous variables, fixed linear objective and linear capacity constraints. Integer LP is unnecessary. This installed reference supports method selection but its premises still need task review; it is not modeler-original work, an autonomous modeler discussion, or user approval.',references=[{'reference_id':h['citation']['reference_id'],'decision':'adopted' if h is selected else 'rejected'} for h in hits],actor='CPLUS_ENGINEERING_PROBE',request_id='method-reason')
         evidence=w.tool_evidence(task,1);current=w.task(task);after=w.task('dragon-q1')
         checks={'citation_version_binding':all(r['version']==1 and r['task_id']==task for r in evidence['references']),
                 'complete_external_source':all(h['source_sections'] and h['citation']['modeler_generated'] is False for h in hits),

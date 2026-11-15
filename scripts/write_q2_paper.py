@@ -1,4 +1,5 @@
 """Q2 writing hand: explicit consent, frozen W1 outline and configured supplier calls."""
+from modelcrew.project_assets import asset_path
 import argparse,json,uuid,shutil
 from pathlib import Path
 import httpx
@@ -16,11 +17,11 @@ from scripts.run_q2_full import active,TASK
 from scripts.recheck_q2_p2 import JsonClient
 
 STATEMENT='结果正确 然后对于配图 raw-01：板凳尺寸与孔位（示意） raw-02：初始实体外包络 这两张图 第一题已经出现了其他图通过 请进入写作'
-FOLDER=ROOT/'stage-d/runs/writing/d6-q2-20261109-v1'
-MODEL=ROOT/'stage-d/runs/modeling/q2-collision-20261109-v2'
+FOLDER=asset_path(ROOT,'stage-d/runs/writing/d6-q2-20261109-v1')
+MODEL=asset_path(ROOT,'stage-d/runs/modeling/q2-collision-20261109-v2')
 
 def prepare():
-    f=active();verify_q2_frozen_files(f);base=ROOT/'stage-d/q2-full';current=wh.read(base/'current-run.json')
+    f=active();verify_q2_frozen_files(f);base=asset_path(ROOT,'stage-d/q2-full');current=wh.read(base/'current-run.json')
     binding={k:current[k] for k in ['task_id','contract_version','contract_sha256','execution_id','result_revision']}
     selected=[x['figure_id'] for x in wh.read(f/'figures.json')['figures'] if x['figure_id'] not in ['raw-01','raw-02']]
     consent=base/'confirmations/user-q2-result-and-seven-figures-20261109';consent.mkdir(parents=True,exist_ok=True)
@@ -37,7 +38,7 @@ def prepare():
     current.update(result_user_approval='approved',phase='COMPLETED',figure_selection_user_approval='approved_seven_excluding_two_duplicates',selected_figure_ids=selected,result_confirmation=wh.rel(consent/'result-approval.json'),figure_confirmation=wh.rel(consent/'figure-approval.json'))
     (base/'current-run.json').write_text(json.dumps(current,ensure_ascii=False,indent=2),encoding='utf-8')
     FOLDER.mkdir(parents=True,exist_ok=False);(FOLDER/'figures').mkdir();context=writing_context();wh.new(FOLDER/'writer-context.json',context)
-    policy={'actor':'user','user_statement':STATEMENT,'reason':'第二题仅7幅新图入文；raw-01和raw-02与已通过第一题重复，改为跨题引用。不新增凑数图，不全局降低默认8图要求。','base_policy_sha256':sha_file(ROOT/'resources/paper/chinese-modeling-policy.json'),'binding':binding,'question_ids':['q2'],'selected_figure_ids':sorted(selected),'minimum_formal':7,'scope':'only_this_q2_result_and_catalog','origin':wh.rel(consent/'figure-approval.json'),'origin_sha256':sha_file(consent/'figure-approval.json')}
+    policy={'actor':'user','user_statement':STATEMENT,'reason':'第二题仅7幅新图入文；raw-01和raw-02与已通过第一题重复，改为跨题引用。不新增凑数图，不全局降低默认8图要求。','base_policy_sha256':sha_file(asset_path(ROOT,'resources/paper/chinese-modeling-policy.json')),'binding':binding,'question_ids':['q2'],'selected_figure_ids':sorted(selected),'minimum_formal':7,'scope':'only_this_q2_result_and_catalog','origin':wh.rel(consent/'figure-approval.json'),'origin_sha256':sha_file(consent/'figure-approval.json')}
     wh.new(FOLDER/'user-figure-policy.json',policy)
     catalog=[];number=0
     for item in wh.read(f/'figures.json')['figures']:
@@ -51,10 +52,10 @@ def prepare():
         catalog.append({'id':fid,'category':item['category'],'question_ids':['q2'],'title':item['title'],'purpose':item['claim'],'statistics':item['statistics'],'source_kind':'confirmed_Q2_'+item['category'],'formal':formal,'number':number if formal else None,'files':files,'limitation':item['risk'],'selection_note':'本题通过入文' if formal else '用户指出第一题已出现，本题不重复入文'})
     wh.new(FOLDER/'figure-catalog.json',{'question_ids':['q2'],'evidence':binding,'figures':catalog,'policy_override':{'path':'user-figure-policy.json','sha256':sha_file(FOLDER/'user-figure-policy.json')}})
     approval=selection_record(FOLDER/'figure-catalog.json',selected,decision='approve',actor='user',statement=STATEMENT,reason=policy['reason']);approval['origin']={'path':wh.rel(consent/'figure-approval.json'),'sha256':sha_file(consent/'figure-approval.json')};wh.new(FOLDER/'figure-selection-review.json',approval)
-    q1=ROOT/wh.read(ROOT/'stage-d/d5/current-writing.json')['run_dir']
+    q1=ROOT/wh.read(asset_path(ROOT,'stage-d/d5/current-writing.json'))['run_dir']
     wh.new(FOLDER/'previous-question-reference.json',{'manuscript_path':wh.rel(q1/'单题论文-中文审阅稿.md'),'manuscript_sha256':sha_file(q1/'单题论文-中文审阅稿.md'),'approval_path':wh.rel(q1/'manuscript-review.json'),'approval_sha256':sha_file(q1/'manuscript-review.json'),'figures':[{**item,'body_reference':'第一题图1' if item['id']=='raw-1' else '第一题图3'} for item in wh.read(q1/'figure-catalog.json')['figures'] if item['id'] in ['raw-1','raw-3']],'not_reembedded_in_Q2':True})
     # Actual reading excerpts are archived and pinned; references never cite internal math as external literature.
-    sources=[ROOT/'stage-d/d5/sources/cumcm2024a-statement.txt',ROOT/'stage-d/runs/references/d6-q1-to-q2-20261109-v2/问题二题面.txt',ROOT/'stage-d/d5/sources/scipy-brentq-1.15.3.txt']
+    sources=[asset_path(ROOT,'stage-d/d5/sources/cumcm2024a-statement.txt'),asset_path(ROOT,'stage-d/runs/references/d6-q1-to-q2-20261109-v2/问题二题面.txt'),asset_path(ROOT,'stage-d/d5/sources/scipy-brentq-1.15.3.txt')]
     wh.new(FOLDER/'citations.json',{'references':[{'number':1,'title':'2024年高教社杯全国大学生数学建模竞赛A题“板凳龙”题面，问题一、问题二','sources':[{'path':wh.rel(p),'sha256':sha_file(p),'text':p.read_text(encoding='utf-8')} for p in sources[:2]],'limitation':'题面本地原始字节与来源核对，未核验当届提交规范。'},{'number':2,'title':'SciPy 1.15.3，scipy.optimize.brentq官方文档','url':'https://docs.scipy.org/doc/scipy-1.15.3/reference/generated/scipy.optimize.brentq.html','sources':[{'path':wh.rel(sources[2]),'sha256':sha_file(sources[2]),'text':sources[2].read_text(encoding='utf-8')}],'limitation':'读取已保存版本化官方文档，不冒称本轮联网核验。'}]})
     claims=[('C1','完整矩形外包络、相邻整对豁免与非相邻首次接触停止均为经确认模型假设；只回答问题二。',MODEL/'attempt-0/model-design.json','/new_assumptions'),('C2','复用第一题螺线、弧长反解与隐式速度；完整板长用于碰撞，孔距用于运动学。',MODEL/'attempt-0/model-design.json','/physical_dimensions'),('C3','全部24531非相邻板对的整段固定轴投影包围，15773个连续安全段与最终有限特征认证首碰。',f/'validation.json','/safe_segments'),('C4','首次接触区间[412.4738376736641,412.4738377034664]秒，龙头与第8节龙身接触。',f/'collision-event.json','/time_interval_s'),('C5','224个把手终态输出与指定7把手真实结果，速度为首碰左极限。',f/'results/selected-handles.json','/handles'),('C6','位置误差2.1174e-8米，速率误差6.7568e-8米每秒；10坐标、24速率跨六位舍入格并显式报告区间。',f/'precision-supplement.json','/rounding_disclosure'),('C7','17对独立Docker重跑输出相同，数值认证不等同真实构件无误差或碰撞后动力学。',f/'reproduction.json','/partitions')]
     sections=['问题重述','问题分析','模型假设','符号说明','模型建立','模型求解','结果分析','误差分析与模型检验','模型评价与推广','结论','参考文献']
@@ -83,20 +84,20 @@ def prepare():
     lineage=[modeler.call_id,coder.call_id];key=store.freeze(Snapshot(binding=writer.binding,hand='coding',artifacts=upstream,lineage_call_ids=lineage));handoff=store.handoff(key,'writing',[a.artifact_id for a in upstream]);wh.new(FOLDER/'handoff.json',{**store.context(handoff,writer.call_id),'original_coding_author':original,'rebind_reason':'source numerical P2 binds logical folder execution; confirmed workflow and writing bind durable execution UUID; original P2 unchanged'})
     art=upstream+[artifact(a,k,FOLDER/p,writer) for a,k,p in [('outline','outline','outline.json'),('citations','source','citations.json'),('writer_context','input','writer-context.json'),('figure_catalog','figure_selection','figure-catalog.json'),('figure_consent','input','figure-selection-review.json'),('figure_policy','input','user-figure-policy.json'),('q1_reference','input','previous-question-reference.json'),('confirmed_source','input','confirmed-source-status.json'),('evidence_chain','input','evidence-chain.json')]]
     key=store.freeze(Snapshot(binding=writer.binding,hand='writing',artifacts=art,lineage_call_ids=lineage+[writer.call_id]))
-    files=[ROOT/a.path for a in art]+[consent/'result-approval.json',consent/'figure-approval.json',f/'frozen-artifacts.json',f/'P2-admission.json',q1/'单题论文-中文审阅稿.md',q1/'manuscript-review.json']+sources+[ROOT/d['path'] for d in context['documents']]+[ROOT/'resources/paper/workflow.json',ROOT/'resources/paper/chinese-modeling-policy.json']
+    files=[ROOT/a.path for a in art]+[consent/'result-approval.json',consent/'figure-approval.json',f/'frozen-artifacts.json',f/'P2-admission.json',q1/'单题论文-中文审阅稿.md',q1/'manuscript-review.json']+sources+[ROOT/d['path'] for d in context['documents']]+[asset_path(ROOT,'resources/paper/workflow.json'),asset_path(ROOT,'resources/paper/chinese-modeling-policy.json')]
     files += [FOLDER/x['path'] for fig in catalog for x in fig['files'].values()]
     wh.new(FOLDER/'run.json',{'binding':binding,'author':writer.model_dump(mode='json'),'source_run':wh.rel(f),'workflow_sha256':context['workflow_sha256'],'W1_snapshot_sha256':key,'inputs':wh.frozen_manifest(sorted(set(files))),'implementation':'Q2 supplied outline/consent adapter; configured supplier API W1 and prose requested separately, no autonomous Writer framework claim'})
     wh.new(FOLDER/'W1-context.json',{'snapshot_sha256':key,'binding':binding,'required_checks':REQUIRED_CHECKS['W1'],'evidence':{a.artifact_id:a.path for a in art},'response_schema':M1Answer.model_json_schema(),'read_only':True,'gate_scope':'claims/evidence/citations/outline before prose'})
     wh.state_write(FOLDER,{'phase':'WAITING_W1','manuscript_review':'pending','figure_selection':'approved_seven','paper_exported':False})
-    (ROOT/'stage-d/q2-full/current-writing.json').write_text(json.dumps({'run_dir':wh.rel(FOLDER),'binding':binding,'phase':'WAITING_W1'},ensure_ascii=False,indent=2),encoding='utf-8')
+    (asset_path(ROOT,'stage-d/q2-full/current-writing.json')).write_text(json.dumps({'run_dir':wh.rel(FOLDER),'binding':binding,'phase':'WAITING_W1'},ensure_ascii=False,indent=2),encoding='utf-8')
     print('Q2_CONFIRM_AND_PREPARE_PASS',flush=True)
 
 def resume_prepare():
     # Resume only the retained failed handoff; existing authoring artifacts are not rewritten.
-    f=active();verify_q2_frozen_files(f);base=ROOT/'stage-d/q2-full'
+    f=active();verify_q2_frozen_files(f);base=asset_path(ROOT,'stage-d/q2-full')
     binding=wh.read(FOLDER/'figure-catalog.json')['evidence'];catalog=wh.read(FOLDER/'figure-catalog.json')['figures'];context=wh.read(FOLDER/'writer-context.json')
-    consent=base/'confirmations/user-q2-result-and-seven-figures-20261109';q1=ROOT/wh.read(ROOT/'stage-d/d5/current-writing.json')['run_dir']
-    sources=[ROOT/'stage-d/d5/sources/cumcm2024a-statement.txt',ROOT/'stage-d/runs/references/d6-q1-to-q2-20261109-v2/问题二题面.txt',ROOT/'stage-d/d5/sources/scipy-brentq-1.15.3.txt']
+    consent=base/'confirmations/user-q2-result-and-seven-figures-20261109';q1=ROOT/wh.read(asset_path(ROOT,'stage-d/d5/current-writing.json'))['run_dir']
+    sources=[asset_path(ROOT,'stage-d/d5/sources/cumcm2024a-statement.txt'),asset_path(ROOT,'stage-d/runs/references/d6-q1-to-q2-20261109-v2/问题二题面.txt'),asset_path(ROOT,'stage-d/d5/sources/scipy-brentq-1.15.3.txt')]
     store=CollaborationStore(FOLDER/'records');calls=[Call.model_validate(wh.read(p)) for p in (FOLDER/'records/Call').glob('*.json')]
     modeler=next(c for c in calls if c.role=='modeling');coder=next(c for c in calls if c.role=='coding');writer=next(c for c in calls if c.role=='writing');original=wh.read(f/'run.json')['author']
     with workflow() as w:wh.assert_upstream(w,binding)
@@ -107,12 +108,12 @@ def resume_prepare():
     lineage=[modeler.call_id,coder.call_id];key=store.freeze(Snapshot(binding=writer.binding,hand='coding',artifacts=upstream,lineage_call_ids=lineage));handoff=store.handoff(key,'writing',[a.artifact_id for a in upstream]);wh.new(FOLDER/'handoff.json',{**store.context(handoff,writer.call_id),'original_coding_author':original,'rebind_reason':'source numerical P2 binds logical folder execution; confirmed workflow and writing bind durable execution UUID; original P2 unchanged'})
     art=upstream+[artifact(a,k,FOLDER/p,writer) for a,k,p in [('outline','outline','outline.json'),('citations','source','citations.json'),('writer_context','input','writer-context.json'),('figure_catalog','figure_selection','figure-catalog.json'),('figure_consent','input','figure-selection-review.json'),('figure_policy','input','user-figure-policy.json'),('q1_reference','input','previous-question-reference.json'),('confirmed_source','input','confirmed-source-status.json'),('evidence_chain','input','evidence-chain.json')]]
     key=store.freeze(Snapshot(binding=writer.binding,hand='writing',artifacts=art,lineage_call_ids=lineage+[writer.call_id]))
-    files=[ROOT/a.path for a in art]+[consent/'result-approval.json',consent/'figure-approval.json',f/'frozen-artifacts.json',f/'P2-admission.json',q1/'单题论文-中文审阅稿.md',q1/'manuscript-review.json']+sources+[ROOT/d['path'] for d in context['documents']]+[ROOT/'resources/paper/workflow.json',ROOT/'resources/paper/chinese-modeling-policy.json']
+    files=[ROOT/a.path for a in art]+[consent/'result-approval.json',consent/'figure-approval.json',f/'frozen-artifacts.json',f/'P2-admission.json',q1/'单题论文-中文审阅稿.md',q1/'manuscript-review.json']+sources+[ROOT/d['path'] for d in context['documents']]+[asset_path(ROOT,'resources/paper/workflow.json'),asset_path(ROOT,'resources/paper/chinese-modeling-policy.json')]
     files += [FOLDER/x['path'] for fig in catalog for x in fig['files'].values()]
     wh.new(FOLDER/'run.json',{'binding':binding,'author':writer.model_dump(mode='json'),'source_run':wh.rel(f),'workflow_sha256':context['workflow_sha256'],'W1_snapshot_sha256':key,'inputs':wh.frozen_manifest(sorted(set(files))),'implementation':'Q2 supplied outline/consent adapter; configured supplier API W1 and prose requested separately, no autonomous Writer framework claim'})
     wh.new(FOLDER/'W1-context.json',{'snapshot_sha256':key,'binding':binding,'required_checks':REQUIRED_CHECKS['W1'],'evidence':{a.artifact_id:a.path for a in art},'response_schema':M1Answer.model_json_schema(),'read_only':True,'gate_scope':'claims/evidence/citations/outline before prose'})
     wh.state_write(FOLDER,{'phase':'WAITING_W1','manuscript_review':'pending','figure_selection':'approved_seven','paper_exported':False})
-    (ROOT/'stage-d/q2-full/current-writing.json').write_text(json.dumps({'run_dir':wh.rel(FOLDER),'binding':binding,'phase':'WAITING_W1'},ensure_ascii=False,indent=2),encoding='utf-8')
+    (asset_path(ROOT,'stage-d/q2-full/current-writing.json')).write_text(json.dumps({'run_dir':wh.rel(FOLDER),'binding':binding,'phase':'WAITING_W1'},ensure_ascii=False,indent=2),encoding='utf-8')
     print('Q2_CONFIRM_AND_PREPARE_PASS',flush=True)
 
 def w1():

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Preserve source-layout relocation identities before the next code revision; current source files remain editable",
+  "files": [
+    {
+      "path": "src/modelcrew/algorithm_retrieval.py",
+      "sha256": "9c945659bcd00347e9b5734a507ba2980e63904bd3b80dffc93b0408e0ee0835",
+      "snapshot": "archive/research/source-snapshots/algorithm-retrieval-20261111/algorithm_retrieval.py",
+      "bytes": 8474
+    },
+    {
+      "path": "src/modelcrew/collaboration_retrieval.py",
+      "sha256": "39e3d26fb5e1b7adccdec480ab37e05824d8b2c0856e798f8e26cad109ba52a1",
+      "snapshot": "archive/research/source-snapshots/algorithm-retrieval-20261111/collaboration_retrieval.py",
+      "bytes": 4518
+    },
+    {
+      "path": "src/modelcrew/modeling_hand.py",
+      "sha256": "3c4380bb7e57ac27a2eba9d1fff73d6a6865655c798fc99a9b84bf23eaeed0bd",
+      "snapshot": "archive/research/source-snapshots/algorithm-retrieval-20261111/modeling_hand.py",
+      "bytes": 36396
+    },
+    {
+      "path": "src/modelcrew/paper_search_mcp.py",
+      "sha256": "16ef36ab5899392d746769a98135afefb2cc5107b9856c706cc24441843aa724",
+      "snapshot": "archive/research/source-snapshots/algorithm-retrieval-20261111/paper_search_mcp.py",
+      "bytes": 16743
+    },
+    {
+      "path": "src/modelcrew/mcp_client.py",
+      "sha256": "69f46c73cb83d4a01f9010377bb7ebb34d6a9c0f59559fab4d06f1037107d376",
+      "snapshot": "archive/research/source-snapshots/algorithm-retrieval-20261111/mcp_client.py",
+      "bytes": 3267
+    },
+    {
+      "path": "src/modelcrew/repository_migration.py",
+      "sha256": "ca611eea30c4ca316f4b909ad56196780a507291fa0f05de997118d0e259e194",
+      "snapshot": "archive/research/source-snapshots/algorithm-retrieval-20261111/repository_migration.py",
+      "bytes": 5692
+    }
+  ]
+}

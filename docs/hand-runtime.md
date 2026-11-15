@@ -1,6 +1,19 @@
 # 通用代码手与论文手运行接入
 
-实现入口为 `modelcrew.hand_runtime`、`Workflow.start_hand/advance_hand/hand_status/hand_decision/recheck_hand`；HTTP与CLI复用同一实现。程序管理状态和路由，不增加常驻业务Agent。结构化阶段使用JSON，Writer正文阶段返回Markdown原文；生成的数值代码不在宿主导入或执行。
+**当前进度（2026-11-15）**：F6.1—F6.6 已按首发范围完成技术验收与收口。当前代码重新构建 wheel/sdist，源码目录外的安装、七类检索、三手路由及真实导出验证通过；既有 M1/P1/P2/W1/W2 和用户成品确认均已复核。当前以[收口报告](internal-routing-closure.md)为准，下列带日期段落保留当时状态。G 的 DeepSeek Harness 接入尚未开始，F5 暂缓及全新 Windows 验证例外继续保留。
+
+
+2026-11-15 检索入口收口：新业务默认使用包内七类算法及几何补充，建模手、协作函数和MCP algorithm_search已统一。默认无需旧catalog、BGE权重或Qdrant算法集合；查询方式为ID/名称/类别字面匹配，尚未重建113算法向量语义索引。显式指定旧配置仍严格核验旧来源，不静默切换。见[入口收口说明](algorithm-entrypoint-closure.md)。
+
+2026-11-14 F6.6 定点修复完成：JSON数组映射、对偶浮点判定、基准最小范围和失败退出均已修复；受控人工代码导入已接通Python/HTTP/CLI。原任务新增一次真实Docker最小执行及一次独立P1，五项全部PASS，现停在GENERATE_FULL；原三次自动返工预算、旧P1 FAIL和模型批准均保留。全量/P2、结果确认、写作及导出仍未完成。见[修复验收](coding-repair-validation.md)。
+
+2026-11-14 修复前历史状态：真实用户已批准未变的版本2模型，新M1通过，代码手完成真实最小执行；独立P1为FAIL，自动返工达到3次后停在NEEDS_HUMAN，尚未全量/P2/写作。当前需定点修复JSON输入映射、对偶浮点判定和最小阶段范围，并补齐耗尽后的受控修复接续。见[当前证据与边界](three-hand-live-validation.md)。
+
+2026-11-14 F6.6 实时联调：新合成任务已实际调用配置模型并完成独立 M1 六项 PASS；建模手四项范围确认待用户答复，运行保持 blocked、无用户批准和求解。已核验引用/格式失败阻断、同请求不重发及重连恢复；代码手/P1/P2、论文手/W1/W2及后续用户确认仍待推进。见[本次范围与证据](three-hand-live-validation.md)。
+
+2026-11-14 F6 首批：已接入新三手运行的程序资料路由与冻结、PDF/XLSX/DOCX 受控只读工具及幂等恢复；当前 227 项包资源。新建模直接读取包内七类算法，旧目录/冻结回执保留。独立安装下三手上下文与工具探针已验证；真实模型三手和 Harness 端到端尚未整体验收，见[路由范围](resource-routing.md)。
+
+实现入口为 `modelcrew.hand_runtime`、`Workflow.start_hand/advance_hand/hand_status/hand_decision/recheck_hand/repair_hand`；HTTP与CLI复用同一实现。程序管理状态和路由，不增加常驻业务Agent。结构化阶段使用JSON，Writer正文阶段返回Markdown原文；生成的数值代码不在宿主导入或执行。
 
 数据库迁移010保存运行快照和不可变状态事件。部署先执行 `python -m modelcrew init-db`。不替换历史D3/D5脚本、已通过论文或模型。
 
@@ -12,6 +25,7 @@
 | 查看状态 | `GET /tasks/{task}/hand-runs/{run_id}` |
 | 执行一个持久化步骤/恢复 | `POST /tasks/{task}/hand-runs/{run_id}/advance` |
 | 一次有理由的独立只读复核 | `POST /tasks/{task}/hand-runs/{run_id}/recheck`，正文含rationale |
+| 耗尽后显式导入最小修复代码 | `POST /tasks/{task}/hand-runs/{run_id}/repair` |
 | 用户正文/选图决定 | `POST /tasks/{task}/hand-runs/{run_id}/decisions` |
 
 CLI：
@@ -21,6 +35,7 @@ python -m scripts.run_hand start TASK --hand coding --request request.json
 python -m scripts.run_hand advance TASK --run-id RUN_UUID
 python -m scripts.run_hand status TASK --run-id RUN_UUID
 python -m scripts.run_hand recheck TASK --run-id RUN_UUID --request recheck.json
+python -m scripts.run_hand repair TASK --run-id RUN_UUID --request repair.json
 python -m scripts.run_hand decision TASK --run-id RUN_UUID --request decision.json
 ```
 
@@ -82,3 +97,25 @@ Writer-plan由配置供应商生成；严格Schema包括论断及真实JSON证�
 ### 解释 revision 的受控继承补充
 
 对于同 execution 的解释修订，Writer 不再要求把 `interpretation_review` 伪装成完整数值 P2。新增 `result_lineage` 校验新结果用户确认、完整结构化主张的独立 P2 解释审查和原数值 P2 快照/冻结包，再沿用原 M1 的只读策略重验当前数学绑定。实际调用独立 W1 后才能进入正文/选图关卡。任何原数值文件、契约、执行、原 P2 或新独立审查输入发生变化，均拒绝继承。此入口是 Python 工作流内的显式本地接纳，不新增任意外部审查导入 HTTP API。
+
+F0路径更新（2026-11-11）：新建三手运行写入 `runs/hands/<uuid>`，建模运行写入 `runs/modeling/<uuid>`；历史运行按集中兼容表读取原目录，拒绝新旧位置冲突。详见[迁移与恢复](repository-migration.md)。
+
+
+## F6.6 未接纳M1回执的受控复核补充（2026-11-14）
+
+现有recheck_modeling除已接纳FAIL回执外，也允许对一个已完整收到但Schema/证据Pointer不合法、未获接纳的M1响应申请一次明确有理由的独立只读复核。须有完整stop响应、HTTP200、响应哈希、已冻结快照及未变的契约/数学/输入；没有唯一完整响应的未知传输不得重发，合法缓存应恢复原接纳而非重新分类。原响应不裁剪、不删字段、不修Pointer，新的独立请求只给原验证错误与响应哈希，原始响应仍存档。
+
+从不可变proposal重新读取questions，避免M1解码早于状态保存时丢失待答问题；有问题仍blocked。复核格式再次不合格记NOT_ADMITTED与needs_human，保持一次预算；与传输未知分别处理，重复查询不新调用供应商。证据导航按广度保留顶层路径，并按artifact_id/selector配对给出Schema提示；JSON模式不宣称服务器执行了Schema校验。此改动不授予用户批准，也不提供代码手预算耗尽后的人工代码导入/恢复能力。
+
+## 最小代码人工修复接续（2026-11-14）
+
+`Workflow.repair_hand` 只接受已耗尽三次自动返工、停在 `NEEDS_HUMAN` 的代码手最小实现故障；模型、输入、冻结规范及历史文件哈希仍须全部有效。模型问题、未知供应商结果、审查格式错误、已有全量作业或已接纳结果不能借此恢复。此入口为受信任本地操作者提交，不向模型开放，不新增身份认证。
+
+请求须含 `version`、`actor`、`request_id`、真实修复请求原话 `statement`、`rationale`、工作区POSIX相对路径 `code_path`、`code_sha256` 和 `previous_code_sha256`。只静态解析语法，将提交代码和修复来源以新不可变文件保存，登记为 `operator_supplied_code`，不冒充供应商生成。新的 `attempt` 用于区分作业、作者身份与审查快照，`retries` 保持3，原失败及操作记录不变。相同请求幂等，参数冲突拒绝。
+
+接续只到 `EXECUTE_MINIMAL`，沿原授权、输入、限额实际在Docker执行，并使用新独立上下文审P1。修复仍失败则重新停在 `NEEDS_HUMAN`，不自动增加返工；再次人工修复须有新的显式请求。P1通过只进入 `GENERATE_FULL`，不登记完整结果，不产生用户批准。当前实测及工程负例边界见[修复验收](coding-repair-validation.md)。
+
+
+## 全量代码定点修复接续（2026-11-15）
+
+原 `repair_hand` 请求增加可选 `stage`，默认 `minimal`，既有请求指纹与幂等记录保持兼容。显式 `stage="full"` 只接纳预算耗尽后的全量实现故障；须保留有效独立P1、原最小源码、当前模型批准和全部冻结哈希，已有业务结果、未知供应商或审查格式故障均不可借此恢复。全量修复登记新操作者作者/不可变源码/来源，保留旧作业和失败记录，`retries` 不重置；仅清除当前全量包及P2准入指针，原P1继续绑定原最小产物。新代码必须重新真实执行全量、逐文件字节复跑、全部候选PDF全页机械检查和新独立P2，之后才可登记待用户确认结果。该接续不生成用户批准，也不把操作者修复标为供应商代码生成。

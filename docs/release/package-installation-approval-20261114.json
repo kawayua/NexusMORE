@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "timezone": "Asia/Shanghai",
+  "status": "accepted_by_user_current_private_package_baseline",
+  "milestone": "F2",
+  "version": "0.1.0.dev0",
+  "user_statement": "ok 那就明确这版 同意安装包的审核",
+  "approval_scope": "Actual current private development wheel/sdist baseline, core/workflow installation verification and clarified delivery decisions",
+  "overall_F2_complete": false,
+  "public_upload_authorized": false,
+  "baseline_evidence": {
+    "path": "docs/release/package-installation-20261113.json",
+    "sha256": "abca8e724619d5504a5ac2ccfa8c6cfec1f64416211f8dd8bbcdc7416eaedefc"
+  },
+  "approved_artifacts": {
+    "wheel": {
+      "path": "tmp/package-installation-20261113/verified-build/wheel/nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "4bf62655593d871913b79e955d275544d02e34f5988f32fbd88723bbd84ed43f",
+      "bytes": 721071
+    },
+    "sdist": {
+      "path": "tmp/package-installation-20261113/verified-build/sdist/nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "f4070644029f0d98ce5cec2887e1b5a5c7e4e1a298c0c636eb53e430f2515bf3",
+      "bytes": 724718
+    },
+    "wheel_from_sdist": {
+      "path": "tmp/package-installation-20261113/verified-build/wheel-from-sdist/nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "57043877233990ccfe99825b77cb937fd4d57272dbd7c21acbd9788abe7740f7",
+      "bytes": 721071
+    }
+  },
+  "delivery_decisions": {
+    "postgresql": {
+      "deployment": "Docker",
+      "managed_initialization_start_health_recovery": "planned_not_implemented"
+    },
+    "qdrant": {
+      "deployment": "Docker",
+      "managed_initialization_start_health_recovery": "planned_not_implemented"
+    },
+    "docker": {
+      "current_prerequisite": "Docker Desktop with WSL2/Linux containers",
+      "automatic_installation_implemented": false
+    },
+    "harness": {
+      "download_installation": "user_managed_out_of_scope",
+      "live_integration_verified": false
+    },
+    "python_runtime": {
+      "supported_backend": "CPython 3.13",
+      "delivery_goal": "bundled_or_automatically_prepared",
+      "implemented_in_current_wheel": false
+    },
+    "online_model_service": {
+      "local_service_installation_required": false,
+      "configuration": [
+        "API key",
+        "endpoint",
+        "model"
+      ]
+    },
+    "node": "only_if_required_by_verified_host_integration",
+    "native_export_tools": "preparation_and_distribution_subject_to_support_and_licensing"
+  },
+  "previous_config_sha256": "77ba48fa0efb4bc27fbcd69949b8bef0b4bd96fa1f9260b3d6f2f8c762d1a207",
+  "current_documents": [
+    {
+      "path": "docs/package-installation.md",
+      "sha256": "aaf342610604a8e50165df56d9932bb37c8f93c2647f2e5103fcd3153ef9a80c"
+    },
+    {
+      "path": "configs/package-distribution.json",
+      "sha256": "77f25fa4e9d332e53f29b645c58c9ae2a665bc58c0af7198272033bcefcc2153"
+    },
+    {
+      "path": "docs/open-source-harness-roadmap.md",
+      "sha256": "6dbc0c2660848fb0a1055b31019e705a2103003c9a69dd71a1ca3d2b6015f0c5"
+    }
+  ],
+  "remaining": [
+    {
+      "milestones": [
+        "F2",
+        "F5"
+      ],
+      "work": "Complete independently authored or authorized algorithm/mathematics/Chinese-paper knowledge and bundle required references; current 200 resources are not full knowledge"
+    },
+    {
+      "milestones": [
+        "F2",
+        "F4"
+      ],
+      "work": "Install and validate remaining optional dependency groups and supported toolchains in the chosen environment"
+    },
+    {
+      "milestones": [
+        "F3"
+      ],
+      "work": "Separate user workspaces and persistent data from installed config.ROOT and unify initialization/configuration"
+    },
+    {
+      "milestones": [
+        "F4"
+      ],
+      "work": "Clean-machine service deployment, initialization and persistence/recovery acceptance"
+    },
+    {
+      "milestones": [
+        "F6",
+        "G",
+        "H2"
+      ],
+      "work": "Actual selection/read/execution routing, DeepSeek Harness integration and end-to-end acceptance"
+    }
+  ],
+  "preservation": "Original 2026-11-13 verification receipt and approved package bytes retained; later documentation clarifies scope without retroactively changing their hashes",
+  "verification": "Read existing evidence; verified three artifact hashes; documentation/configuration changes only, no rebuilding, installation, service startup or additional business tests"
+}

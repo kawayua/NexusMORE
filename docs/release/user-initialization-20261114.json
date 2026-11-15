@@ -1,0 +1,715 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F3",
+  "status": "implementation_and_technical_validation_passed",
+  "user_request": {
+    "exact_text": "进行F3阶段",
+    "authorizes": "implement F3 and perform technical checks",
+    "not_a_paper_or_publication_approval": true
+  },
+  "distribution": "nexusmore",
+  "python_package_and_command": "modelcrew",
+  "version": "0.1.0.dev0",
+  "configuration_version": "1.0.0",
+  "implemented": [
+    "unified model/database/retrieval/execution/export settings with explicit precedence and schema validation",
+    "installed default user workspace outside Python/package; source checkout legacy development default retained",
+    "init with exclusive creation and no overwrite or service/model calls",
+    "redacted config-show and bounded profile/service doctor",
+    "MCP child propagation of workspace/configuration and relevant non-model overrides",
+    "custom secret environment alias without fallback to unrelated credentials",
+    "relative embedding paths resolved against workspace; frozen index identity retained",
+    "package-aware algorithm source verification",
+    "explicit permission diagnosis for Docker probes"
+  ],
+  "frozen_artifacts": {
+    "schema_version": "1.0.0",
+    "status": "passed",
+    "scope": "private development build; no public upload, full-knowledge or runtime gate acceptance",
+    "build_isolation": false,
+    "builder": "setuptools.build_meta; installed build requirements",
+    "wheel": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\user-initialization-validation-20261114\\verified-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "4c0b6325c0d6124ec1400be0200bfd8dcf196303d7990165ce893f4d407340c1",
+      "bytes": 917200,
+      "members": 300,
+      "resource_files": 219,
+      "module_files": 75,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    },
+    "sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\user-initialization-validation-20261114\\verified-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "f94d52d530284b06e41289d7672bbda1eccff2e6acb73f46c7536a63485d7481",
+      "bytes": 921002,
+      "members": 436,
+      "status": "passed"
+    },
+    "wheel_from_sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\user-initialization-validation-20261114\\verified-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "07739f62b57f157b375432e5640530edd93bc6e5ee0368d35ccdc342b501e1f1",
+      "bytes": 917200,
+      "members": 300,
+      "resource_files": 219,
+      "module_files": 75,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    }
+  },
+  "regression": {
+    "status": "passed",
+    "unique_passed": 215,
+    "unique_skipped": 2,
+    "failed": 0,
+    "reports": [
+      {
+        "path": "tmp/user-initialization-validation-20261114/final-regression.xml",
+        "sha256": "600ef9a3b5916bbed951e76e642b4b2ef262e9f9e0b406649586696edc4612db",
+        "bytes": 28518
+      },
+      {
+        "path": "tmp/user-initialization-validation-20261114/final-diagnostic-regression.xml",
+        "sha256": "f7e324bb34899798cf4662d53c7e0d77498519b8d03532ed186cccbfd93d3cd6",
+        "bytes": 4633
+      }
+    ],
+    "skips": [
+      "unprivileged Windows symbolic links unavailable; junction rejection separately tested",
+      "source test environment lacks complete DOCX schema-check dependencies"
+    ],
+    "earlier_failed_runs_preserved": [
+      "regression.xml",
+      "initial historical identity check: three missing revision registrations, repaired without changing original hashes"
+    ]
+  },
+  "installed_validation": {
+    "status": "passed",
+    "checks": [
+      {
+        "label": "wheel-core-install",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-pip-check",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-version",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-resources",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-init",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-doctor",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-config",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-reinit",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-core-missing",
+        "exit_code": 1,
+        "expected": 1
+      },
+      {
+        "label": "sdist-core-install",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "sdist-core-pip-check",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "sdist-core-version",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "sdist-core-resources",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "sdist-core-init",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "sdist-core-doctor",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "sdist-core-config",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "sdist-core-reinit",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-install",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-pip-check",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-version",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-resources",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-init",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-doctor",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-config",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "wheel-full-reinit",
+        "exit_code": 0,
+        "expected": 0
+      },
+      {
+        "label": "business-config-probe",
+        "exit_code": 0,
+        "expected": 0
+      }
+    ],
+    "fresh_core_environment": true,
+    "core_from_sdist_and_full_environments": "upgrade existing isolated F3 environments; no external site packages or source imports",
+    "wheel-core_no_installation_data_writes": true,
+    "sdist-core_no_installation_data_writes": true,
+    "wheel-full_no_installation_data_writes": true
+  },
+  "earlier_fresh_isolation_validation": {
+    "path": "tmp/user-initialization-validation-20261114/frozen-installed-validation.json",
+    "sha256": "06f984c25e8075b2f6c054f878fd9f62182c5b78e3d8a2039fde75f8d8ca6e78",
+    "bytes": 3474
+  },
+  "business_probe": {
+    "model_transport": "mock_only",
+    "success_calls": 1,
+    "failed_calls": 1,
+    "automatic_resends": 0,
+    "secrets_redacted": true,
+    "mcp_child_workspace_log_verified": true,
+    "service_probe_checks": [
+      {
+        "name": "initialized",
+        "status": "passed",
+        "action": ""
+      },
+      {
+        "name": "workspace_writable",
+        "status": "passed",
+        "action": ""
+      },
+      {
+        "name": "release_platform",
+        "status": "passed",
+        "action": ""
+      },
+      {
+        "name": "package_resources",
+        "status": "passed",
+        "action": ""
+      },
+      {
+        "name": "model_configuration",
+        "status": "passed",
+        "action": ""
+      },
+      {
+        "name": "database_configuration",
+        "status": "passed",
+        "action": ""
+      },
+      {
+        "name": "docker_command",
+        "status": "passed",
+        "action": ""
+      },
+      {
+        "name": "dependency:jsonschema",
+        "status": "passed",
+        "action": "",
+        "version": "4.26.0"
+      },
+      {
+        "name": "dependency:psycopg",
+        "status": "passed",
+        "action": "",
+        "version": "3.3.4"
+      },
+      {
+        "name": "dependency:langgraph",
+        "status": "passed",
+        "action": "",
+        "version": "1.2.10"
+      },
+      {
+        "name": "dependency:mcp",
+        "status": "passed",
+        "action": "",
+        "version": "1.30.0"
+      },
+      {
+        "name": "dependency:httpx",
+        "status": "passed",
+        "action": "",
+        "version": "0.28.1"
+      },
+      {
+        "name": "dependency:pydantic",
+        "status": "passed",
+        "action": "",
+        "version": "2.13.4"
+      },
+      {
+        "name": "docker_linux",
+        "status": "missing_or_invalid",
+        "action": "Check Docker Linux engine and current process permissions",
+        "failure_category": "permission_denied"
+      },
+      {
+        "name": "postgresql_connection",
+        "status": "missing_or_invalid",
+        "action": "Check PostgreSQL service, credentials and workflow dependencies"
+      }
+    ],
+    "full_doctor_incomplete_as_expected": true,
+    "capability_entries": 6
+  },
+  "native_Docker_check": {
+    "sandbox": "permission_denied by Docker named-pipe access",
+    "outside_sandbox_readonly_command": [
+      "docker",
+      "info",
+      "--format",
+      "{{.OSType}}"
+    ],
+    "outside_sandbox_exit": 0,
+    "outside_sandbox_output": "linux",
+    "service_deployed_or_database_migrated": false
+  },
+  "historical_recovery": {
+    "status": "passed_in_final_regression",
+    "records": 44,
+    "verified_files": 65666,
+    "new_revision_record": "docs/migrations/knowledge-source-revisions-20261114.json",
+    "snapshots": 3,
+    "old_hashes_and_approvals_rewritten": false
+  },
+  "protected_records": {
+    "path": "tmp/user-initialization-validation-20261114/protected-record-verification.json",
+    "sha256": "1c69072ac1fdc6b47c6fc8233a76da6b78da1033300370f84c52692ff0e28aaa",
+    "bytes": 16753
+  },
+  "previous_source_snapshots": {
+    "path": "tmp/user-initialization-validation-20261114/before.json",
+    "sha256": "ee5d269d076e54417c479b3e5f574268c72d7ef8e5ec0d57173890a7f1be5c20",
+    "bytes": 3751
+  },
+  "current_source_files": [
+    {
+      "path": "src/modelcrew/config.py",
+      "sha256": "97be4e504176c998a3395da85dddfb2707974d07116973cf8118e8ee67ebcd9e",
+      "bytes": 8659
+    },
+    {
+      "path": "src/modelcrew/__main__.py",
+      "sha256": "42869d157e4e659689696eb8fd21111e3d51b9241d7bd14e79b6f08daceecdcf",
+      "bytes": 12692
+    },
+    {
+      "path": "src/modelcrew/drafts.py",
+      "sha256": "dc67c0b0a11aa16b757af8ef420a2e55acf9e8aa2c993fd08d9b2d7272757cd6",
+      "bytes": 5416
+    },
+    {
+      "path": "src/modelcrew/runtime_paths.py",
+      "sha256": "8c6e3cb65753896dfeb440485539ec30c7e70fd503da8a1c3de7311995ed99ee",
+      "bytes": 2668
+    },
+    {
+      "path": "src/modelcrew/retrieval_paths.py",
+      "sha256": "36d8c1cb0d9c6f4962e37b19550c20f85142f0a92b8f9d83e1294d5e32b8d02a",
+      "bytes": 2626
+    },
+    {
+      "path": "src/modelcrew/execution_paths.py",
+      "sha256": "d6628b611f35c466231df5fd45dd5b3571e9d4eceaf15f7beb6eb7501d6edaea",
+      "bytes": 1403
+    },
+    {
+      "path": "src/modelcrew/mcp_client.py",
+      "sha256": "7c658c8512c92214218ad330c5e2156d150f6a3c0a4d8a1a94dab5dcc3f7f284",
+      "bytes": 3543
+    },
+    {
+      "path": "src/modelcrew/tool_discovery.py",
+      "sha256": "df96f02d81f7774a0612457074d2e586fc6af7e94e958c8e2dda6faa17b1a0f0",
+      "bytes": 2529
+    },
+    {
+      "path": "src/modelcrew/algorithm_retrieval.py",
+      "sha256": "77c031749d8e38c4ca74f9098a807d03d7dfeb42857e52de809c77cd76f67de6",
+      "bytes": 8712
+    },
+    {
+      "path": "src/modelcrew/retrieval.py",
+      "sha256": "6385750fe3f6a128dc52e0192bf852bf2daf90c9293680ca262fd24b49724621",
+      "bytes": 10972
+    },
+    {
+      "path": "configs/package-distribution.json",
+      "sha256": "7c6bea1b4799e253e68faf6bedea8b1dd6b5eb5d0a85578785550ae99fd9a6c9",
+      "bytes": 10383
+    },
+    {
+      "path": "docs/open-source-harness-roadmap.md",
+      "sha256": "b44af5916ed0035e6202c8d08d0d907801d92d52e79f6cabfea8faeae68a6cd1",
+      "bytes": 15495
+    },
+    {
+      "path": "docs/distribution-implementation.md",
+      "sha256": "d373124484624679783b0e59088a04a70458e3bd6109c99cf303f9e5b07ec83e",
+      "bytes": 26184
+    },
+    {
+      "path": "docs/package-installation.md",
+      "sha256": "8373523e2b6e48fe249faaad3761b98f053ae02df1e6d29cacc1998e55df6e2d",
+      "bytes": 14862
+    },
+    {
+      "path": "src/modelcrew/latex_tools.py",
+      "sha256": "61c44aaa7e42152113f55a5abfbacb25ec69ceba7d687d019ca0c9adf2641ebe",
+      "bytes": 26550
+    },
+    {
+      "path": "src/modelcrew/repository_migration.py",
+      "sha256": "b53ee916db524541866d00608d2ff9b0cc82cd04d2ada34d5f48f120a053c84c",
+      "bytes": 8723
+    },
+    {
+      "path": "src/modelcrew/project_assets.py",
+      "sha256": "75a77b2f0df42ff2a947b8882147dfa901bb77ce9f9b88077096ed2fd938f46c",
+      "bytes": 3172
+    },
+    {
+      "path": "src/modelcrew/docker_executor.py",
+      "sha256": "0cef35929256a25e9dad59f85ec161a89e222b12744b9e844277b35cd06407a4",
+      "bytes": 22395
+    },
+    {
+      "path": "src/modelcrew/code_executor_mcp.py",
+      "sha256": "3b4cc6746ec66ca1801d8fbb24c93eee341e80398eaf2c0466df00e2f25d6b99",
+      "bytes": 6605
+    },
+    {
+      "path": "tests/test_retrieval_paths.py",
+      "sha256": "554ca42cb11c19c5f62799a6e0386ee96815411d8d7311e4edd6d71122bbf458",
+      "bytes": 5078
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "9ad760a680c485168893ff68f07dc16dc8129bfad5900edef865b36e6e51ad23",
+      "bytes": 19955
+    },
+    {
+      "path": "scripts/build_distribution.py",
+      "sha256": "fe0ddbe5dfe3c5f236c3b976b91a16ab7f1b868c11ba34ee6ebd45d883b2dac5",
+      "bytes": 5251
+    },
+    {
+      "path": "README.md",
+      "sha256": "cc34c0185d5ba854a753961816e7076ffc153ddec1d8a7b1fdf6f86a4d857c72",
+      "bytes": 14803
+    },
+    {
+      "path": "configs/repository-layout.json",
+      "sha256": "f235290f17ce7d1144b587ac401470c3638c0cce3bff09db3e130dab2e4f05cf",
+      "bytes": 195100
+    },
+    {
+      "path": "docs/repository-migration.md",
+      "sha256": "89010f98eb16c6f3ee285442c7ce9bf4bfefca73c77a2b0d5ccdbbd96f450835",
+      "bytes": 29224
+    },
+    {
+      "path": "src/modelcrew/user_workspace.py",
+      "sha256": "f6d911c1289cc2aef81d6e62ecc3860c5d371de3f0ce32627e399150b0a14fe8",
+      "bytes": 10247
+    },
+    {
+      "path": "tests/test_user_workspace.py",
+      "sha256": "9e02aca289aa0d1ce9867ff65ee18fcbf63fe0e8d4647435ad07e3736196664e",
+      "bytes": 10362
+    },
+    {
+      "path": "docs/user-configuration.md",
+      "sha256": "540e6a8f0f54c6407ca9ce2ae994d0c9ec7592f1a52ec9b84265f8c060f8d3b0",
+      "bytes": 6156
+    },
+    {
+      "path": "docs/release/user-initialization-summary.md",
+      "sha256": "6c7bae12c52b76a96a2fe6f82edfe229fe77cbddb5e9e769cb091785dcb048a6",
+      "bytes": 3667
+    },
+    {
+      "path": "docs/migrations/knowledge-source-revisions-20261114.json",
+      "sha256": "a6a2d7df082ae518a52c6d0d9b2c77eb88e259594a12669ae47a1fec5580a87a",
+      "bytes": 1539
+    }
+  ],
+  "next_milestone": "F4",
+  "next_milestone_implementation_started": false,
+  "followup": {
+    "F4": "native/runtime preparation, Docker PostgreSQL/Qdrant deployment/migrations, health/persistence/recovery, native Word and clean-machine validation",
+    "F5": "public license and third-party distribution permissions",
+    "F6": "production retrieval, automatic routing and execution",
+    "G": "DeepSeek Harness integration",
+    "H": "end-to-end acceptance"
+  },
+  "independent_M1_P1_P2_W1_W2": "not_run; implementation tests are not independent runtime reviews",
+  "public_upload_authorized": false,
+  "native_Word_render_verified": false,
+  "actual_model_network_calls": 0,
+  "full_product_end_to_end_verified": false
+}

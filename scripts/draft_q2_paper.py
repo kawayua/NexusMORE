@@ -1,4 +1,5 @@
 """Configured API prose authoring after independent W1; fixed evidence tables and assets."""
+from modelcrew.project_assets import asset_path
 import argparse,json
 from pathlib import Path
 import numpy as np
@@ -8,7 +9,7 @@ from modelcrew.model_client import JsonModel
 from scripts.recheck_q2_p2 import JsonClient
 from scripts.run_d4_full import workflow
 from modelcrew.modeling_paper import validate_draft
-FOLDER=ROOT/'stage-d/runs/writing/d6-q2-20261109-v2'
+FOLDER=asset_path(ROOT,'stage-d/runs/writing/d6-q2-20261109-v2')
 
 def request():
     with workflow() as w:meta=wh.require_W1(FOLDER,w)

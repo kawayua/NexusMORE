@@ -50,7 +50,7 @@ def verify(folder):
     coverage = {category: algorithm_context(category)['status'] for category in
                 ['optimization', 'prediction', 'evaluation', 'graph', 'statistics', 'simulation', 'machine-learning', 'geometry']}
     write(folder / 'category-coverage.json', coverage)
-    check('uncovered_category_explicit', coverage['prediction'] == 'uncovered')
+    check('installed_prediction_category_available', coverage['prediction'] == 'ok')
 
     binding = Binding(task_id='d1-synthetic-contract-demo', contract_version=1, contract_sha256=digest({'fixture': True}))
     for role in ['modeling', 'coding', 'writing', 'quality']:
@@ -74,7 +74,7 @@ def verify(folder):
     ticket = store.load(Ticket, ticket_key)
     receipt = Receipt(ticket_sha256=ticket_key, reviewer_call_id='fixture-quality', status='PASS',
         checks=[Check(check_id=c, status='PASS', explanation='Synthetic admission fixture, not semantic validation',
-            evidence=[Evidence(artifact_id='contract', selector='fixture=true')]) for c in ticket.required_checks])
+            evidence=[Evidence(artifact_id='contract', selector='/fixture')]) for c in ticket.required_checks])
     receipt_key = store.accept_review(receipt, key)
     check('complete_fixture_receipt_admitted', store.load(Receipt, receipt_key) == receipt)
     restart = CollaborationStore(folder / 'records')

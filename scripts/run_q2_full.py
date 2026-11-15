@@ -1,4 +1,5 @@
 """Q2 full-run orchestration; generated numerical code runs only through MCP/Docker."""
+from modelcrew.project_assets import asset_path
 import argparse,json,uuid,shutil
 from pathlib import Path
 import numpy as np
@@ -10,8 +11,8 @@ from modelcrew.mcp_workflow import trace_call
 from scripts.run_d3_minimal import approved,static_check,read,write
 from scripts.run_d4_full import workflow
 TASK='d6-bench-q2-20261109'
-PARENT=ROOT/'stage-d/runs/coding/q2-minimal-027eb6ae1c3642a185725e844f745fcf'
-def active():return ROOT/read(ROOT/'stage-d/q2-coding/full-active.json')['folder']
+PARENT=asset_path(ROOT,'stage-d/runs/coding/q2-minimal-027eb6ae1c3642a185725e844f745fcf')
+def active():return ROOT/read(asset_path(ROOT,'stage-d/q2-coding/full-active.json'))['folder']
 def build(folder):
     with workflow() as w,w.lock(TASK):
         state=approved(w,TASK,2);admission=read(PARENT/'P1-admission.json')
@@ -23,7 +24,7 @@ def build(folder):
         supplier=(folder/'supplier-functions.py').read_text(encoding='utf-8')
         supplier=supplier.replace('    import sys\n','').replace('sys.float_info.epsilon, sys.float_info.epsilon','np.nextafter(a,b), np.nextafter(b,a)').replace('iv(2.86, 2.86)','iv(down(2.86), up(2.86))')
         supplier=supplier.replace('    # outer branch residual is strictly negative for ell < 2r, so the\n    # *continuation* check we certify is that the outer root stays below\n    # pi/2, i.e. the sign at pi/2 has not yet flipped into a second root.','    # F is strictly increasing on (0,pi), so F(pi/2)>0 places the\n    # unique root below pi/2. This is a branch-domain check.')
-        tail=(ROOT/'execution/full_q2_tail.py').read_text(encoding='utf-8-sig')
+        tail=(asset_path(ROOT,'execution/full_q2_tail.py')).read_text(encoding='utf-8-sig')
         code=base+'\n'+supplier+'\n'+tail
         static_check(code);(folder/'full-base.py').write_text(code,encoding='utf-8')
         bind=Binding(task_id=TASK,contract_version=2,contract_sha256=state['contract']['sha256'],execution_id=folder.name,result_revision=1)
@@ -49,7 +50,7 @@ def job(folder,key,start,end):
             base=base.replace('if b-a<2e-7:','if b-a<1e-4:').replace('probe=min(end,a+4e-7)','probe=min(end,max(b,a+4e-7))')
         if key.endswith('tight-rate') or key.endswith('final-bound'):
             base=base.replace('if b-a<2e-7:','if b-a<.01:').replace('probe=min(end,a+4e-7)','probe=min(end,max(b,a+4e-7))')
-            base=base.replace('def attempt_event(a,b,state):',(ROOT/'execution/q2_tight_rate.py').read_text(encoding='utf-8-sig')+'\n\ndef attempt_event(a,b,state):')
+            base=base.replace('def attempt_event(a,b,state):',(asset_path(ROOT,'execution/q2_tight_rate.py')).read_text(encoding='utf-8-sig')+'\n\ndef attempt_event(a,b,state):')
             base=base.replace('a,b=stack.pop();attempts+=1','a,b=stack.pop();attempts+=1\n        if attempts%512==0:print(json.dumps({"attempts":attempts,"current_s":[a,b],"safe_end":safe[-1][1] if safe else start}),flush=True)')
         if key.endswith('final-bound'):
             base=base.replace('probe=min(end,max(b,a+4e-7))','probe=min(end,max(b,a+1e-3))')

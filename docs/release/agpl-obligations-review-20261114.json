@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F5",
+  "status": "obligations_review_complete_implementation_and_release_policy_pending",
+  "user_request": "继续核对AGPL 许可义务",
+  "guide": {
+    "path": "docs\\agpl-obligations.md",
+    "sha256": "597b42ccd36ee7b21b045128ee8ae1231d8a917ae543b12d9b8117aa9a1bdd02",
+    "bytes": 7193
+  },
+  "full_AGPL_text": {
+    "path": "docs\\licenses\\AGPL-3.0.txt",
+    "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+    "bytes": 34520
+  },
+  "legal_text_basis": "Byte-identical fixed PyMuPDF source COPYING and MuPDF 1.27.2 COPYING, not GNU website fetch success",
+  "source_evidence": [
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\source-downloads.json",
+      "sha256": "317f9ced8f36638e86edc72d49e11f4a71c70099275a40c5e1be6213c88ee3cc",
+      "bytes": 2034
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\fixed-source-identity.json",
+      "sha256": "953c9bbe76cee6e398f753292735115ed2a55fd65bfedcffaec96177dd5eecdc",
+      "bytes": 389
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\local-version-evidence.json",
+      "sha256": "6319d46ae14f449304cff258c0eeecfb02a5eb8a74111f9c4064aebc7762d69e",
+      "bytes": 2027
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\mupdf-downloads.json",
+      "sha256": "d8bcef7153293ccf3a98bceb8a237d1dce2df15576d2ee600902e7c9e37f65f8",
+      "bytes": 709
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\sdist-members.json",
+      "sha256": "4aeae59cdd2dc5cb480b465451bffd7ae20a47efa7c43eaa1b3a00da7c98cfda",
+      "bytes": 38317
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\tag-commit.json",
+      "sha256": "903baad4399140a5d53277905fc4da385131f36effd30e6973bbe06bf3349417",
+      "bytes": 6797
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\mupdf-1.27.2-commit.json",
+      "sha256": "df3d1cef1b8cdbafa196d2c5f8b59dc98ab2569c7a42f8c6bda900e277d87d91",
+      "bytes": 7019
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\artifex-licensing.txt",
+      "sha256": "8db21efd8d1244bc3a921e0e7438a55e6b06bc45fcaf972d7d9b9691333ca005",
+      "bytes": 4929
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\sdist-setup.py",
+      "sha256": "07b1a78ca73557c6218bb3731fe3ce2664deb60523b1b7aa05e9d100ba4f2b21",
+      "bytes": 55946
+    },
+    {
+      "path": "tmp\\agpl-obligations-validation-20261114\\sdist-COPYING",
+      "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+      "bytes": 34520
+    }
+  ],
+  "items": [
+    {
+      "id": "combined_license",
+      "basis": "AGPL sections 5 and 13",
+      "status": "owner_decision_pending",
+      "finding": "AGPLv3 combined release proposed; preserve original Apache/GPL and third-party notices; not Apache-only"
+    },
+    {
+      "id": "full_license_and_notices",
+      "basis": "sections 4, 5(d)",
+      "status": "not_yet_packaged",
+      "finding": "Full text verified locally; current wheel still lacks this new full AGPL text and complete combined notices"
+    },
+    {
+      "id": "pymupdf_source",
+      "basis": "sections 1, 6",
+      "status": "fixed_sdist_digest_verified",
+      "finding": "1.27.2.3 official sdist SHA verified; does not include MuPDF"
+    },
+    {
+      "id": "mupdf_native_components",
+      "basis": "sections 1, 6",
+      "status": "incomplete",
+      "finding": "Fixed 1.27.2 license/readme/commit acquired; full native source and bundled component inventory still missing"
+    },
+    {
+      "id": "project_and_build_source",
+      "basis": "sections 1, 6",
+      "status": "mapping_and_build_materials_pending",
+      "finding": "Map covered project sources and exact distribution/native build scripts; no claim bit-for-bit reproducibility required by mere audit"
+    },
+    {
+      "id": "source_access",
+      "basis": "section 6(d)",
+      "status": "not_implemented",
+      "finding": "Equivalent free version-specific source access next to binary downloads; upstream homepage alone not clearance"
+    },
+    {
+      "id": "network_use",
+      "basis": "section 13",
+      "status": "conditional_not_verified",
+      "finding": "Local stdio is target; inspect actual modified/combined program and any exposed FastAPI deployment; do not blanket-waive"
+    },
+    {
+      "id": "downstream_rights",
+      "basis": "sections 5(d), 10",
+      "status": "review_pending",
+      "finding": "Legal notices and policy text must not restrict granted software rights"
+    },
+    {
+      "id": "user_product_information",
+      "basis": "section 6",
+      "status": "applicability_pending",
+      "finding": "Assess actual user-product conveyance; no universal assumption"
+    },
+    {
+      "id": "private_use_and_outputs",
+      "basis": "section 2",
+      "status": "scope_clarified",
+      "finding": "Private local use and ordinary output do not automatically require public source/data disclosure; conveying to others and network use evaluated separately"
+    },
+    {
+      "id": "header_variation",
+      "basis": "section 13",
+      "status": "evidence_preserved_scope_review_pending",
+      "finding": "Installed/source init GPL-3.0-only; top-level COPYING AGPL; MuPDF readme AGPLv3-or-later; preserve per-file terms"
+    }
+  ],
+  "source_archive": {
+    "path": "tmp\\agpl-obligations-validation-20261114\\pymupdf-1.27.2.3.tar.gz",
+    "sha256": "7a92faa25129e8bbec5e50eeb9214f187665428c31b05c4ef6e36c58c0b1c6d2",
+    "bytes": 85759618
+  },
+  "project_license_file_unchanged": {
+    "path": "LICENSE",
+    "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+    "bytes": 11357
+  },
+  "historical_records_preserved": [
+    {
+      "path": "docs\\release\\project-license-adoption-20261114.json",
+      "sha256": "6544a3727c5e63661349e2f2bb8937302a88750bf6e9463cf053e159411a667c",
+      "bytes": 14182
+    },
+    {
+      "path": "docs\\release\\pymupdf-retention-20261114.json",
+      "sha256": "55a799319b6cdf4654855c4ec98ae1e2cc2058c15b7aa54b3963e40f95531c4d",
+      "bytes": 13205
+    },
+    {
+      "path": "docs\\release\\licensing-review-20261114.json",
+      "sha256": "ff7e81a37ef5d4f89db0b63de530a3e29816f036f366fb4519cc88a3b495d3bd",
+      "bytes": 4472
+    },
+    {
+      "path": "docs\\release\\environment-preparation-20261114.json",
+      "sha256": "d704d01369d7f019842e31786af189fe5e348fa6a2a269045648df9da2bb1a08",
+      "bytes": 21573
+    }
+  ],
+  "current_config": {
+    "path": "configs\\package-distribution.json",
+    "sha256": "414e9603ca3ce17879d57a531208a7839148fe84085aff91d9a8d08c98840c4e",
+    "bytes": 12331
+  },
+  "project_main_license_changed": false,
+  "runtime_or_dependency_changed": false,
+  "commercial_license_obtained": false,
+  "complete_AGPL_compliance_verified": false,
+  "public_release_cleared": false,
+  "git_push_or_publication_performed": false
+}

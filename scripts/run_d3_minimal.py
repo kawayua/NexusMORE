@@ -3,6 +3,7 @@
 No result approval, no full experiment and no host execution of generated code.
 Stages are explicit so an unknown model/MCP outcome is never blindly resent.
 """
+from modelcrew.project_assets import asset_path
 import argparse
 import ast
 import json
@@ -80,7 +81,7 @@ def generate(task, version, repair_from=None):
         expected = {'pitch':.55, 'head_gap':2.86, 'body_gap':1.65, 'head_speed':1, 'initial_turns':16, 'handle_count':224, 'end_time':300}
         if any(values.get(k) != v for k,v in expected.items()):
             raise WorkflowError('This runner supports only the original approved Q1 case')
-        folder = ROOT/'stage-d/runs/coding'/('minimal-'+uuid.uuid4().hex)
+        folder = asset_path(ROOT,'stage-d/runs/coding')/('minimal-'+uuid.uuid4().hex)
         folder.mkdir(parents=True, exist_ok=False)
         store = CollaborationStore(folder/'records')
         source = w.db.execute('SELECT payload FROM mc_modeling_runs WHERE task_id=%s ORDER BY sequence DESC LIMIT 1',(task,)).fetchone()['payload']
@@ -111,7 +112,7 @@ def generate(task, version, repair_from=None):
         repair=None
         if repair_from is not None:
             repair_from=repair_from.resolve()
-            if repair_from.parent!=(ROOT/'stage-d/runs/coding').resolve() or repair_from.is_symlink():
+            if repair_from.parent!=(asset_path(ROOT,'stage-d/runs/coding')).resolve() or repair_from.is_symlink():
                 raise WorkflowError('Invalid repair source directory')
             previous=read(repair_from/'run.json')
             if previous['task_id']!=task or previous['contract_sha256']!=meta['contract_sha256']:
@@ -252,7 +253,7 @@ def validate(folder):
     check('head_arc_m',max(abs(quad(lambda x:b*math.hypot(x,1),q[i,0],32*math.pi,epsabs=1e-10,epsrel=1e-12)[0]-t) for i,t in enumerate(TIMES)),1e-8)
     # The comparator is pre-existing trusted source, with newly computed values.
     from scripts.reference_2024_a_q1 import solve
-    parameters=read(ROOT/'stage-a/2024-A-problem-1/parameters.json')
+    parameters=read(asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json'))
     for name,index in [('theta_rad',0),('position_m',1),('velocity_m_s',2)]:
         check('fresh_reference_'+name,np.max(np.abs(arrays[name]-np.array([solve(t,parameters)[index] for t in TIMES]))),1e-6)
     fd={}
@@ -338,7 +339,7 @@ def main():
     if args.stage=='generate':generate(args.task,args.version,args.repair_from);return
     if args.run is None:parser.error('--run is required after generation')
     folder=args.run.resolve()
-    if folder.parent!=(ROOT/'stage-d/runs/coding').resolve() or folder.is_symlink():raise ValueError('Invalid development run path')
+    if folder.parent!=(asset_path(ROOT,'stage-d/runs/coding')).resolve() or folder.is_symlink():raise ValueError('Invalid development run path')
     if args.stage in ['execute','recover']:print(json.dumps({'passed':execute(folder,args.stage=='recover')['passed']}))
     elif args.stage in ['review','review-recheck']:
         if review(folder,args.stage=='review-recheck')!='PASS':raise SystemExit(1)

@@ -1,4 +1,5 @@
 """Register explicit D4 result-review and all-nine-figure approvals, separately."""
+from modelcrew.project_assets import asset_path
 import json, shutil
 from datetime import datetime, timezone
 from modelcrew.config import ROOT
@@ -11,7 +12,7 @@ STATEMENT='审阅稿通过 然后9张候选图通过'
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
 def write(p,v):p.write_text(json.dumps(v,ensure_ascii=False,indent=2,default=str)+'\n',encoding='utf-8')
 def main():
-    base=ROOT/'stage-d/d4';current=read(base/'current-solve.json');run=ROOT/current['run_dir']
+    base=asset_path(ROOT,'stage-d/d4');current=read(base/'current-solve.json');run=ROOT/current['run_dir']
     verify_frozen_files(run)
     prior=read(base/'evidence.json')
     for name in ['stage-d/d4/result-review.md','stage-d/d4/candidate-figures.md']:
@@ -54,10 +55,10 @@ def main():
         else:assert read(dest/'registration.json')==registration
     current.update({'phase':after['phase'],'result_approved':True,'result_review_approval':(dest/'review-approval.json').relative_to(ROOT).as_posix(),'figure_selection':'user_approved_all_nine','selected_figures':9,'figure_selection_approval':(dest/'figure-selection-approval.json').relative_to(ROOT).as_posix(),'confirmation_registration':(dest/'registration.json').relative_to(ROOT).as_posix()})
     write(base/'current-solve.json',current)
-    progress=read(ROOT/'stage-d/progress.json');progress['current_milestone']='D4_case_full_result_and_nine_figures_user_confirmed'
+    progress=read(asset_path(ROOT,'stage-d/progress.json'));progress['current_milestone']='D4_case_full_result_and_nine_figures_user_confirmed'
     d4=progress['milestones']['D4'];d4.update({'result_confirmation':'user_approved','figure_selection':'user_approved_all_nine','selected_figures':9,'result_review_approval':current['result_review_approval'],'figure_selection_approval':current['figure_selection_approval']})
     progress['next']='D5 Writer/W1 and Chinese modeling Markdown; D4 full result and all nine figures confirmed; future D5 manuscript needs its own review'
-    write(ROOT/'stage-d/progress.json',progress)
+    write(asset_path(ROOT,'stage-d/progress.json'),progress)
     note=base/'user-confirmation.md'
     text='# D4 用户确认\n\n用户明确：“'+STATEMENT+'”。已分别记录本次D4全量结果审阅稿通过，以及全部9张候选图通过；图集以本次9张文件哈希为准，原推荐8张不再限制用户选择。\n\n业务结果批准已登记，当前建模求解工作流为COMPLETED；这不表示整个阶段D完成。审阅稿、候选清单与图文件保持原字节，其中“待确认”描述是交付当时的历史状态；本记录及current-solve.json为最新确认状态。\n\nD5论文正文尚未生成，本次批准不冒充后续论文正文审阅或W1/W2。\n\n[审阅确认]('+current['result_review_approval'].split('stage-d/d4/')[1]+') · [九图确认]('+current['figure_selection_approval'].split('stage-d/d4/')[1]+') · [数据库登记]('+current['confirmation_registration'].split('stage-d/d4/')[1]+')\n'
     if not note.exists():note.write_text(text,encoding='utf-8')

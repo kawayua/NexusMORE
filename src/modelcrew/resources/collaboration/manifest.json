@@ -1,0 +1,277 @@
+{
+  "schema_version": "1.0.0",
+  "guidance_version": "1.3.0",
+  "authorship": "NexusMORE project-authored local operating guidance; no upstream source text, script or DOCX copied",
+  "responsibilities": {
+    "modeling": [
+      "Planner",
+      "Researcher",
+      "Modeler"
+    ],
+    "coding": [
+      "Coder"
+    ],
+    "writing": [
+      "Writer"
+    ]
+  },
+  "required_checks": {
+    "M1": [
+      "model",
+      "assumptions",
+      "units",
+      "constraints",
+      "algorithm_premises",
+      "validation_plan"
+    ],
+    "P1": [
+      "execution",
+      "input_output",
+      "constraints",
+      "numerics",
+      "units"
+    ],
+    "P2": [
+      "execution",
+      "contract_implementation",
+      "error",
+      "reproduction",
+      "figure_meaning"
+    ],
+    "W1": [
+      "claims",
+      "evidence",
+      "citations",
+      "outline"
+    ],
+    "W2": [
+      "claims",
+      "figures",
+      "citations",
+      "layout",
+      "snapshot_consistency"
+    ]
+  },
+  "routes": {
+    "modeling": [
+      "common-rules.md",
+      "modeling-hand.md",
+      "model-contract.md",
+      "model-selection.md",
+      "delivery-and-recovery.md",
+      "product-entry.md",
+      "reference-search.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md",
+      "proof-review.md"
+    ],
+    "coding": [
+      "common-rules.md",
+      "coding-hand.md",
+      "coding-checklist.md",
+      "helper-capabilities.md",
+      "figure-evidence.md",
+      "delivery-and-recovery.md",
+      "latex-tooling.md",
+      "product-entry.md",
+      "document-workbench.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md"
+    ],
+    "writing": [
+      "common-rules.md",
+      "writing-hand.md",
+      "paper-structure.md",
+      "figure-evidence.md",
+      "export-and-template.md",
+      "delivery-and-recovery.md",
+      "latex-tooling.md",
+      "product-entry.md",
+      "reference-search.md",
+      "document-workbench.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md"
+    ],
+    "M1": [
+      "common-rules.md",
+      "quality-gates.md",
+      "model-contract.md",
+      "model-selection.md",
+      "product-entry.md",
+      "reference-search.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md",
+      "proof-review.md"
+    ],
+    "P1": [
+      "common-rules.md",
+      "quality-gates.md",
+      "model-contract.md",
+      "coding-checklist.md",
+      "product-entry.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md"
+    ],
+    "P2": [
+      "common-rules.md",
+      "quality-gates.md",
+      "model-contract.md",
+      "coding-checklist.md",
+      "figure-evidence.md",
+      "latex-tooling.md",
+      "product-entry.md",
+      "document-workbench.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md"
+    ],
+    "W1": [
+      "common-rules.md",
+      "quality-gates.md",
+      "paper-structure.md",
+      "figure-evidence.md",
+      "latex-tooling.md",
+      "product-entry.md",
+      "reference-search.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md"
+    ],
+    "W2": [
+      "common-rules.md",
+      "quality-gates.md",
+      "paper-structure.md",
+      "figure-evidence.md",
+      "export-and-template.md",
+      "latex-tooling.md",
+      "product-entry.md",
+      "reference-search.md",
+      "document-workbench.md",
+      "mathematical-reasoning.md",
+      "statistical-validation.md"
+    ]
+  },
+  "optional_routes": {
+    "english": [
+      "english-adaptation.md"
+    ]
+  },
+  "files": [
+    {
+      "path": "common-rules.md",
+      "sha256": "3666dbf7b1841520e135f6ee6019cd236c9166e1cd78b9b1ba26dc4ad78cb2a1",
+      "bytes": 1691
+    },
+    {
+      "path": "quality-gates.md",
+      "sha256": "992e5a466a610dee702320480b53d28d5fec344bb67a5e8de9815c5db4166208",
+      "bytes": 2194
+    },
+    {
+      "path": "modeling-hand.md",
+      "sha256": "13ea2a3edb50311473afbfc79fc13188b53af2d718954273d47ad75318451e94",
+      "bytes": 1110
+    },
+    {
+      "path": "model-contract.md",
+      "sha256": "7a1860b444eaf22d742cf01872ce9b9c0fcc5ec98022f7e18a3feaf98535b680",
+      "bytes": 1050
+    },
+    {
+      "path": "model-selection.md",
+      "sha256": "343b5a0161b0c373cb5c7b024576c16d65d62d81184d2a4e43aea649930984ca",
+      "bytes": 1083
+    },
+    {
+      "path": "coding-hand.md",
+      "sha256": "e0cb7c791fa6a564a2e8f218204c8783fd81948106a0f326cf8144e3dddf39a9",
+      "bytes": 1368
+    },
+    {
+      "path": "coding-checklist.md",
+      "sha256": "b5525572fdc426715b48c04c36efa310ecf4dd51658d8f167c756a6716ce76cc",
+      "bytes": 849
+    },
+    {
+      "path": "helper-capabilities.md",
+      "sha256": "ee49d255cf369e7fe5b4b6b45fdb7229c3fba5edf0966ebc16dfe63494c70f15",
+      "bytes": 1590
+    },
+    {
+      "path": "writing-hand.md",
+      "sha256": "231742489b8b6ca8fe591e2024608f54ef23db944928359b0d1ba47ce0aab9fb",
+      "bytes": 1047
+    },
+    {
+      "path": "paper-structure.md",
+      "sha256": "7625277c910350d62362a66844edc7682903a24f3bbbd7f4099414defb4c12dc",
+      "bytes": 1148
+    },
+    {
+      "path": "figure-evidence.md",
+      "sha256": "c1184be6bfe774b491107dd0ba7ac7b93460a97cc69dec17e607c3adbac62033",
+      "bytes": 2251
+    },
+    {
+      "path": "export-and-template.md",
+      "sha256": "0f9fe87058a46423825fe866eaaabc2349e45a6cdc2b115e4f0c0afdd42cf1bc",
+      "bytes": 1351
+    },
+    {
+      "path": "english-adaptation.md",
+      "sha256": "e0aacf9edf079c2805c9acf9344b542d1cafe9eae1dc331c990ae76645bc3f02",
+      "bytes": 564
+    },
+    {
+      "path": "delivery-and-recovery.md",
+      "sha256": "961fe4c1d24b946507c99c4ebfc56f6bc52ac16fdedd2505fdae97c3812582b7",
+      "bytes": 1292
+    },
+    {
+      "path": "latex-tooling.md",
+      "sha256": "4fed1f96bc615aecd58c4543842fd597908b0d24d205418f8f1863a8d77ba364",
+      "bytes": 2863
+    },
+    {
+      "path": "product-entry.md",
+      "sha256": "fafd9badc4ae753a43cde4a3a6275146d52fd9f63125121fe49fb39ecee0851b",
+      "bytes": 1733
+    },
+    {
+      "path": "reference-search.md",
+      "sha256": "e5e6be28fe8ba363f0fe18cae48591bdae0fa281bd133a85717f1573b25ca5a4",
+      "bytes": 1864
+    },
+    {
+      "path": "document-workbench.md",
+      "sha256": "7e6711a06f0a31053570d50a5fc9f109a6098a44c72f777c172b97091f15340e",
+      "bytes": 2178
+    },
+    {
+      "path": "mathematical-reasoning.md",
+      "sha256": "beca9bda1cf19f9dad126ceae8a8e4e2c71f710c9d01b3553b1d16f891c599cc",
+      "bytes": 2053
+    },
+    {
+      "path": "statistical-validation.md",
+      "sha256": "bd8d71a431b4e630180c58894153584855c8e72073d795a63a514f0e930bcd85",
+      "bytes": 2778
+    },
+    {
+      "path": "proof-review.md",
+      "sha256": "5cb3ba19bc46638f837ceda53f6290543f18de820c4c0b96ceccec02b758bc76",
+      "bytes": 2288
+    }
+  ],
+  "boundaries": {
+    "quality_read_only": true,
+    "independent_context_required": true,
+    "review_is_user_approval": false,
+    "harness_specific_knowledge_copies": false,
+    "generic_export_connected_by_this_change": false,
+    "backend": "python",
+    "figure_tools_protocol": "1.0.0",
+    "html_panel_included": false,
+    "all_pdf_pages_required": true,
+    "latex_tools_protocol": "1.0.0",
+    "local_adaptation_protocol": "1.0.0"
+  }
+}

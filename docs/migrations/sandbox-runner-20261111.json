@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "execution/sandbox_runner.py",
+  "target": "src/modelcrew/resources/execution/sandbox_runner.py",
+  "purpose": "Project runtime resource or deployment recipe; original bytes retained, private fixtures excluded",
+  "files": [
+    {
+      "old_path": "execution/sandbox_runner.py",
+      "new_path": "src/modelcrew/resources/execution/sandbox_runner.py",
+      "sha256": "26dc1a9fbdfb84f87f7abd0ea4bdeb10cc0fcb9c8205042e826f76be722490d9",
+      "bytes": 3659
+    }
+  ],
+  "approval_rewritten": false
+}

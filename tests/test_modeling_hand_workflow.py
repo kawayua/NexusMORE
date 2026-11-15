@@ -1,4 +1,5 @@
 """Actual PostgreSQL/graph with deterministic model responses, never user approvals."""
+from modelcrew.project_assets import asset_path,local_history
 import copy
 import json
 import uuid
@@ -38,8 +39,8 @@ class FixtureModel:
 
 @pytest.fixture
 def task(tmp_path):
-    contract=json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'))
-    package=json.loads((ROOT/'stage-b-plus/examples/valid-bench-dragon.json').read_text(encoding='utf-8'))
+    contract=json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'))
+    package=json.loads((asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json')).read_text(encoding='utf-8'))
     statement=tmp_path/'statement.txt'; statement.write_text('SYNTHETIC Q1 DATA, NOT A REAL STATEMENT',encoding='utf-8')
     contract['inputs']=[{'id':'input0','source_id':'statement','path':str(statement),'sha256':sha_file(statement),'role':'problem_statement'}]
     identifier='test-d2-'+uuid.uuid4().hex
@@ -59,6 +60,8 @@ def test_ready_model_retains_user_gate_and_restores_without_model_calls(task):
         assert result['status']=='ready' and result['version']==2
         assert len(model.calls)==3 and [c['stage'] for c in model.calls]==['planning','modeling','M1']
         assert 'M1_feedback' not in model.calls[-1]['data'] and 'messages' not in model.calls[-1]['data']
+        assert [c['data']['nexusmore_guidance']['selector'] for c in model.calls] == ['modeling', 'modeling', 'M1']
+        assert model.calls[-1]['data']['nexusmore_guidance']['read_only']
         current=w.inspect(task)
         assert not current['task']['model_approved'] and current['execution'] is None
         assert current['checkpoint_next']==['model_gate']
@@ -122,7 +125,7 @@ def test_user_feedback_creates_new_version_and_old_M1_cannot_pass(task):
 def test_changed_evidence_and_input_block_M1_admission(task):
     with Workflow() as w:
         result=invoke(w,task,FixtureModel())
-        file=ROOT/result['attempts'][0]['proposal_path']
+        file=asset_path(ROOT,result['attempts'][0]['proposal_path'])
         # The authoritative JSON proposal is part of the snapshot; Markdown is a view.
         path=file.with_suffix('.json'); original=path.read_bytes();path.write_bytes(b'{}')
         try:
@@ -266,7 +269,7 @@ def test_overall_summary_is_programmatically_derived_without_changing_semantic_f
     with Workflow() as w:
         result=invoke(w,task,WrongSummary([per_check]),auto_correct=False)
         assert result['status']==expected
-        admission=next((ROOT/result['folder']).rglob('admission.json'))
+        admission=next((asset_path(ROOT,result['folder'])).rglob('admission.json'))
         details=json.loads(admission.read_text(encoding='utf-8'))
         assert details['aggregation_mismatch'] and not details['semantic_checks_modified']
         assert details['reported_status']==declared and details['derived_status']==per_check
@@ -307,3 +310,89 @@ def test_explicit_model_approval_can_defer_fixture_dispatch_across_restart(task)
         assert state['execution_attempts']==[] and state['execution_receipts']==[]
         with pytest.raises(WorkflowError,match='deferral'):
             w.action(task,actor='TEST',request_id='invalid',version=result['version'],kind='result',decision='approve',defer_execution=True)
+
+
+def test_changed_frozen_guidance_blocks_ready_model_admission(task):
+    with Workflow() as w:
+        result = invoke(w, task, FixtureModel())
+        assert result['status'] == 'ready'
+        folder = ROOT / result['folder']
+        (folder / 'collaboration-guidance.json').write_bytes(b'CHANGED SYNTHETIC POLICY')
+        with pytest.raises(ValueError, match='Frozen collaboration guidance changed'):
+            assert_m1(w, w.task(task))
+        assert not w.task(task)['model_approved']
+        assert w.inspect(task)['execution'] is None
+
+
+class MalformedRecordedM1(FixtureModel):
+    def call(self, folder, stage, system, data, **kwargs):
+        value, meta=super().call(folder,stage,system,data,**kwargs)
+        if stage=="M1":
+            assert "sources" in data["allowed_artifact_ids"]
+            assert "/cards" in data["valid_pointer_examples"]["sources"]
+            value["checks"][0]["note"]=None
+            response=Path(folder)/("M1-"+meta["call_id"]+"-response.json")
+            response.write_text(json.dumps({"choices":[{"finish_reason":"stop","message":{"content":json.dumps(value)}}]}),encoding="utf-8")
+            metadata={**meta,"http_status":200,"response_sha256":sha_file(response)}
+            response.with_name(response.name.replace("-response.json","-metadata.json")).write_text(json.dumps(metadata),encoding="utf-8")
+        return value,meta
+
+
+def test_malformed_complete_m1_gets_one_fresh_review_without_editing_original(task):
+    with Workflow() as w:
+        with pytest.raises(ValueError): invoke(w,task,MalformedRecordedM1())
+        row=w.modeling_status(task)[-1]; payload=row["payload"]
+        folder=asset_path(ROOT,payload["folder"]); response=next(folder.rglob("M1-*-response.json")); original=sha_file(response)
+        reviewer=FixtureModel()
+        args=dict(version=row["version"],run_id=str(row["id"]),actor="TEST_OPERATOR",request_id="malformed-once",rationale="Original unadmitted reply contained an extra note field; independently review unchanged evidence",model=reviewer)
+        result=w.recheck_modeling(task,**args)
+        assert result["status"]=="ready" and result["snapshot_sha256"]==payload["snapshot_sha256"]
+        assert result["review_recheck"]["previous_response_sha256"]==original and result["review_recheck"]["previous_receipt_sha256"] is None
+        assert sha_file(response)==original and len(reviewer.calls)==1 and not w.task(task)["model_approved"]
+        assert w.recheck_modeling(task,**args)["status"]=="ready" and len(reviewer.calls)==1
+        with pytest.raises(WorkflowError,match="budget"):
+            w.recheck_modeling(task,**{**args,"request_id":"another"})
+
+
+@pytest.mark.parametrize("damage",["input","metadata"])
+def test_malformed_review_recheck_rejects_changed_inputs_or_incomplete_response(task,damage):
+    with Workflow() as w:
+        with pytest.raises(ValueError): invoke(w,task,MalformedRecordedM1())
+        row=w.modeling_status(task)[-1]; folder=asset_path(ROOT,row["payload"]["folder"])
+        if damage=="input":
+            c=w.db.execute("SELECT content FROM mc_contracts WHERE task_id=%s AND version=%s",(task,row["version"])).fetchone()["content"]
+            Path(c["inputs"][0]["path"]).write_text("changed fixture",encoding="utf-8")
+        else:
+            metadata=next(folder.rglob("M1-*-metadata.json")); value=json.loads(metadata.read_text(encoding="utf-8")); value["http_status"]=500; metadata.write_text(json.dumps(value),encoding="utf-8")
+        reviewer=FixtureModel()
+        with pytest.raises(ValueError):
+            w.recheck_modeling(task,version=row["version"],run_id=str(row["id"]),actor="TEST_OPERATOR",request_id="refuse-damage",rationale="Try invalid review",model=reviewer)
+        assert not reviewer.calls and not w.task(task)["model_approved"]
+
+
+def test_malformed_review_recheck_keeps_original_unanswered_questions(task):
+    class WithQuestions(MalformedRecordedM1):
+        def call(self,folder,stage,system,data,**kwargs):
+            value,meta=super().call(folder,stage,system,data,**kwargs)
+            if stage=="modeling": value["questions"]=["Unanswered scope question"]
+            return value,meta
+    with Workflow() as w:
+        with pytest.raises(ValueError): invoke(w,task,WithQuestions())
+        row=w.modeling_status(task)[-1]
+        result=w.recheck_modeling(task,version=row["version"],run_id=str(row["id"]),actor="TEST_OPERATOR",request_id="keep-questions",rationale="Check malformed response without bypassing questions",model=FixtureModel())
+        assert result["status"]=="blocked" and result["open_questions"]==["Unanswered scope question"]
+        assert not w.task(task)["model_approved"]
+        with pytest.raises(WorkflowError): assert_m1(w,w.task(task))
+
+
+def test_malformed_recheck_exhausts_budget_without_becoming_unknown_or_resending(task):
+    with Workflow() as w:
+        result=invoke(w,task,FixtureModel(["FAIL"]),auto_correct=False)
+        reviewer=MalformedRecordedM1()
+        args=dict(version=result["version"],run_id=result["run_id"],actor="TEST_OPERATOR",request_id="reject-malformed",rationale="Independently review original evidence",model=reviewer)
+        with pytest.raises(ValueError): w.recheck_modeling(task,**args)
+        row=w.modeling_status(task)[-1]
+        assert row["status"]=="needs_human" and row["payload"]["review_recheck"]["status"]=="NOT_ADMITTED"
+        assert w.recheck_modeling(task,**args)["status"]=="needs_human" and len(reviewer.calls)==1
+        with pytest.raises(WorkflowError,match="budget"):w.recheck_modeling(task,**{**args,"request_id":"resend"})
+        assert not w.task(task)["model_approved"]

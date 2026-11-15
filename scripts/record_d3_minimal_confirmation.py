@@ -1,4 +1,5 @@
 """Record the user's explicit confirmation of the current D3 minimal result only."""
+from modelcrew.project_assets import asset_path
 import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -17,7 +18,7 @@ def write(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent
 
 
 def main():
-    current=read(ROOT/'stage-d/d3/current-solve.json')
+    current=read(asset_path(ROOT,'stage-d/d3/current-solve.json'))
     run=ROOT/current['current_run'];admission=read(run/'P1-admission.json')
     store=CollaborationStore(run/'records');receipt=store.load(Receipt,admission['receipt_sha256'])
     assert receipt.status=='PASS'
@@ -25,7 +26,7 @@ def main():
     execution=read(run/'execution.json');DockerExecutor(executor_root()).verify_artifacts(execution)
     assert execution['status']=='succeeded'
     identifier='user-minimal-result-confirmation-'+admission['receipt_sha256'][:20]
-    folder=ROOT/'stage-d/d3/confirmations'/identifier;folder.mkdir(parents=True,exist_ok=True)
+    folder=asset_path(ROOT,'stage-d/d3/confirmations')/identifier;folder.mkdir(parents=True,exist_ok=True)
     with Workflow(url=make_conninfo(database_url(),connect_timeout=5)) as w,w.lock(current['task_id']):
         state=w.inspect(current['task_id']);task=state['task']
         assert task['current_version']==current['contract_version'] and state['contract']['sha256']==current['contract_sha256']
@@ -54,11 +55,11 @@ def main():
             'minimal_result_approved':True,'formal_full_result_approved':False,'formal_result_revision':0}
         if not (folder/'registration.json').exists():write(folder/'registration.json',registration)
         else:assert read(folder/'registration.json')==registration
-    progress=read(ROOT/'stage-d/progress.json')
+    progress=read(asset_path(ROOT,'stage-d/progress.json'))
     progress['current_milestone']='D3_case_minimal_result_user_confirmed'
     progress['milestones']['D3']['minimal_result_user_confirmation']={'status':'approved','scope':'current_case_minimal_result_only',
         'evidence':approval.relative_to(ROOT).as_posix(),'registration':(folder/'registration.json').relative_to(ROOT).as_posix()}
-    write(ROOT/'stage-d/progress.json',progress)
+    write(asset_path(ROOT,'stage-d/progress.json'),progress)
     assert read(approval)['decision']=='approve'
     print(json.dumps({'minimal_result_confirmed':True,'full_result_confirmed':False,'record':approval.relative_to(ROOT).as_posix(),'entry_id':response['entry_id']}))
 

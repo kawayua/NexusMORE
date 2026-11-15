@@ -1,16 +1,17 @@
 """Run a reviewed solver in a restricted Docker container; no host fallback."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import argparse,json,hashlib,subprocess,shutil,time,uuid
-ROOT=Path(__file__).resolve().parents[1];CASE=ROOT/'stage-a/2024-A-problem-1'
+ROOT=Path(__file__).resolve().parents[1];CASE=asset_path(ROOT,'stage-a/2024-A-problem-1')
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('run_dir',type=Path);ap.add_argument('--image',default='modelcrew-reference:py313');ap.add_argument('--keep-container',action='store_true');a=ap.parse_args()
  run=a.run_dir.resolve()
- if run.parent not in [(CASE/'runs').resolve(),(ROOT/'stage-b/runs').resolve()]:raise ValueError('Run outside intended workspace')
+ if run.parent not in [(CASE/'runs').resolve(),(asset_path(ROOT,'stage-b/runs')).resolve()]:raise ValueError('Run outside intended workspace')
  script=run/'generated_solver.py';review=json.loads((run/'review.json').read_text(encoding='utf-8'))
  sha=hashlib.sha256(script.read_bytes()).hexdigest()
  if review.get('code_sha256')!=sha or review.get('security_review',{}).get('passed') is not True or review.get('math_review',{}).get('passed') is not True:
   raise ValueError('Matching manual math and security approval required')
- if run.parent==(ROOT/'stage-b/runs').resolve():
+ if run.parent==(asset_path(ROOT,'stage-b/runs')).resolve():
   import sys
   sys.path.insert(0,str(ROOT))
   from modelcrew.workflow import Workflow

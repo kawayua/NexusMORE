@@ -1,0 +1,497 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F5",
+  "status": "AGPL_combined_distribution_policy_implemented_and_candidate_verified",
+  "exact_user_authorization": "同意按这个方案发行",
+  "authorized_scope": "implement AGPLv3 combined distribution with retained original Apache/third-party notices; not a request to push or publish",
+  "combined_license": "AGPL-3.0-only",
+  "root_license": {
+    "path": "LICENSE",
+    "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+    "bytes": 34520
+  },
+  "retained_original_Apache_license": {
+    "path": "docs\\licenses\\Apache-2.0.txt",
+    "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+    "bytes": 11357
+  },
+  "prior_Apache_bytes_match": true,
+  "resource_files": 226,
+  "module_files": 80,
+  "package_and_bundle": {
+    "status": "passed",
+    "package_build": {
+      "schema_version": "1.0.0",
+      "status": "passed",
+      "scope": "private development build; no public upload, full-knowledge or runtime gate acceptance",
+      "build_isolation": false,
+      "builder": "setuptools.build_meta; installed build requirements",
+      "wheel": {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\agpl-combined-release-validation-20261114\\verified-build\\distribution\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "5c5b89706211421554c6620d955cea51ad30eefb3c6f6a5aff46bf6c79220248",
+        "bytes": 976948,
+        "members": 316,
+        "resource_files": 226,
+        "module_files": 80,
+        "requires_python": "<3.14,>=3.13",
+        "requires_dist": [
+          "jsonschema<5,>=4.26",
+          "matplotlib==3.10.3; extra == \"figures\"",
+          "numpy==2.3.1; extra == \"figures\"",
+          "openpyxl==3.1.5; extra == \"figures\"",
+          "Pillow==12.2.0; extra == \"figures\"",
+          "PyMuPDF==1.27.2.3; extra == \"figures\"",
+          "pypdf==6.16.1; extra == \"figures\"",
+          "anyio==4.14.2; extra == \"workflow\"",
+          "beautifulsoup4==4.15.0; extra == \"workflow\"",
+          "httpx==0.28.1; extra == \"workflow\"",
+          "jsonschema==4.26.0; extra == \"workflow\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+          "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+          "langgraph==1.2.10; extra == \"workflow\"",
+          "mcp==1.30.0; extra == \"workflow\"",
+          "numpy==2.3.1; extra == \"workflow\"",
+          "openpyxl==3.1.5; extra == \"workflow\"",
+          "Pillow==12.2.0; extra == \"workflow\"",
+          "portalocker==4.4.2; extra == \"workflow\"",
+          "psycopg[binary]==3.3.4; extra == \"workflow\"",
+          "pydantic==2.13.4; extra == \"workflow\"",
+          "pypdf==6.16.1; extra == \"workflow\"",
+          "qdrant-client==1.20.0; extra == \"workflow\"",
+          "scipy==1.16.0; extra == \"workflow\"",
+          "sympy==1.13.1; extra == \"workflow\"",
+          "anyio==4.14.2; extra == \"retrieval\"",
+          "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+          "fastapi==0.162.0; extra == \"retrieval\"",
+          "httpx==0.28.1; extra == \"retrieval\"",
+          "jsonschema==4.26.0; extra == \"retrieval\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+          "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+          "langgraph==1.2.10; extra == \"retrieval\"",
+          "mcp==1.30.0; extra == \"retrieval\"",
+          "numpy==2.3.1; extra == \"retrieval\"",
+          "openpyxl==3.1.5; extra == \"retrieval\"",
+          "Pillow==12.2.0; extra == \"retrieval\"",
+          "portalocker==4.4.2; extra == \"retrieval\"",
+          "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+          "pydantic==2.13.4; extra == \"retrieval\"",
+          "pypdf==6.16.1; extra == \"retrieval\"",
+          "qdrant-client==1.20.0; extra == \"retrieval\"",
+          "sentence-transformers==6.0.0; extra == \"retrieval\"",
+          "uvicorn==0.52.1; extra == \"retrieval\"",
+          "defusedxml==0.7.1; extra == \"documents\"",
+          "lxml==6.1.1; extra == \"documents\"",
+          "openpyxl==3.1.5; extra == \"documents\"",
+          "pdfplumber==0.11.10; extra == \"documents\"",
+          "PyMuPDF==1.27.2.3; extra == \"documents\"",
+          "pypdf==6.16.1; extra == \"documents\"",
+          "python-docx==1.2.0; extra == \"documents\"",
+          "anyio==4.14.2; extra == \"paper\"",
+          "beautifulsoup4==4.15.0; extra == \"paper\"",
+          "defusedxml==0.7.1; extra == \"paper\"",
+          "fastapi==0.162.0; extra == \"paper\"",
+          "httpx==0.28.1; extra == \"paper\"",
+          "jsonschema==4.26.0; extra == \"paper\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+          "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+          "langgraph==1.2.10; extra == \"paper\"",
+          "lxml==6.1.1; extra == \"paper\"",
+          "matplotlib==3.10.3; extra == \"paper\"",
+          "mcp==1.30.0; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"paper\"",
+          "openpyxl==3.1.5; extra == \"paper\"",
+          "pdfplumber==0.11.10; extra == \"paper\"",
+          "Pillow==12.2.0; extra == \"paper\"",
+          "portalocker==4.4.2; extra == \"paper\"",
+          "psycopg[binary]==3.3.4; extra == \"paper\"",
+          "pydantic==2.13.4; extra == \"paper\"",
+          "PyMuPDF==1.27.2.3; extra == \"paper\"",
+          "pypdf==6.16.1; extra == \"paper\"",
+          "python-docx==1.2.0; extra == \"paper\"",
+          "qdrant-client==1.20.0; extra == \"paper\"",
+          "scipy==1.16.0; extra == \"paper\"",
+          "sentence-transformers==6.0.0; extra == \"paper\"",
+          "sympy==1.13.1; extra == \"paper\"",
+          "uvicorn==0.52.1; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"evidence\"",
+          "openpyxl==3.1.5; extra == \"evidence\"",
+          "pydantic==2.13.4; extra == \"evidence\"",
+          "scipy==1.16.0; extra == \"evidence\"",
+          "sympy==1.13.1; extra == \"evidence\"",
+          "build>=1.2; extra == \"dev\"",
+          "pytest==9.0.3; extra == \"dev\"",
+          "setuptools>=81; extra == \"dev\""
+        ],
+        "extras": [
+          "figures",
+          "workflow",
+          "retrieval",
+          "documents",
+          "paper",
+          "evidence",
+          "dev"
+        ],
+        "license_expression": "AGPL-3.0-only",
+        "license_files": [
+          "LICENSE",
+          "THIRD_PARTY_NOTICES.md",
+          "docs/licenses/Apache-2.0.txt",
+          "docs/combined-distribution-license.md"
+        ],
+        "status": "passed"
+      },
+      "sdist": {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\agpl-combined-release-validation-20261114\\verified-build\\distribution\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+        "sha256": "5bb0485878712706d2e02f44f8809d4973aa1d41a18d145140b5b84efc9ce976",
+        "bytes": 983631,
+        "members": 458,
+        "status": "passed"
+      },
+      "wheel_from_sdist": {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\agpl-combined-release-validation-20261114\\verified-build\\distribution\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "be995d2c7cd0de36b373f1bcd7a757c9392170c9a159043fca73bfb6d069e867",
+        "bytes": 976948,
+        "members": 316,
+        "resource_files": 226,
+        "module_files": 80,
+        "requires_python": "<3.14,>=3.13",
+        "requires_dist": [
+          "jsonschema<5,>=4.26",
+          "matplotlib==3.10.3; extra == \"figures\"",
+          "numpy==2.3.1; extra == \"figures\"",
+          "openpyxl==3.1.5; extra == \"figures\"",
+          "Pillow==12.2.0; extra == \"figures\"",
+          "PyMuPDF==1.27.2.3; extra == \"figures\"",
+          "pypdf==6.16.1; extra == \"figures\"",
+          "anyio==4.14.2; extra == \"workflow\"",
+          "beautifulsoup4==4.15.0; extra == \"workflow\"",
+          "httpx==0.28.1; extra == \"workflow\"",
+          "jsonschema==4.26.0; extra == \"workflow\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+          "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+          "langgraph==1.2.10; extra == \"workflow\"",
+          "mcp==1.30.0; extra == \"workflow\"",
+          "numpy==2.3.1; extra == \"workflow\"",
+          "openpyxl==3.1.5; extra == \"workflow\"",
+          "Pillow==12.2.0; extra == \"workflow\"",
+          "portalocker==4.4.2; extra == \"workflow\"",
+          "psycopg[binary]==3.3.4; extra == \"workflow\"",
+          "pydantic==2.13.4; extra == \"workflow\"",
+          "pypdf==6.16.1; extra == \"workflow\"",
+          "qdrant-client==1.20.0; extra == \"workflow\"",
+          "scipy==1.16.0; extra == \"workflow\"",
+          "sympy==1.13.1; extra == \"workflow\"",
+          "anyio==4.14.2; extra == \"retrieval\"",
+          "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+          "fastapi==0.162.0; extra == \"retrieval\"",
+          "httpx==0.28.1; extra == \"retrieval\"",
+          "jsonschema==4.26.0; extra == \"retrieval\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+          "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+          "langgraph==1.2.10; extra == \"retrieval\"",
+          "mcp==1.30.0; extra == \"retrieval\"",
+          "numpy==2.3.1; extra == \"retrieval\"",
+          "openpyxl==3.1.5; extra == \"retrieval\"",
+          "Pillow==12.2.0; extra == \"retrieval\"",
+          "portalocker==4.4.2; extra == \"retrieval\"",
+          "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+          "pydantic==2.13.4; extra == \"retrieval\"",
+          "pypdf==6.16.1; extra == \"retrieval\"",
+          "qdrant-client==1.20.0; extra == \"retrieval\"",
+          "sentence-transformers==6.0.0; extra == \"retrieval\"",
+          "uvicorn==0.52.1; extra == \"retrieval\"",
+          "defusedxml==0.7.1; extra == \"documents\"",
+          "lxml==6.1.1; extra == \"documents\"",
+          "openpyxl==3.1.5; extra == \"documents\"",
+          "pdfplumber==0.11.10; extra == \"documents\"",
+          "PyMuPDF==1.27.2.3; extra == \"documents\"",
+          "pypdf==6.16.1; extra == \"documents\"",
+          "python-docx==1.2.0; extra == \"documents\"",
+          "anyio==4.14.2; extra == \"paper\"",
+          "beautifulsoup4==4.15.0; extra == \"paper\"",
+          "defusedxml==0.7.1; extra == \"paper\"",
+          "fastapi==0.162.0; extra == \"paper\"",
+          "httpx==0.28.1; extra == \"paper\"",
+          "jsonschema==4.26.0; extra == \"paper\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+          "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+          "langgraph==1.2.10; extra == \"paper\"",
+          "lxml==6.1.1; extra == \"paper\"",
+          "matplotlib==3.10.3; extra == \"paper\"",
+          "mcp==1.30.0; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"paper\"",
+          "openpyxl==3.1.5; extra == \"paper\"",
+          "pdfplumber==0.11.10; extra == \"paper\"",
+          "Pillow==12.2.0; extra == \"paper\"",
+          "portalocker==4.4.2; extra == \"paper\"",
+          "psycopg[binary]==3.3.4; extra == \"paper\"",
+          "pydantic==2.13.4; extra == \"paper\"",
+          "PyMuPDF==1.27.2.3; extra == \"paper\"",
+          "pypdf==6.16.1; extra == \"paper\"",
+          "python-docx==1.2.0; extra == \"paper\"",
+          "qdrant-client==1.20.0; extra == \"paper\"",
+          "scipy==1.16.0; extra == \"paper\"",
+          "sentence-transformers==6.0.0; extra == \"paper\"",
+          "sympy==1.13.1; extra == \"paper\"",
+          "uvicorn==0.52.1; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"evidence\"",
+          "openpyxl==3.1.5; extra == \"evidence\"",
+          "pydantic==2.13.4; extra == \"evidence\"",
+          "scipy==1.16.0; extra == \"evidence\"",
+          "sympy==1.13.1; extra == \"evidence\"",
+          "build>=1.2; extra == \"dev\"",
+          "pytest==9.0.3; extra == \"dev\"",
+          "setuptools>=81; extra == \"dev\""
+        ],
+        "extras": [
+          "figures",
+          "workflow",
+          "retrieval",
+          "documents",
+          "paper",
+          "evidence",
+          "dev"
+        ],
+        "license_expression": "AGPL-3.0-only",
+        "license_files": [
+          "LICENSE",
+          "THIRD_PARTY_NOTICES.md",
+          "docs/licenses/Apache-2.0.txt",
+          "docs/combined-distribution-license.md"
+        ],
+        "status": "passed"
+      }
+    },
+    "bundle": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\agpl-combined-release-validation-20261114\\verified-build\\nexusmore-0.1.0.dev0-windows-x86_64-private.zip",
+      "sha256": "8ab41b2d54f1690ea29f7fda562c3a8e753370b9d10d05a64ff4ac75efbbf109",
+      "bytes": 958105
+    },
+    "lock": {
+      "schema_version": "1.0.0",
+      "private_distribution": true,
+      "wheel": {
+        "filename": "nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "5c5b89706211421554c6620d955cea51ad30eefb3c6f6a5aff46bf6c79220248"
+      },
+      "native_catalog_sha256": "065e768fd808aacd44f9d25138d607267748b0c715b1b5392a5fd0b18f951a8c",
+      "bootstrap_sha256": "227f4d2e39d4dd599200608a07a7246cf79d4ae7f1ebced331d3d7fe5116b1fc"
+    },
+    "native_binaries_or_model_weights_shipped": false,
+    "public_upload_authorized": false
+  },
+  "source_materials": {
+    "status": "source_materials_identity_verified_not_complete_clearance",
+    "archive": {
+      "filename": "nexusmore-0.1.0.dev0-agpl-source-materials.zip",
+      "sha256": "e0259992460cd6a128da89906e06dc8cffb4490193959cc1d88f40672ab53179",
+      "bytes": 153205347
+    },
+    "manifest": {
+      "schema_version": "1.0.0",
+      "distribution": "nexusmore",
+      "version": "0.1.0.dev0",
+      "combined_license": "AGPL-3.0-only",
+      "runtime_wheel": {
+        "filename": "nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "5c5b89706211421554c6620d955cea51ad30eefb3c6f6a5aff46bf6c79220248",
+        "bytes": 976948
+      },
+      "source_archives": {
+        "project": {
+          "filename": "nexusmore-0.1.0.dev0.tar.gz",
+          "sha256": "5bb0485878712706d2e02f44f8809d4973aa1d41a18d145140b5b84efc9ce976",
+          "bytes": 983631
+        },
+        "pymupdf": {
+          "filename": "pymupdf-1.27.2.3.tar.gz",
+          "sha256": "7a92faa25129e8bbec5e50eeb9214f187665428c31b05c4ef6e36c58c0b1c6d2",
+          "bytes": 85759618
+        },
+        "mupdf": {
+          "filename": "mupdf-1.27.2-source.tar.gz",
+          "sha256": "553867b135303dc4c25ab67c5f234d8e900a0e36e66e8484d99adc05fe1e8737",
+          "bytes": 66968384
+        }
+      },
+      "origins": {
+        "pymupdf": "PyPI 1.27.2.3 source release; verified PyPI SHA256",
+        "mupdf": "https://mupdf.com/downloads/archive/mupdf-1.27.2-source.tar.gz; official HTTPS project hash, separate upstream digest not verified"
+      },
+      "native_binary_rebuild_verified": false,
+      "complete_corresponding_source_verified": false,
+      "public_release_cleared": false,
+      "source_access_publication": "not published; attach equivalent free source access alongside this exact runtime before public distribution",
+      "excluded": "No user data, credentials, native binaries, weights, caches or historical approval archives."
+    }
+  },
+  "review_candidate_directory": "tmp\\agpl-combined-release-validation-20261114\\review-candidate",
+  "regression": {
+    "passed": 62,
+    "skipped": 1,
+    "failed": 0,
+    "skip_reason": "existing Windows symlink permission",
+    "evidence": {
+      "path": "tmp\\agpl-combined-release-validation-20261114\\final-regression.xml",
+      "sha256": "1b18132a04e2a324abf7e730fb41b4d40f522e152b1298054850ae020423dee8",
+      "bytes": 8902
+    }
+  },
+  "installed_validation": {
+    "path": "tmp\\agpl-combined-release-validation-20261114\\installed-license-validation.json",
+    "sha256": "dacc7dc86a8346405cbcecf45fb3fc929f110310371fe561f89ee0fc2647fc20",
+    "bytes": 702
+  },
+  "MuPDF_source_inventory": {
+    "path": "tmp\\agpl-combined-release-validation-20261114\\mupdf-source-inventory.json",
+    "sha256": "ec19820c5f5fef5c32656ea6ef07d7db362dfcb3d6ed250950fe2dad551b1646",
+    "bytes": 7119
+  },
+  "summary": {
+    "path": "docs\\release\\agpl-combined-distribution-summary.md",
+    "sha256": "793709c530eef5db4fccadedf8569c15c5b4b339400686945853c35a3c2de84d",
+    "bytes": 2862
+  },
+  "current_sources": [
+    {
+      "path": "LICENSE",
+      "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+      "bytes": 34520
+    },
+    {
+      "path": "README.md",
+      "sha256": "152e2e34085852fa81cb290e660c21ffc0f91bfd3c95c6b11e1dd919528d4997",
+      "bytes": 15712
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "881e5d9947298beb375419d965e68f25ea96f6b58f10af17278ea9241c3ace2e",
+      "bytes": 20214
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "0add8d33e0a63e25ba4e8af3243532340d5232012bce9a605eef3edba5bf6d59",
+      "bytes": 20701
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "ad821ffd195c3c1447a71349fe2af1eb3ebb1caff7db031fdbf3c69babf540f7",
+      "bytes": 3005
+    },
+    {
+      "path": "src\\modelcrew\\__main__.py",
+      "sha256": "d80d5d0175ee143f95361b91b891a460fc24f656ba39d672c8b020fb2ec7c4f2",
+      "bytes": 15939
+    },
+    {
+      "path": "src\\modelcrew\\licensing.py",
+      "sha256": "c8a3b59df1faffab1303581ea4173aba3b97aa01567b66978ed9ccb01ca8d734",
+      "bytes": 456
+    },
+    {
+      "path": "src\\modelcrew\\resources\\resource-manifest.json",
+      "sha256": "08e81cf35b5f20a36881aa9b76558bec284a132f9be14a400c94b65f5537e5df",
+      "bytes": 57713
+    },
+    {
+      "path": "src\\modelcrew\\resources\\third-party-notices.md",
+      "sha256": "cee4d299641248aa89ea7ed3d17fbde463bb9bb1f07d49a22e1bf912873840b7",
+      "bytes": 2885
+    },
+    {
+      "path": "src\\modelcrew\\resources\\licensing\\manifest.json",
+      "sha256": "7154bdeac5628eb6cec6cfae6a91a0bca1a28cf922d6b18c16a2d4a1c73fa9c4",
+      "bytes": 1013
+    },
+    {
+      "path": "src\\modelcrew\\resources\\licensing\\AGPL-3.0.txt",
+      "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+      "bytes": 34520
+    },
+    {
+      "path": "src\\modelcrew\\resources\\licensing\\Apache-2.0.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357
+    },
+    {
+      "path": "scripts\\build_distribution.py",
+      "sha256": "baff5c0f0b56f4548a88733aa72199b577dc65d2a57e72c0038a3fc955e4dc22",
+      "bytes": 6110
+    },
+    {
+      "path": "scripts\\build_environment_bundle.py",
+      "sha256": "6a2f57b7ea30e876b5f49d1b7accedc537a8f930ff38e2609ec7ae53b3131c4c",
+      "bytes": 2418
+    },
+    {
+      "path": "scripts\\build_agpl_source_materials.py",
+      "sha256": "149568cf36b39116b54b44c25bf3744e755f0ce27a715657800bec7ea5bada81",
+      "bytes": 6667
+    },
+    {
+      "path": "tests\\test_package_distribution.py",
+      "sha256": "dde44da31b060bbc6b27b67246fcada43b18e1d00c72e16fd6a4c01e805f3c98",
+      "bytes": 7218
+    },
+    {
+      "path": "docs\\combined-distribution-license.md",
+      "sha256": "d7fb26d86299c9244380d1eabcca96ebb15646f9d4cc7b925f6884d404908df3",
+      "bytes": 3178
+    },
+    {
+      "path": "configs\\package-distribution.json",
+      "sha256": "3efe218e27065d85b7b5359483bc133bfbd7cb265dcf7d615697be0a6d0c98e0",
+      "bytes": 13029
+    }
+  ],
+  "prior_license_recovery": {
+    "old_root_LICENSE_snapshot": {
+      "path": "tmp\\agpl-combined-release-validation-20261114\\before\\LICENSE",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357
+    },
+    "current_recovery_path": "docs/licenses/Apache-2.0.txt"
+  },
+  "protected_records": [
+    {
+      "path": "docs\\release\\agpl-obligations-review-20261114.json",
+      "sha256": "f4c64ef6bcbb3e57f85bb9ad07abf913c8543e7f793b71327d93e6abd20d9fe2",
+      "bytes": 7157
+    },
+    {
+      "path": "docs\\release\\project-license-adoption-20261114.json",
+      "sha256": "6544a3727c5e63661349e2f2bb8937302a88750bf6e9463cf053e159411a667c",
+      "bytes": 14182
+    },
+    {
+      "path": "docs\\release\\pymupdf-retention-20261114.json",
+      "sha256": "55a799319b6cdf4654855c4ec98ae1e2cc2058c15b7aa54b3963e40f95531c4d",
+      "bytes": 13205
+    },
+    {
+      "path": "docs\\release\\environment-preparation-20261114.json",
+      "sha256": "d704d01369d7f019842e31786af189fe5e348fa6a2a269045648df9da2bb1a08",
+      "bytes": 21573
+    },
+    {
+      "path": "docs\\release\\resource-disposition-20261111.json",
+      "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+      "bytes": 181183
+    }
+  ],
+  "remaining": [
+    "native wheel exact source/build mapping and bundled components review",
+    "other third-party dependencies/tools/images/models/fonts obligations",
+    "complete corresponding source verification and actual source download availability before public distribution",
+    "applicable AGPL section 13 notices before remote deployment"
+  ],
+  "complete_AGPL_compliance_verified": false,
+  "all_F5_completed": false,
+  "native_MuPDF_Windows_rebuild_verified": false,
+  "public_release_cleared": false,
+  "public_upload_authorized": false,
+  "git_push_or_publication_performed": false,
+  "actual_model_calls": 0,
+  "user_paper_or_independent_review_approval": false
+}

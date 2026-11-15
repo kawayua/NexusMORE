@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-12",
+  "status": "F1_runtime_scope_frozen_local_validation_passed",
+  "user_decision": "Windows x86_64 / Python 3.13 / Docker Linux executor",
+  "environment_contract": "configs/runtime-environment.json",
+  "validated_host_python": "3.13.5",
+  "validated_executor": {
+    "python": "3.13.18",
+    "machine": "x86_64",
+    "uid": 10001,
+    "numpy": "2.3.1",
+    "scipy": "1.16.0",
+    "openpyxl": "3.1.5",
+    "numerical_check": true,
+    "xlsx_roundtrip": true,
+    "root_write_denied": true
+  },
+  "image_id": "sha256:3f3fd4bbdb57752cf87f470914a52dc3474db75137c4e3e8b1b1042abd0ea9bd",
+  "base_image": {
+    "source": "docker.m.daocloud.io/library/python:3.13-slim",
+    "digest": "sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90",
+    "official_registry_fetch": "failed_network_timeout",
+    "mirror_fetch_and_build": "passed",
+    "independent_official_digest_comparison": false
+  },
+  "checks": {
+    "related_regression_passed": 25,
+    "regression_warning": "pytest cache directory permission; tests passed",
+    "actual_restricted_execution": "passed",
+    "cached_status_and_new_instance_recovery": "passed",
+    "runtime_resource_hashes": 193,
+    "final_repository_layout": "passed_zero_issues"
+  },
+  "historical_approvals_and_frozen_resources_modified": false,
+  "new_task_default": "modelcrew-reference:py313",
+  "clean_environment_acceptance": false,
+  "F1_complete": false,
+  "provider_or_harness_compatibility_claimed": false,
+  "evidence": [
+    {
+      "path": "configs/runtime-environment.json",
+      "sha256": "5845dfc3762aa4e1c7540b21a05a8ae5248ba3807ee6a60eec88699390638fb7"
+    },
+    {
+      "path": "configs/release-scope.json",
+      "sha256": "94af397e49ef135339c63a6fc693f5e369d3c1474d05b8f375d2307cfb1f2473"
+    },
+    {
+      "path": "configs/executor/Dockerfile.runtime",
+      "sha256": "f418d31aa8f98f4afbf7c2c7af37d5181f45b5eb86b8832a880ab0d6cc20c238"
+    },
+    {
+      "path": "src/modelcrew/docker_executor.py",
+      "sha256": "f14d67e6da4e3224d45516c2e67f17cccb4900d04fa0da471109be526cafc339"
+    },
+    {
+      "path": "src/modelcrew/code_executor_mcp.py",
+      "sha256": "9c76c5ebc6dc0b7d7cf8d012a57e3f25539758ab6f5133613cdf8d098f8eae78"
+    },
+    {
+      "path": "src/modelcrew/mcp_client.py",
+      "sha256": "a72d9597f8adcbb0be3aa537e57ab1975e3a65d3f1c7f0d4875dcc6f86fa5f4b"
+    },
+    {
+      "path": "docs/runtime-environment.md",
+      "sha256": "6bb72545f6ecdd26ad31296a9a1b06cc9033f6e8cbde98377e121b136b5ef38f"
+    },
+    {
+      "path": "docs/release-scope.md",
+      "sha256": "a7e320434ab135b4d36ee1bf23825bfe29f965e7070d529e5acb5993670182b5"
+    },
+    {
+      "path": "docs/code-executor-mcp.md",
+      "sha256": "845cc8f5fe81fc9864c29601e61a476412e16be9239bcc9e56678e6371d6f795"
+    },
+    {
+      "path": "docs/mcp-workflow.md",
+      "sha256": "1322f5c0085d13bf7f956da5396c4e525e37c7e9c4705bfdeaab92358953bc11"
+    },
+    {
+      "path": "README.md",
+      "sha256": "876b250116776b939c80def38bbdf11187f27744e00b213134d581eb008ac44d"
+    },
+    {
+      "path": "docs/changelog.md",
+      "sha256": "e2c3d104e40c0ccd6109e967d6a17f0af98cfb5f7d75fc65c0dfb93776cc7e98"
+    },
+    {
+      "path": "tmp/runtime-environment-20261112/host-probe.json",
+      "sha256": "11dfa4fdfd1ed34fd937e9be1d0d253585ef1bea10444e149c643ccfacdbf304"
+    },
+    {
+      "path": "tmp/runtime-environment-20261112/executor-probe.json",
+      "sha256": "37d847704412eab28bab5c32e0e8fa788b9718d452607f89aec6a3e95ffdabb6"
+    },
+    {
+      "path": "tmp/runtime-environment-20261112/recovery-check.json",
+      "sha256": "2e3ce9e2028919a01de0d4030370efb2b254b21eeaf63866a6b8224a29c3aafa"
+    },
+    {
+      "path": "tmp/runtime-environment-20261112/regression.xml",
+      "sha256": "a918a70cd0f8dabd149f1d3fee3f523d8a6d201bd939d24402d79ba231d12306"
+    },
+    {
+      "path": "tmp/runtime-environment-20261112/executor/runs/runtime-py313-probe/artifacts/environment.json",
+      "sha256": "9a0ef3b95043eeedb08559896beb0eb19b9b4ae911404f6fffe6d020d20e0b22"
+    }
+  ]
+}

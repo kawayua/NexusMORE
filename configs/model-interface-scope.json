@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-12",
+  "status": "target_scope_selected_provider_validation_pending",
+  "decision_basis": "user_selected_DeepSeek_OpenAI_and_other_compatible_interfaces",
+  "protocol": {
+    "name": "OpenAI-compatible Chat Completions",
+    "transport": "HTTPS JSON",
+    "request_path": "/chat/completions",
+    "streaming_required": false,
+    "base_url_model_and_key": "user configuration; no bundled credentials",
+    "response": "choices[0].message.content with stage-specific JSON or Markdown protocol"
+  },
+  "providers": [
+    {
+      "id": "deepseek",
+      "display_name": "DeepSeek",
+      "status": "selected_not_verified",
+      "model_ids": []
+    },
+    {
+      "id": "openai",
+      "display_name": "OpenAI model API (user described as ChatGPT)",
+      "status": "selected_not_verified",
+      "model_ids": []
+    },
+    {
+      "id": "compatible",
+      "display_name": "Other explicitly configured Chat Completions-compatible services",
+      "status": "per_endpoint_validation_required",
+      "model_ids": []
+    }
+  ],
+  "capabilities": {
+    "text_messages": "first-release target",
+    "structured_JSON": "local schema validation required; server JSON/schema modes individually verified",
+    "vision": "model-specific verification required, particularly P2/W2 page review",
+    "tool_calling": "not implied by current text client; harness tool protocol separately adapted",
+    "streaming": "not in current first-release client baseline",
+    "responses_API": "not connected by this scope decision",
+    "web_product_login_or_subscription": "not an API credential or supported browser automation route"
+  },
+  "known_gaps": [
+    "model_client.py and drafts.py send enable_thinking/thinking extension fields unconditionally; provider-specific request adaptation required",
+    "model IDs and versioned capability matrix not frozen",
+    "JSON/schema support, token parameter and context limits must be verified per selected model",
+    "image evidence support cannot be assumed for all providers; unavailable P2/W2 requirements must block or use explicitly configured validated review models"
+  ],
+  "implementation_evidence": [
+    "src/modelcrew/model_client.py",
+    "src/modelcrew/drafts.py"
+  ],
+  "provider_calls_made_for_this_decision": false,
+  "compatibility_verified_per_provider": false,
+  "automatic_provider_or_model_fallback": false,
+  "first_harness": {
+    "name": "DeepSeek harness",
+    "project_target_key": "DSH",
+    "mapping_basis": "verified installed @deepseek-ai/dsh-desktop package and bundled DSH runtime",
+    "repository": null,
+    "version": "0.2.2-rc.1",
+    "first_validation_target": true,
+    "status": "installed_identity_and_version_selected_live_validation_pending",
+    "package": "@deepseek-ai/dsh-desktop",
+    "build_commit": "c59d10aff167ad7eefead4b3a9082fb57c8fbfe8",
+    "identity_evidence": "docs/release/deepseek-harness-desktop-review-20261112.json"
+  },
+  "historical_approvals_unchanged": true
+}

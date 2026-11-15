@@ -3,6 +3,7 @@ import argparse,copy,json,os,re,shutil,subprocess,sys
 from pathlib import Path
 from datetime import datetime,timezone
 from modelcrew.config import ROOT
+from modelcrew.tool_discovery import discover_tool,tex_cache_directory
 from modelcrew.modeling_paper import sha,inside,writing_context,require_review_for_export
 from modelcrew.paper_layout import contract as layout_contract, frontmatter, split_ast, rendered_frontmatter, text_of
 
@@ -24,6 +25,12 @@ def normalize_longtable_widths(latex):
         if not weights or abs(total-1)<=Decimal('0.000000001'):return value
         return re.sub(r'\\real\{([0-9.]+)\}',lambda m:r'\real{'+str((Decimal(m[1])/total).quantize(Decimal('0.0000000001'),rounding=ROUND_FLOOR))+'}',value)
     return re.sub(r'\\begin\{longtable\}[\s\S]*?\\toprule',table,latex)
+
+
+def reference_layout(latex):
+    """Use ragged-right layout for bibliography URLs, preserving reference text."""
+    pattern=r'(\\section\{参考文献\}[^\n]*\n)([\s\S]*?)(?=\\section\{|\Z)'
+    return re.sub(pattern,lambda match:match[1]+r'\begingroup\raggedright'+'\n'+match[2]+r'\par\endgroup'+'\n',latex)
 
 
 def figure_embedding(source,figure,width_mm=160):
@@ -102,30 +109,45 @@ def reference_docx(path):
     doc.save(path)
 
 
-def build(source,output,pandoc,compiler):
-    context=writing_context();layout=layout_contract(context);source=source.resolve();output=output.resolve()
+def _build(source,output,pandoc,compiler,attempt_id):
+    output=output.resolve()
+    output.mkdir(parents=True,exist_ok=False);(output/'figures').mkdir();(output/'build').mkdir()
+    save(output/'build-attempt.json',{'attempt_id':attempt_id,'state':'building','scope':'Approved-source export attempt; workflow approvals, visual review and W2 remain separate'})
+    pandoc=discover_tool('pandoc',pandoc);compiler=discover_tool('tectonic',compiler)
+    context=writing_context();layout=layout_contract(context);source=source.resolve()
     frontmatter((source/'单题论文-中文审阅稿.md').read_text(encoding='utf-8'))
     review=json.loads((source/'user-review-confirmed.json').read_text(encoding='utf-8'))
     approved=require_review_for_export(source/'单题论文-中文审阅稿.md',source/'figure-catalog.json',review)
     catalog=json.loads((source/'figure-catalog.json').read_text(encoding='utf-8'))
     source_hashes={name:sha(source/name) for name in ['单题论文-中文审阅稿.md','figure-catalog.json','user-review-confirmed.json']}
-    output.mkdir(parents=True,exist_ok=False);(output/'figures').mkdir();(output/'build').mkdir()
     (output/'fonts').mkdir()
     for name in ['simsun.ttc','simhei.ttf','simkai.ttf','simfang.ttf','times.ttf','timesbd.ttf','timesi.ttf','timesbi.ttf']:shutil.copyfile(Path('C:/Windows/Fonts')/name,output/'fonts'/name)
     for name in source_hashes:shutil.copyfile(source/name,output/name)
     for figure in catalog['figures']:
         for asset in figure['files'].values():
             dest=inside(output,asset['path']);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(inside(source,asset['path']),dest)
+    from modelcrew.figure_tools import audit_catalog
+    audit_catalog(output/'figure-catalog.json',output/'build/figure-check')
     for name in ['selected-results.csv','constraint-diagnostics.csv']:
         if (source/name).exists():shutil.copyfile(source/name,output/name)
     save(output/'writer-context.json',context);save(output/'approval-check.json',approved);save(output/'format-requirement-map.json',layout)
     calls=[]
     def convert(args,data=None):
-        result=subprocess.run([str(pandoc.resolve()),*args],input=data,capture_output=True,timeout=600,cwd=output)
-        calls.append({'args':args,'returncode':result.returncode,'stderr':result.stderr.decode('utf-8',errors='replace')})
-        if result.returncode:raise RuntimeError('Pandoc failed: '+calls[-1]['stderr'])
-        if 'Could not convert TeX math' in calls[-1]['stderr']:raise RuntimeError('Pandoc failed to produce editable math: '+calls[-1]['stderr'])
-        return result.stdout.replace(b"\r\n",b"\n")
+        from modelcrew.latex_tools import run_logged
+        name='pandoc-'+str(len(calls)+1).zfill(3)
+        try:
+            raw=run_logged([str(pandoc.resolve()),*args],output/'build',name,
+                           cwd=output,timeout=600,input_data=data,raw_output=True)
+        finally:
+            result_path=output/'build'/(name+'-result.json')
+            if result_path.exists():
+                result=json.loads(result_path.read_text(encoding='utf-8'))
+                error=(output/'build'/(name+'-stderr.log')).read_text(encoding='utf-8',errors='replace')
+                calls.append({'args':args,'returncode':result['returncode'],'stderr':error,'status':result['status']})
+                save(output/'build/conversion-log.json',calls)
+        if 'Could not convert TeX math' in calls[-1]['stderr']:
+            raise RuntimeError('Pandoc failed to produce editable math; inspect conversion logs')
+        return raw.replace(b"\r\n",b"\n")
     md=output/'单题论文-中文审阅稿.md'
     ast=json.loads(convert(['-f','markdown-implicit_figures+tex_math_dollars','-t','json',str(md)]))
     ast=set_symbol_table_widths(ast)
@@ -157,7 +179,7 @@ def build(source,output,pandoc,compiler):
     if len(embedded)!=len(figures):raise ValueError('Not all approved figures embedded')
     latex=convert(['-f','json','-t','latex','--wrap=none'],json.dumps({**base,'blocks':latex_blocks},ensure_ascii=False).encode()).decode()
     latex=re.sub(r'https?://[^\s{}]+',lambda m:r'\url{'+m.group(0)+'}',latex)
-    latex=normalize_longtable_widths(latex)
+    latex=reference_layout(normalize_longtable_widths(latex))
     # Use the actually read Chinese baseline preamble. Replace only the
     # documented sample body slots, with explicit local font/tool mappings.
     main=next(d['text'] for d in context['documents'] if d['path']=='resources/paper/reference/main.tex')
@@ -302,19 +324,45 @@ def build(source,output,pandoc,compiler):
                     for run in p.runs:run.font.size=Pt(10.5)
     doc.save(output/'paper.docx')
     save(output/'build/conversion-log.json',calls)
-    cache=ROOT/'stage-c-plus/tex-cache';cache.mkdir(exist_ok=True)
-    command=[str(compiler.resolve()),'--untrusted','--keep-logs','--keep-intermediates','--outdir',str(output),str(tex)]
+    cache=tex_cache_directory(ROOT);cache.mkdir(parents=True,exist_ok=True)
+    command=[str(compiler.resolve()),'--untrusted','--only-cached','--keep-logs','--keep-intermediates','--outdir',str(output),str(tex)]
     env={**os.environ,'TECTONIC_CACHE_DIR':str(cache),'TEMP':str(cache),'TMP':str(cache)}
-    result=subprocess.run(command,capture_output=True,timeout=600,env=env,cwd=output)
-    (output/'build/latex.stdout.log').write_bytes(result.stdout);(output/'build/latex.stderr.log').write_bytes(result.stderr)
-    save(output/'build-command.json',{'command':command,'returncode':result.returncode,'cache':'stage-c-plus/tex-cache','network':'Compiler may provision missing TeX resources; no paper data sent to an LLM.'})
-    if result.returncode:raise RuntimeError('Actual Chinese LaTeX compile failed; inspect build logs')
+    from modelcrew.latex_tools import run_logged
+    try:
+        run_logged(command,output/'build','latex',timeout=600,env=env,cwd=output)
+    finally:
+        result_path=output/'build/latex-result.json'
+        if result_path.exists():
+            result=json.loads(result_path.read_text(encoding='utf-8'))
+            save(output/'build-command.json',{'command':command,'returncode':result['returncode'],
+                 'status':result['status'],'cache':str(cache),'network':'Only cached TeX resources; no automatic provisioning'})
+    log=(output/'paper.log').read_text(encoding='utf-8',errors='replace')
+    findings=[line for line in log.splitlines() if re.search(r'undefined|Missing character|(?:Over|Under)full|(?:LaTeX|Package .*|Class .*|Font) Warning:',line,re.I)]
+    save(output/'build/compiler-check.json',{'status':'failed' if findings else 'passed','findings':findings,'warning_exceptions':[]})
+    if findings:raise RuntimeError('Unresolved compiler warnings; inspect compiler-check.json')
+    from modelcrew.pdf_checks import inspect_pdf, verify_pdf_report
+    pdf_checked=inspect_pdf(output/'paper.pdf',output/'build/latex-pdf-check')
+    verify_pdf_report(output/'paper.pdf',output/'build/latex-pdf-check',pdf_checked)
     pagination=rendered_frontmatter(output/'paper.pdf',md.read_text(encoding='utf-8'))
     save(output/'build/abstract-page-check.json',pagination)
     if pagination['status']!='passed':raise RuntimeError('Abstract/title/keywords must fit on page 1; revise the abstract without shrinking fonts')
     assert all(sha(source/name)==value for name,value in source_hashes.items())
-    save(output/'build-manifest.json',{'created_at':datetime.now(timezone.utc).isoformat(),'source_bundle':str(source.relative_to(ROOT)),'source_hashes':source_hashes,'figures':embedded,'source_unchanged':True,'new_figures_generated':0,'compiler_sha256':sha(compiler),'pandoc_sha256':sha(pandoc),'script_sha256':sha(Path(__file__)),'layout':'Chinese A4 research paper; not verified against year-specific official submission rules','figure_count':len(embedded),'word_equations':'Native OMML; equation tags rendered as visible numbers','manual_review':'pending','format_requirements':layout,'abstract_page_check':pagination})
+    save(output/'build-manifest.json',{'created_at':datetime.now(timezone.utc).isoformat(),'source_bundle':str(source.relative_to(ROOT)),'source_hashes':source_hashes,'figures':embedded,'source_unchanged':True,'new_figures_generated':0,'compiler_sha256':sha(compiler),'pandoc_sha256':sha(pandoc),'script_sha256':sha(Path(__file__)),'layout':'Chinese A4 research paper; not verified against year-specific official submission rules','figure_count':len(embedded),'word_equations':'Native OMML; equation tags rendered as visible numbers','manual_review':'pending','format_requirements':layout,'abstract_page_check':pagination,'latex_pdf_check_sha256':sha(output/'build/latex-pdf-check/pdf-check.json')})
     print(json.dumps({'output':str(output),'pdf':True,'tex':True,'docx':True,'figures':len(embedded)}))
 
+def build(source,output,pandoc=None,compiler=None):
+    """Preserve complete failure evidence in this newly owned export attempt."""
+    import uuid
+    token=uuid.uuid4().hex
+    try:
+        return _build(source,output,pandoc,compiler,token)
+    except BaseException as exc:
+        marker=Path(output)/'build-attempt.json'
+        if marker.is_file() and json.loads(marker.read_text(encoding='utf-8')).get('attempt_id')==token:
+            save(Path(output)/'build-error.json',{'status':'failed','error_type':type(exc).__name__,
+                 'error':str(exc),'visual_review':'PENDING','W2':'NOT_RUN'})
+        raise
+
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--pandoc',type=Path,default=ROOT/'stage-c-plus/tools/pandoc/pandoc.exe');p.add_argument('--compiler',type=Path,default=ROOT/'stage-c-plus/tools/tectonic.exe');a=p.parse_args();build(a.source,a.output,a.pandoc,a.compiler)
+    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--pandoc',type=Path,default=None);p.add_argument('--compiler',type=Path,default=None);a=p.parse_args();build(a.source,a.output,a.pandoc,a.compiler)

@@ -1,13 +1,14 @@
 """Read-only delivery evidence audit; no provider calls, approvals or execution."""
+from modelcrew.project_assets import asset_path
 import json,hashlib
 from pathlib import Path
 from datetime import datetime,timezone
 from modelcrew.config import ROOT
 from modelcrew.workflow import Workflow
-OUT=ROOT/'stage-d/runtime-integration/20261110-v1'
+OUT=asset_path(ROOT,'stage-d/runtime-integration/20261110-v1')
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
-    old=json.loads((ROOT/'stage-d/acceptance/20261109-v1/evidence-audit.json').read_text(encoding='utf-8'))
+    old=json.loads((asset_path(ROOT,'stage-d/acceptance/20261109-v1/evidence-audit.json')).read_text(encoding='utf-8'))
     changes=[]
     for item in old['evidence_files']:
         p=ROOT/item['path']
@@ -17,7 +18,7 @@ def main():
     with Workflow() as w:
         rows=w.db.execute("SELECT * FROM mc_hand_runs WHERE payload->'request'->>'actor'='ENGINEERING_PROBE' ORDER BY created_at").fetchall()
         for row in rows:
-            p=row['payload'];folder=ROOT/'stage-d/runs/runtime'/str(row['id'])
+            p=row['payload'];folder=asset_path(ROOT,'stage-d/runs/runtime')/str(row['id'])
             runs.append({'run_id':str(row['id']),'task_id':row['task_id'],'hand':row['hand'],'phase':row['phase'],'attempt':p['attempt'],'reviews':p['reviews'],'feedback':p.get('feedback'),'binding':p['binding'],'business_user_approvals_created':False,'synthetic_model_approval_for_isolated_probe':row['hand']=='coding'})
             for meta in sorted((folder/'operations').glob('*/*-metadata.json')):
                 data=json.loads(meta.read_text(encoding='utf-8'))

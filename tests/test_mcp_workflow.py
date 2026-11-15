@@ -224,3 +224,28 @@ def test_result_confirmation_rechecks_mcp_artifact_integrity(execution_task,monk
         with pytest.raises(WorkflowError,match='artifacts changed'):
             w.action(task,version=1,kind='result',decision='approve',result_revision=1,reason='TEST review reason cannot bypass integrity',actor='TEST_SIMULATED_USER',request_id='result')
         assert not w.task(task)['result_approved']
+
+
+def test_builtin_algorithm_reference_is_bound_and_idempotent_without_approval(setup_task):
+    task,contract,client=setup_task
+    with Workflow(mcp_client=client) as w:
+        kwargs=dict(version=1,tool='algorithm_search',arguments={'query':'arima','category':'prediction'},actor='TEST_OPERATOR',request_id='builtin-lookup')
+        first=w.retrieve_references(task,**kwargs)
+        assert first['envelope']['status']=='ok'
+        hit=first['envelope']['data']['hits'][0]
+        assert hit['doc_id']=='arima' and hit['citation']['origin']=='builtin_project_reference'
+        assert w.retrieve_references(task,**kwargs)==first and len(client.calls)==1
+        evidence=w.tool_evidence(task)
+        assert len(evidence['references'])==1 and len(evidence['mcp_traces'])==2
+        assert not w.task(task)['model_approved'] and not w.task(task)['result_revision']
+
+
+def test_builtin_reference_recovery_keeps_original_call_and_hash(setup_task):
+    task,contract,client=setup_task
+    with Workflow(mcp_client=client) as w:
+        first=w.retrieve_references(task,version=1,tool='algorithm_search',arguments={'query':'lp'},actor='TEST_OPERATOR',request_id='builtin-first')
+        original=first['envelope']['data']['hits'][0]
+        recovered=w.retrieve_references(task,version=1,tool='reference_get',arguments={'reference_id':original['citation']['reference_id']},actor='TEST_OPERATOR',request_id='builtin-recover')
+        hit=recovered['envelope']['data']['hits'][0]
+        assert hit['citation']==original['citation'] and hit['text']==original['text']
+        assert len(w.tool_evidence(task)['references'])==1 and len(client.calls)==2

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "source": "resources/paper/reference",
+  "target": "archive/research/knowledge/paper-reference",
+  "purpose": "Local reference provenance or private historical fixture; excluded from wheel, original bytes retained",
+  "files": [
+    {
+      "old_path": "resources/paper/reference/LaTeX格式规范.md",
+      "new_path": "archive/research/knowledge/paper-reference/LaTeX格式规范.md",
+      "sha256": "e6ff99e6fa47916febc53ceb4364aa1ef70ff0e16c6687d176e56bf07863e5a1",
+      "bytes": 3987
+    },
+    {
+      "old_path": "resources/paper/reference/main.tex",
+      "new_path": "archive/research/knowledge/paper-reference/main.tex",
+      "sha256": "bcdcb449176640a60ff540210aa7b7a64d6a5e77465d5d06877bdb46d44de276",
+      "bytes": 883
+    },
+    {
+      "old_path": "resources/paper/reference/references.bib",
+      "new_path": "archive/research/knowledge/paper-reference/references.bib",
+      "sha256": "e19b906154ccbe9f86d9f9c550cda438357622483e23ceb0d1ba8900ca768a69",
+      "bytes": 67
+    },
+    {
+      "old_path": "resources/paper/reference/SKILL.md",
+      "new_path": "archive/research/knowledge/paper-reference/SKILL.md",
+      "sha256": "ffbf94ce062ca92bf004c2aadaf9c1f77ba72b8d09478dd02400de666c8bdc6c",
+      "bytes": 10760
+    },
+    {
+      "old_path": "resources/paper/reference/写作规范.md",
+      "new_path": "archive/research/knowledge/paper-reference/写作规范.md",
+      "sha256": "57f1477595b648d6699d47ae578d1c4919ee6558390880cd62c10a938e7c96f1",
+      "bytes": 4402
+    },
+    {
+      "old_path": "resources/paper/reference/章节模板.md",
+      "new_path": "archive/research/knowledge/paper-reference/章节模板.md",
+      "sha256": "a25b41e888f833642f288b6685ce5c7f0dca5a4df315b98ffd267b3a71c10ff3",
+      "bytes": 2489
+    },
+    {
+      "old_path": "resources/paper/reference/论文格式规范.md",
+      "new_path": "archive/research/knowledge/paper-reference/论文格式规范.md",
+      "sha256": "b5359295c362a6fbe94295bc332d8ea1a72792b3313f26b4b93532d69d2f7189",
+      "bytes": 4881
+    }
+  ],
+  "approval_rewritten": false
+}

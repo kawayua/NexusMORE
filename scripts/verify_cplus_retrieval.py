@@ -1,4 +1,4 @@
-"""Actual BGE/Qdrant + MCP algorithm searches and version-bound workflow references."""
+"""Explicit legacy six-card BGE/Qdrant probe; never the default installed lookup."""
 import argparse,json,os,sys,uuid
 from pathlib import Path
 from datetime import datetime,timedelta,timezone
@@ -6,13 +6,15 @@ import anyio
 from mcp import ClientSession
 from mcp.client.stdio import StdioServerParameters,stdio_client
 from modelcrew.config import ROOT
+from modelcrew.retrieval_paths import algorithm_config_path
+from modelcrew.runtime_paths import data_root
 from modelcrew.workflow import Workflow
 from scripts.c5_fixture import contract_for
 
 
-async def verify(folder):
+async def verify(folder, config):
     folder=folder.resolve();folder.mkdir(parents=True,exist_ok=False);checks=[];responses=[]
-    config=ROOT/'stage-c-plus/runs/algorithm-index.json'
+    config=algorithm_config_path(ROOT,config)
     params=StdioServerParameters(command=sys.executable,args=['-m','modelcrew.paper_search_mcp','--log',str(folder/'calls.jsonl'),'--references',str(folder/'references')],
         cwd=str(ROOT),env={**{k:os.environ[k] for k in ('HF_HOME',) if k in os.environ},'MODELCREW_ALGORITHM_CONFIG':str(config),'PYTHONIOENCODING':'utf-8','HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1'})
     async def call(session,args):
@@ -48,4 +50,4 @@ async def verify(folder):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);anyio.run(verify,parser.parse_args().output)
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);parser.add_argument('--config',type=Path,required=True);args=parser.parse_args();anyio.run(verify,args.output,args.config)

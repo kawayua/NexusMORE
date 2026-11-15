@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "execution_date": "2026-11-11",
+  "database_connection": "restored",
+  "docker_server_version": "29.6.2",
+  "postgres_container": "healthy",
+  "qdrant_container": "running",
+  "database_audit": {
+    "read_only": true,
+    "tables_with_text_json_columns": 24,
+    "total_rows_in_these_tables": 67243,
+    "distinct_stage_tokens": 15207,
+    "tokens_are_not_verified_file_paths": true,
+    "evidence": "tmp/repository-database-paths-20261111-v3.json"
+  },
+  "current_assembly": {
+    "phase": "STALE_INPUTS",
+    "issues": [
+      {
+        "scope": "policy",
+        "reason": "Current writing policy changed"
+      },
+      {
+        "scope": "q1",
+        "reason": "Hand evidence missing or changed: docs/three-hand-collaboration.md"
+      },
+      {
+        "scope": "q2",
+        "reason": "Non-editorial context change requires upstream review: docs/three-hand-collaboration.md"
+      }
+    ],
+    "build_phase": "STALE_BUILD",
+    "evidence": "tmp/repository-live-status-20261111-v1.json"
+  },
+  "frozen_file_identity": {
+    "verified_files": 827,
+    "mismatched_files": 0,
+    "manuscript_review": "approved",
+    "figure_review": "approved",
+    "evidence": "tmp/repository-frozen-evidence-20261111-v1.json"
+  },
+  "policy_change_provenance": {
+    "path": "docs/three-hand-collaboration.md",
+    "first_F0_inventory_sha256": "d9f7f950d098c3beb3b40dd6c5c1e950e33bd01a457e62c3bc981fa33c55915d",
+    "current_sha256": "d9f7f950d098c3beb3b40dd6c5c1e950e33bd01a457e62c3bc981fa33c55915d",
+    "unchanged_since_first_F0_inventory": true,
+    "frozen_E_context_sha256": "08cff24372604ba29bdb24df8bcaf856c06e15838e42cff4dc83496887d0fb08",
+    "observed_change": "F/G/H roadmap rows and roadmap link; no automatic rebind or approval"
+  },
+  "database_mutated": false,
+  "new_execution_or_export_started": false,
+  "history_approvals_rewritten": false,
+  "f0_complete": false
+}

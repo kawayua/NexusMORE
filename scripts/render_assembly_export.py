@@ -9,6 +9,7 @@ import fitz
 from modelcrew.config import ROOT
 from modelcrew.paper_layout import rendered_frontmatter
 from modelcrew.collaboration import sha_file
+from modelcrew.pdf_checks import inspect_pdf, verify_pdf_report
 
 
 def render(output, qa):
@@ -44,6 +45,8 @@ def inspect(output,qa,word_pdf):
             'source_pdf_sha256':sha_file(output/'paper.pdf'),'formats':{},
             'visual_review':'PENDING','W2':'NOT_RUN'}
     for kind,pdf in [('latex',output/'paper.pdf'),('word',Path(word_pdf))]:
+        complete = inspect_pdf(pdf,qa/(kind+'-pdf-check'))
+        verify_pdf_report(pdf,qa/(kind+'-pdf-check'),complete)
         with fitz.open(pdf) as document:
             pages=[];body=''
             for n,page in enumerate(document,1):
@@ -53,7 +56,7 @@ def inspect(output,qa,word_pdf):
                 outside=[s['text'] for s in spans if s['bbox'][0]<-1 or s['bbox'][1]<-1 or s['bbox'][2]>page.rect.width+1 or s['bbox'][3]>page.rect.height+1]
                 pages.append({'page':n,'outside':outside,'minimum_font_pt':min((s['size'] for s in spans),default=0)})
             compact=''.join(body.split())
-            report['formats'][kind]={'pages':pages,'missing_chinese_paragraphs':[p for p in paragraphs if p not in chinese(body)],'all_figures_referenced':all('图'+str(n) in compact for n in expected)}
+            report['formats'][kind]={'pages':pages,'missing_chinese_paragraphs':[p for p in paragraphs if p not in chinese(body)],'all_figures_referenced':all('图'+str(n) in compact for n in expected), 'pdf_check':complete}
     manifest=json.loads((output/'build-manifest.json').read_text(encoding='utf-8'))
     if manifest.get('format_requirements',{}).get('frontmatter_max_pages')==1:
         for kind,pdf in [('latex',output/'paper.pdf'),('word',Path(word_pdf))]:
@@ -66,6 +69,6 @@ def inspect(output,qa,word_pdf):
     report['word_equations']={'expected':expected_equations,'native_numbered':native_equations,'unconverted_math':raw_math,'status':'passed' if native_equations==expected_equations and not raw_math else 'failed'}
     log=(output/'paper.log').read_text(encoding='utf-8',errors='replace')
     report['latex_log_failures']=[line for line in log.splitlines() if any(term in line for term in ['Missing character','Overfull','undefined','Undefined control'])]
-    report['status']='passed' if report['word_equations']['status']=='passed' and not report['latex_log_failures'] and report['word_original_images_match'] and all(v.get('abstract_pagination',{}).get('status','passed')=='passed' and not v['missing_chinese_paragraphs'] and v['pages'] and v['all_figures_referenced'] and all(not p['outside'] and p['minimum_font_pt']>=5 for p in v['pages']) for v in report['formats'].values()) else 'failed'
+    report['status']='passed' if report['word_equations']['status']=='passed' and not report['latex_log_failures'] and report['word_original_images_match'] and all(v['pdf_check']['status']=='passed' and v.get('abstract_pagination',{}).get('status','passed')=='passed' and not v['missing_chinese_paragraphs'] and v['pages'] and v['all_figures_referenced'] and all(not p['outside'] and p['minimum_font_pt']>=5 for p in v['pages']) for v in report['formats'].values()) else 'failed'
     (qa/'render-check.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     return report

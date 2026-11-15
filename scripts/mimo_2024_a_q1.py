@@ -1,4 +1,5 @@
 """Generate an independent MiMo baseline. Does not execute model code."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import os,json,time,hashlib,sys
 from datetime import datetime,timezone
@@ -6,7 +7,7 @@ import httpx
 from pypdf import PdfReader
 from openpyxl import load_workbook
 ROOT=Path(__file__).resolve().parents[1]
-CASE=ROOT/'stage-a/2024-A-problem-1'
+CASE=asset_path(ROOT,'stage-a/2024-A-problem-1')
 def config():
  d={}
  for line in (ROOT/'.env').read_text(encoding='utf-8-sig').splitlines():

@@ -38,7 +38,7 @@ CLI对应命令为 `retrieve`、`discuss-references`、`tool-evidence`，各命�
 
 先在可信宿主用 `python -m modelcrew.docker_executor register`登记固定代码、全部原始输入、资源配置，以及mode=workflow/task_id/version/contract_sha256授权；可在数据库任务建立前登记，登记本身不执行。创建/修订任务时检查任务包绑定，用户确认的是该版本契约和不可变执行配置。修改代码须新任务包和新方案版本，不能在原批准下换代码。
 
-执行根目录由宿主MODELCREW_EXECUTION_ROOT指定，默认stage-c/execution；镜像由MODELCREW_EXECUTION_IMAGE指定，默认modelcrew-reference:py311。API和模型不能提供这些路径。客户端向MCP仅传job_id；MCP在Docker执行前检查已提交的model_approved、当前版本、契约哈希、批准的任务包和完整输入哈希，不持有另一条数据库连接的任务锁，避免与等待子进程的Workflow死锁。Workflow派发与发布仍持任务锁；发布再次检查当前版本和批准状态。子进程显式继承该Workflow的数据库配置，不记录连接串。
+执行根目录由宿主MODELCREW_EXECUTION_ROOT指定，默认stage-c/execution；镜像由MODELCREW_EXECUTION_IMAGE指定，默认modelcrew-reference:py313（2026-11-12首发环境决定；旧配置与回执保留）。API和模型不能提供这些路径。客户端向MCP仅传job_id；MCP在Docker执行前检查已提交的model_approved、当前版本、契约哈希、批准的任务包和完整输入哈希，不持有另一条数据库连接的任务锁，避免与等待子进程的Workflow死锁。Workflow派发与发布仍持任务锁；发布再次检查当前版本和批准状态。子进程显式继承该Workflow的数据库配置，不记录连接串。
 
 Docker成功仅代表代码运行完成。产物经路径校验、哈希与内容寻址快照后，先保存持久后端回执，再发布执行/结果；审核状态unknown、mathematical_review=not_performed，停在结果确认关卡。结果确认需要用户明确审核理由，并重新校验归档产物。工具不会代替用户批准方案或结果。
 
@@ -50,7 +50,7 @@ Docker成功仅代表代码运行完成。产物经路径校验、哈希与内�
 
 当前已绑定到任务、契约版本、来源、方案讨论和确认事件；论文正文的引用位置、真实modeler对话质量和Reviewer审核由阶段D实现，未声称可自动生成可靠参考文献。图片正文OCR仍未接入，C6完整故障/清理演练已完成24项检查，最新完整回归151项通过，见[恢复说明](failure-recovery.md)。工程测试通过不代表用户已验收或允许直接开始D。
 
-查看[机器可读C5摘要](../stage-c/c5-mcp-workflow-verification-summary.json)与[阶段D前置要求](../stage-c/next-stage-entry-requirements.json)。
+查看[机器可读C5摘要](../archive/research/stages/stage-c/c5-mcp-workflow-verification-summary.json)与[阶段D前置要求](../archive/research/stages/stage-c/next-stage-entry-requirements.json)。
 
 
 ## 图片资料的后续处理方向（用户最新要求）

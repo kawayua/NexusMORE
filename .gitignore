@@ -45,3 +45,13 @@ stage-c-plus/tex-cache/
 /stage-c-plus/algorithm-catalog.json
 /contracts/examples/valid-2024-a-q1-input-1.1.json
 /contracts/examples/invalid-input-structure-1.1.json
+
+# Private local configuration; never part of a release or source snapshot.
+/configs/local/
+*.egg-info/
+/build/
+/dist/
+/archive/
+
+# Historical problem-page screenshot: local reading evidence, not source distribution.
+/docs/history/assets/stage-a-2024-figure-check.png

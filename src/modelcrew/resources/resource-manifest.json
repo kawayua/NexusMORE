@@ -1,0 +1,1377 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "Explicit private-development runtime resource allowlist; no redistribution license for the overall project is asserted",
+  "files": [
+    {
+      "path": "algorithms/hand-card-profiles-1.0.0.json",
+      "sha256": "21f269b9ae0f3f1a4ffdeda6adc4aaee503b6dc85fdb97692942d50de1530cbd",
+      "bytes": 10404,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "algorithms/index.md",
+      "sha256": "00be1c1f5e7b8e2f14740c5b96dbeba521389fa4b77704f975c0546c7cc9e1ea",
+      "bytes": 3152,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "algorithms/knowledge/catalog.json",
+      "disposition": "project_authored_private_development",
+      "sha256": "98478df19c3724a0b84bc822b837f7b0b8d8817139b24467c47a315bdbff1cfb",
+      "bytes": 242131
+    },
+    {
+      "path": "algorithms/knowledge/combinations.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "c8bdaf91dfec513bdf90cf78b4e4024c986b0208ef56c686318077de7e0ff1cb",
+      "bytes": 5403
+    },
+    {
+      "path": "algorithms/knowledge/evaluation.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "6d000558b52e6850914e7200d55255f84617b73cbbfdfd9fcea31305a2e5a429",
+      "bytes": 26804
+    },
+    {
+      "path": "algorithms/knowledge/graph.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "1f4f392efc5e20cd348c4d3def702e5e83e0f963c3858b8f726b6289333a0683",
+      "bytes": 27800
+    },
+    {
+      "path": "algorithms/knowledge/machine-learning.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "92707420b073970dcba5f8d36c581413b0194e219e8a32f2d4e367e7c207e7d2",
+      "bytes": 51960
+    },
+    {
+      "path": "algorithms/knowledge/optimization.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "315252a7661c5de81c71ac9e50365bd8513fc46740c0866d4db4898b470b6c1c",
+      "bytes": 31782
+    },
+    {
+      "path": "algorithms/knowledge/prediction.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "961bb3c90a41e5cdadcfbdf32d2f62c7de9d7cfd0d895834711fc4927ebd5526",
+      "bytes": 28424
+    },
+    {
+      "path": "algorithms/knowledge/simulation.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "da1e13153338f33720a238ba862369b9d81df144b12b57195d7fce4bf4877a92",
+      "bytes": 25073
+    },
+    {
+      "path": "algorithms/knowledge/statistics.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "f37652004cd82b9be4666fda415582dd0af33c64cd34bf09606fb347c84e4cd6",
+      "bytes": 38691
+    },
+    {
+      "path": "algorithms/modelcrew-notes.md",
+      "sha256": "a06697a2e2cbefbf7090fb4f50b8488a0225425060673b8cef510e0d6f4e66c5",
+      "bytes": 4238,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "algorithms/numerical-geometry.md",
+      "sha256": "8f79986e92afd9fd817f94cd3dea4f2fa5fd5737b8dbcc07d8a305c88e8131f1",
+      "bytes": 3986,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "capabilities/registry.json",
+      "sha256": "15181fb05141cd2013b7ef39ec8b6918d5f16141fe966f1572b304c5fc8d8b1e",
+      "bytes": 4540,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "capabilities/routing.json",
+      "sha256": "715b67117c78767ad9e03a605dc24bfc6751d679a0da4980209f1bd05a5e103f",
+      "bytes": 3590,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "collaboration/coding-checklist.md",
+      "sha256": "b5525572fdc426715b48c04c36efa310ecf4dd51658d8f167c756a6716ce76cc",
+      "bytes": 849,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/coding-hand.md",
+      "sha256": "e0cb7c791fa6a564a2e8f218204c8783fd81948106a0f326cf8144e3dddf39a9",
+      "bytes": 1368,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/common-rules.md",
+      "sha256": "3666dbf7b1841520e135f6ee6019cd236c9166e1cd78b9b1ba26dc4ad78cb2a1",
+      "bytes": 1691,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/delivery-and-recovery.md",
+      "sha256": "961fe4c1d24b946507c99c4ebfc56f6bc52ac16fdedd2505fdae97c3812582b7",
+      "bytes": 1292,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/document-workbench.md",
+      "disposition": "project_runtime_private_development",
+      "sha256": "7e6711a06f0a31053570d50a5fc9f109a6098a44c72f777c172b97091f15340e",
+      "bytes": 2178
+    },
+    {
+      "path": "collaboration/english-adaptation.md",
+      "sha256": "e0aacf9edf079c2805c9acf9344b542d1cafe9eae1dc331c990ae76645bc3f02",
+      "bytes": 564,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/export-and-template.md",
+      "sha256": "0f9fe87058a46423825fe866eaaabc2349e45a6cdc2b115e4f0c0afdd42cf1bc",
+      "bytes": 1351,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/figure-evidence.md",
+      "sha256": "c1184be6bfe774b491107dd0ba7ac7b93460a97cc69dec17e607c3adbac62033",
+      "bytes": 2251,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/helper-capabilities.md",
+      "sha256": "ee49d255cf369e7fe5b4b6b45fdb7229c3fba5edf0966ebc16dfe63494c70f15",
+      "bytes": 1590,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/latex-tooling.md",
+      "disposition": "project_runtime_private_development",
+      "sha256": "4fed1f96bc615aecd58c4543842fd597908b0d24d205418f8f1863a8d77ba364",
+      "bytes": 2863
+    },
+    {
+      "path": "collaboration/manifest.json",
+      "sha256": "a076e6ea8a857f51fcb2a8f7e5ecf4f282b6e979b7269c606bf521f991592fd3",
+      "bytes": 7501,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/mathematical-reasoning.md",
+      "disposition": "project_runtime_private_development",
+      "sha256": "beca9bda1cf19f9dad126ceae8a8e4e2c71f710c9d01b3553b1d16f891c599cc",
+      "bytes": 2053
+    },
+    {
+      "path": "collaboration/model-contract.md",
+      "sha256": "7a1860b444eaf22d742cf01872ce9b9c0fcc5ec98022f7e18a3feaf98535b680",
+      "bytes": 1050,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/model-selection.md",
+      "sha256": "343b5a0161b0c373cb5c7b024576c16d65d62d81184d2a4e43aea649930984ca",
+      "bytes": 1083,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/modeling-hand.md",
+      "sha256": "13ea2a3edb50311473afbfc79fc13188b53af2d718954273d47ad75318451e94",
+      "bytes": 1110,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/paper-structure.md",
+      "sha256": "7625277c910350d62362a66844edc7682903a24f3bbbd7f4099414defb4c12dc",
+      "bytes": 1148,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/product-entry.md",
+      "disposition": "project_runtime_private_development",
+      "sha256": "fafd9badc4ae753a43cde4a3a6275146d52fd9f63125121fe49fb39ecee0851b",
+      "bytes": 1733
+    },
+    {
+      "path": "collaboration/proof-review.md",
+      "disposition": "project_runtime_private_development",
+      "sha256": "5cb3ba19bc46638f837ceda53f6290543f18de820c4c0b96ceccec02b758bc76",
+      "bytes": 2288
+    },
+    {
+      "path": "collaboration/quality-gates.md",
+      "sha256": "992e5a466a610dee702320480b53d28d5fec344bb67a5e8de9815c5db4166208",
+      "bytes": 2194,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "collaboration/reference-search.md",
+      "disposition": "project_runtime_private_development",
+      "sha256": "e5e6be28fe8ba363f0fe18cae48591bdae0fa281bd133a85717f1573b25ca5a4",
+      "bytes": 1864
+    },
+    {
+      "path": "collaboration/statistical-validation.md",
+      "disposition": "project_runtime_private_development",
+      "sha256": "bd8d71a431b4e630180c58894153584855c8e72073d795a63a514f0e930bcd85",
+      "bytes": 2778
+    },
+    {
+      "path": "collaboration/writing-hand.md",
+      "sha256": "231742489b8b6ca8fe591e2024608f54ef23db944928359b0d1ba47ce0aab9fb",
+      "bytes": 1047,
+      "disposition": "project_authored_collaboration_guidance"
+    },
+    {
+      "path": "contracts/README.md",
+      "sha256": "169e005d3bd4db0d5a16ef1d84417bf6a40de46aa661bae2b7b7a946beca16d1",
+      "bytes": 4926,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/collaboration-artifact-1.0.0.schema.json",
+      "sha256": "4df2c43c66ddc475d24e80d3952673e058925065a7eae046a155c28c8b7beab8",
+      "bytes": 1363,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/collaboration-binding-1.0.0.schema.json",
+      "sha256": "c983e844f52faa0caf46707fb336a1d9872fe1bb910eb328cce0cc91e4b86e08",
+      "bytes": 1220,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/collaboration-call-1.0.0.schema.json",
+      "sha256": "07f87e1f23b8732b2cff2d9ce0a7acbd733d35d8a659fbca5ee9cf5320e33840",
+      "bytes": 2320,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/collaboration-handoff-1.0.0.schema.json",
+      "sha256": "70f0c3f1237006fb9e9b16fc1726ce38bfa863ad849d0af5dace5f9fc82e90c0",
+      "bytes": 2591,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/collaboration-receipt-1.0.0.schema.json",
+      "sha256": "fe529148daa87a44753e66fea69c8bdf410d02926c8bd7ef01ccd3eda1c117ea",
+      "bytes": 4442,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/collaboration-snapshot-1.0.0.schema.json",
+      "sha256": "a7babceb23ab5aeeacc717cd2a97bff0f4c1c3612c2f4e0542fad7b0ab6d5466",
+      "bytes": 4094,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/collaboration-ticket-1.0.0.schema.json",
+      "sha256": "a40ecbc9f889d7ee447aea7c1956da6da93d11c8dbbdff0f4acedd4b8190f984",
+      "bytes": 2738,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/input-templates-1.0.0.json",
+      "sha256": "38888b6e84a6b28c4a592a7f2981e468b4ae74718681fa95eee43438a358453e",
+      "bytes": 53911,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/interpretation-claims-1.0.0.schema.json",
+      "sha256": "56b740e00c6d2637ce543882ecf3a879b4dfc9d9658ac365e5c3fbe3cf9a9a57",
+      "bytes": 5328,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/mathematical-dossier-1.0.0.schema.json",
+      "sha256": "8a327d2b900a6d310fd753ed14779595d2be39e6ed9e19818afc646142e7f8d1",
+      "bytes": 8338,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/mathematical-package-1.0.0.schema.json",
+      "sha256": "475dbab142a3c041e51a67dcbe761f88ad513b20a9f97c48cf61d4df2bde10ba",
+      "bytes": 18298,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/method-selection-1.0.0.schema.json",
+      "sha256": "4f0c6f00a53e8e50d9c51b74ed342a2310915e8c8793cf793be08b9fbe2f8afd",
+      "bytes": 2995,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/model-contract-1.0.0.schema.json",
+      "sha256": "bf437c85c26098d96db9d6ec82f882a599af491422405a31359006e5eb23183a",
+      "bytes": 11626,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/model-contract-1.1.0.schema.json",
+      "sha256": "4f7ae6d6f71ac4e7e33685f01bd026f3d1f81ed0f019ac335c67ae25df25bdaf",
+      "bytes": 80399,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/modeling-m1-answer-1.0.0.schema.json",
+      "sha256": "30c8d521aefcc1e41da9b6ae16c35c458e5951106a6d854221c78d9cae4c1a12",
+      "bytes": 4304,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/modeling-plan-1.0.0.schema.json",
+      "sha256": "c37c6498e8720c85f8e18c437e5ca2f44782c8b1012e46ffb61835134c66098f",
+      "bytes": 2432,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/modeling-proposal-1.0.0.schema.json",
+      "sha256": "ee4e31290fd8452104e4ddbcd0401d77d5d57449366de59e33d0857e41cc4a6a",
+      "bytes": 4360,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "deployment/Dockerfile.runtime",
+      "sha256": "f418d31aa8f98f4afbf7c2c7af37d5181f45b5eb86b8832a880ab0d6cc20c238",
+      "bytes": 382,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "deployment/managed-services.json",
+      "sha256": "b5fc05475193c8105ba2a25b6bfc8f29eafd65864c9728b4c0e8868c83014207",
+      "bytes": 602,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "deployment/postgres.yaml",
+      "sha256": "22bbac14176ba180fdebf4046a23ce34397582d90aab79b3cba5fb955daaa3d0",
+      "bytes": 529,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "deployment/qdrant.yaml",
+      "sha256": "9a93ae6e1b9140ac977a61b460c42d0a7687540291083048b0304118e9c838d2",
+      "bytes": 240,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "document-tools/manifest.json",
+      "sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad",
+      "bytes": 58266,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/SKILL.md",
+      "sha256": "9e8202e2524a9ed87da67a5b3eaa76e8e6038f4171f8251ad6aaefd34e82a3df",
+      "bytes": 6897,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/accept_changes.py",
+      "sha256": "0c991d2bc7304a1248e9f3bf9b1498f0b6e76641fc457e7cbd73c99b4eef3a74",
+      "bytes": 4051,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/comment.py",
+      "sha256": "37d116e5f56bb142b208c6c6a4bbcf960495abf470ddb7c6675ccfac864ba3d7",
+      "bytes": 14054,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/merge_runs.py",
+      "sha256": "3ab367fd7fba4647943d0aa5e65203b15458551410f5ffc821d902616a4b9f40",
+      "bytes": 9398,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/helpers/__init__.py",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5",
+      "bytes": 3358,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/helpers/pptx_chart.py",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964",
+      "bytes": 5862,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/helpers/pptx_slide.py",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0",
+      "bytes": 1675,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/helpers/pptx_theme.py",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03",
+      "bytes": 3510,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "sha256": "41b93bd8857cc68b1e43be2806a872d736a9bdd6566900062d8fdb57d7bbb354",
+      "bytes": 74984,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "sha256": "3fd0586f2637b98bb9886f0e0b67d89e1cc987c2d158cc7deb5f5b9890ced412",
+      "bytes": 6956,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "sha256": "29b254ee0d10414a8504b5a08149c7baec35a60d5ff607d6b3f492aa36815f40",
+      "bytes": 51302,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "sha256": "5cb76dabd8b97d1e9308a1700b90c20139be4d50792d21a7f09789f5cccd6026",
+      "bytes": 624,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "sha256": "5375417f0f5394b8dd1a7035b9679151f19a6b65df309dec10cfb4a420cb00e9",
+      "bytes": 152039,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "sha256": "5d389d42befbebd91945d620242347caecd3367f9a3a7cf8d97949507ae1f53c",
+      "bytes": 1231,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "sha256": "b4532b6d258832953fbb3ee4c711f4fe25d3faf46a10644b2505f17010d01e88",
+      "bytes": 8862,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "sha256": "bdad416b096b61d37b71603b2c949484f9070c830bdaeba93bf35e15c8900614",
+      "bytes": 14795,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "sha256": "d173c3e5d61e42e2e3a97226c632fd2ab7cc481fc4e492365b87024ab546daff",
+      "bytes": 83612,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "sha256": "3c6709101c6aaa82888df5d8795c33f9e857196790eb320d9194e64be2b6bdd8",
+      "bytes": 1269,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "sha256": "0b364451dc36a48dd6dae0f3b6ada05fd9b71e5208211f8ee5537d7e51a587e2",
+      "bytes": 7328,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "sha256": "e2abacbb9a55ce1365f8961bc1b1395bbc811e512b111000d8c333f98458dece",
+      "bytes": 6382,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "sha256": "0ef4bb354ff44b923564c4ddbdda5987919d220225129ec94614a618ceafc281",
+      "bytes": 1248,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "sha256": "0d103b99a4a8652f8871552a69d42d2a3760ac6a5e3ef02d979c4273257ff6a4",
+      "bytes": 880,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "sha256": "9c085407751b9061c1f996f6c39ce58451be22a8d334f09175f0e89e42736285",
+      "bytes": 2608,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "sha256": "bc92e36ccd233722d4c5869bec71ddc7b12e2df56059942cce5a39065cc9c368",
+      "bytes": 3507,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "sha256": "7b5b7413e2c895b1e148e82e292a117d53c7ec65b0696c992edca57b61b4a74b",
+      "bytes": 7507,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "sha256": "3213ef1631606250f5010b42cad7ef716f7c59426367798e33c374c0ec391d3a",
+      "bytes": 23313,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "sha256": "12264f3c03d738311cd9237d212f1c07479e70f0cbe1ae725d29b36539aef637",
+      "bytes": 1367,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "sha256": "beffeed56945c22a77440122c8bdc426f3fcbe7f3b12ea0976c770d1f8d54578",
+      "bytes": 242277,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "sha256": "f5ee623b08b6a66935e5aced2f5d8ad0fc71bf9e8e833cd490150c0fa94b8763",
+      "bytes": 26148,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "sha256": "585bedc1313b40888dcc544cb74cd939a105ee674f3b1d3aa1cc6d34f70ff155",
+      "bytes": 25279,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "sha256": "133c9f64a5c5d573b78d0a474122b22506d8eadb5e063f67cdbbb8fa2f161d0e",
+      "bytes": 535,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "sha256": "6bdeb169c3717eb01108853bd9fc5a3750fb1fa5b82abbdd854d49855a40f519",
+      "bytes": 5712,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "sha256": "475dcae1e7d1ea46232db6f8481040c15e53a52a3c256831d3df204212b0e831",
+      "bytes": 4010,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "sha256": "c2dd9f61f892deae6acd8d20771ea79b12018af25f3bf8d06639c8542d218cfd",
+      "bytes": 171367,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "sha256": "a539aa2fb154fa50e0f5cc97e6ad7cbc66f8ec3e3746f61ec6a8b0d5d15ecdf2",
+      "bytes": 4646,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "sha256": "9e0b7209fc69ab11987900404540969976000c5ebe4d4f58c43dc3842886bf3a",
+      "bytes": 1963,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "sha256": "451958454e8588dfc7cd945981ada142ca06ff3307937f5700df059c2b307fa8",
+      "bytes": 2515,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "sha256": "6de111e11403f7cd49027400755bae0ea1cabef2815f09bd40a24f0017613b24",
+      "bytes": 2856,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "sha256": "f565adfef5a502044abc3a9153e157edc25af78304d335994afb958874b15e26",
+      "bytes": 1344,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/mce/mc.xsd",
+      "sha256": "3a37e461ecf5a8670fdec34029703401f8728ab9c96ec1739a6ae58d55212413",
+      "bytes": 3127,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "sha256": "568b26ee156cb9549aa439ca2158965f77b7c1602b7e0316f40ac6cf586e35f2",
+      "bytes": 26549,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "sha256": "0fa75578a000439a7988ba0c59fdc69f774bbd416cbacc14d07125b3f686cb74",
+      "bytes": 3745,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "sha256": "be0ff793a22dd31384650c3a4da14c2fa8062751c2e97b0e5ee852bda13c60ad",
+      "bytes": 901,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "sha256": "fddc2b880cabb9005aebbc7e783e53c19fec1c03df7d0e2f2076a33a0fdfd081",
+      "bytes": 1778,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "sha256": "127ca209fa73d7cb708449cb355c871867948a96e4a74f7bf5811ef62d17991d",
+      "bytes": 1002,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "sha256": "842e7163409c8d74f4d7088a8bc99500d80bc75332681a0980055b08f374a604",
+      "bytes": 600,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "sha256": "16f6f8072249f431370723c2cd8974672e0d9c897e00e97dd918079df934871b",
+      "bytes": 745,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/soffice.py",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c",
+      "bytes": 5927,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/validate.py",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e",
+      "bytes": 6142,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987",
+      "bytes": 336,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/validators/base.py",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea",
+      "bytes": 33756,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/validators/docx.py",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5",
+      "bytes": 17482,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/validators/pptx.py",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299",
+      "bytes": 15966,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/office/validators/redlining.py",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123",
+      "bytes": 11231,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/templates/comments.xml",
+      "sha256": "a08ba83ee8790ac9e3dc61921f4988f19edd7e06ac09d6f1897a877c1581818d",
+      "bytes": 2603,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/templates/commentsExtended.xml",
+      "sha256": "544eeecfeceed4b468fff163cd9c366d33641c8b8ab691ce002576197846afe8",
+      "bytes": 2611,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/templates/commentsExtensible.xml",
+      "sha256": "bad10b3283e6ad6e7ef6d1ca5169683721ed690ee331282c65df04017e080631",
+      "bytes": 2707,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/templates/commentsIds.xml",
+      "sha256": "db20f9616e004ec42ef736e80c2384e45db0f8d1194d31dc8b37c7d6ecdd6420",
+      "bytes": 2619,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/docx/scripts/templates/people.xml",
+      "sha256": "056f63aa1197fd8c9dda980c9f1b9ff016fd5fa4a462df8aec5f384f39d23e37",
+      "bytes": 115,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/SKILL.md",
+      "sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee",
+      "bytes": 8058,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/forms.md",
+      "sha256": "9530b3f57034792e0242a3abfe8b3c296466329551916f2ff6c5a70db78f7e44",
+      "bytes": 11854,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/reference.md",
+      "sha256": "03a5f964f8abecbbe156f363356e927e864d7ee964f1012c84ee1bfc8acbeb95",
+      "bytes": 16692,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/check_bounding_boxes.py",
+      "sha256": "0ced522402dd7b3c82a0be9518cf4e485fa9cc0467d7beab6ddb04cb36fcc3e1",
+      "bytes": 2774,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/check_fillable_fields.py",
+      "sha256": "1fe10b9980a5493c9bbec8c20630c603eaa475b45403751c08f26738736647b8",
+      "bytes": 268,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/convert_pdf_to_images.py",
+      "sha256": "7f58e292a67e18a8ff000d30bad2469389546731f7e8a698cc1d0aed001ea15d",
+      "bytes": 1008,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/create_validation_image.py",
+      "sha256": "8fa9fd7962c9f940045b81cf6b991e7c1057c1838e3f9cc6d305007a222ffebf",
+      "bytes": 1258,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/extract_form_field_info.py",
+      "sha256": "bb235b36f497bbb1c7c6821cecf527bbba7213520de11219da99f7b13a38c109",
+      "bytes": 4300,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/extract_form_structure.py",
+      "sha256": "6814e3fe8f78c2b16d766c132b5a727ff7a31b71d76a7d46bd6e40fe50bc97c5",
+      "bytes": 3945,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/fill_fillable_fields.py",
+      "sha256": "d140872c2e92e41b1e05370ae8d270c5b7f5ebdf55d9905f03bc974a9c708ff5",
+      "bytes": 3819,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "sha256": "8a56e063a49ed53c0b0e1d312ecf8023af76816ed139486ec3b539873de202fd",
+      "bytes": 3235,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/SKILL.md",
+      "sha256": "caa1e1c29cf974c8d874bf3d0a70838445e7342b570f856ddb3e4a21ef7c7e8b",
+      "bytes": 8584,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/helpers/__init__.py",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5",
+      "bytes": 3358,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/helpers/pptx_chart.py",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964",
+      "bytes": 5862,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/helpers/pptx_slide.py",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0",
+      "bytes": 1675,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/helpers/pptx_theme.py",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03",
+      "bytes": 3510,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "sha256": "41b93bd8857cc68b1e43be2806a872d736a9bdd6566900062d8fdb57d7bbb354",
+      "bytes": 74984,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "sha256": "3fd0586f2637b98bb9886f0e0b67d89e1cc987c2d158cc7deb5f5b9890ced412",
+      "bytes": 6956,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "sha256": "29b254ee0d10414a8504b5a08149c7baec35a60d5ff607d6b3f492aa36815f40",
+      "bytes": 51302,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "sha256": "5cb76dabd8b97d1e9308a1700b90c20139be4d50792d21a7f09789f5cccd6026",
+      "bytes": 624,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "sha256": "5375417f0f5394b8dd1a7035b9679151f19a6b65df309dec10cfb4a420cb00e9",
+      "bytes": 152039,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "sha256": "5d389d42befbebd91945d620242347caecd3367f9a3a7cf8d97949507ae1f53c",
+      "bytes": 1231,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "sha256": "b4532b6d258832953fbb3ee4c711f4fe25d3faf46a10644b2505f17010d01e88",
+      "bytes": 8862,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "sha256": "bdad416b096b61d37b71603b2c949484f9070c830bdaeba93bf35e15c8900614",
+      "bytes": 14795,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "sha256": "d173c3e5d61e42e2e3a97226c632fd2ab7cc481fc4e492365b87024ab546daff",
+      "bytes": 83612,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "sha256": "3c6709101c6aaa82888df5d8795c33f9e857196790eb320d9194e64be2b6bdd8",
+      "bytes": 1269,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "sha256": "0b364451dc36a48dd6dae0f3b6ada05fd9b71e5208211f8ee5537d7e51a587e2",
+      "bytes": 7328,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "sha256": "e2abacbb9a55ce1365f8961bc1b1395bbc811e512b111000d8c333f98458dece",
+      "bytes": 6382,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "sha256": "0ef4bb354ff44b923564c4ddbdda5987919d220225129ec94614a618ceafc281",
+      "bytes": 1248,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "sha256": "0d103b99a4a8652f8871552a69d42d2a3760ac6a5e3ef02d979c4273257ff6a4",
+      "bytes": 880,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "sha256": "9c085407751b9061c1f996f6c39ce58451be22a8d334f09175f0e89e42736285",
+      "bytes": 2608,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "sha256": "bc92e36ccd233722d4c5869bec71ddc7b12e2df56059942cce5a39065cc9c368",
+      "bytes": 3507,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "sha256": "7b5b7413e2c895b1e148e82e292a117d53c7ec65b0696c992edca57b61b4a74b",
+      "bytes": 7507,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "sha256": "3213ef1631606250f5010b42cad7ef716f7c59426367798e33c374c0ec391d3a",
+      "bytes": 23313,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "sha256": "12264f3c03d738311cd9237d212f1c07479e70f0cbe1ae725d29b36539aef637",
+      "bytes": 1367,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "sha256": "beffeed56945c22a77440122c8bdc426f3fcbe7f3b12ea0976c770d1f8d54578",
+      "bytes": 242277,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "sha256": "f5ee623b08b6a66935e5aced2f5d8ad0fc71bf9e8e833cd490150c0fa94b8763",
+      "bytes": 26148,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "sha256": "585bedc1313b40888dcc544cb74cd939a105ee674f3b1d3aa1cc6d34f70ff155",
+      "bytes": 25279,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "sha256": "133c9f64a5c5d573b78d0a474122b22506d8eadb5e063f67cdbbb8fa2f161d0e",
+      "bytes": 535,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "sha256": "6bdeb169c3717eb01108853bd9fc5a3750fb1fa5b82abbdd854d49855a40f519",
+      "bytes": 5712,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "sha256": "475dcae1e7d1ea46232db6f8481040c15e53a52a3c256831d3df204212b0e831",
+      "bytes": 4010,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "sha256": "c2dd9f61f892deae6acd8d20771ea79b12018af25f3bf8d06639c8542d218cfd",
+      "bytes": 171367,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "sha256": "a539aa2fb154fa50e0f5cc97e6ad7cbc66f8ec3e3746f61ec6a8b0d5d15ecdf2",
+      "bytes": 4646,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "sha256": "9e0b7209fc69ab11987900404540969976000c5ebe4d4f58c43dc3842886bf3a",
+      "bytes": 1963,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "sha256": "451958454e8588dfc7cd945981ada142ca06ff3307937f5700df059c2b307fa8",
+      "bytes": 2515,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "sha256": "6de111e11403f7cd49027400755bae0ea1cabef2815f09bd40a24f0017613b24",
+      "bytes": 2856,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "sha256": "f565adfef5a502044abc3a9153e157edc25af78304d335994afb958874b15e26",
+      "bytes": 1344,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/mce/mc.xsd",
+      "sha256": "3a37e461ecf5a8670fdec34029703401f8728ab9c96ec1739a6ae58d55212413",
+      "bytes": 3127,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "sha256": "568b26ee156cb9549aa439ca2158965f77b7c1602b7e0316f40ac6cf586e35f2",
+      "bytes": 26549,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "sha256": "0fa75578a000439a7988ba0c59fdc69f774bbd416cbacc14d07125b3f686cb74",
+      "bytes": 3745,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "sha256": "be0ff793a22dd31384650c3a4da14c2fa8062751c2e97b0e5ee852bda13c60ad",
+      "bytes": 901,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "sha256": "fddc2b880cabb9005aebbc7e783e53c19fec1c03df7d0e2f2076a33a0fdfd081",
+      "bytes": 1778,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "sha256": "127ca209fa73d7cb708449cb355c871867948a96e4a74f7bf5811ef62d17991d",
+      "bytes": 1002,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "sha256": "842e7163409c8d74f4d7088a8bc99500d80bc75332681a0980055b08f374a604",
+      "bytes": 600,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "sha256": "16f6f8072249f431370723c2cd8974672e0d9c897e00e97dd918079df934871b",
+      "bytes": 745,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/soffice.py",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c",
+      "bytes": 5927,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/validate.py",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e",
+      "bytes": 6142,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987",
+      "bytes": 336,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/validators/base.py",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea",
+      "bytes": 33756,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/validators/docx.py",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5",
+      "bytes": 17482,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/validators/pptx.py",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299",
+      "bytes": 15966,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/office/validators/redlining.py",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123",
+      "bytes": 11231,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "document-tools/upstream/xlsx/scripts/recalc.py",
+      "sha256": "66f6e726d5a53cfabea0b6471d6669deb95e54e96cb7913b687e4388da1bb3d9",
+      "bytes": 10670,
+      "disposition": "official_Apache_2_0_tool"
+    },
+    {
+      "path": "environment/bootstrap.ps1",
+      "sha256": "227f4d2e39d4dd599200608a07a7246cf79d4ae7f1ebced331d3d7fe5116b1fc",
+      "bytes": 7948,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "environment/example-contract.json",
+      "sha256": "f4c59e123d61348273bdf653e53a4dc193f019b6c4bcd81d69ef39aed207e199",
+      "bytes": 2911,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "environment/native-tools.json",
+      "sha256": "065e768fd808aacd44f9d25138d607267748b0c715b1b5392a5fd0b18f951a8c",
+      "bytes": 2388,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "execution/sandbox_runner.py",
+      "sha256": "26dc1a9fbdfb84f87f7abd0ea4bdeb10cc0fcb9c8205042e826f76be722490d9",
+      "bytes": 3659,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "harness/nexusmore-workflow.js",
+      "sha256": "67c155f1a420b3fe20ac9787d1c50325a56aa2fe03872e8ac3a24952138491ab",
+      "bytes": 4835,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "harness/package.json",
+      "sha256": "01d15954c518a17286d42bdd0921985f9197684b97787ba73ffb41295ebc1943",
+      "bytes": 190,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "latex/en-main.tex",
+      "disposition": "project_runtime_private_development",
+      "sha256": "53fba32774964f9bbc1bf2a4bb1799cbdc4396dd99e519d6164766bbbc2e9997",
+      "bytes": 981
+    },
+    {
+      "path": "latex/references.bib",
+      "disposition": "project_runtime_private_development",
+      "sha256": "a66eeabdbaf8c8531d041bbb1cecb306cc010104fb9b1223aa96a67fdec646f1",
+      "bytes": 159
+    },
+    {
+      "path": "latex/zh-main.tex",
+      "disposition": "project_runtime_private_development",
+      "sha256": "f6257acbf20af29b1d7971be4c308e1ccea07017a08128af230682d6b590cc4a",
+      "bytes": 1479
+    },
+    {
+      "path": "licensing/AGPL-3.0.txt",
+      "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+      "bytes": 34520,
+      "disposition": "combined_release_license_notice"
+    },
+    {
+      "path": "licensing/Apache-2.0.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357,
+      "disposition": "combined_release_license_notice"
+    },
+    {
+      "path": "licensing/manifest.json",
+      "sha256": "7154bdeac5628eb6cec6cfae6a91a0bca1a28cf922d6b18c16a2d4a1c73fa9c4",
+      "bytes": 1013,
+      "disposition": "combined_release_license_notice"
+    },
+    {
+      "path": "mathematics/catalog.json",
+      "disposition": "project_authored_private_development",
+      "sha256": "774e49fecefa76d9cc05ace45cccc561d31da5709b708f5765b47b771e70bb2e",
+      "bytes": 63214
+    },
+    {
+      "path": "mathematics/formalization.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "ffc7c33bb5c70a02bb39d2ff6b5fc49fc6e143e96ffdbef78c3fba8cb2ce71cf",
+      "bytes": 20701
+    },
+    {
+      "path": "mathematics/index.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "aa43b60bf87c0037348858fd31ab97e82815c835b9b4c909242434124820d0d1",
+      "bytes": 3776
+    },
+    {
+      "path": "mathematics/proof-methods.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "c771a292dec5624ec0d6c437ce50c3b73b53709260332dfdfc3eb38b2d309180",
+      "bytes": 21512
+    },
+    {
+      "path": "mathematics/statistical-reasoning.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "5b665abb651f7c62c3a2f4e6cf38a2fd29931010168c6d8c9b625ddc40be6c9a",
+      "bytes": 27380
+    },
+    {
+      "path": "migrations/001_stage_b.sql",
+      "sha256": "5381e4f373ae6cd281b03d8f18f9035171cf96dbacc45328b734fae3a68914d7",
+      "bytes": 3159,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/002_real_solver.sql",
+      "sha256": "8a8e252e7fc859303cbcd35f9fabb1bc3642364d3d3017b13122f75d460e7abc",
+      "bytes": 753,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/003_version_dossiers.sql",
+      "sha256": "0d3592083961aea274029a6fe0b5abc4d00b9bf62238b1b30590ce2909b5aa90",
+      "bytes": 950,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/004_execution_receipts.sql",
+      "sha256": "3294ac4d10f2c379bde35b2728ebd6b04f78b50e8b0ca23fc00007ed927b018d",
+      "bytes": 1326,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/005_version_executor_settings.sql",
+      "sha256": "7fe9e7099ee39b095e5d150ae4381be16da7119054c2b44696b7ee835082769a",
+      "bytes": 161,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/006_mcp_workflow.sql",
+      "sha256": "e3ce33892edbc5c4e17f68a8d7c76497987319916f92efea2efec3d1833b877f",
+      "bytes": 1719,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/007_mathematical_packages.sql",
+      "sha256": "3e6d268402dd2184203d4d4f4293258169d8e1547ea76cd90f285ac4ba4b0945",
+      "bytes": 792,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/008_modeling_hand.sql",
+      "sha256": "15a3a366357f18298f505e7a8d407d9f972f6b0f1f15d76bbe06a23edd3a9330",
+      "bytes": 1153,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/009_question_references.sql",
+      "sha256": "63ab8a842b68afc1e7fb3f0a9271d2fc8160e0d4ccd88f2a7970ae5c8889878b",
+      "bytes": 976,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/010_hand_runtime.sql",
+      "sha256": "c826a42434fc4dcb2f0e0c037ba6837d607c8a8f8a5db8b5a51ec2fc264af7c4",
+      "bytes": 839,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/011_assembly_inputs.sql",
+      "sha256": "ed18295b19060c6ac7d39ec014cd230563d51954cf9bae374aa42f7a6d22e080",
+      "bytes": 462,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/012_assembly_builds.sql",
+      "sha256": "f3b354699036bcca0f79456e043d23095f90826f300e79e487e64b04fa5a04c4",
+      "bytes": 837,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "paper/chinese-modeling-policy.json",
+      "sha256": "6b95ed10ae065c8b3a2896df8bcc320463a08910125b28f1662bfdaf0280ea65",
+      "bytes": 2354,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "paper/reference/chapter-template.md",
+      "sha256": "3d715729fe2159f141f679421cc855ddc2bf95bf8b25d10b98bc8d03133751f6",
+      "bytes": 4782,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "paper/reference/latex-format.md",
+      "sha256": "caa94e06c4dfcebf34fb286d9658bc569a2778e8255efe1cc77be34aa378d994",
+      "bytes": 4373,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "paper/reference/paper-format.md",
+      "sha256": "ed3aa2680218ec9dbf495a560d1f30356e5ec8c28a00c349ad56692ccc346660",
+      "bytes": 4241,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "paper/reference/writing-guidelines.md",
+      "sha256": "9c7ddeab0c3d327d7035928d4d8d2594aaff36893ae335439979e36fec930a4c",
+      "bytes": 4747,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "paper/templates/chinese-research/main.tex",
+      "sha256": "8a692da71e4ee8e09437b5329cdb1496e3e2bfe32dd1a257fab86d6562158244",
+      "bytes": 3718,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "paper/workflow.json",
+      "sha256": "8678d660b7d9391f8cca3f4bcf172757253184db3b25e14dca81fa81263e62f1",
+      "bytes": 6059,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "paper/writer-instructions.md",
+      "sha256": "0db1a303ad644588e49a3ae771c9019eedd1ffe3b8866b007d023999cda9c8ab",
+      "bytes": 7596,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "project-policy/scientific-figure-contract.md",
+      "sha256": "34976d9abcc3e2831f3bdd889c314981cde8f981166077c45657fe3454e9c2ea",
+      "bytes": 5528,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "project-policy/three-hand-collaboration.md",
+      "sha256": "d9f7f950d098c3beb3b40dd6c5c1e950e33bd01a457e62c3bc981fa33c55915d",
+      "bytes": 7835,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "rendering/render-word.ps1",
+      "sha256": "7626a5cd85505f98c47d31c69b10e944e1bda593e32b76b0a5523bcdd6e6f1c8",
+      "bytes": 664,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "third-party-notices.md",
+      "sha256": "cee4d299641248aa89ea7ed3d17fbde463bb9bb1f07d49a22e1bf912873840b7",
+      "bytes": 2885,
+      "disposition": "project_runtime_private_development"
+    }
+  ],
+  "excluded_local_references": [
+    "resources/algorithms/reference",
+    "resources/paper/reference",
+    "contracts/examples"
+  ],
+  "not_claimed": [
+    "Full built-in algorithm/Chinese paper source authorization",
+    "Complete single-agent workflow installation or automatic routing"
+  ]
+}

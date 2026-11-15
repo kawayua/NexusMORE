@@ -2,6 +2,7 @@
 
 Uses confirmed historical arrays only; no new solver, LLM, database or user approval.
 """
+from modelcrew.project_assets import asset_path
 import argparse
 import importlib.util
 import json
@@ -27,7 +28,7 @@ def build(folder, qa_tools):
     write_json(folder / 'writer-context.json', writing_context())
     figures_dir = folder / 'figures'
     figures_dir.mkdir()
-    evidence = json.loads((ROOT / 'stage-a-plus/figure-evidence-plan.json').read_text(encoding='utf-8'))['evidence']
+    evidence = json.loads((asset_path(ROOT,'stage-a-plus/figure-evidence-plan.json')).read_text(encoding='utf-8'))['evidence']
     source = ROOT / evidence['path']
     if sha(source) != evidence['sha256']:
         raise ValueError('Historical data hash mismatch')
@@ -40,7 +41,7 @@ def build(folder, qa_tools):
         raise ValueError('Unexpected historical data shape')
     if not all(np.isfinite(a).all() for a in (t, xy, vel, theta)):
         raise ValueError('Nonfinite data')
-    contract_path = ROOT / 'stage-b-plus/examples/contract-v2-snapshot.json'
+    contract_path = asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')
     contract = json.loads(contract_path.read_text(encoding='utf-8'))
     pars = {p['id']: p['value'] for p in contract['parameters']}
     pitch = float(pars['pitch']); b = pitch / (2 * np.pi)
@@ -176,7 +177,7 @@ def build(folder, qa_tools):
                'SPEEDMAX': f'{speed.max():.9f}', 'MAXTIME': str(int(t[argmax[0]])), 'MAXHANDLE': str(argmax[1]),
                'HEADR': f'{np.linalg.norm(xy[-1,0]):.6f}', 'HEADTHETA': f'{theta[-1,0]:.6f}',
                'RESULT_ROWS': '\n'.join(rows), 'SAMPLE_COUNT': str(t.size)}
-    text = (ROOT / 'resources/paper/bench-dragon-review.md').read_text(encoding='utf-8')
+    text = (asset_path(ROOT,'resources/paper/bench-dragon-review.md')).read_text(encoding='utf-8')
     for key, value in numbers.items():
         text = text.replace('@@' + key + '@@', value)
     for fig in entries:
@@ -192,7 +193,7 @@ def build(folder, qa_tools):
     report = validate_draft(folder / '单题论文-中文审阅稿.md', folder / 'figure-catalog.json')
     write_json(folder / 'paper-check.json', report)
     write_json(folder / 'build-manifest.json', {'source': evidence, 'script_sha256': sha(Path(__file__)),
-        'template_sha256': sha(ROOT / 'resources/paper/bench-dragon-review.md'),
+        'template_sha256': sha(asset_path(ROOT,'resources/paper/bench-dragon-review.md')),
         'new_solver_runs': 0, 'new_llm_calls': 0, 'user_review': 'pending', 'figure_selection': 'pending',
         'paper_exported': False, 'metrics': numbers, 'check': report})
     if report['status'] != 'passed':

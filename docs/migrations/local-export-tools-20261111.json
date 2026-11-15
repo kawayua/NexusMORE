@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0.0",
+  "source": "stage-c-plus/tools",
+  "target": "configs/local/tools",
+  "purpose": "Purpose-based executor/tool migration; preserve original job/receipt/tool/cache bytes, no historical reexecution or approval",
+  "files": [
+    {
+      "old_path": "stage-c-plus/tools/pandoc/pandoc-3.6.4.complete.zip",
+      "new_path": "configs/local/tools/pandoc/pandoc-3.6.4.complete.zip",
+      "sha256": "a9e5feb3d56d2fb0e3e765d1c33b8ee6b72e6963d7de31504edeec8cd1be34b1",
+      "bytes": 37790321
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/pandoc-3.6.4.zip",
+      "new_path": "configs/local/tools/pandoc/pandoc-3.6.4.zip",
+      "sha256": "2e3530606b61ad8d5e18f9c91cae4203e690575a9d1053b86c2b06eaac685802",
+      "bytes": 6451200
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/pandoc.exe",
+      "new_path": "configs/local/tools/pandoc/pandoc.exe",
+      "sha256": "3d4405429aac6aa7563f452d2e1a670e0274d3620130087ca0402c8fb9595197",
+      "bytes": 221493248
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/00.part",
+      "new_path": "configs/local/tools/pandoc/parts/00.part",
+      "sha256": "58cad11610d6649f449ed1debc374d34e94b0df9db665c8426490ebdb8bc63d2",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/01.part",
+      "new_path": "configs/local/tools/pandoc/parts/01.part",
+      "sha256": "673e1144fdebbd0abe15db24ad6624178f9687da5d33610e3a79434c828ac9ef",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/02.part",
+      "new_path": "configs/local/tools/pandoc/parts/02.part",
+      "sha256": "003d5474b21f33c79c53e6b0167ae7b365f293f8ae3b1d1cfd585a3ae99a5a06",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/03.part",
+      "new_path": "configs/local/tools/pandoc/parts/03.part",
+      "sha256": "f38e2a118c1fad2a94e16802fc179b23ec9b1700a299e50590c45cc67e40a501",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/04.part",
+      "new_path": "configs/local/tools/pandoc/parts/04.part",
+      "sha256": "28643d81509f042cddbbf3c438a9b5d9dfab6c4ea9bb7f2422ecda813f635091",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/05.part",
+      "new_path": "configs/local/tools/pandoc/parts/05.part",
+      "sha256": "e5f36b853c382e24403baf4e5fd989e782ecb8a7cec4eaacf6f4490098b70128",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/06.part",
+      "new_path": "configs/local/tools/pandoc/parts/06.part",
+      "sha256": "a3a1d47b5cc3cc1e962e75541cec5661b3a0746b2ca37eda25784e16555e5708",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/07.part",
+      "new_path": "configs/local/tools/pandoc/parts/07.part",
+      "sha256": "a6cf026b48c45d060e1ea060417c9bc71eb9c71175909dfdd60f60c381eb586f",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/08.part",
+      "new_path": "configs/local/tools/pandoc/parts/08.part",
+      "sha256": "a456d1b7d0e875cdc920fd12ecadfe7deda133ac197a19432a1162b03594adf4",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/09.part",
+      "new_path": "configs/local/tools/pandoc/parts/09.part",
+      "sha256": "af4bfd726ae219db6034426fc0aae08cf326f38867100a99003c62da75a436e4",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/10.part",
+      "new_path": "configs/local/tools/pandoc/parts/10.part",
+      "sha256": "71cf84b5d4510eed0b32e07046cf3015cf6ce7ba3972bd894299cb04b9c904f4",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/11.part",
+      "new_path": "configs/local/tools/pandoc/parts/11.part",
+      "sha256": "0ee662c66a00d4969ddb081d0d651a6361e35e4fb491f059f206fd485015d07c",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/12.part",
+      "new_path": "configs/local/tools/pandoc/parts/12.part",
+      "sha256": "dadb290ed25794cc26186f45653334b34a8657793d03eda9f63751fdbd7b03a1",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/13.part",
+      "new_path": "configs/local/tools/pandoc/parts/13.part",
+      "sha256": "a6b60abcebbb10e6b17a21c814fbcf0c4b26aa3697a397cc2c9e74ca144f4149",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/14.part",
+      "new_path": "configs/local/tools/pandoc/parts/14.part",
+      "sha256": "fb730f188cbf8c538636b101bb2709c63bfb18ad73c300d002f6eb04b71fda61",
+      "bytes": 2400000
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/parts/15.part",
+      "new_path": "configs/local/tools/pandoc/parts/15.part",
+      "sha256": "391a2b42aacc4413fd0ae1c7bafbeac9168b3b05a7d973183f347e68cc002427",
+      "bytes": 1790321
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/provenance.json",
+      "new_path": "configs/local/tools/pandoc/provenance.json",
+      "sha256": "3f10fc3a61cba2c190250fc5ddf9358431a4c2988496c425d6551412bdd5cdc8",
+      "bytes": 306
+    },
+    {
+      "old_path": "stage-c-plus/tools/pandoc/redirect.headers",
+      "new_path": "configs/local/tools/pandoc/redirect.headers",
+      "sha256": "e32782bbf5a817edeecbfe2c991e4ea3cb7ea0daebf66d7cd7232b5d0bc2fe1f",
+      "bytes": 5618
+    },
+    {
+      "old_path": "stage-c-plus/tools/provenance.json",
+      "new_path": "configs/local/tools/provenance.json",
+      "sha256": "fb002f425e6546507df3718f7f297cda3d1965089f0083888647f9ae7ef5f796",
+      "bytes": 332
+    },
+    {
+      "old_path": "stage-c-plus/tools/tectonic.exe",
+      "new_path": "configs/local/tools/tectonic.exe",
+      "sha256": "99ffcfdbf1ebf8bdda9e791942e3d06aedb12463fddc33f07de6f5211c8bf08d",
+      "bytes": 51538432
+    }
+  ],
+  "approval_rewritten": false
+}

@@ -1,6 +1,6 @@
 # code-executor MCP 与双工具分工
 
-独立服务入口为 `python -m modelcrew.code_executor_mcp`，使用 `mcp==1.30.0` 的stdio协议；核心是 `modelcrew/docker_executor.py`，容器内监督器为 `execution/sandbox_runner.py`。与检索MCP是两个独立进程，当前尚未自动接入LangGraph节点。
+独立服务入口为 `python -m modelcrew.code_executor_mcp`，使用 `mcp==1.30.0` 的stdio协议；核心是 `src/modelcrew/docker_executor.py`，容器内监督器为 `execution/sandbox_runner.py`。与检索MCP是两个独立进程，当前尚未自动接入LangGraph节点。
 
 ## 这两个MCP在项目中的作用
 
@@ -27,14 +27,14 @@ inputs JSON是列表，每项包含name（容器内相对文件名）、path（�
 
 开发验证任务通过可信登记入口的 `--verification` 标记，服务也必须由宿主明确指定 `--allow-test-jobs` 才可执行；默认服务拒绝。这是验证程序专用模式，不代表真实用户确认或独立建模实验，MCP参数不能打开它。
 
-默认任务包和回执在本地 `stage-c/execution/`，该目录已加入Git忽略。可用宿主参数 `--root`选择独立目录，工具请求不能改变它。
+默认任务包和回执在本地 `runs/execution/`，受 `MODELCREW_DATA_DIR` 数据根影响；显式 `--root` 优先于 `MODELCREW_EXECUTION_ROOT`，其次才是默认数据根。该目录已被Git忽略，工具请求不能改变执行根。显式指定旧 `stage-c/execution/` 时按登记映射读取新位置，新旧根并存会阻断。
 
 ## 启动与调用
 
-复用当前已安装的 `modelcrew-reference:py311` 镜像，内含Python 3.11、numpy、scipy和openpyxl。镜像在派发时解析为固定image ID，容器内不联网安装依赖。依赖缺失应返回明确代码错误。镜像构建入口仍为：
+2026-11-12 首发默认改用 `modelcrew-reference:py313`，内含 Python 3.13、numpy、scipy 和 openpyxl；旧 py311 仅保留历史用途，详见[运行环境](runtime-environment.md)。镜像在派发时解析为固定image ID，容器内不联网安装依赖。依赖缺失应返回明确代码错误。镜像构建入口仍为：
 
 ```powershell
-docker build --pull=false -f execution/Dockerfile.py311 -t modelcrew-reference:py311 execution
+docker build --pull=false --platform linux/amd64 -f configs/executor/Dockerfile.runtime -t modelcrew-reference:py313 configs/executor
 python -m modelcrew.code_executor_mcp
 ```
 
@@ -86,12 +86,22 @@ MCP外层 `isError=false` 表示工具完成了这次执行或状态查询。内
 
 覆盖正常输入读取和产物哈希、非root/禁网/只读输入与根目录/CPU/进程数设置、语法错误、缺依赖、超时、OOM、单文件/总输出/日志/文件数量超限、文件与目录符号链接、非法输入路径、重复调用、服务重启读取回执、默认拒绝验证任务、缺失镜像，以及派发后注入监控异常后的恢复。服务重启测试读取已完成回执；监控中断恢复是注入异常后由新执行器实例接管，不能表述为已实测所有运行中进程崩溃恢复窗口。
 
-当前两项工具封装与C5工作流MCP接入已完成，C6整体故障演练已完成24项检查，最新完整回归151项通过，见[恢复说明](failure-recovery.md)。C→D不再强制新任务和空白建模会话（用户已取消），默认采用外部参考辅助建模，见[阶段门槛](../stage-c/next-stage-entry-requirements.json)；本次工程测试不代替该要求。
+当前两项工具封装与C5工作流MCP接入已完成，C6整体故障演练已完成24项检查，最新完整回归151项通过，见[恢复说明](failure-recovery.md)。C→D不再强制新任务和空白建模会话（用户已取消），默认采用外部参考辅助建模，见[阶段门槛](../archive/research/stages/stage-c/next-stage-entry-requirements.json)；本次工程测试不代替该要求。
 
 
-最终实测：**24项真实MCP→Docker检查通过，19次MCP工具调用，12个固定验证程序执行；完整回归119 passed、0 failed、0 skipped，46.96秒。** 原始记录在 `stage-c/runs/executor-mcp-final-20261106/`，汇总见[执行器验收摘要](../stage-c/c4-executor-verification-summary.json)。首次探测遇到Docker local日志驱动单文件与默认压缩不兼容，显式禁用日志压缩后用新任务重测通过；原未启动容器已核对身份后清理，失败记录保留。
+最终实测：**24项真实MCP→Docker检查通过，19次MCP工具调用，12个固定验证程序执行；完整回归119 passed、0 failed、0 skipped，46.96秒。** 原始记录在 `stage-c/runs/executor-mcp-final-20261106/`，汇总见[执行器验收摘要](../archive/research/stages/stage-c/c4-executor-verification-summary.json)。首次探测遇到Docker local日志驱动单文件与默认压缩不兼容，显式禁用日志压缩后用新任务重测通过；原未启动容器已核对身份后清理，失败记录保留。
 
 
 C5已增加mcp-code-executor后端，绑定任务、版本、契约、输入与代码任务包哈希；授权检查读取已提交单一数据库快照，避免等待调用者持有的任务锁。工作流发布仍持任务锁并校验版本。真实双MCP集成17项检查通过，完整回归149项通过；见[C5说明](mcp-workflow.md)。
 
 C6修复：status在监控退出后继续执行原超时截止检查，超期终止并清理；pending-result发布前核对任务包、run、代码与授权。恢复仍需显式status/resume，没有后台常驻扫描器。
+
+
+F0后续第二批已将共享MCP日志默认目录改为 `runs/logs/mcp/`，支持现有 `MODELCREW_DATA_DIR`；`--log` 显式位置保持优先。旧82份共享日志封存到本地 `archive/research/retrieval-logs/20261111/`，旧路径按精确迁移映射读取，不再追加旧目录。本批真实启动MCP并发送非法参数状态查询，验证错误审计落在新默认目录，没有派发执行或启动Docker；执行器任务目录及挂载迁移另批处理。
+
+
+## F0后续第三批：执行根与挂载
+
+已将原执行根完整迁至 `runs/execution/`，53个历史任务、回执及95个产物原字节保留；相对产物路径、任务哈希、原容器声明和批准不改写。实际目录移动前已核验无未完成任务，并只读检查12个现存容器，未发现挂载待迁移来源。登记CLI、独立MCP、宿主客户端及DockerExecutor统一使用 `execution_directory`，新容器把新执行根下的任务目录只读挂载到 `/work/job`。
+
+真实验证只新建一个固定合成任务：读取2、3、5并输出平方和38，检查非root、只读输入、禁网和只读根，执行后确认容器清理。再次执行同一任务读取缓存，容器启动次数仍为1；宿主MCP状态查询恢复同一回执。全部53个历史任务另在禁止Docker调用的条件下读取原回执，未重新派发。此检查不是正式题目求解或数学审查，也未生成新批准。详细证据见[迁移说明](repository-migration.md)。

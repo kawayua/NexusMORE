@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "source": "resources/algorithms/reference",
+  "target": "archive/research/knowledge/algorithm-reference",
+  "purpose": "Local reference provenance or private historical fixture; excluded from wheel, original bytes retained",
+  "files": [
+    {
+      "old_path": "resources/algorithms/reference/assets/01-优化算法说明.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/01-优化算法说明.md",
+      "sha256": "237d8d311d181de3c2e27733c75c8d23a2c6fcffef3607dae1fab4ed1910644d",
+      "bytes": 83251
+    },
+    {
+      "old_path": "resources/algorithms/reference/assets/02-预测类算法说明.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/02-预测类算法说明.md",
+      "sha256": "1ee99a4d1330daea16e2dee9ad02c81570cac7fdd708af7c8c2d8a4598734bcf",
+      "bytes": 71136
+    },
+    {
+      "old_path": "resources/algorithms/reference/assets/03-评价类算法说明.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/03-评价类算法说明.md",
+      "sha256": "c6816bafa817a7e77d677f78bae2ad63dd8b7b26e72a7f39af6b06d6184fa9e9",
+      "bytes": 86237
+    },
+    {
+      "old_path": "resources/algorithms/reference/assets/04-图论与网络分析算法说明.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/04-图论与网络分析算法说明.md",
+      "sha256": "af4cc0a9e817b7c4276aa391fb190c72985389e4e42dfc8b6cad84e877187718",
+      "bytes": 41011
+    },
+    {
+      "old_path": "resources/algorithms/reference/assets/05-统计分析与数据处理算法说明.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/05-统计分析与数据处理算法说明.md",
+      "sha256": "f454368d61e1fda7788b66473e1a7453636889161c7de029b2dcf4c2fb454c4f",
+      "bytes": 64167
+    },
+    {
+      "old_path": "resources/algorithms/reference/assets/06-综合类算法说明.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/06-综合类算法说明.md",
+      "sha256": "cf97122bcaa48728b88de49d0db8fd3e4c113c1182b87f29980cc6c658dbf956",
+      "bytes": 37771
+    },
+    {
+      "old_path": "resources/algorithms/reference/assets/07-机器学习算法说明.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/07-机器学习算法说明.md",
+      "sha256": "b80bbfc0211ae2abde6b263ae391970ecd6d87ba3a3b68fa6c9cb36250e478db",
+      "bytes": 54618
+    },
+    {
+      "old_path": "resources/algorithms/reference/assets/README.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/assets/README.md",
+      "sha256": "f123a145de16a54d8706c1e2e231a81fc672670b349fdcfa3ce2d27217e10e7e",
+      "bytes": 9612
+    },
+    {
+      "old_path": "resources/algorithms/reference/references/算法索引.md",
+      "new_path": "archive/research/knowledge/algorithm-reference/references/算法索引.md",
+      "sha256": "fac0e681aeb2171d7660cfe0f70f623d8316172599ebe23f68b9554de4b9050a",
+      "bytes": 1036
+    },
+    {
+      "old_path": "resources/algorithms/reference/VERSION",
+      "new_path": "archive/research/knowledge/algorithm-reference/VERSION",
+      "sha256": "3c85c66d06c31df0c6511ad18b7e8576fcf8e76a011c5c28bbd66c57f3ed851e",
+      "bytes": 7
+    }
+  ],
+  "approval_rewritten": false
+}

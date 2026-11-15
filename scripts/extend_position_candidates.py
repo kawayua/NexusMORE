@@ -2,6 +2,7 @@
 
 Preserves the exact manuscript bytes; no solver/model call or figure approval.
 """
+from modelcrew.project_assets import asset_path
 import argparse
 import importlib.util
 import json
@@ -44,7 +45,7 @@ def build(original, output, qa_tools):
         raise ValueError('Stored trajectory hash mismatch')
     with np.load(data_file, allow_pickle=False) as data:
         times = data['time_s'].copy(); all_positions = data['position_m'].copy()
-    parameter_path = ROOT / 'stage-a/2024-A-problem-1/parameters.json'
+    parameter_path = asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json')
     parameters = json.loads(parameter_path.read_text(encoding='utf-8'))
     width = parameters['bench_width_m']; offset = parameters['hole_offset_m']
     hole_radius = parameters['hole_diameter_m'] / 2
@@ -139,7 +140,7 @@ def build(original, output, qa_tools):
         'decision': 'approve', 'reason': '用户明确通过当前单题正文；同时要求扩充位置候选图并固化流程。',
         'scope': 'Approved existing Chinese manuscript bytes only; not a new figure-selection or paper-export approval.',
         'markdown_sha256': sha(manuscript), 'catalog_sha256': sha(output / 'figure-catalog.json'),
-        'policy_sha256': sha(ROOT / 'resources/paper/chinese-modeling-policy.json'), 'figure_selection_decision': 'pending',
+        'policy_sha256': sha(asset_path(ROOT,'resources/paper/chinese-modeling-policy.json')), 'figure_selection_decision': 'pending',
         'approved_original_bundle': original.relative_to(ROOT).as_posix()})
     report = validate_draft(manuscript, output / 'figure-catalog.json')
     save(output / 'paper-check.json', report)

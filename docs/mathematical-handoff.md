@@ -1,6 +1,6 @@
 # B+ 数学交接契约与确认机制
 
-更新：2026-11-06。B+在既有工作流上增量实现数学交接，保留旧业务契约字节含义与哈希；不重写历史验收。[工程验收](../stage-b-plus/acceptance-report.md)与[可读提案](../stage-b-plus/proposals/bench-dragon.md)可直接检查。
+更新：2026-11-06。B+在既有工作流上增量实现数学交接，保留旧业务契约字节含义与哈希；不重写历史验收。[工程验收](../archive/research/stages/stage-b-plus/acceptance-report.md)与[可读提案](../archive/research/stages/stage-b-plus/proposals/bench-dragon.md)可直接检查。
 
 ## 内部结构
 

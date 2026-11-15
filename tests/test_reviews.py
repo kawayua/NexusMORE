@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path,local_history
 import copy,json,uuid
 from pathlib import Path
 import numpy as np
@@ -9,7 +10,7 @@ from modelcrew.reviews import review_interpretation,render_claims,validate_claim
 
 @pytest.fixture
 def evidence():
-    folder=ROOT/'stage-b/runs'/('review-test-'+uuid.uuid4().hex);folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/('review-test-'+uuid.uuid4().hex);folder.mkdir(parents=True)
     path=folder/'values.npz';np.savez(path,speed=np.array([[1.,2.],[3.,4.]]),baseline=np.ones((2,2)))
     content={'outputs':[{'id':'arrays','path':'values.npz','format':'npz','fields':[{'name':f,'shape':[2,2],'unit':'m/s'} for f in ['speed','baseline']]}]}
     artifact={'path':str(path),'sha256':file_hash(path),'role':'TEST_ONLY'}

@@ -1,11 +1,12 @@
 """Deterministic compilation of two separately approved papers; no new scientific prose."""
+from modelcrew.project_assets import asset_path
 import json,re,shutil
 from pathlib import Path
 from modelcrew.config import ROOT
 from modelcrew import writing_hand as wh
 from modelcrew.modeling_paper import writing_context,require_review_for_export,validate_draft
 from scripts.run_d4_full import workflow
-BASE=ROOT/'stage-e/runs/q1-q2-20261109-v1'
+BASE=asset_path(ROOT,'stage-e/runs/q1-q2-20261109-v1')
 
 def save(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2),encoding='utf-8')
 def main():

@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path,local_history
 import copy,json,uuid
 from pathlib import Path
 import pytest
@@ -7,10 +8,10 @@ from modelcrew.inputs import inspect_file,draft_inputs,assert_ready,resolve_ques
 
 @pytest.fixture
 def scratch():
-    path=ROOT/'stage-b/runs'/('input-tests-'+uuid.uuid4().hex);path.mkdir(parents=True);return path
+    path=asset_path(ROOT,'stage-b/runs')/('input-tests-'+uuid.uuid4().hex);path.mkdir(parents=True);return path
 
 @pytest.fixture
-def base():return json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8'))
+def base():return json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8'))
 
 def local_contract(base,path):
     c=copy.deepcopy(base);c['inputs']=[{**c['inputs'][0],'path':str(path),'sha256':file_hash(path),'role':'dataset'}];return c

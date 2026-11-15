@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Preserve original source-layout identity before paper retrieval default change",
+  "files": [
+    {
+      "path": "src/modelcrew/retrieval.py",
+      "sha256": "6589763b826663eae637e7e1afa0d97b077be3009f404a00ad145fc762bff032",
+      "bytes": 10393,
+      "snapshot": "archive/research/source-snapshots/paper-retrieval-20261111/retrieval.py"
+    }
+  ]
+}

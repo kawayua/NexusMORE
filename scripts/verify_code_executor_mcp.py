@@ -1,4 +1,5 @@
 """Real MCP -> Docker verification using fixed test programs, not competition solving."""
+from modelcrew.project_assets import asset_path
 import argparse,json,sys,time
 from contextlib import asynccontextmanager
 from datetime import datetime,timedelta
@@ -124,5 +125,5 @@ print('fixed-verification-complete')
     if report['status']!='passed':raise SystemExit(1)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=ROOT/'stage-c/runs'/('executor-mcp-verification-'+datetime.now().strftime('%Y%m%dT%H%M%S%f')))
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True)
     anyio.run(main,p.parse_args().output)

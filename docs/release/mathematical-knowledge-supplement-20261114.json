@@ -1,0 +1,3524 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F2 mathematical knowledge supplement B1-B3",
+  "user_instruction": "继续完善b阶段的系统资料和案例",
+  "status": "authored_declared_scope_baseline_packaged_and_fixed_examples_validated",
+  "knowledge_version": "1.0.0",
+  "algorithm_index_version": "1.3.1",
+  "coverage": {
+    "groups": [
+      {
+        "id": "B1",
+        "title": "数学形式化与推导",
+        "path": "mathematics/formalization.md",
+        "topic_ids": [
+          "domains",
+          "dimensions",
+          "linear-system",
+          "least-squares",
+          "differentiation",
+          "taylor",
+          "integration-limits",
+          "probability",
+          "sensitivity-errors",
+          "ode-conditions",
+          "constrained-optimality",
+          "numerical-error"
+        ]
+      },
+      {
+        "id": "B2",
+        "title": "证明方法与反例",
+        "path": "mathematics/proof-methods.md",
+        "topic_ids": [
+          "quantifiers",
+          "direct-proof",
+          "contradiction",
+          "induction",
+          "contrapositive",
+          "case-analysis",
+          "constructive-proof",
+          "existence-uniqueness",
+          "convexity",
+          "descent-convergence",
+          "fixed-point",
+          "generalization",
+          "complexity-proof"
+        ]
+      },
+      {
+        "id": "B3",
+        "title": "统计论证与检验决策",
+        "path": "mathematics/statistical-reasoning.md",
+        "topic_ids": [
+          "design-estimand",
+          "welch-inference",
+          "paired-inference",
+          "anova-inference",
+          "fisher-inference",
+          "mcnemar-inference",
+          "rank-inference",
+          "regression-inference",
+          "bootstrap-inference",
+          "multiple-testing",
+          "equivalence-inference",
+          "cluster-inference",
+          "missingness-inference",
+          "validation-inference"
+        ]
+      }
+    ],
+    "topics": 39,
+    "fixed_cases": 39,
+    "case_scope_counts": {
+      "finite_example": 21,
+      "symbolic_identity_check": 5,
+      "numerical_error_check": 3,
+      "statistical_calculation": 10
+    },
+    "all_topics_have_explicit_conditions_argument_and_counterexample": true,
+    "executed_negative_boundaries_count": 16,
+    "executed_negative_boundaries": [
+      "zero-denominator",
+      "nonfinite-denominator",
+      "nonpositive-log",
+      "unlike-dimensions",
+      "wrong-linear-shape",
+      "rank-deficient-system",
+      "nonfinite-linear-system",
+      "zero-welch-se",
+      "unmatched-pairs",
+      "zero-paired-se",
+      "negative-pvalue",
+      "missing-pvalue",
+      "empty-family",
+      "nonpositive-equivalence-margin",
+      "zero-equivalence-se",
+      "nonfinite-observation"
+    ],
+    "scope": "B1 formalization/derivation (12), B2 proof/counterexample/complexity (13), B3 inference/design (14); not an exhaustive mathematics encyclopedia"
+  },
+  "authorship": "NexusMORE independently authored statements, explanations, written arguments and fixed Python cases using standard mathematical principles; no restricted fulltext copied",
+  "resources": [
+    {
+      "path": "src\\modelcrew\\resources\\mathematics\\catalog.json",
+      "sha256": "774e49fecefa76d9cc05ace45cccc561d31da5709b708f5765b47b771e70bb2e",
+      "bytes": 63214
+    },
+    {
+      "path": "src\\modelcrew\\resources\\mathematics\\formalization.md",
+      "sha256": "ffc7c33bb5c70a02bb39d2ff6b5fc49fc6e143e96ffdbef78c3fba8cb2ce71cf",
+      "bytes": 20701
+    },
+    {
+      "path": "src\\modelcrew\\resources\\mathematics\\index.md",
+      "sha256": "aa43b60bf87c0037348858fd31ab97e82815c835b9b4c909242434124820d0d1",
+      "bytes": 3776
+    },
+    {
+      "path": "src\\modelcrew\\resources\\mathematics\\proof-methods.md",
+      "sha256": "c771a292dec5624ec0d6c437ce50c3b73b53709260332dfdfc3eb38b2d309180",
+      "bytes": 21512
+    },
+    {
+      "path": "src\\modelcrew\\resources\\mathematics\\statistical-reasoning.md",
+      "sha256": "5b665abb651f7c62c3a2f4e6cf38a2fd29931010168c6d8c9b625ddc40be6c9a",
+      "bytes": 27380
+    }
+  ],
+  "runtime": {
+    "module": "modelcrew.mathematical_knowledge",
+    "functions": [
+      "load_catalog",
+      "list_topics",
+      "read_topic",
+      "run_examples"
+    ],
+    "case_module": "modelcrew.mathematical_examples",
+    "core_only_reading": true,
+    "existing_example_extra": "evidence",
+    "new_dependencies": [],
+    "source_evidence": [
+      "knowledge version",
+      "chapter path",
+      "chapter SHA256",
+      "catalog SHA256",
+      "selected-section SHA256"
+    ],
+    "trusted_fixed_functions_only": true,
+    "user_expression_eval_or_markdown_execution": false,
+    "automatic_theorem_proof": false,
+    "statistical_design_verified": false,
+    "formal_approval": false,
+    "full_automatic_routing": false
+  },
+  "candidate": {
+    "schema_version": "1.0.0",
+    "status": "passed",
+    "scope": "private development build; no public upload, full-knowledge or runtime gate acceptance",
+    "build_isolation": false,
+    "builder": "setuptools.build_meta; installed build requirements",
+    "wheel": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "c7a1e27bcf289994313e7e9cd2cf681de9ed50a43c0190b991b8e2d05568a685",
+      "bytes": 910659,
+      "members": 299,
+      "resource_files": 219,
+      "module_files": 74,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    },
+    "sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "6a72caf6d912ab7a5cccf76746b5cd6e2bd6740b9ea7092c3506042a5d6953b6",
+      "bytes": 910032,
+      "members": 433,
+      "status": "passed"
+    },
+    "wheel_from_sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "2a91d6d1a957a3d69534b34e395096333ad5209cfe14179accbda5a98d539b07",
+      "bytes": 910659,
+      "members": 299,
+      "resource_files": 219,
+      "module_files": 74,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    }
+  },
+  "installation": {
+    "wheel-core": {
+      "status": "passed",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "package": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\wheel-core\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+      "executable": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\wheel-core\\venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\wheel-core",
+      "isolated": true,
+      "user_site": false,
+      "system_site": false,
+      "resource_check": {
+        "status": "passed",
+        "files": 219,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "mathematical_topics_read": 39,
+      "algorithm_rows_read": 123,
+      "catalog_sha256": "774e49fecefa76d9cc05ace45cccc561d31da5709b708f5765b47b771e70bb2e",
+      "distribution_version": "0.1.0.dev0",
+      "computation_libraries_installed": false,
+      "pip_check": "No broken requirements found.",
+      "installed_wheel": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "wheel_sha256": "c7a1e27bcf289994313e7e9cd2cf681de9ed50a43c0190b991b8e2d05568a685",
+      "wheel_members_matched": 294
+    },
+    "sdist-core": {
+      "status": "passed",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "package": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\sdist-core\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+      "executable": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\sdist-core\\venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\sdist-core",
+      "isolated": true,
+      "user_site": false,
+      "system_site": false,
+      "resource_check": {
+        "status": "passed",
+        "files": 219,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "mathematical_topics_read": 39,
+      "algorithm_rows_read": 123,
+      "catalog_sha256": "774e49fecefa76d9cc05ace45cccc561d31da5709b708f5765b47b771e70bb2e",
+      "distribution_version": "0.1.0.dev0",
+      "computation_libraries_installed": false,
+      "pip_check": "No broken requirements found.",
+      "installed_wheel": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "wheel_sha256": "2a91d6d1a957a3d69534b34e395096333ad5209cfe14179accbda5a98d539b07",
+      "wheel_members_matched": 294
+    },
+    "wheel-evidence": {
+      "status": "passed",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "package": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\wheel-evidence\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+      "executable": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\wheel-evidence\\venv\\Scripts\\python.exe",
+      "cwd": "C:\\Users\\y'y\\.codex\\visualizations\\2026\\11\\11\\01a1c89e-5f80-7472-b4f0-1257e8a5e3b2\\mathematical-knowledge-validation-20261114\\wheel-evidence",
+      "isolated": true,
+      "user_site": false,
+      "system_site": false,
+      "resource_check": {
+        "status": "passed",
+        "files": 219,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "mathematical_topics_read": 39,
+      "algorithm_rows_read": 123,
+      "catalog_sha256": "774e49fecefa76d9cc05ace45cccc561d31da5709b708f5765b47b771e70bb2e",
+      "distribution_version": "0.1.0.dev0",
+      "mathematical_examples": {
+        "status": "passed",
+        "knowledge_version": "1.0.0",
+        "cases": 39,
+        "results": [
+          {
+            "id": "domains",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              3.0,
+              3.0,
+              2.0
+            ],
+            "expected": [
+              3.0,
+              3.0,
+              2.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dimensions",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.5,
+              1.5,
+              1.0
+            ],
+            "expected": [
+              0.5,
+              1.5,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "linear-system",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.2,
+              0.6,
+              2.220446049250313e-16
+            ],
+            "expected": [
+              0.2,
+              0.6,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 2.220446049250313e-16,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "least-squares",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.9999999999999997,
+              1.9999999999999998,
+              6.999999999999999,
+              2.7755575615628914e-15
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              7.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 2.7755575615628914e-15,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "differentiation",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              0.0,
+              5.0,
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "expected": [
+              0.0,
+              5.0,
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "taylor",
+            "scope": "numerical_error_check",
+            "status": "passed",
+            "actual": [
+              1.105,
+              0.0001709180756477302,
+              1.0
+            ],
+            "expected": [
+              1.105,
+              0.0001709180756477302,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "integration-limits",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.5
+            ],
+            "expected": [
+              1.0,
+              0.5
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "probability",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.15384615384615385,
+              2.0,
+              1.6
+            ],
+            "expected": [
+              0.15384615384615385,
+              2.0,
+              1.6
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sensitivity-errors",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              3.0,
+              0.09013878188659974,
+              0.125
+            ],
+            "expected": [
+              3.0,
+              0.09013878188659974,
+              0.125
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ode-conditions",
+            "scope": "numerical_error_check",
+            "status": "passed",
+            "actual": 0.40600584971154013,
+            "expected": 0.4060058497098381,
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 1.7020274079015962e-12,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "constrained-optimality",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "numerical-error",
+            "scope": "numerical_error_check",
+            "status": "passed",
+            "actual": [
+              0.0016666666666666496,
+              0.0004166666666667318,
+              3.999999999999334
+            ],
+            "expected": [
+              0.0016666666666666668,
+              0.0004166666666666667,
+              4.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 6.661338147750939e-13,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "quantifiers",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "direct-proof",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              0.0,
+              4.0
+            ],
+            "expected": [
+              0.0,
+              4.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "contradiction",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": 0.0,
+            "expected": 0.0,
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "induction",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              55.0,
+              55.0
+            ],
+            "expected": [
+              55.0,
+              55.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "contrapositive",
+            "scope": "symbolic_identity_check",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "case-analysis",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "expected": [
+              0.0,
+              4.0,
+              4.0,
+              0.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "constructive-proof",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              4.0,
+              4.0,
+              4.0,
+              12.0
+            ],
+            "expected": [
+              4.0,
+              4.0,
+              4.0,
+              12.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "existence-uniqueness",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "convexity",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              3.0,
+              3.0
+            ],
+            "expected": [
+              3.0,
+              3.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "descent-convergence",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              2.0,
+              0.5,
+              1.5
+            ],
+            "expected": [
+              2.0,
+              0.5,
+              1.5
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "fixed-point",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.75,
+              0.25,
+              0.25
+            ],
+            "expected": [
+              1.75,
+              0.25,
+              0.25
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "generalization",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              0.13581015157406195,
+              0.17308183826022852
+            ],
+            "expected": [
+              0.13581015157406195,
+              0.17308183826022852
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "design-estimand",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              6.0,
+              3.0,
+              1.5,
+              4.0
+            ],
+            "expected": [
+              6.0,
+              3.0,
+              1.5,
+              4.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "welch-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              -1.224744871391589,
+              0.2878641347266908,
+              -3.266957935527523,
+              1.2669579355275231,
+              -1.0
+            ],
+            "expected": [
+              -1.0,
+              -1.224744871391589,
+              0.2878641347266908,
+              -3.266957935527523,
+              1.2669579355275231,
+              -1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "paired-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              1.5,
+              5.196152422706632,
+              0.013846832988859047,
+              0.5813068844813005,
+              2.4186931155186997,
+              2.598076211353316
+            ],
+            "expected": [
+              1.5,
+              5.196152422706632,
+              0.013846832988859047,
+              0.5813068844813005,
+              2.4186931155186997,
+              2.598076211353316
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "anova-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              16.0,
+              0.02509457330439086,
+              0.9142857142857143,
+              -4.853102368216048,
+              7.853102368216048
+            ],
+            "expected": [
+              16.0,
+              0.02509457330439086,
+              0.9142857142857143,
+              -4.853102368216048,
+              7.853102368216048
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "fisher-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.03720908483238107,
+              0.0027594561852200836,
+              0.0006360029488741693,
+              0.4258664756963734
+            ],
+            "expected": [
+              0.03720908483238107,
+              0.0027594561852200836,
+              0.0006360029488741693,
+              0.4258664756963734
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "mcnemar-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.109375,
+              0.3,
+              0.2,
+              0.025210726326833497,
+              0.5560954623076415
+            ],
+            "expected": [
+              0.109375,
+              0.3,
+              0.2,
+              0.025210726326833497,
+              0.5560954623076415
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "rank-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.0,
+              0.1,
+              -1.0,
+              3.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              0.1,
+              -1.0,
+              3.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "regression-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.9000000000000001,
+              0.264575131106459,
+              -0.2383749100649204,
+              2.0383749100649204,
+              2.0
+            ],
+            "expected": [
+              0.9,
+              0.264575131106459,
+              -0.2383749100649204,
+              2.0383749100649204,
+              2.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 1.1102230246251565e-16,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bootstrap-inference",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.5,
+              0.0,
+              2.0
+            ],
+            "expected": [
+              1.0,
+              0.5,
+              0.0,
+              2.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "multiple-testing",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.04,
+              0.16,
+              0.12,
+              0.8,
+              0.04,
+              0.05333333333333334,
+              0.05333333333333334,
+              0.2
+            ],
+            "expected": [
+              0.04,
+              0.16,
+              0.12,
+              0.8,
+              0.04,
+              0.05333333333333334,
+              0.05333333333333334,
+              0.2
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "equivalence-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              0.0001012496610338204,
+              0.0015552141551929267,
+              -0.08331129326536332,
+              0.2833112932653633,
+              1.0
+            ],
+            "expected": [
+              0.0001012496610338204,
+              0.0015552141551929267,
+              -0.08331129326536332,
+              0.2833112932653633,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "cluster-inference",
+            "scope": "statistical_calculation",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.5773502691896257,
+              1.0,
+              -11.706204736432095,
+              13.706204736432095
+            ],
+            "expected": [
+              1.0,
+              0.5773502691896257,
+              1.0,
+              -11.706204736432095,
+              13.706204736432095
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "missingness-inference",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              2.0,
+              2.0,
+              1.0
+            ],
+            "expected": [
+              2.0,
+              2.0,
+              1.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "validation-inference",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              2.0,
+              3.0
+            ],
+            "expected": [
+              2.0,
+              3.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "complexity-proof",
+            "scope": "finite_example",
+            "status": "passed",
+            "actual": [
+              17.0,
+              17.0
+            ],
+            "expected": [
+              17.0,
+              17.0
+            ],
+            "finite": true,
+            "same_shape": true,
+            "max_absolute_error": 0.0,
+            "absolute_tolerance": 1e-08,
+            "relative_tolerance": 1e-06
+          }
+        ],
+        "evidence_scope": "Fixed inputs only; written proofs, finite checks and inference assumptions remain distinct",
+        "automatic_theorem_proof": false,
+        "statistical_design_verified": false,
+        "formal_approval": false,
+        "independent_review": "NOT_RUN"
+      },
+      "algorithm_examples": {
+        "status": "passed",
+        "knowledge_version": "1.0.0",
+        "cases": 113,
+        "results": [
+          {
+            "id": "lp",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              1.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ip",
+            "status": "passed",
+            "actual": 7.0,
+            "expected": 7.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "milp",
+            "status": "passed",
+            "actual": 1.3,
+            "expected": 1.3,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "nlp",
+            "status": "passed",
+            "actual": [
+              2.0,
+              0.0
+            ],
+            "expected": [
+              2.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "binary-ip",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dynamic-programming",
+            "status": "passed",
+            "actual": 7.0,
+            "expected": 7.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "multi-objective",
+            "status": "passed",
+            "actual": [
+              3.0,
+              1.0
+            ],
+            "expected": [
+              3.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "qp",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0
+            ],
+            "expected": [
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "goal-programming",
+            "status": "passed",
+            "actual": [
+              4.0,
+              2.0
+            ],
+            "expected": [
+              4.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "robust-optimization",
+            "status": "passed",
+            "actual": [
+              0.5,
+              1.0
+            ],
+            "expected": [
+              0.5,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ga",
+            "status": "passed",
+            "actual": 0.25,
+            "expected": 0.25,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pso",
+            "status": "passed",
+            "actual": [
+              -1.5,
+              0.5
+            ],
+            "expected": [
+              -1.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sa",
+            "status": "passed",
+            "actual": [
+              0.36787944117144233,
+              1.0
+            ],
+            "expected": [
+              0.36787944117144233,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "aco",
+            "status": "passed",
+            "actual": [
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "expected": [
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "de",
+            "status": "passed",
+            "actual": [
+              2.0,
+              4.0
+            ],
+            "expected": [
+              2.0,
+              4.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "tabu",
+            "status": "passed",
+            "actual": [
+              3.0,
+              9.0
+            ],
+            "expected": [
+              3.0,
+              9.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "nsga2",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "linear-regression",
+            "status": "passed",
+            "actual": [
+              0.9999999999999997,
+              1.9999999999999998,
+              6.999999999999999
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              7.0
+            ],
+            "max_absolute_error": 8.881784197001252e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "polynomial-regression",
+            "status": "passed",
+            "actual": 4.000000000000001,
+            "expected": 4.0,
+            "max_absolute_error": 8.881784197001252e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "exponential-smoothing",
+            "status": "passed",
+            "actual": 12.5,
+            "expected": 12.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gm11",
+            "status": "passed",
+            "actual": [
+              -0.6666666666666669,
+              0.6666666666666669
+            ],
+            "expected": [
+              -0.6666666666666666,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 2.220446049250313e-16,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "arima",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sarima",
+            "status": "passed",
+            "actual": 8.0,
+            "expected": 8.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "var",
+            "status": "passed",
+            "actual": [
+              2.0,
+              1.0,
+              0.5
+            ],
+            "expected": [
+              2.0,
+              1.0,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "prophet",
+            "status": "passed",
+            "actual": 7.0,
+            "expected": 7.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "xgboost",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "lightgbm",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "catboost",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "lstm",
+            "status": "passed",
+            "actual": [
+              0.4,
+              0.18997448112761245
+            ],
+            "expected": [
+              0.4,
+              0.18997448112761245
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gru",
+            "status": "passed",
+            "actual": 0.7000000000000001,
+            "expected": 0.7,
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "tcn",
+            "status": "passed",
+            "actual": 11.0,
+            "expected": 11.0,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "transformer",
+            "status": "passed",
+            "actual": 5.0,
+            "expected": 5.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ahp",
+            "status": "passed",
+            "actual": [
+              0.14285714285714288,
+              0.28571428571428564,
+              0.5714285714285715,
+              0.0
+            ],
+            "expected": [
+              0.14285714285714285,
+              0.2857142857142857,
+              0.5714285714285714,
+              0.0
+            ],
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "entropy-weight",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "topsis",
+            "status": "passed",
+            "actual": [
+              0.75,
+              0.25
+            ],
+            "expected": [
+              0.75,
+              0.25
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "weighted-score",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "critic",
+            "status": "passed",
+            "actual": [
+              0.5,
+              0.5
+            ],
+            "expected": [
+              0.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pca",
+            "status": "passed",
+            "actual": [
+              2.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              2.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "factor-analysis",
+            "status": "passed",
+            "actual": [
+              [
+                2.0,
+                2.0
+              ],
+              [
+                2.0,
+                5.0
+              ]
+            ],
+            "expected": [
+              [
+                2.0,
+                2.0
+              ],
+              [
+                2.0,
+                5.0
+              ]
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "grey-relation",
+            "status": "passed",
+            "actual": 0.6666666666666666,
+            "expected": 0.6666666666666666,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "fuzzy-evaluation",
+            "status": "passed",
+            "actual": [
+              0.4,
+              0.6000000000000001
+            ],
+            "expected": [
+              0.4,
+              0.6
+            ],
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "vikor",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "promethee",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "electre",
+            "status": "passed",
+            "actual": [
+              0.6,
+              0.0
+            ],
+            "expected": [
+              0.6,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dea",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "malmquist",
+            "status": "passed",
+            "actual": 2.0,
+            "expected": 2.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dfs",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bfs",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dijkstra",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              3.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "floyd",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bellman-ford",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0,
+              -1.0
+            ],
+            "expected": [
+              0.0,
+              1.0,
+              -1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "prim",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "kruskal",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dinic",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "min-cost-flow",
+            "status": "passed",
+            "actual": 9.0,
+            "expected": 9.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "hungarian",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pagerank",
+            "status": "passed",
+            "actual": [
+              0.5,
+              0.5
+            ],
+            "expected": [
+              0.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "louvain",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "k-shortest",
+            "status": "passed",
+            "actual": [
+              3.0,
+              4.0
+            ],
+            "expected": [
+              3.0,
+              4.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "graph-coloring",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "centrality",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "descriptive",
+            "status": "passed",
+            "actual": [
+              2.0,
+              1.0,
+              2.0
+            ],
+            "expected": [
+              2.0,
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "minmax",
+            "status": "passed",
+            "actual": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "zscore",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              -1.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "imputation",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "knn-imputation",
+            "status": "passed",
+            "actual": 15.0,
+            "expected": 15.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "three-sigma",
+            "status": "passed",
+            "actual": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "iqr",
+            "status": "passed",
+            "actual": [
+              -2.0,
+              6.0
+            ],
+            "expected": [
+              -2.0,
+              6.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "lof",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0,
+              9.0
+            ],
+            "expected": [
+              1.0,
+              1.0,
+              9.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "pearson",
+            "status": "passed",
+            "actual": 0.9999999999999998,
+            "expected": 1.0,
+            "max_absolute_error": 2.220446049250313e-16,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "spearman",
+            "status": "passed",
+            "actual": -1.0,
+            "expected": -1.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "kendall",
+            "status": "passed",
+            "actual": 0.33333333333333337,
+            "expected": 0.3333333333333333,
+            "max_absolute_error": 5.551115123125783e-17,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ttest",
+            "status": "passed",
+            "actual": [
+              -1.224744871391589,
+              0.2878641347266908,
+              -1.0
+            ],
+            "expected": [
+              -1.224744871391589,
+              0.2878641347266908,
+              -1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "chi-square",
+            "status": "passed",
+            "actual": [
+              0.0,
+              1.0
+            ],
+            "expected": [
+              0.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "anova",
+            "status": "passed",
+            "actual": 16.0,
+            "expected": 16.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bootstrap",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "logistic-regression",
+            "status": "passed",
+            "actual": [
+              0.75,
+              0.2876820724517809
+            ],
+            "expected": [
+              0.75,
+              0.2876820724517809
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "vif",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "adf",
+            "status": "passed",
+            "actual": -2.0,
+            "expected": -2.0,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "did",
+            "status": "passed",
+            "actual": 3.0,
+            "expected": 3.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "psm",
+            "status": "passed",
+            "actual": 2.5,
+            "expected": 2.5,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "monte-carlo",
+            "status": "passed",
+            "actual": 0.49825449597681654,
+            "expected": 0.5,
+            "max_absolute_error": 0.001745504023183464,
+            "scope": "stochastic_estimate",
+            "absolute_tolerance": 0.006,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "difference-equation",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.5,
+              1.75
+            ],
+            "expected": [
+              1.0,
+              1.5,
+              1.75
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "ode",
+            "status": "passed",
+            "actual": 0.36787944117920773,
+            "expected": 0.36787944117144233,
+            "max_absolute_error": 7.765399434589426e-12,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "queueing",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              0.6666666666666666
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "markov",
+            "status": "passed",
+            "actual": [
+              0.8,
+              0.2,
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "expected": [
+              0.8,
+              0.2,
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "cellular-automata",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "system-dynamics",
+            "status": "passed",
+            "actual": [
+              11.0,
+              11.8
+            ],
+            "expected": [
+              11.0,
+              11.8
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "discrete-event",
+            "status": "passed",
+            "actual": 1.0,
+            "expected": 1.0,
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "stochastic-process",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0,
+              0.36787944117144233
+            ],
+            "expected": [
+              1.0,
+              1.0,
+              0.36787944117144233
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "bayesian-network",
+            "status": "passed",
+            "actual": [
+              0.24000000000000005,
+              0.6666666666666666
+            ],
+            "expected": [
+              0.24,
+              0.6666666666666666
+            ],
+            "max_absolute_error": 5.551115123125783e-17,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "abm",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sensitivity",
+            "status": "passed",
+            "actual": 3.9999999999995595,
+            "expected": 4.0,
+            "max_absolute_error": 4.405364961712621e-13,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "sobol",
+            "status": "passed",
+            "actual": [
+              0.2,
+              0.8
+            ],
+            "expected": [
+              0.2,
+              0.8
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "decision-tree",
+            "status": "passed",
+            "actual": 0.5,
+            "expected": 0.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "svm",
+            "status": "passed",
+            "actual": [
+              1.0,
+              2.0
+            ],
+            "expected": [
+              1.0,
+              2.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "knn",
+            "status": "passed",
+            "actual": [
+              1.0,
+              0.0
+            ],
+            "expected": [
+              1.0,
+              0.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "random-forest",
+            "status": "passed",
+            "actual": [
+              0.6666666666666666,
+              1.0
+            ],
+            "expected": [
+              0.6666666666666666,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "naive-bayes",
+            "status": "passed",
+            "actual": [
+              0.2,
+              0.8
+            ],
+            "expected": [
+              0.2,
+              0.8
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "adaboost",
+            "status": "passed",
+            "actual": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.5000000000000001
+            ],
+            "expected": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.5
+            ],
+            "max_absolute_error": 1.1102230246251565e-16,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gbdt",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "stacking",
+            "status": "passed",
+            "actual": 2.5,
+            "expected": 2.5,
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "kmeans",
+            "status": "passed",
+            "actual": [
+              1.0,
+              9.0,
+              4.0
+            ],
+            "expected": [
+              1.0,
+              9.0,
+              4.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "hierarchical",
+            "status": "passed",
+            "actual": [
+              1.0,
+              3.0
+            ],
+            "expected": [
+              1.0,
+              3.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "dbscan",
+            "status": "passed",
+            "actual": [
+              1.0,
+              1.0
+            ],
+            "expected": [
+              1.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "small_complete_solution",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "gmm",
+            "status": "passed",
+            "actual": [
+              0.5,
+              0.5
+            ],
+            "expected": [
+              0.5,
+              0.5
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "mean-shift",
+            "status": "passed",
+            "actual": 1.0,
+            "expected": 1.0,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "tsne",
+            "status": "passed",
+            "actual": 0.08228669264384184,
+            "expected": 0.08228669264325505,
+            "max_absolute_error": 5.867806240900109e-13,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "umap",
+            "status": "passed",
+            "actual": [
+              0.6,
+              0.2
+            ],
+            "expected": [
+              0.6,
+              0.2
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "core_equation_check",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "mlp",
+            "status": "passed",
+            "actual": 4.0,
+            "expected": 4.0,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "cnn",
+            "status": "passed",
+            "actual": [
+              -1.0,
+              -1.0
+            ],
+            "expected": [
+              -1.0,
+              -1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "rnn",
+            "status": "passed",
+            "actual": 0.7615941559557649,
+            "expected": 0.7615941559557649,
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          },
+          {
+            "id": "autoencoder",
+            "status": "passed",
+            "actual": [
+              2.0,
+              1.0
+            ],
+            "expected": [
+              2.0,
+              1.0
+            ],
+            "max_absolute_error": 0.0,
+            "scope": "single_update",
+            "absolute_tolerance": 1e-07,
+            "relative_tolerance": 1e-06
+          }
+        ],
+        "case_scope": "Fixed packaged educational examples; each result retains complete-solution vs component/update distinction",
+        "negative_boundaries": "Documented per algorithm; numeric boundary rejection separately tested, not all counterexamples executed",
+        "formal_approval": false,
+        "independent_review": "NOT_RUN",
+        "general_business_solvers_registered": false
+      },
+      "dependency_versions": {
+        "numpy": "2.3.1",
+        "scipy": "1.16.0",
+        "sympy": "1.13.1",
+        "pydantic": "2.13.4",
+        "openpyxl": "3.1.5"
+      },
+      "pip_check": "No broken requirements found.",
+      "installed_wheel": "D:\\big-third-up\\modelcrew\\tmp\\mathematical-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "wheel_sha256": "c7a1e27bcf289994313e7e9cd2cf681de9ed50a43c0190b991b8e2d05568a685",
+      "wheel_members_matched": 294
+    }
+  },
+  "installation_summary": {
+    "status": "passed",
+    "environments": [
+      {
+        "environment": "wheel-core",
+        "status": "passed",
+        "math_topics": 39,
+        "algorithm_rows": 123,
+        "mathematical_cases": 0,
+        "algorithm_cases": 0,
+        "pip_check": "No broken requirements found."
+      },
+      {
+        "environment": "sdist-core",
+        "status": "passed",
+        "math_topics": 39,
+        "algorithm_rows": 123,
+        "mathematical_cases": 0,
+        "algorithm_cases": 0,
+        "pip_check": "No broken requirements found."
+      },
+      {
+        "environment": "wheel-evidence",
+        "status": "passed",
+        "math_topics": 39,
+        "algorithm_rows": 123,
+        "mathematical_cases": 39,
+        "algorithm_cases": 113,
+        "pip_check": "No broken requirements found."
+      }
+    ]
+  },
+  "regression": {
+    "status": "passed",
+    "tests": 127,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "evidence": {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\regression.xml",
+      "sha256": "595a654ecdeaf7e33fa42a895269fa7e0606c65da748ca61828d9dd8a2f24cb2",
+      "bytes": 17532
+    },
+    "independent_numeric_checks": [
+      "Central difference crosscheck of symbolic gradient",
+      "Closed-form trapezoid h^2/6 error and grid-halving ratio",
+      "Normal equations and analytic affine fit",
+      "Welch statistic with interval target consistency",
+      "TOST dual one-sided tests with matching 90% CI",
+      "Exact McNemar p by integer binomial coefficients",
+      "BH permutation/tie mapping and monotonicity",
+      "Nonfinite/wrong-shape/error result cannot pass and remains strict-JSON serializable"
+    ]
+  },
+  "resource_manifest_delta": {
+    "before": 214,
+    "after": 219,
+    "added": [
+      "mathematics/catalog.json",
+      "mathematics/formalization.md",
+      "mathematics/index.md",
+      "mathematics/proof-methods.md",
+      "mathematics/statistical-reasoning.md"
+    ],
+    "modified": [
+      "algorithms/index.md",
+      "capabilities/registry.json"
+    ],
+    "removed": []
+  },
+  "source_audit": {
+    "status": "passed",
+    "topics": 39,
+    "groups": [
+      [
+        "B1",
+        12
+      ],
+      [
+        "B2",
+        13
+      ],
+      [
+        "B3",
+        14
+      ]
+    ],
+    "scopes": {
+      "finite_example": 21,
+      "symbolic_identity_check": 5,
+      "numerical_error_check": 3,
+      "statistical_calculation": 10
+    },
+    "resource_delta": {
+      "before": 214,
+      "after": 219,
+      "added": [
+        "mathematics/catalog.json",
+        "mathematics/formalization.md",
+        "mathematics/index.md",
+        "mathematics/proof-methods.md",
+        "mathematics/statistical-reasoning.md"
+      ],
+      "modified": [
+        "algorithms/index.md",
+        "capabilities/registry.json"
+      ],
+      "removed": []
+    },
+    "local_links_checked": 20,
+    "preserved_before_records": [
+      {
+        "path": "docs\\release\\algorithm-knowledge-supplement-20261114.json",
+        "sha256": "fdc0a1d628bbd483f15beac31c0127bf49a814b762e51ff8bdfb7825e001cb7e",
+        "bytes": 103382
+      },
+      {
+        "path": "docs\\release\\paper-knowledge-supplement-20261114.json",
+        "sha256": "5e155997c95e38b7d65b6cd54ab2f03b9d8047dd6905e9d576cc4e11acf4d0e8",
+        "bytes": 68566
+      },
+      {
+        "path": "docs\\release\\knowledge-supplement-plan-20261114.json",
+        "sha256": "5f54fd08128320027bd1704864e074054b5e65799475154df8c509fa881b5356",
+        "bytes": 15942
+      },
+      {
+        "path": "docs\\release\\resource-disposition-20261111.json",
+        "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+        "bytes": 181183
+      },
+      {
+        "path": "docs\\release\\package-installation-approval-20261114.json",
+        "sha256": "ea57e868addbb2076aa6a375c53ac9da57dc1f26fb7243bea0724fee34316aa7",
+        "bytes": 4568
+      },
+      {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "f693f0082d60295cc613cc454d624087e0458e38e1ada66b24d0995e6be99101",
+        "bytes": 856519
+      },
+      {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+        "sha256": "ba0fde2dce317440cebce3ade8b012f12ff5e5b57a3e071b78c49acd3048a8f5",
+        "bytes": 859391
+      },
+      {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "b9a5438fd9953e8d3d5a2d6ff23823b75f143b4666430953e1c976cc3bebf742",
+        "bytes": 856519
+      }
+    ],
+    "previous_approved_and_paper_artifacts_matched": true,
+    "old_collaboration_guidance_and_algorithm_chapters_unchanged": true
+  },
+  "preserved_records_and_previous_candidate": [
+    {
+      "path": "docs\\release\\algorithm-knowledge-supplement-20261114.json",
+      "sha256": "fdc0a1d628bbd483f15beac31c0127bf49a814b762e51ff8bdfb7825e001cb7e",
+      "bytes": 103382
+    },
+    {
+      "path": "docs\\release\\paper-knowledge-supplement-20261114.json",
+      "sha256": "5e155997c95e38b7d65b6cd54ab2f03b9d8047dd6905e9d576cc4e11acf4d0e8",
+      "bytes": 68566
+    },
+    {
+      "path": "docs\\release\\knowledge-supplement-plan-20261114.json",
+      "sha256": "5f54fd08128320027bd1704864e074054b5e65799475154df8c509fa881b5356",
+      "bytes": 15942
+    },
+    {
+      "path": "docs\\release\\resource-disposition-20261111.json",
+      "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+      "bytes": 181183
+    },
+    {
+      "path": "docs\\release\\package-installation-approval-20261114.json",
+      "sha256": "ea57e868addbb2076aa6a375c53ac9da57dc1f26fb7243bea0724fee34316aa7",
+      "bytes": 4568
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "f693f0082d60295cc613cc454d624087e0458e38e1ada66b24d0995e6be99101",
+      "bytes": 856519
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "ba0fde2dce317440cebce3ade8b012f12ff5e5b57a3e071b78c49acd3048a8f5",
+      "bytes": 859391
+    },
+    {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "b9a5438fd9953e8d3d5a2d6ff23823b75f143b4666430953e1c976cc3bebf742",
+      "bytes": 856519
+    }
+  ],
+  "prior_algorithm_candidate_bound_by_original_receipt": {
+    "wheel": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "f693f0082d60295cc613cc454d624087e0458e38e1ada66b24d0995e6be99101",
+      "bytes": 856519,
+      "members": 292,
+      "resource_files": 214,
+      "module_files": 72,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    },
+    "sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "ba0fde2dce317440cebce3ade8b012f12ff5e5b57a3e071b78c49acd3048a8f5",
+      "bytes": 859391,
+      "members": 424,
+      "status": "passed"
+    },
+    "wheel_from_sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\algorithm-knowledge-validation-20261114\\validated-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "b9a5438fd9953e8d3d5a2d6ff23823b75f143b4666430953e1c976cc3bebf742",
+      "bytes": 856519,
+      "members": 292,
+      "resource_files": 214,
+      "module_files": 72,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    }
+  },
+  "source_files": [
+    {
+      "path": "src\\modelcrew\\mathematical_knowledge.py",
+      "sha256": "1b944726291f53955b91b87204c9e2c1fcbaef531461ab55965d4310dd111d36",
+      "bytes": 7313
+    },
+    {
+      "path": "src\\modelcrew\\mathematical_examples.py",
+      "sha256": "30e7e3e9effc123d9afc543cbd32121170adc1ab46825e813d7d6415ac7ae724",
+      "bytes": 10281
+    },
+    {
+      "path": "tests\\test_mathematical_knowledge.py",
+      "sha256": "6ff45e60dced10ade6df6670519c245effde717930a46f623d4f54cb3d95df34",
+      "bytes": 6282
+    },
+    {
+      "path": "src\\modelcrew\\resources\\algorithms\\index.md",
+      "sha256": "00be1c1f5e7b8e2f14740c5b96dbeba521389fa4b77704f975c0546c7cc9e1ea",
+      "bytes": 3152
+    },
+    {
+      "path": "src\\modelcrew\\resources\\capabilities\\registry.json",
+      "sha256": "97cf4fb03f38735ca6aae1a041a7c11774208d04faafe22190905b695347ba5b",
+      "bytes": 4006
+    },
+    {
+      "path": "src\\modelcrew\\resources\\resource-manifest.json",
+      "sha256": "915bf973a656db7da77755565efbaedac04e44f9103c777c6005d87cb144839c",
+      "bytes": 54800
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "702135c9c1c2b5148ed1fc77fafa9a9ad8000a731eaab30fccd0902016b6ac8f",
+      "bytes": 19481
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "3d3ddae0763f2365d55449431e1c25a8b339443bb9921b9c3eae38a5fa01fa71",
+      "bytes": 19693
+    },
+    {
+      "path": "configs\\package-distribution.json",
+      "sha256": "752481434e54244c3fb2e5905e98fc2295471b627a9ff0fd89b3ca9c897b982f",
+      "bytes": 8125
+    },
+    {
+      "path": "docs\\mathematical-knowledge.md",
+      "sha256": "a50c4df687d0c7966c05687f696e48bc4ef3ec325e9584ad9d130f43303539b8",
+      "bytes": 4752
+    },
+    {
+      "path": "docs\\knowledge-supplement-checklist.md",
+      "sha256": "b62725b9fe452ba9441914269dbd0c7a72f2cad9f06eab3ffa86ffb6fca254df",
+      "bytes": 5293
+    },
+    {
+      "path": "docs\\builtin-capabilities.md",
+      "sha256": "4f7ed9ebe715df7271e8db28d4c331b520e39e5e9d6a3e0c37a9d647aa0cacf2",
+      "bytes": 10380
+    },
+    {
+      "path": "docs\\algorithm-knowledge.md",
+      "sha256": "810a23542c22650708aa38db2adb8e7fffe597c1993fe7f5243e155ce68ce975",
+      "bytes": 5029
+    },
+    {
+      "path": "docs\\package-installation.md",
+      "sha256": "633999cc89a0697cb833a8846a4b0d1fc8871637af8680f0d505277894024e35",
+      "bytes": 13627
+    },
+    {
+      "path": "docs\\open-source-harness-roadmap.md",
+      "sha256": "8832ebbc2727a341edddb8f83e8451ce4ddd78727e021e543e4c00bcb98b00be",
+      "bytes": 15009
+    }
+  ],
+  "previous_source_snapshots": [
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\configs\\package-distribution.json",
+      "sha256": "d90bb3bf7557f23dd807a61f218a9e96039d5f812355a7d4fd5299d35c923dec",
+      "bytes": 7579
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\docs\\algorithm-knowledge.md",
+      "sha256": "a672d014d36bd66637a7c895d50a7ed1c8cdad9a7414fa156ab48cb5ec645074",
+      "bytes": 4701
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\docs\\builtin-capabilities.md",
+      "sha256": "9f92957f8d96f8d5e2969524c7eb4176b44c33ca1871bf56203f5868f850b6d6",
+      "bytes": 10334
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\docs\\knowledge-supplement-checklist.md",
+      "sha256": "b02b8588dda1f0a8e6755add21084f66acb06795f1396075dc08736f25394a6c",
+      "bytes": 4976
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\docs\\open-source-harness-roadmap.md",
+      "sha256": "87faba4ca69b1359666ace2b353b267d15716ad0d7c5867d60dbf0ba45d73fd2",
+      "bytes": 14697
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\docs\\package-installation.md",
+      "sha256": "cace772268f9d4c571e6f3073748f1628d03a1e4f2ec0becd34e1de6a15a2035",
+      "bytes": 13021
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\MANIFEST.in",
+      "sha256": "9c61d6af1b14566d016a06085bc77f25feb6040e28fa0a8684bc1718cc781169",
+      "bytes": 19392
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\pyproject.toml",
+      "sha256": "1f4e2d1d1c200cf0fdee4a870c6b2842afb8ad0ada423708578ba78ebd942625",
+      "bytes": 19255
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\src\\modelcrew\\resources\\algorithms\\index.md",
+      "sha256": "26ddecffbd1741ffa2d1b14b8230598055c95da0ebef6b2f53eb75396faa2f83",
+      "bytes": 3057
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\src\\modelcrew\\resources\\capabilities\\registry.json",
+      "sha256": "e7ad3f993900a53d210085b184939c11a0b1d0347ca3438b841ed2bbf5741242",
+      "bytes": 3523
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\before\\src\\modelcrew\\resources\\resource-manifest.json",
+      "sha256": "589286cf9aa3686230a01950564ef07636b675d6e6ec089b5d4329cf18615f3b",
+      "bytes": 53680
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\examples-complete.json",
+      "sha256": "6042c0d74a427d0b7c64a91513ede0d2d3681b90edeb028f82038ea02dc2831d",
+      "bytes": 18217
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\examples-initial.json",
+      "sha256": "0535aea6c9d66f3af394b9a1fa489d36cadc4daa1ce6ee698ff713a59cd5967b",
+      "bytes": 17835
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\installation-summary.json",
+      "sha256": "cb35a98e36a9c231b09c2cc81018168c18829f578889b62a6435e76d719bb884",
+      "bytes": 802
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\preserve-before.json",
+      "sha256": "20b545f513c761cdba80591d8fc542e2108e9f4a3604feacb307301ce3e63df6",
+      "bytes": 1741
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\sdist-core-probe.json",
+      "sha256": "794c8f45c716cfa8e26fcd2ddc7b701250ae2f1439ed77c58a35f68ebf9f3c66",
+      "bytes": 1525
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\source-audit.json",
+      "sha256": "81569c251b0dfd0fd6c84358cb8f639bc92d720c1c59845b3fd78f56ef86a323",
+      "bytes": 2738
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\wheel-core-probe.json",
+      "sha256": "0644835fdc53d3174de53dd1cfd93df4b79ee9d33b67a8c74c11850a03e60fe4",
+      "bytes": 1514
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\wheel-evidence-probe.json",
+      "sha256": "2e1fc3e126342f166c8832bf0e001da428178f9e63c9fc1c0798c7ea587c08e9",
+      "bytes": 61153
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\sdist-core-install.log",
+      "sha256": "b14fb433f884de6175b511577d7169fea854562b47d9eb5f85954225eaa130e8",
+      "bytes": 1381
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\wheel-core-install.log",
+      "sha256": "be70e76b0ad6881c8781f5c38baf5bb6d2550dfa0a520dfdb0cbc1f9335cd6e0",
+      "bytes": 1370
+    },
+    {
+      "path": "tmp\\mathematical-knowledge-validation-20261114\\wheel-evidence-install.log",
+      "sha256": "b5a0e3965a19233030bb47e194dac0d7702ac99ede06fa1d86c510ba2c7c9070",
+      "bytes": 3900
+    }
+  ],
+  "remaining_original_15_knowledge_gap_items": {
+    "count": 0,
+    "ids": [],
+    "meaning": "All original 15 gap items now have declared-scope independently authored knowledge baselines; no rewrite of initial inventory or restricted-source distribution permission"
+  },
+  "overall_F2_complete": false,
+  "full_automatic_builtin_routing": false,
+  "independent_review": "NOT_RUN",
+  "user_content_approval": false,
+  "public_upload_authorized": false,
+  "boundaries": [
+    "Written arguments, symbolic identity checks, finite examples, numerical checks and statistical calculations retain separate evidence scopes; tests are not automatic general theorem proofs",
+    "Fixed data calculations do not verify actual sampling/normality/causal/missingness assumptions or automatically select tests",
+    "Statistical confidence intervals keep their exact estimand and level: ANOVA group-mean interval is not eta-squared interval; McNemar conditional discordance interval is not risk-difference interval; small-sample exact shift interval may have no finite endpoints",
+    "39 fixed examples and 16 actual rejection boundaries do not mean all documented counterexamples have been executed",
+    "Original 21 collaboration guides, algorithm chapters and 113 cases, source ledger, initial 15-item inventory, approvals and previous artifacts remain unchanged",
+    "Private Windows/Python3.13 isolated package checks do not replace Docker executor, clean-machine full workflow, live harness, native Word rendering or F3/F4/F5/F6 acceptance",
+    "Author checks do not replace independent M1/P1/P2/W1/W2 or user model/result/manuscript/figure approvals"
+  ]
+}

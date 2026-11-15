@@ -1,7 +1,8 @@
+from modelcrew.project_assets import asset_path
 import json
 from pathlib import Path
 from modelcrew.config import ROOT
-stage=ROOT/'stage-b';data=json.loads((stage/'stage-b-acceptance-20261106.json').read_text(encoding='utf-8'))
+stage=asset_path(ROOT,'stage-b');data=json.loads((stage/'stage-b-acceptance-20261106.json').read_text(encoding='utf-8'))
 recovered=data['evidence_recovery'][0];xml='runs/stage-b-final-acceptance-20261106.xml'
 text=f'''# 阶段 B 复审与验收报告
 

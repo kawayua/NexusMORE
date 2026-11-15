@@ -2,6 +2,7 @@
 
 Only TEST_SIMULATED_USER tasks are changed; no model calls or fresh solver runs.
 """
+from modelcrew.project_assets import asset_path
 import copy,json,os,subprocess,sys,uuid
 from datetime import datetime,timezone
 from pathlib import Path
@@ -12,9 +13,9 @@ from modelcrew.inputs import file_hash
 from scripts.verify_stage_b_restart import restart,cli_resume
 
 def main():
-    run=ROOT/'stage-b/runs'/('version-recovery-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));run.mkdir(parents=True)
+    run=asset_path(ROOT,'stage-b/runs')/('version-recovery-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));run.mkdir(parents=True)
     task='test-version-recovery-'+uuid.uuid4().hex
-    contract=json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8'))
+    contract=json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8'))
     note={'version':1,'kind':'proposal','text':'TEST_ONLY persisted proposal for recovery drill','actor':'TEST_SIMULATED_USER','request_id':'proposal-1'}
     with Workflow() as w:
         first=w.create(task,contract,project='automated-tests');thread=first['task']['thread_id']
@@ -52,6 +53,6 @@ def main():
             'new_version_requires_model_confirmation':True,'historical_results_not_auto_confirmed':True,
             'new_model_calls':0,'new_solver_runs':0,'mode':'historical_fixture_only'}
     (run/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    (ROOT/'stage-b/version-recovery-verification.json').write_text(json.dumps({'report_path':str((run/'report.json').relative_to(ROOT)),**report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    (asset_path(ROOT,'stage-b/version-recovery-verification.json')).write_text(json.dumps({'report_path':str((run/'report.json').relative_to(ROOT)),**report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

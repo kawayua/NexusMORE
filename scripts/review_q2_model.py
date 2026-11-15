@@ -1,4 +1,5 @@
 """Codex-authored Q2 model + actual independent M1 admission; no solver dispatch."""
+from modelcrew.project_assets import asset_path
 import argparse,json,uuid,shutil
 from pathlib import Path
 from psycopg.types.json import Jsonb
@@ -11,8 +12,8 @@ from modelcrew.modeling_hand import M1Answer,pointer,update,assert_m1
 from scripts.run_d4_full import workflow
 
 TASK='d6-bench-q2-20261109'
-SOURCE=ROOT/'stage-d/q2-modeling/proposal-v5'
-REF=ROOT/'stage-d/runs/references/d6-q1-to-q2-20261109-v2'
+SOURCE=asset_path(ROOT,'stage-d/q2-modeling/proposal-v5')
+REF=asset_path(ROOT,'stage-d/runs/references/d6-q1-to-q2-20261109-v2')
 
 def prepare(folder,revision_of=None):
     folder=Path(folder).resolve();folder.mkdir(parents=True,exist_ok=False)

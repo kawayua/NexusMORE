@@ -1,0 +1,180 @@
+{
+  "$defs": {
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "artifact_id": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "task_graph",
+            "source",
+            "method_selection",
+            "contract",
+            "mathematics",
+            "code",
+            "input",
+            "execution",
+            "result",
+            "figure",
+            "reproduction",
+            "outline",
+            "manuscript",
+            "figure_selection",
+            "render"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "path": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "author_call_ids": {
+          "items": {
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Author Call Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "kind",
+        "path",
+        "sha256",
+        "author_call_ids"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    },
+    "Binding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "task_id": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Task Id",
+          "type": "string"
+        },
+        "contract_version": {
+          "minimum": 1,
+          "title": "Contract Version",
+          "type": "integer"
+        },
+        "contract_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Contract Sha256",
+          "type": "string"
+        },
+        "execution_id": {
+          "anyOf": [
+            {
+              "maxLength": 300,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Execution Id"
+        },
+        "result_revision": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Result Revision"
+        }
+      },
+      "required": [
+        "task_id",
+        "contract_version",
+        "contract_sha256"
+      ],
+      "title": "Binding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "binding": {
+      "$ref": "#/$defs/Binding"
+    },
+    "hand": {
+      "enum": [
+        "modeling",
+        "coding",
+        "writing"
+      ],
+      "title": "Hand",
+      "type": "string"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      },
+      "minItems": 1,
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "lineage_call_ids": {
+      "items": {
+        "maxLength": 300,
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Lineage Call Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "binding",
+    "hand",
+    "artifacts",
+    "lineage_call_ids"
+  ],
+  "title": "Snapshot",
+  "type": "object"
+}

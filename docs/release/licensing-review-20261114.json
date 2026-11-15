@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F5",
+  "status": "first_inventory_complete_owner_license_choice_and_component_review_pending",
+  "user_request": "跳过全新 Windows / 空 Docker / 完整首次联网安装测试并继续下一阶段",
+  "F4_exception": {
+    "path": "docs\\release\\environment-validation-exception-20261114.json",
+    "sha256": "b263cd883ee7e120313d38b722ccd004b4d0e74d83ef2823fa2bbf209a192b08",
+    "bytes": 1255
+  },
+  "resource_count": 223,
+  "resource_categories": {
+    "local_runtime_resource": 97,
+    "official_document_tool": 126
+  },
+  "installed_external_distribution_count": 124,
+  "counts_scope": "actual F4 isolated runtime including pip/setuptools and transitive dependencies; not all platform resolutions",
+  "inventory": {
+    "path": "tmp\\release-licensing-validation-20261114\\runtime-license-inventory-reviewed.json",
+    "sha256": "5e96484a7b15220a9ee2436d87ad49505fe23e3286b7b67a7490c56e77bdc452",
+    "bytes": 237958
+  },
+  "native_inventory": {
+    "path": "tmp\\release-licensing-validation-20261114\\native-license-inventory.json",
+    "sha256": "c678dae0d1e0b4a76b490f3a0436caede531a26f6ab134633446d579e6a15ccf",
+    "bytes": 2931
+  },
+  "audit_script": {
+    "path": "scripts\\audit_release_licensing.py",
+    "sha256": "aad7836f772b44af9961b603b6a7012fe114d750e9e54d59062bb020926151b5",
+    "bytes": 6395
+  },
+  "guide": {
+    "path": "docs\\release-licensing.md",
+    "sha256": "94c12272f7df146b233557817b0ddf1a8f6f162749b50cd3db7531500c3376da",
+    "bytes": 4232
+  },
+  "project_license_selected": false,
+  "proposal": "Apache-2.0 for original project content; retain third-party licenses; separately resolve PyMuPDF AGPL/commercial route",
+  "attention": [
+    {
+      "name": "cycler",
+      "version": "0.12.1",
+      "attention": [
+        "bundled_license_text_requires_component_review"
+      ]
+    },
+    {
+      "name": "hyperframe",
+      "version": "6.1.0",
+      "attention": [
+        "bundled_license_text_requires_component_review"
+      ]
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1",
+      "attention": [
+        "bundled_license_text_requires_component_review"
+      ]
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.10.3",
+      "attention": [
+        "bundled_license_text_requires_component_review"
+      ]
+    },
+    {
+      "name": "numpy",
+      "version": "2.3.1",
+      "attention": [
+        "bundled_license_text_requires_component_review"
+      ]
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.4",
+      "attention": [
+        "LGPL_obligations_and_binary_components_review"
+      ]
+    },
+    {
+      "name": "psycopg-binary",
+      "version": "3.3.4",
+      "attention": [
+        "LGPL_obligations_and_binary_components_review"
+      ]
+    },
+    {
+      "name": "psycopg-pool",
+      "version": "3.3.3",
+      "attention": [
+        "LGPL_obligations_and_binary_components_review"
+      ]
+    },
+    {
+      "name": "PyMuPDF",
+      "version": "1.27.2.3",
+      "attention": [
+        "AGPL_or_commercial_route_decision_required"
+      ]
+    },
+    {
+      "name": "pypdfium2",
+      "version": "5.15.2",
+      "attention": [
+        "no_license_text_found_in_installed_file_inventory"
+      ]
+    },
+    {
+      "name": "scipy",
+      "version": "1.16.0",
+      "attention": [
+        "bundled_license_text_requires_component_review"
+      ]
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.23.3",
+      "attention": [
+        "no_license_text_found_in_installed_file_inventory"
+      ]
+    }
+  ],
+  "next_steps": [
+    "owner choice of project license and distribution model",
+    "resolve PyMuPDF license route before public release",
+    "complete fixed upstream evidence, bundled components, native tools/images/models/fonts review",
+    "update source/package third-party notices and include license texts",
+    "build new candidate and verify license payload; run meaningful regression if dependencies replaced"
+  ],
+  "unchanged_F4_record": {
+    "path": "docs\\release\\environment-preparation-20261114.json",
+    "sha256": "d704d01369d7f019842e31786af189fe5e348fa6a2a269045648df9da2bb1a08",
+    "bytes": 21573
+  },
+  "public_release_cleared": false,
+  "public_upload_authorized": false,
+  "dependency_or_runtime_behavior_changed": false
+}

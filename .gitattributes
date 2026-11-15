@@ -1,0 +1,13 @@
+
+# Preserve pinned third-party file bytes and integrity hashes on every platform.
+integrations/document_tools/upstream/** -text
+
+# F0 relocated package tools retain pinned upstream bytes.
+modelcrew/resources/document-tools/upstream/** -text
+
+# F0 src layout: preserve vendor hashes after the second relocation.
+src/modelcrew/resources/document-tools/upstream/** -text
+
+# Runtime resources and audit records bind exact bytes across Git checkouts.
+# Preserve existing LF/CRLF bytes; do not normalize content-addressed files.
+* -text

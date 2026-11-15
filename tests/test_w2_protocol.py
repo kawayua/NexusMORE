@@ -96,3 +96,13 @@ def test_native_receipt_length_is_the_hard_limit_and_old_versions_are_not_reinte
     with pytest.raises(ValidationError):p.compile_answer(raw,packet,refs)
     raw['checks'][0]['explanation']='x'*242;raw['protocol_version']='2.1.0'
     with pytest.raises(ValidationError):p.compile_answer(raw,packet,refs)
+
+
+def test_project_w2_guidance_survives_transport_projection(packet):
+    from modelcrew.hand_guidance import load_bundle, guidance_context
+    packet['nexusmore_guidance'] = guidance_context(load_bundle(), 'W2')
+    _, view, _ = p.prepare(packet)
+    assert view['nexusmore_guidance'] == packet['nexusmore_guidance']
+    assert view['nexusmore_guidance']['read_only']
+    view['nexusmore_guidance']['documents'].clear()
+    assert packet['nexusmore_guidance']['documents']

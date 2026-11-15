@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "source": "resources/paper",
+  "target": "src/modelcrew/resources/paper",
+  "purpose": "Project runtime resource or deployment recipe; original bytes retained, private fixtures excluded",
+  "files": [
+    {
+      "old_path": "resources/paper/chinese-modeling-policy.json",
+      "new_path": "src/modelcrew/resources/paper/chinese-modeling-policy.json",
+      "sha256": "6b95ed10ae065c8b3a2896df8bcc320463a08910125b28f1662bfdaf0280ea65",
+      "bytes": 2354
+    },
+    {
+      "old_path": "resources/paper/workflow.json",
+      "new_path": "src/modelcrew/resources/paper/workflow.json",
+      "sha256": "43637df8fa4c30f738e9e41cb2a6ed950b7f5727da64ce73ff0d5e8199a43698",
+      "bytes": 5859
+    },
+    {
+      "old_path": "resources/paper/writer-instructions.md",
+      "new_path": "src/modelcrew/resources/paper/writer-instructions.md",
+      "sha256": "6ce1810a35935eb006a2412820952438c78af34f5f8cceca90f4a9a33415c721",
+      "bytes": 7524
+    }
+  ],
+  "approval_rewritten": false
+}

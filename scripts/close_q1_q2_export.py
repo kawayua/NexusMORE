@@ -1,8 +1,9 @@
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,hashlib,zipfile
 from datetime import datetime,timezone
 root=Path(__file__).resolve().parents[1]
-base=root/'stage-e/runs/q1-q2-20261109-v1'
+base=asset_path(root,'stage-e/runs/q1-q2-20261109-v1')
 out=root/'output/paper/q1-q2-20261109-v1'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def save(p,v):p.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

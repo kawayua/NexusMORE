@@ -1,4 +1,5 @@
 """Real DB orchestration tests with explicitly synthetic provider/executor replies."""
+from modelcrew.project_assets import asset_path,local_history
 import json,uuid,copy
 from pathlib import Path
 import pytest
@@ -37,7 +38,7 @@ class Provider:
 
 @pytest.fixture
 def task(tmp_path):
-    c=json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8-sig'))
+    c=json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8-sig'))
     p=tmp_path/'input.txt';p.write_text('SYNTHETIC INPUT',encoding='utf-8')
     c['inputs']=[{'id':'input0','source_id':'statement','path':str(p),'sha256':sha_file(p),'role':'problem_statement'}]
     c['outputs']=[{'id':'result','path':'result.json','format':'json','fields':[{'name':'values','shape':[3],'unit':'1'}],'decimal_places':None}]
@@ -66,7 +67,13 @@ def execution(monkeypatch,tmp_path):
                 for fmt in ['png','pdf','svg']:
                     p=folder/f'f{i}.{fmt}'
                     if fmt=='png':Image.new('RGB',(8,8),(20*i,80,130)).save(p,dpi=(300,300))
-                    else:p.write_text('SYNTHETIC '+str(i),encoding='utf-8')
+                    elif fmt=='pdf':
+                        import fitz
+                        with fitz.open() as document:
+                            page=document.new_page(width=240,height=180)
+                            page.insert_text((30,60),'SYNTHETIC fixture '+str(i),fontsize=12)
+                            document.save(p,no_new_id=True)
+                    else:p.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="180"><text x="30" y="60">SYNTHETIC '+str(i)+'</text></svg>',encoding='utf-8')
                     files[fmt]={'path':p.name,'sha256':sha_file(p)}
                 figs.append({'id':f'f{i}','category':['raw','process','result'][i//3],'question_ids':['q1'],'title':'测试图','purpose':'测试证据','formal':True,'number':i+1,'files':files})
             (folder/'figure-catalog.json').write_text(json.dumps({'question_ids':['q1'],'evidence':row['payload']['binding'],'figures':figs}),encoding='utf-8')
@@ -106,7 +113,7 @@ def test_complete_runtime_preserves_both_business_and_writing_gates(task,executi
         st=w.hand_status(task,wid);assert not st['reviews']['can_export']
         row=hr.load(w,task,wid);f=hr.run_folder(row)
         kw={'decision':'approve','actor':'user','statement':'TEST_SIMULATED_USER_ONLY','reason':'SYNTHETIC TEST'}
-        w.hand_decision(task,wid,kind='manuscript',artifact_sha256=sha_file(ROOT/row['payload']['manuscript']),request_id='md',**kw)
+        w.hand_decision(task,wid,kind='manuscript',artifact_sha256=sha_file(asset_path(ROOT,row['payload']['manuscript'])),request_id='md',**kw)
         assert not w.hand_status(task,wid)['reviews']['can_export']
         result=w.hand_decision(task,wid,kind='figures',artifact_sha256=sha_file(f/'figure-catalog.json'),request_id='fig',**kw)
         assert result['phase']=='READY_FOR_E_EXPORT' and result['reviews']['can_export']
@@ -164,8 +171,8 @@ def test_execution_ambiguity_recovers_only_by_status(task,execution,monkeypatch)
 def test_changed_outputs_block_result_admission(task,execution):
     with Workflow() as w:
         rid=start(w,task)['run_id'];until(w,task,rid,Provider(),'READY_TO_ATTACH')
-        p=hr.load(w,task,rid)['payload'];output=hr.read(ROOT/p['full_packet'])['artifacts'][0]
-        (ROOT/output['path']).write_bytes(b'TAMPERED')
+        p=hr.load(w,task,rid)['payload'];output=hr.read(asset_path(ROOT,p['full_packet']))['artifacts'][0]
+        (asset_path(ROOT,output['path'])).write_bytes(b'TAMPERED')
         with pytest.raises(WorkflowError,match='changed'):w.advance_hand(task,rid)
         assert w.task(task)['result_revision']==0
 
@@ -197,7 +204,7 @@ def test_W1_failure_returns_to_writer_with_new_snapshot(task,execution):
         row=hr.load(w,task,wid)
         assert row['payload']['reviews']['W1-1']['snapshot_sha256']!=row['payload']['reviews']['W1-0']['snapshot_sha256']
         assert not w.hand_status(task,wid)['reviews']['can_export']
-        path=ROOT/row['payload']['manuscript']
+        path=asset_path(ROOT,row['payload']['manuscript'])
         w.hand_decision(task,wid,kind='manuscript',decision='reject',actor='user',statement='TEST_SIMULATED_USER_ONLY',reason='SYNTHETIC',artifact_sha256=sha_file(path),request_id='reject')
         assert w.hand_status(task,wid)['phase']=='NEEDS_WRITING_REVISION'
         assert w.start_hand(task,'writing',version=1,actor='TEST',request_id='new-writer-revision',guidance='SYNTHETIC user revision',figure_catalog=catalog)['phase']=='PLAN'
@@ -300,7 +307,7 @@ def test_writer_alias_returns_original_bytes_not_a_review_rewrite(task,execution
         until(w,task,wid,Alias(),'WAITING_MANUSCRIPT_AND_FIGURES')
         row=hr.load(w,task,wid);assert row['payload']['writer_response_field']=='manuscript_markdown'
         raw=hr.read(hr.run_folder(row)/'operations/draft-0/answer.json')['manuscript_markdown']
-        assert (ROOT/row['payload']['manuscript']).read_text(encoding='utf-8')==raw
+        assert (asset_path(ROOT,row['payload']['manuscript'])).read_text(encoding='utf-8')==raw
 
 @pytest.mark.parametrize('domain,expected',[('implementation','NEEDS_CODE_REVISION'),('explanation','NEEDS_RESULT_INTERPRETATION')])
 def test_W1_coding_issues_preserve_confirmed_execution(task,execution,domain,expected):
@@ -407,5 +414,176 @@ def test_cached_raw_writer_response_recovers_without_call_or_text_rewrite(task,e
         with pytest.raises(ModelCallError):w.advance_hand(task,wid,model=model)
         assert w.advance_hand(task,wid,model=model)['phase']=='WAITING_MANUSCRIPT_AND_FIGURES'
         row=hr.load(w,task,wid)
-        assert (ROOT/row['payload']['manuscript']).read_text(encoding='utf-8')==model.original and model.drafts==1
+        assert (asset_path(ROOT,row['payload']['manuscript'])).read_text(encoding='utf-8')==model.original and model.drafts==1
         assert not w.hand_status(task,wid)['reviews']['can_export']
+
+def test_p2_blocks_bad_last_pdf_page_in_unselected_candidate(task,execution,monkeypatch):
+    """All candidates are checked before dispatching the independent P2 call."""
+    import fitz
+    original=hr.trace_call
+    def trace(*args,**kwargs):
+        key,envelope=original(*args,**kwargs)
+        if envelope['status']=='ok' and 'full-' in envelope['data']['run_id']:
+            folder=execution[0]/'runs'/envelope['data']['run_id']/'artifacts'
+            catalog=json.loads((folder/'figure-catalog.json').read_text(encoding='utf-8'))
+            catalog['figures'][-1]['formal']=False
+            pdf=folder/'f8.pdf'
+            with fitz.open() as document:
+                for n in range(3):
+                    page=document.new_page(width=240,height=180)
+                    page.insert_text((30,60),'SYNTHETIC candidate page '+str(n+1),fontsize=3 if n==2 else 12)
+                pdf.write_bytes(document.tobytes(no_new_id=True))
+            catalog['figures'][-1]['files']['pdf']['sha256']=sha_file(pdf)
+            (folder/'figure-catalog.json').write_text(json.dumps(catalog),encoding='utf-8')
+            envelope['data']['artifacts']=[{'path':p.relative_to(execution[0]).as_posix(),'sha256':sha_file(p),'size_bytes':p.stat().st_size} for p in folder.iterdir()]
+        return key,envelope
+    monkeypatch.setattr(hr,'trace_call',trace)
+    model=Provider()
+    with Workflow() as w:
+        rid=start(w,task)['run_id']
+        until(w,task,rid,model,'REVIEW_P2')
+        state=w.advance_hand(task,rid,model=model)
+        assert state['phase']=='GENERATE_MINIMAL'
+        assert 'P2' not in [stage for stage,_ in model.calls]
+        assert not w.task(task)['result_revision']
+        check=hr.run_folder(hr.load(w,task,rid))/'P2-0-figure-check/figure-0009/pdf-check.json'
+        report=json.loads(check.read_text(encoding='utf-8'))
+        assert report['page_count']==3 and report['status']=='failed'
+        assert 'font_below_minimum' in report['pages'][-1]['findings']
+
+def test_interrupted_figure_check_recovers_without_code_retry(task,execution):
+    model=Provider()
+    with Workflow() as w:
+        rid=start(w,task)['run_id'];until(w,task,rid,model,'REVIEW_P2')
+        row=hr.load(w,task,rid);partial=hr.run_folder(row)/'P2-0-figure-check'
+        partial.mkdir();(partial/'interrupted.txt').write_text('SYNTHETIC crash before sealing',encoding='utf-8')
+        state=w.advance_hand(task,rid,model=model)
+        assert state['phase']=='READY_TO_ATTACH'
+        row=hr.load(w,task,rid)
+        assert row['payload']['retries']==0
+        assert 'figure-check-recovery-' in row['payload']['figure_check']
+        assert (partial/'interrupted.txt').is_file()
+        assert [stage for stage,_ in model.calls].count('P2')==1
+
+
+def repair_request(w, task, rid, name='repair-1'):
+    row=hr.load(w,task,rid)
+    source=hr.run_folder(row)/('operator-source-'+name+'.py')
+    source.write_text('print("SYNTHETIC MANUAL REPAIR; NOT A NUMERICAL SOLVER")\n',encoding='utf-8')
+    return dict(version=1,actor='TEST_OPERATOR',request_id=name,
+                statement='SYNTHETIC USER REQUEST: repair by points',rationale='SYNTHETIC implementation repair',
+                code_path=hr.rel(source),code_sha256=sha_file(source),
+                previous_code_sha256=sha_file(asset_path(ROOT,row['payload']['minimal_code_path'])))
+
+
+def exhaust_minimal(w, task):
+    class FailEveryP1(Provider):
+        def call(self, folder, stage, system, data, **kwargs):
+            if stage=='P1':self.fail_gate='P1'
+            return super().call(folder,stage,system,data,**kwargs)
+    rid=start(w,task)['run_id']
+    until(w,task,rid,FailEveryP1(),'NEEDS_HUMAN')
+    return rid
+
+
+def test_operator_repair_preserves_budget_reviews_and_independent_p1(task,execution):
+    with Workflow() as w:
+        rid=exhaust_minimal(w,task)
+        before=hr.load(w,task,rid)['payload'];old_reviews=copy.deepcopy(before['reviews'])
+        request=repair_request(w,task,rid)
+        assert w.repair_hand(task,rid,**request)['phase']=='EXECUTE_MINIMAL'
+        current=hr.load(w,task,rid)['payload']
+        assert current['attempt']==4 and current['retries']==3 and current['reviews']==old_reviews
+        identity=current['current_author'];assert identity.startswith('operator-repair-')
+        assert w.repair_hand(task,rid,**request)['phase']=='EXECUTE_MINIMAL'
+        assert len(hr.load(w,task,rid)['payload']['operator_repairs'])==1
+        with pytest.raises(WorkflowError,match='idempotency'):
+            w.repair_hand(task,rid,**{**request,'rationale':'different'})
+        reviewer=Provider()
+        assert w.advance_hand(task,rid,model=reviewer)['phase']=='REVIEW_P1'
+        assert w.advance_hand(task,rid,model=reviewer)['phase']=='GENERATE_FULL'
+        after=hr.load(w,task,rid)['payload']
+        assert after['retries']==3 and after['reviews']['P1-4']['status']=='PASS'
+        assert all(after['reviews'][k]==v for k,v in old_reviews.items())
+        op=after['ops']['P1-4'];assert op['call_id']!=identity
+        assert not w.task(task)['result_revision'] and not w.task(task)['result_approved']
+        assert [stage for stage,_ in reviewer.calls]==['P1']  # No fake Coder/provider generation.
+
+
+def test_failed_manual_repair_cannot_reopen_automatic_budget(task,execution):
+    with Workflow() as w:
+        rid=exhaust_minimal(w,task);request=repair_request(w,task,rid)
+        w.repair_hand(task,rid,**request)
+        w.advance_hand(task,rid,model=Provider())
+        assert w.advance_hand(task,rid,model=Provider(fail_gate='P1'))['phase']=='NEEDS_HUMAN'
+        p=hr.load(w,task,rid)['payload'];assert p['retries']==3 and p['attempt']==4
+        assert w.advance_hand(task,rid,model=Provider())['phase']=='NEEDS_HUMAN'
+
+
+@pytest.mark.parametrize('field,value,message',[
+    ('version',2,'exhausted'),('previous_code_sha256','0'*64,'previous code hash'),
+    ('code_sha256','0'*64,'code hash')])
+def test_operator_repair_rejects_wrong_bindings(task,execution,field,value,message):
+    with Workflow() as w:
+        rid=exhaust_minimal(w,task);request=repair_request(w,task,rid)
+        with pytest.raises(WorkflowError,match=message):w.repair_hand(task,rid,**{**request,field:value})
+        assert w.hand_status(task,rid)['phase']=='NEEDS_HUMAN'
+        assert 'operator_repairs' not in hr.load(w,task,rid)['payload']
+
+
+def test_operator_repair_rejects_unsafe_phases_and_model_failure(task,execution):
+    with Workflow() as w:
+        rid=exhaust_minimal(w,task);request=repair_request(w,task,rid)
+        for phase,domain in [('PROVIDER_UNKNOWN','infrastructure'),('NEEDS_MODEL_REVISION','model'),('NEEDS_HUMAN','review_output')]:
+            row=hr.load(w,task,rid);row['payload']['failure_domain']=domain;hr.save(w,row,phase)
+            with pytest.raises(WorkflowError,match='exhausted'):w.repair_hand(task,rid,**request)
+
+
+def test_http_operator_repair_route_and_input_validation(task,execution):
+    from modelcrew.api import create_app
+    with Workflow() as w:
+        rid=exhaust_minimal(w,task);request=repair_request(w,task,rid)
+    with TestClient(create_app()) as client:
+        url=f'/tasks/{task}/hand-runs/{rid}/repair'
+        assert client.post(url,json={**request,'unapproved_extra':True}).status_code==422
+        assert client.post(url,json=request).json()['phase']=='EXECUTE_MINIMAL'
+        assert client.post(url,json=request).status_code==200
+
+
+def test_full_operator_repair_preserves_p1_requires_new_execution_replica_p2(task,execution):
+    class FailEveryFull(Provider):
+        def call(self,folder,stage,system,data,**kwargs):
+            if stage=='P2':self.fail_gate='P2'
+            return super().call(folder,stage,system,data,**kwargs)
+    with Workflow() as w:
+        rid=start(w,task)['run_id'];until(w,task,rid,FailEveryFull(),'NEEDS_HUMAN')
+        row=hr.load(w,task,rid);p=row['payload'];old_reviews=copy.deepcopy(p['reviews'])
+        accepted=copy.deepcopy(p['accepted_reviews']);old_full=p['full_packet'];old_jobs=set(p['jobs'])
+        request=repair_request(w,task,rid,'full-repair-test')
+        request.update(stage='full',previous_code_sha256=sha_file(asset_path(ROOT,p['full_code_path'])))
+        with pytest.raises(WorkflowError,match='previous code hash'):
+            w.repair_hand(task,rid,**{**request,'previous_code_sha256':'0'*64})
+        with pytest.raises(WorkflowError,match='minimal coding'):
+            w.repair_hand(task,rid,**{**request,'stage':'minimal'})
+        assert w.hand_status(task,rid)['phase']=='NEEDS_HUMAN'
+        assert w.repair_hand(task,rid,**request)['phase']=='EXECUTE_FULL'
+        assert w.repair_hand(task,rid,**request)['phase']=='EXECUTE_FULL'
+        after=hr.load(w,task,rid)['payload']
+        assert after['retries']==3 and after['attempt']==4
+        assert after['accepted_reviews']=={'P1':accepted['P1']} and after['reviews']==old_reviews
+        assert set(after['jobs'])==old_jobs and old_full in after['sealed'] and not after.get('full_packet')
+        provider=Provider();until(w,task,rid,provider,'ATTACHED')
+        after=hr.load(w,task,rid)['payload']
+        assert [stage for stage,_ in provider.calls]==['P2']
+        assert after['accepted_reviews']['P1']==accepted['P1']
+        assert after['accepted_reviews']['P2']=='P2-4'
+        assert 'full-4' in after['jobs'] and 'full-4-replica' in after['jobs']
+        assert not w.task(task)['result_approved']
+
+
+def test_full_operator_repair_rejects_missing_p1_and_previous_hash(task,execution):
+    with Workflow() as w:
+        rid=exhaust_minimal(w,task);req=repair_request(w,task,rid,'full-invalid');req['stage']='full'
+        with pytest.raises(WorkflowError,match='accepted independent P1'):
+            w.repair_hand(task,rid,**req)
+        assert not hr.load(w,task,rid)['payload'].get('operator_repairs')

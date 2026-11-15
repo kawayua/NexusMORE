@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "modelcrew-agent-plan.md",
+  "target": "docs/history/modelcrew-agent-plan.md",
+  "purpose": "F0 preserve original plan bytes; current navigation moves to docs/roadmap.md",
+  "files": [
+    {
+      "old_path": "modelcrew-agent-plan.md",
+      "new_path": "docs/history/modelcrew-agent-plan.md",
+      "sha256": "526490e7d402e57eba45ed9d44e98b4c5db261538a8d35d7ea365c5812d2997e",
+      "bytes": 57304
+    }
+  ],
+  "approval_rewritten": false
+}

@@ -1,0 +1,9 @@
+# Controlled Python numerical/figure executor; historical images remain unchanged.
+ARG BASE_IMAGE=modelcrew-reference:py313
+FROM ${BASE_IMAGE}
+USER root
+RUN python -m pip install --no-cache-dir matplotlib==3.10.3 Pillow==12.2.0 \
+    && python -m pip check
+ENV MPLCONFIGDIR=/tmp/matplotlib XDG_CACHE_HOME=/tmp/cache
+USER 10001:10001
+WORKDIR /work

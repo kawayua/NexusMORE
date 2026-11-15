@@ -1,4 +1,5 @@
 """Validator rejection tests using copies of the actual v2 artifacts, never changing originals."""
+from modelcrew.project_assets import asset_path,local_history
 import json,shutil,uuid
 from pathlib import Path
 import numpy as np
@@ -9,9 +10,9 @@ from modelcrew.solver_validation import validate_run,ResultError
 @pytest.fixture
 def solver_copy(request):
     if not request.config.getoption('--integration'):pytest.skip('Requires completed real v2 artifacts')
-    source=ROOT/'stage-b/runs/solver-v2-20261104T131332959555Z'
+    source=asset_path(ROOT,'stage-b/runs/solver-v2-20261104T131332959555Z')
     if not (source/'output/checks.json').exists():pytest.skip('Real solver evidence not present')
-    dest=ROOT/'stage-b/runs'/('validator-test-'+uuid.uuid4().hex);dest.mkdir()
+    dest=asset_path(ROOT,'stage-b/runs')/('validator-test-'+uuid.uuid4().hex);dest.mkdir()
     files=['contract.json','generated_solver.py','review.json','execution.json','container-inspect.json','output/checks.json','output/result1.xlsx','output/trajectories.npz','fault-probes/fault-probes.json','fault-probe-execution.json','metadata.json']
     for name in files:
         p=dest/name;p.parent.mkdir(exist_ok=True,parents=True);shutil.copyfile(source/name,p)

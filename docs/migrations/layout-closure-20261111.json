@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-11",
+  "milestone": "F0",
+  "status": "closed",
+  "scope": "repository_structure_naming_resource_location_and_historical_path_migration",
+  "authorization": "User explicitly requested F0 closure and entry into F1; new work follows functional naming rules",
+  "overall_f0_accepted": true,
+  "public_release_approved": false,
+  "prior_receipt": {
+    "path": "docs/migrations/finalization-execution-20261111.json",
+    "sha256": "ac8ca4f71c64f2519a87110851b47165c03269b4e29a484d11f7ded3968d6a24",
+    "unchanged": true,
+    "historical_overall_f0_accepted": false
+  },
+  "closure_interpretation": "New dated milestone decision; prior batch acceptance flags and historical approvals remain unchanged. Layout checker does not approve milestones.",
+  "rechecks": {
+    "final_layout": {
+      "status": "passed",
+      "issues": 0
+    },
+    "packaged_resource_identity": {
+      "status": "passed",
+      "files": 167
+    },
+    "registered_relocations": {
+      "status": "passed",
+      "records": 44,
+      "mapping_entries": 65666,
+      "links_metadata_only": 1
+    },
+    "new_review_and_layout_tests": {
+      "passed": 7,
+      "warning": "pytest cache write permission; tests passed"
+    },
+    "diff_whitespace": "passed"
+  },
+  "prior_evidence_reused": {
+    "full_regression": {
+      "passed": 604,
+      "skipped": 141
+    },
+    "database_runtime_regression": {
+      "passed": 46,
+      "new_database_run_this_closure": false
+    },
+    "historical_assembly": {
+      "files": 827,
+      "prior_user_approvals_preserved": true
+    }
+  },
+  "follow_up": [
+    {
+      "scope": "release scope and complete source disposition",
+      "milestones": [
+        "F1"
+      ]
+    },
+    {
+      "scope": "full authorized built-in knowledge and installation",
+      "milestones": [
+        "F2",
+        "F5"
+      ]
+    },
+    {
+      "scope": "automatic routing and controlled tools",
+      "milestones": [
+        "F6"
+      ]
+    },
+    {
+      "scope": "clean environment initialization and full workflow",
+      "milestones": [
+        "F3",
+        "F4",
+        "H2"
+      ]
+    }
+  ],
+  "next_milestone": {
+    "name": "F1",
+    "status": "in_progress",
+    "scope_document": "docs/release-scope.md",
+    "source_disposition": "docs/release/resource-disposition-20261111.json"
+  }
+}

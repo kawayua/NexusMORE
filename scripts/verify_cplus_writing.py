@@ -1,4 +1,5 @@
 """Replay C+ Chinese-paper checks without regenerating selected figures or approvals."""
+from modelcrew.project_assets import asset_path
 import argparse,json,shutil,subprocess,sys
 from pathlib import Path
 from datetime import datetime,timezone
@@ -27,11 +28,11 @@ def verify(source,output,qa_tools):
             if not target.exists():shutil.copyfile(src,target)
     write(output/'writer-context.json',context)
     # Read the selected numerical section, not all seven algorithm documents.
-    selected=ROOT/'resources/algorithms/numerical-geometry.md'
+    selected=asset_path(ROOT,'resources/algorithms/numerical-geometry.md')
     write(output/'selected-source-context.json',{'index_read_first':True,'path':str(selected.relative_to(ROOT)),'sha256':sha(selected),'text':selected.read_text(encoding='utf-8'),'purpose':'Review current geometry/root-method premises, not propose a new model.'})
     evidence=catalog['evidence'];data_path=inside(ROOT,evidence['path'])
     if sha(data_path)!=evidence['sha256']:raise ValueError('Historical trajectory hash changed')
-    contract_path=ROOT/'stage-b-plus/examples/contract-v2-snapshot.json';contract=json.loads(contract_path.read_text(encoding='utf-8'));pars={p['id']:p['value'] for p in contract['parameters']}
+    contract_path=asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json');contract=json.loads(contract_path.read_text(encoding='utf-8'));pars={p['id']:p['value'] for p in contract['parameters']}
     with np.load(data_path,allow_pickle=False) as arrays:
         times=arrays['time_s'];positions=arrays['position_m'];velocity=arrays['velocity_m_s']
         if times.shape!=(301,) or positions.shape!=(301,224,2) or velocity.shape!=positions.shape:raise ValueError('Unexpected data shape')

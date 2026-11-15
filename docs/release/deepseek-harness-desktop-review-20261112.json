@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-12",
+  "status": "installed_identity_and_static_transport_verified_not_live_acceptance",
+  "local_installation": "D:\\deepseekharness",
+  "package": "@deepseek-ai/dsh-desktop",
+  "version": "0.2.2-rc.1",
+  "build_commit": "c59d10aff167ad7eefead4b3a9082fb57c8fbfe8",
+  "update_channel": "nightly",
+  "desktop_wrapper": "Electron",
+  "electron_version_file": "44.7.0",
+  "runtime_versions": {
+    "schemaVersion": 1,
+    "node": "24.21.0",
+    "pnpm": "11.28.5"
+  },
+  "mcp_transports_static": [
+    "stdio",
+    "streamable-http"
+  ],
+  "node_runtime": "24.21.0",
+  "bundled_python_minor": "3.12 (observed cpython-312 library files)",
+  "nexusmore_python_policy": "launch separately configured CPython 3.13 executable; do not use bundled 3.12",
+  "live_connection_verified": false,
+  "trusted_user_confirmation_verified": false,
+  "external_installation_modified": false,
+  "repository_url_verified": false,
+  "asar_parts": [
+    {
+      "path": "package.json",
+      "sha256": "cbf5dc8ff3e6318cc61d966010e427aefa2042a1371155596de7f5af53bd3c64"
+    },
+    {
+      "path": "dsh/package.json",
+      "sha256": "a7dd381446bc154d560bf4ccb5d4377f9a65ccf62f667f83621e81b749fb878f"
+    },
+    {
+      "path": "dsh/node_modules/@deepseek-ai/dsh-mcp-client/package.json",
+      "sha256": "51e2e04fd599b43306b88f42fbb2f5efb8f67d2be5223f29bf5f0fe82a8ad7f1"
+    },
+    {
+      "path": "dsh/node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js",
+      "sha256": "64dfc9127a47d9d453d72022b47d3b8d8a5c82cad756ac1114b09faf1a956120"
+    }
+  ]
+}

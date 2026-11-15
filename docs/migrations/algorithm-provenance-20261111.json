@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "source": "resources/algorithms/provenance.json",
+  "target": "archive/research/knowledge/algorithm-provenance.json",
+  "purpose": "Local reference provenance or private historical fixture; excluded from wheel, original bytes retained",
+  "files": [
+    {
+      "old_path": "resources/algorithms/provenance.json",
+      "new_path": "archive/research/knowledge/algorithm-provenance.json",
+      "sha256": "2f1dd1093d040ecf7aba99e7179820226cb666f15b0352ddb8c09124f89ab1ad",
+      "bytes": 4456
+    }
+  ],
+  "approval_rewritten": false
+}

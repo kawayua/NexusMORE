@@ -1,0 +1,1017 @@
+{
+  "schema_version": "1.0.0",
+  "source_repository": "https://github.com/anthropics/skills",
+  "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+  "license": "Apache-2.0",
+  "acquisition": "fresh_official_download_not_local_modified_copy",
+  "files": [
+    {
+      "path": "docx/LICENSE.txt",
+      "git_blob": "7a4a3ea2424c09fbe48d455aed1eaa94d9124835",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/LICENSE.txt",
+      "bytes": 11357,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/SKILL.md",
+      "git_blob": "acc50ea0729fc4b22319b25f1277d0db6f3b429a",
+      "sha256": "9e8202e2524a9ed87da67a5b3eaa76e8e6038f4171f8251ad6aaefd34e82a3df",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/SKILL.md",
+      "bytes": 6897,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/__init__.py",
+      "git_blob": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/__init__.py",
+      "bytes": 1,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/accept_changes.py",
+      "git_blob": "8e363161915d3720409bb8b6ef9bc4ade33b64e4",
+      "sha256": "0c991d2bc7304a1248e9f3bf9b1498f0b6e76641fc457e7cbd73c99b4eef3a74",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/accept_changes.py",
+      "bytes": 4051,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/comment.py",
+      "git_blob": "46ed5f52eb639934a8ead383976eecc2a6867fa7",
+      "sha256": "37d116e5f56bb142b208c6c6a4bbcf960495abf470ddb7c6675ccfac864ba3d7",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/comment.py",
+      "bytes": 14054,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/merge_runs.py",
+      "git_blob": "4c7c1bf261b1ec3febe4112e30f46c2aa9f4a141",
+      "sha256": "3ab367fd7fba4647943d0aa5e65203b15458551410f5ffc821d902616a4b9f40",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/merge_runs.py",
+      "bytes": 9398,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/helpers/__init__.py",
+      "git_blob": "d3c5817c7e50b23bdd82032c8f89fed497bce9fa",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/helpers/__init__.py",
+      "bytes": 3358,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/helpers/pptx_chart.py",
+      "git_blob": "209cb7c58b91b90ee685c082f7e20be21a1a6686",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/helpers/pptx_chart.py",
+      "bytes": 5862,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/helpers/pptx_slide.py",
+      "git_blob": "22f9aee0ff6c4797fa344f064d7cd6a1ab96b05b",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/helpers/pptx_slide.py",
+      "bytes": 1675,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/helpers/pptx_theme.py",
+      "git_blob": "84466201cf22ca237cd640c80a08e9e2cabcce90",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/helpers/pptx_theme.py",
+      "bytes": 3510,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "git_blob": "6454ef9a94d52512e4905df61280a3fd1dafc0a4",
+      "sha256": "41b93bd8857cc68b1e43be2806a872d736a9bdd6566900062d8fdb57d7bbb354",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "bytes": 74984,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "git_blob": "afa4f463e3140a3f626c73f7966d689270d89b2c",
+      "sha256": "3fd0586f2637b98bb9886f0e0b67d89e1cc987c2d158cc7deb5f5b9890ced412",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "bytes": 6956,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "git_blob": "64e66b8abd496d2e450c08110e40607e90b3fe13",
+      "sha256": "29b254ee0d10414a8504b5a08149c7baec35a60d5ff607d6b3f492aa36815f40",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "bytes": 51302,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "git_blob": "687eea8297caa298581aa06c40ca40ef7b8a58bc",
+      "sha256": "5cb76dabd8b97d1e9308a1700b90c20139be4d50792d21a7f09789f5cccd6026",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "bytes": 624,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "git_blob": "6ac81b06b7a3ef916d677953084ae225504a77bc",
+      "sha256": "5375417f0f5394b8dd1a7035b9679151f19a6b65df309dec10cfb4a420cb00e9",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "bytes": 152039,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "git_blob": "1dbf05140d07fa014f18a5630acc0613d8058e52",
+      "sha256": "5d389d42befbebd91945d620242347caecd3367f9a3a7cf8d97949507ae1f53c",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "bytes": 1231,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "git_blob": "f1af17db4e83b1c40152577eca4a575ab63a1ca7",
+      "sha256": "b4532b6d258832953fbb3ee4c711f4fe25d3faf46a10644b2505f17010d01e88",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "bytes": 8862,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "git_blob": "0a185ab6ed0c2dd9b383a403c56c909bbab8b9a1",
+      "sha256": "bdad416b096b61d37b71603b2c949484f9070c830bdaeba93bf35e15c8900614",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "bytes": 14795,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "git_blob": "14ef488865f3ae6150776220ebbcf4788f89066a",
+      "sha256": "d173c3e5d61e42e2e3a97226c632fd2ab7cc481fc4e492365b87024ab546daff",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "bytes": 83612,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "git_blob": "c20f3bf14720d34247e8e1302dc3c40f7b832099",
+      "sha256": "3c6709101c6aaa82888df5d8795c33f9e857196790eb320d9194e64be2b6bdd8",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "bytes": 1269,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "git_blob": "ac60252262534e7b87523fd04d252f085b38bec0",
+      "sha256": "0b364451dc36a48dd6dae0f3b6ada05fd9b71e5208211f8ee5537d7e51a587e2",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "bytes": 7328,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "git_blob": "424b8ba8d1f9ebb22ba72cdd174c8a2ade0ecf89",
+      "sha256": "e2abacbb9a55ce1365f8961bc1b1395bbc811e512b111000d8c333f98458dece",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "bytes": 6382,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "git_blob": "2bddce29214882eb9fdf2be8a50ed5bdd0c69dfc",
+      "sha256": "0ef4bb354ff44b923564c4ddbdda5987919d220225129ec94614a618ceafc281",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "bytes": 1248,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "git_blob": "8a8c18ba2d5caa7e60a365e77ae0d1b872141bb0",
+      "sha256": "0d103b99a4a8652f8871552a69d42d2a3760ac6a5e3ef02d979c4273257ff6a4",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "bytes": 880,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "git_blob": "5c42706a0d53c5e8b96818d9c29a292d1504f720",
+      "sha256": "9c085407751b9061c1f996f6c39ce58451be22a8d334f09175f0e89e42736285",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "bytes": 2608,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "git_blob": "853c341c87feb51e10d757aea28b4185ae4c2731",
+      "sha256": "bc92e36ccd233722d4c5869bec71ddc7b12e2df56059942cce5a39065cc9c368",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "bytes": 3507,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "git_blob": "da835ee82d5cc31be9fa9792512930f7ae3fb5ce",
+      "sha256": "7b5b7413e2c895b1e148e82e292a117d53c7ec65b0696c992edca57b61b4a74b",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "bytes": 7507,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "git_blob": "87ad2658fa51cb4c172f82d0fdf33a492a750eca",
+      "sha256": "3213ef1631606250f5010b42cad7ef716f7c59426367798e33c374c0ec391d3a",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "bytes": 23313,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "git_blob": "9e86f1b2be0d431cd3c250ddeaf4efabdbcb088b",
+      "sha256": "12264f3c03d738311cd9237d212f1c07479e70f0cbe1ae725d29b36539aef637",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "bytes": 1367,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "git_blob": "d0be42e757f3cce533c1c80770239f0097d3de6b",
+      "sha256": "beffeed56945c22a77440122c8bdc426f3fcbe7f3b12ea0976c770d1f8d54578",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "bytes": 242277,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "git_blob": "8821dd183caf9c8c3b809e0e2d9e0df56c4e9ed9",
+      "sha256": "f5ee623b08b6a66935e5aced2f5d8ad0fc71bf9e8e833cd490150c0fa94b8763",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "bytes": 26148,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "git_blob": "ca2575c753be78cdaa96de56b3ff8770173c324d",
+      "sha256": "585bedc1313b40888dcc544cb74cd939a105ee674f3b1d3aa1cc6d34f70ff155",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "bytes": 25279,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "git_blob": "dd079e603f5770176212776a1d565b108875cf64",
+      "sha256": "133c9f64a5c5d573b78d0a474122b22506d8eadb5e063f67cdbbb8fa2f161d0e",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "bytes": 535,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "git_blob": "3dd6cf625a740398c2a4dc8abbe18e25e0ac5e9f",
+      "sha256": "6bdeb169c3717eb01108853bd9fc5a3750fb1fa5b82abbdd854d49855a40f519",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "bytes": 5712,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "git_blob": "f1041e34ef365926f5670b896f5bb23e553ac36d",
+      "sha256": "475dcae1e7d1ea46232db6f8481040c15e53a52a3c256831d3df204212b0e831",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "bytes": 4010,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "git_blob": "9c5b7a633411c2313ce839f748e4623bb0a70efe",
+      "sha256": "c2dd9f61f892deae6acd8d20771ea79b12018af25f3bf8d06639c8542d218cfd",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "bytes": 171367,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "git_blob": "0f13678d80a762375223f060e23b56c7b2eac89e",
+      "sha256": "a539aa2fb154fa50e0f5cc97e6ad7cbc66f8ec3e3746f61ec6a8b0d5d15ecdf2",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "bytes": 4646,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "git_blob": "a6de9d2733d3f0eea12ae87b24122495df1f0928",
+      "sha256": "9e0b7209fc69ab11987900404540969976000c5ebe4d4f58c43dc3842886bf3a",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "bytes": 1963,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "git_blob": "10e978b661fc291cbeea9ab0c248601cf216f96d",
+      "sha256": "451958454e8588dfc7cd945981ada142ca06ff3307937f5700df059c2b307fa8",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "bytes": 2515,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "git_blob": "4248bf7a39c793c9f319bae7d09f92983efe5368",
+      "sha256": "6de111e11403f7cd49027400755bae0ea1cabef2815f09bd40a24f0017613b24",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "bytes": 2856,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "git_blob": "56497467120b52b742756379959d4b2536be6df7",
+      "sha256": "f565adfef5a502044abc3a9153e157edc25af78304d335994afb958874b15e26",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "bytes": 1344,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/mce/mc.xsd",
+      "git_blob": "ef725457cf39116672e285d021be69b7ad022574",
+      "sha256": "3a37e461ecf5a8670fdec34029703401f8728ab9c96ec1739a6ae58d55212413",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/mce/mc.xsd",
+      "bytes": 3127,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "git_blob": "f65f777730d82162f4248f03c703b1b85fda5fe2",
+      "sha256": "568b26ee156cb9549aa439ca2158965f77b7c1602b7e0316f40ac6cf586e35f2",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "bytes": 26549,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "git_blob": "6b00755a9a8733f0fb171a47b25d0d7b4c70dee8",
+      "sha256": "0fa75578a000439a7988ba0c59fdc69f774bbd416cbacc14d07125b3f686cb74",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "bytes": 3745,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "git_blob": "f321d333a5e6ef98cbdfeeeaa334923e4cfc8a6c",
+      "sha256": "be0ff793a22dd31384650c3a4da14c2fa8062751c2e97b0e5ee852bda13c60ad",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "bytes": 901,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "git_blob": "364c6a9b8df6e252bb5ae39e2ca031fcbfc4e8a5",
+      "sha256": "fddc2b880cabb9005aebbc7e783e53c19fec1c03df7d0e2f2076a33a0fdfd081",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "bytes": 1778,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "git_blob": "fed9d15b7f504e14ac82793d79db2d7ad83d56ed",
+      "sha256": "127ca209fa73d7cb708449cb355c871867948a96e4a74f7bf5811ef62d17991d",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "bytes": 1002,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "git_blob": "680cf15400cd57ce2bf17a58ecd29caa0d8a8422",
+      "sha256": "842e7163409c8d74f4d7088a8bc99500d80bc75332681a0980055b08f374a604",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "bytes": 600,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "git_blob": "89ada90837b2db3f3d453212ae426520acedbbea",
+      "sha256": "16f6f8072249f431370723c2cd8974672e0d9c897e00e97dd918079df934871b",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "bytes": 745,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/soffice.py",
+      "git_blob": "0b4c99deca54013c550458c9244ee63eea748dca",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/soffice.py",
+      "bytes": 5927,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/validate.py",
+      "git_blob": "29ca186a12e5c102702029ab9e51e6c3b71b1403",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/validate.py",
+      "bytes": 6142,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/validators/__init__.py",
+      "git_blob": "db092ece7e21de98f87bd81471578259a1bc642f",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/validators/__init__.py",
+      "bytes": 336,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/validators/base.py",
+      "git_blob": "33fc97bbe351949f9a8bd88998c78f81cd842c6a",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/validators/base.py",
+      "bytes": 33756,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/validators/docx.py",
+      "git_blob": "b18149945a7cf7ebd77c14655eb74d89baca3a00",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/validators/docx.py",
+      "bytes": 17482,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/validators/pptx.py",
+      "git_blob": "318f0e61483972fb08e02be39c94331dba46445e",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/validators/pptx.py",
+      "bytes": 15966,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/office/validators/redlining.py",
+      "git_blob": "4185c51f4f10eeaf3227168e440ed378ce120ec6",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/office/validators/redlining.py",
+      "bytes": 11231,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/templates/comments.xml",
+      "git_blob": "cd01a7d7155f9a78cf3d11470e2ce2b5ccdac640",
+      "sha256": "a08ba83ee8790ac9e3dc61921f4988f19edd7e06ac09d6f1897a877c1581818d",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/templates/comments.xml",
+      "bytes": 2603,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/templates/commentsExtended.xml",
+      "git_blob": "411003cc485356c560e29687ca359d64cd89d4b4",
+      "sha256": "544eeecfeceed4b468fff163cd9c366d33641c8b8ab691ce002576197846afe8",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/templates/commentsExtended.xml",
+      "bytes": 2611,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/templates/commentsExtensible.xml",
+      "git_blob": "f5572d710826dd7a1f455af7487e2157ef01ada0",
+      "sha256": "bad10b3283e6ad6e7ef6d1ca5169683721ed690ee331282c65df04017e080631",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/templates/commentsExtensible.xml",
+      "bytes": 2707,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/templates/commentsIds.xml",
+      "git_blob": "32f1629f2a8bb9aafebb0699349d0d799edce9f3",
+      "sha256": "db20f9616e004ec42ef736e80c2384e45db0f8d1194d31dc8b37c7d6ecdd6420",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/templates/commentsIds.xml",
+      "bytes": 2619,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "docx/scripts/templates/people.xml",
+      "git_blob": "3803d2de0faa635687a48947b52ab98b9655f631",
+      "sha256": "056f63aa1197fd8c9dda980c9f1b9ff016fd5fa4a462df8aec5f384f39d23e37",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx/scripts/templates/people.xml",
+      "bytes": 115,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/LICENSE.txt",
+      "git_blob": "7a4a3ea2424c09fbe48d455aed1eaa94d9124835",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/LICENSE.txt",
+      "bytes": 11357,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/SKILL.md",
+      "git_blob": "9f606f1cd68dcab9dabb75b548e90c1de028b8a2",
+      "sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/SKILL.md",
+      "bytes": 8058,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/forms.md",
+      "git_blob": "6e7e1e0d9e6ae17215db3e130aea3c3c546487e6",
+      "sha256": "9530b3f57034792e0242a3abfe8b3c296466329551916f2ff6c5a70db78f7e44",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/forms.md",
+      "bytes": 11854,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/reference.md",
+      "git_blob": "41400bf4fc67f15fb062d43695ec92f078226023",
+      "sha256": "03a5f964f8abecbbe156f363356e927e864d7ee964f1012c84ee1bfc8acbeb95",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/reference.md",
+      "bytes": 16692,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/check_bounding_boxes.py",
+      "git_blob": "2cc5e348f359b7aa7179e6a26772dacfdbbeba53",
+      "sha256": "0ced522402dd7b3c82a0be9518cf4e485fa9cc0467d7beab6ddb04cb36fcc3e1",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/check_bounding_boxes.py",
+      "bytes": 2774,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/check_fillable_fields.py",
+      "git_blob": "36dfb9513e2f54e051820b58c3cdd1f09bc6ff37",
+      "sha256": "1fe10b9980a5493c9bbec8c20630c603eaa475b45403751c08f26738736647b8",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/check_fillable_fields.py",
+      "bytes": 268,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/convert_pdf_to_images.py",
+      "git_blob": "7939cef56c1220dd9dd0d04ec9594b2fe089ee74",
+      "sha256": "7f58e292a67e18a8ff000d30bad2469389546731f7e8a698cc1d0aed001ea15d",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/convert_pdf_to_images.py",
+      "bytes": 1008,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/create_validation_image.py",
+      "git_blob": "10eadd8124b1f94f9b1a78708c2d947a3f6773e7",
+      "sha256": "8fa9fd7962c9f940045b81cf6b991e7c1057c1838e3f9cc6d305007a222ffebf",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/create_validation_image.py",
+      "bytes": 1258,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/extract_form_field_info.py",
+      "git_blob": "64cd4703a4af80bf6abe16f4c3065d8abd55d173",
+      "sha256": "bb235b36f497bbb1c7c6821cecf527bbba7213520de11219da99f7b13a38c109",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/extract_form_field_info.py",
+      "bytes": 4300,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/extract_form_structure.py",
+      "git_blob": "f219e7d5b5e30616b2259abb924253afd0240aee",
+      "sha256": "6814e3fe8f78c2b16d766c132b5a727ff7a31b71d76a7d46bd6e40fe50bc97c5",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/extract_form_structure.py",
+      "bytes": 3945,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/fill_fillable_fields.py",
+      "git_blob": "51c2600f3895723cac15ec3ffcd8a482e42f95d7",
+      "sha256": "d140872c2e92e41b1e05370ae8d270c5b7f5ebdf55d9905f03bc974a9c708ff5",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/fill_fillable_fields.py",
+      "bytes": 3819,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "pdf/scripts/fill_pdf_form_with_annotations.py",
+      "git_blob": "b430069fd016cff11560d0f2b95c63074736e5e4",
+      "sha256": "8a56e063a49ed53c0b0e1d312ecf8023af76816ed139486ec3b539873de202fd",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "bytes": 3235,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/LICENSE.txt",
+      "git_blob": "7a4a3ea2424c09fbe48d455aed1eaa94d9124835",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/LICENSE.txt",
+      "bytes": 11357,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/SKILL.md",
+      "git_blob": "cc347203f2247b009b8ea34574bccfa62fce3669",
+      "sha256": "caa1e1c29cf974c8d874bf3d0a70838445e7342b570f856ddb3e4a21ef7c7e8b",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/SKILL.md",
+      "bytes": 8584,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/helpers/__init__.py",
+      "git_blob": "d3c5817c7e50b23bdd82032c8f89fed497bce9fa",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/helpers/__init__.py",
+      "bytes": 3358,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/helpers/pptx_chart.py",
+      "git_blob": "209cb7c58b91b90ee685c082f7e20be21a1a6686",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/helpers/pptx_chart.py",
+      "bytes": 5862,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/helpers/pptx_slide.py",
+      "git_blob": "22f9aee0ff6c4797fa344f064d7cd6a1ab96b05b",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/helpers/pptx_slide.py",
+      "bytes": 1675,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/helpers/pptx_theme.py",
+      "git_blob": "84466201cf22ca237cd640c80a08e9e2cabcce90",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/helpers/pptx_theme.py",
+      "bytes": 3510,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "git_blob": "6454ef9a94d52512e4905df61280a3fd1dafc0a4",
+      "sha256": "41b93bd8857cc68b1e43be2806a872d736a9bdd6566900062d8fdb57d7bbb354",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "bytes": 74984,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "git_blob": "afa4f463e3140a3f626c73f7966d689270d89b2c",
+      "sha256": "3fd0586f2637b98bb9886f0e0b67d89e1cc987c2d158cc7deb5f5b9890ced412",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "bytes": 6956,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "git_blob": "64e66b8abd496d2e450c08110e40607e90b3fe13",
+      "sha256": "29b254ee0d10414a8504b5a08149c7baec35a60d5ff607d6b3f492aa36815f40",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "bytes": 51302,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "git_blob": "687eea8297caa298581aa06c40ca40ef7b8a58bc",
+      "sha256": "5cb76dabd8b97d1e9308a1700b90c20139be4d50792d21a7f09789f5cccd6026",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "bytes": 624,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "git_blob": "6ac81b06b7a3ef916d677953084ae225504a77bc",
+      "sha256": "5375417f0f5394b8dd1a7035b9679151f19a6b65df309dec10cfb4a420cb00e9",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "bytes": 152039,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "git_blob": "1dbf05140d07fa014f18a5630acc0613d8058e52",
+      "sha256": "5d389d42befbebd91945d620242347caecd3367f9a3a7cf8d97949507ae1f53c",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "bytes": 1231,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "git_blob": "f1af17db4e83b1c40152577eca4a575ab63a1ca7",
+      "sha256": "b4532b6d258832953fbb3ee4c711f4fe25d3faf46a10644b2505f17010d01e88",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "bytes": 8862,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "git_blob": "0a185ab6ed0c2dd9b383a403c56c909bbab8b9a1",
+      "sha256": "bdad416b096b61d37b71603b2c949484f9070c830bdaeba93bf35e15c8900614",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "bytes": 14795,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "git_blob": "14ef488865f3ae6150776220ebbcf4788f89066a",
+      "sha256": "d173c3e5d61e42e2e3a97226c632fd2ab7cc481fc4e492365b87024ab546daff",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "bytes": 83612,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "git_blob": "c20f3bf14720d34247e8e1302dc3c40f7b832099",
+      "sha256": "3c6709101c6aaa82888df5d8795c33f9e857196790eb320d9194e64be2b6bdd8",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "bytes": 1269,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "git_blob": "ac60252262534e7b87523fd04d252f085b38bec0",
+      "sha256": "0b364451dc36a48dd6dae0f3b6ada05fd9b71e5208211f8ee5537d7e51a587e2",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "bytes": 7328,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "git_blob": "424b8ba8d1f9ebb22ba72cdd174c8a2ade0ecf89",
+      "sha256": "e2abacbb9a55ce1365f8961bc1b1395bbc811e512b111000d8c333f98458dece",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "bytes": 6382,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "git_blob": "2bddce29214882eb9fdf2be8a50ed5bdd0c69dfc",
+      "sha256": "0ef4bb354ff44b923564c4ddbdda5987919d220225129ec94614a618ceafc281",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "bytes": 1248,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "git_blob": "8a8c18ba2d5caa7e60a365e77ae0d1b872141bb0",
+      "sha256": "0d103b99a4a8652f8871552a69d42d2a3760ac6a5e3ef02d979c4273257ff6a4",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "bytes": 880,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "git_blob": "5c42706a0d53c5e8b96818d9c29a292d1504f720",
+      "sha256": "9c085407751b9061c1f996f6c39ce58451be22a8d334f09175f0e89e42736285",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "bytes": 2608,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "git_blob": "853c341c87feb51e10d757aea28b4185ae4c2731",
+      "sha256": "bc92e36ccd233722d4c5869bec71ddc7b12e2df56059942cce5a39065cc9c368",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "bytes": 3507,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "git_blob": "da835ee82d5cc31be9fa9792512930f7ae3fb5ce",
+      "sha256": "7b5b7413e2c895b1e148e82e292a117d53c7ec65b0696c992edca57b61b4a74b",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "bytes": 7507,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "git_blob": "87ad2658fa51cb4c172f82d0fdf33a492a750eca",
+      "sha256": "3213ef1631606250f5010b42cad7ef716f7c59426367798e33c374c0ec391d3a",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "bytes": 23313,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "git_blob": "9e86f1b2be0d431cd3c250ddeaf4efabdbcb088b",
+      "sha256": "12264f3c03d738311cd9237d212f1c07479e70f0cbe1ae725d29b36539aef637",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "bytes": 1367,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "git_blob": "d0be42e757f3cce533c1c80770239f0097d3de6b",
+      "sha256": "beffeed56945c22a77440122c8bdc426f3fcbe7f3b12ea0976c770d1f8d54578",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "bytes": 242277,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "git_blob": "8821dd183caf9c8c3b809e0e2d9e0df56c4e9ed9",
+      "sha256": "f5ee623b08b6a66935e5aced2f5d8ad0fc71bf9e8e833cd490150c0fa94b8763",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "bytes": 26148,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "git_blob": "ca2575c753be78cdaa96de56b3ff8770173c324d",
+      "sha256": "585bedc1313b40888dcc544cb74cd939a105ee674f3b1d3aa1cc6d34f70ff155",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "bytes": 25279,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "git_blob": "dd079e603f5770176212776a1d565b108875cf64",
+      "sha256": "133c9f64a5c5d573b78d0a474122b22506d8eadb5e063f67cdbbb8fa2f161d0e",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "bytes": 535,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "git_blob": "3dd6cf625a740398c2a4dc8abbe18e25e0ac5e9f",
+      "sha256": "6bdeb169c3717eb01108853bd9fc5a3750fb1fa5b82abbdd854d49855a40f519",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "bytes": 5712,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "git_blob": "f1041e34ef365926f5670b896f5bb23e553ac36d",
+      "sha256": "475dcae1e7d1ea46232db6f8481040c15e53a52a3c256831d3df204212b0e831",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "bytes": 4010,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "git_blob": "9c5b7a633411c2313ce839f748e4623bb0a70efe",
+      "sha256": "c2dd9f61f892deae6acd8d20771ea79b12018af25f3bf8d06639c8542d218cfd",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "bytes": 171367,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "git_blob": "0f13678d80a762375223f060e23b56c7b2eac89e",
+      "sha256": "a539aa2fb154fa50e0f5cc97e6ad7cbc66f8ec3e3746f61ec6a8b0d5d15ecdf2",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "bytes": 4646,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "git_blob": "a6de9d2733d3f0eea12ae87b24122495df1f0928",
+      "sha256": "9e0b7209fc69ab11987900404540969976000c5ebe4d4f58c43dc3842886bf3a",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "bytes": 1963,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "git_blob": "10e978b661fc291cbeea9ab0c248601cf216f96d",
+      "sha256": "451958454e8588dfc7cd945981ada142ca06ff3307937f5700df059c2b307fa8",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "bytes": 2515,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "git_blob": "4248bf7a39c793c9f319bae7d09f92983efe5368",
+      "sha256": "6de111e11403f7cd49027400755bae0ea1cabef2815f09bd40a24f0017613b24",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+      "bytes": 2856,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "git_blob": "56497467120b52b742756379959d4b2536be6df7",
+      "sha256": "f565adfef5a502044abc3a9153e157edc25af78304d335994afb958874b15e26",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "bytes": 1344,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/mce/mc.xsd",
+      "git_blob": "ef725457cf39116672e285d021be69b7ad022574",
+      "sha256": "3a37e461ecf5a8670fdec34029703401f8728ab9c96ec1739a6ae58d55212413",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/mce/mc.xsd",
+      "bytes": 3127,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "git_blob": "f65f777730d82162f4248f03c703b1b85fda5fe2",
+      "sha256": "568b26ee156cb9549aa439ca2158965f77b7c1602b7e0316f40ac6cf586e35f2",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "bytes": 26549,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "git_blob": "6b00755a9a8733f0fb171a47b25d0d7b4c70dee8",
+      "sha256": "0fa75578a000439a7988ba0c59fdc69f774bbd416cbacc14d07125b3f686cb74",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "bytes": 3745,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "git_blob": "f321d333a5e6ef98cbdfeeeaa334923e4cfc8a6c",
+      "sha256": "be0ff793a22dd31384650c3a4da14c2fa8062751c2e97b0e5ee852bda13c60ad",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "bytes": 901,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "git_blob": "364c6a9b8df6e252bb5ae39e2ca031fcbfc4e8a5",
+      "sha256": "fddc2b880cabb9005aebbc7e783e53c19fec1c03df7d0e2f2076a33a0fdfd081",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "bytes": 1778,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "git_blob": "fed9d15b7f504e14ac82793d79db2d7ad83d56ed",
+      "sha256": "127ca209fa73d7cb708449cb355c871867948a96e4a74f7bf5811ef62d17991d",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "bytes": 1002,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "git_blob": "680cf15400cd57ce2bf17a58ecd29caa0d8a8422",
+      "sha256": "842e7163409c8d74f4d7088a8bc99500d80bc75332681a0980055b08f374a604",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "bytes": 600,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "git_blob": "89ada90837b2db3f3d453212ae426520acedbbea",
+      "sha256": "16f6f8072249f431370723c2cd8974672e0d9c897e00e97dd918079df934871b",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "bytes": 745,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/soffice.py",
+      "git_blob": "0b4c99deca54013c550458c9244ee63eea748dca",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/soffice.py",
+      "bytes": 5927,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/validate.py",
+      "git_blob": "29ca186a12e5c102702029ab9e51e6c3b71b1403",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/validate.py",
+      "bytes": 6142,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/validators/__init__.py",
+      "git_blob": "db092ece7e21de98f87bd81471578259a1bc642f",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/validators/__init__.py",
+      "bytes": 336,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/validators/base.py",
+      "git_blob": "33fc97bbe351949f9a8bd88998c78f81cd842c6a",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/validators/base.py",
+      "bytes": 33756,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/validators/docx.py",
+      "git_blob": "b18149945a7cf7ebd77c14655eb74d89baca3a00",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/validators/docx.py",
+      "bytes": 17482,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/validators/pptx.py",
+      "git_blob": "318f0e61483972fb08e02be39c94331dba46445e",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/validators/pptx.py",
+      "bytes": 15966,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/office/validators/redlining.py",
+      "git_blob": "4185c51f4f10eeaf3227168e440ed378ce120ec6",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/office/validators/redlining.py",
+      "bytes": 11231,
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "xlsx/scripts/recalc.py",
+      "git_blob": "6232be2deea56cc97c1d8996e4d68adf2457059c",
+      "sha256": "66f6e726d5a53cfabea0b6471d6669deb95e54e96cb7913b687e4388da1bb3d9",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx/scripts/recalc.py",
+      "bytes": 10670,
+      "license": "Apache-2.0"
+    }
+  ]
+}

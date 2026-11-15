@@ -1,4 +1,5 @@
 """D1 invariants: these fixture reviews exercise admission, not mathematical quality."""
+from modelcrew.project_assets import asset_path,local_history
 import copy
 import json
 from pathlib import Path
@@ -201,7 +202,8 @@ def test_algorithm_context_preserves_conditions_locations_and_citations():
 
 
 def test_uncovered_excluded_and_unknown_are_distinct():
-    assert algorithm_context('prediction')['status'] == 'uncovered'
+    prediction=algorithm_context('prediction')
+    assert prediction['status']=='ok' and prediction['legacy_runtime_catalog_used'] is False
     assert algorithm_context('geometry', card_ids=['bracketed-root'], facts={'continuous_on_bracket': False})['status'] == 'no_applicable_cards'
     unknown = algorithm_context('geometry', card_ids=['bracketed-root'])
     assert unknown['cards'][0]['applicability']['status'] == 'needs_review'
@@ -291,7 +293,7 @@ def test_workflow_change_invalidates_pending_ticket(package, monkeypatch):
 def test_all_published_schemas_match_runtime_contracts():
     from modelcrew.config import ROOT
     for model in [Artifact, Binding, Call, Handoff, Snapshot, Ticket, Receipt]:
-        schema = json.loads((ROOT / 'contracts' / ('collaboration-'+model.__name__.lower()+'-1.0.0.schema.json')).read_text(encoding='utf-8'))
+        schema = json.loads((asset_path(ROOT,'contracts') / ('collaboration-'+model.__name__.lower()+'-1.0.0.schema.json')).read_text(encoding='utf-8'))
         assert schema == model.model_json_schema()
 
 
@@ -300,10 +302,12 @@ def test_card_profiles_are_versioned_and_include_operational_limits():
         context = algorithm_context(category)
         for card in context['cards']:
             profile = card['profile']
-            assert profile['version'] == '1.0.0' and profile['base_card_sha256'] == card['card_sha256']
-            assert profile['inputs_units'] and profile['steps'] and profile['stopping_conditions'] and profile['failure_states']
-            assert profile['validation'] and profile['minimal_example']
-            assert profile['verification'] == 'profile_reviewed_not_executed_in_D1'
+            assert profile['scope'] and card['profile_sha256']==digest(profile)
+            assert card['source_sections'] and card['applicability']['status']=='needs_review'
+            if category!='geometry':
+                assert card['card']['conditions'] and card['card']['failure_boundary']
+                assert profile['counterexample']
+            assert context['catalog_mode']=='installed_canonical_and_local_geometry'
 
 @pytest.mark.parametrize('change', [{'task_id':'another'}, {'contract_version':2}, {'execution_id':'new-run'}, {'execution_id':'run','result_revision':2}])
 def test_context_is_scoped_to_one_task_and_version(package, change):

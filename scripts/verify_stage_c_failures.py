@@ -1,4 +1,5 @@
 """C6 real workflow/MCP/Docker failures. No real user decisions or contest solves."""
+from modelcrew.project_assets import asset_path
 import argparse
 import json
 import os
@@ -255,5 +256,5 @@ def verify(folder):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=ROOT/'stage-c/runs'/('c6-faults-'+datetime.now().strftime('%Y%m%dT%H%M%S%f')))
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
     verify(parser.parse_args().output)

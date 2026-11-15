@@ -1,4 +1,5 @@
 """D3 provenance and numerical rejection boundaries; no model calls or Docker."""
+from modelcrew.project_assets import asset_path,local_history
 import copy
 import json
 from pathlib import Path
@@ -19,14 +20,14 @@ def run(tmp_path,monkeypatch):
     root=tmp_path/'executor';folder=tmp_path/'minimal-test';folder.mkdir()
     monkeypatch.setattr(runner,'executor_root',lambda:root)
     code=folder/'generated_solver.py';code.write_text('print("test fixture, not a generated solve")',encoding='utf-8')
-    contract=json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'))
+    contract=json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'))
     runner.write(folder/'contract.json',contract)
     job=register_job(root,folder.name,code,[],{'mode':'workflow','task_id':'TEST','version':1,'contract_sha256':digest(contract)})
     runner.write(folder/'job.json',job)
     runner.write(folder/'run.json',{'code_sha256':sha_file(code),'contract_sha256':digest(contract)})
     runner.write(folder/'code-evidence.json',{'code':code.read_text(encoding='utf-8'),'code_sha256':sha_file(code)})
     output=root/'runs'/folder.name/'artifacts';output.mkdir(parents=True)
-    parameters=runner.read(ROOT/'stage-a/2024-A-problem-1/parameters.json')
+    parameters=runner.read(asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json'))
     values=[solve(t,parameters) for t in runner.TIMES]
     arrays={'time_s':np.array(runner.TIMES),'theta_rad':np.array([v[0] for v in values]),'position_m':np.array([v[1] for v in values]),'velocity_m_s':np.array([v[2] for v in values])}
     arrays['speed_m_s']=np.linalg.norm(arrays['velocity_m_s'],axis=2)

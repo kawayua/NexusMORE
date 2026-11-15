@@ -1,4 +1,5 @@
 from pathlib import Path
+from modelcrew.tool_discovery import discover_tool,tex_cache_directory
 import re,json,hashlib,subprocess,os
 from docx import Document
 root=Path(__file__).resolve().parents[1]
@@ -30,8 +31,8 @@ for table in doc.tables:
     for cell in table.rows[1].cells:
         for p in cell.paragraphs:p.paragraph_format.keep_together=True
 doc.save(out/'paper.docx')
-cache=root/'stage-c-plus/tex-cache'
-cmd=[str(root/'stage-c-plus/tools/tectonic.exe'),'--untrusted','--keep-logs','--keep-intermediates','--outdir',str(out),str(tex)]
+cache=tex_cache_directory(root)
+cmd=[str(discover_tool('tectonic')),'--untrusted','--keep-logs','--keep-intermediates','--outdir',str(out),str(tex)]
 r=subprocess.run(cmd,capture_output=True,timeout=600,cwd=out,env={**os.environ,'TECTONIC_CACHE_DIR':str(cache),'TEMP':str(cache),'TMP':str(cache)})
 (out/'build/latex-layout-final.log').write_bytes(r.stdout+b'\n'+r.stderr)
 print('compile_returncode',r.returncode)

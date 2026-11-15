@@ -1,3 +1,4 @@
+from modelcrew.project_assets import asset_path,local_history
 import copy,json
 import numpy as np
 import pytest
@@ -5,7 +6,7 @@ from modelcrew.config import ROOT
 from modelcrew.evidence_planning import representative_times,geometry_evidence,check_catalog
 
 @pytest.fixture
-def parameters():return json.loads((ROOT/'stage-a/2024-A-problem-1/parameters.json').read_text(encoding='utf-8'))
+def parameters():return json.loads((asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json')).read_text(encoding='utf-8'))
 @pytest.fixture
 def state(parameters):
     # Independent straight chain fixture has exact known board dimensions, not a solver output.
@@ -54,7 +55,7 @@ def test_unselected_times_still_determine_global_bounds(parameters,state):
 
 @pytest.fixture
 def planned_catalog():
-    base=ROOT/'stage-a-plus/evidence-planning-20261107'
+    base=asset_path(ROOT,'stage-a-plus/evidence-planning-20261107')
     plan=json.loads((base/'evidence-plan.json').read_text(encoding='utf-8'))
     catalog=json.loads((ROOT/'output/md/modeling-q1-candidates-v3/figure-catalog.json').read_text(encoding='utf-8'))
     return plan['geometry'],catalog

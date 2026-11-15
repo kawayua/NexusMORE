@@ -1,5 +1,7 @@
 """Pandoc table rounding must not overflow the selected template's text width."""
+from modelcrew.project_assets import asset_path,local_history
 from decimal import Decimal
+from modelcrew.tool_discovery import discover_tool
 import re
 from scripts.export_approved_paper import normalize_longtable_widths
 
@@ -21,7 +23,7 @@ def test_small_labels_use_only_outer_whitespace_crop_and_keep_source_assets():
     import json
     from scripts.export_approved_paper import figure_embedding
     from modelcrew.modeling_paper import sha
-    source=Path('stage-e/reviews/global-symbol-table-20261110-v3/source')
+    source=local_history('stage-e/reviews/global-symbol-table-20261110-v3/source')
     catalog=json.loads((source/'figure-catalog.json').read_text(encoding='utf-8'))
     figure=next(f for f in catalog['figures'] if f['id']=='q1-process-1')
     before={fmt:sha(source/a['path']) for fmt,a in figure['files'].items()}
@@ -50,7 +52,7 @@ def test_word_math_delimiters_are_equivalent_and_convert_to_omml():
     transformed=word_math_compatible(expr)
     assert '\\tag' not in transformed and '\\left(' in transformed and '\\right)' in transformed
     ast={**source,'blocks':[{'t':'Para','c':[{'t':'Math','c':[{'t':'DisplayMath'},transformed]}]}]}
-    result=subprocess.run(['stage-c-plus/tools/pandoc/pandoc.exe','-f','json','-t','docx','-o','-'],input=json.dumps(ast).encode(),capture_output=True,check=True)
+    result=subprocess.run([str(discover_tool('pandoc')),'-f','json','-t','docx','-o','-'],input=json.dumps(ast).encode(),capture_output=True,check=True)
     assert b'Could not convert' not in result.stderr
     with zipfile.ZipFile(io.BytesIO(result.stdout)) as z:
         assert b'<m:oMath' in z.read('word/document.xml')

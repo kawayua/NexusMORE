@@ -1,0 +1,776 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "milestone": "F6.6",
+  "task_id": "production-allocation-live-20261114",
+  "status": "independent_m1_passed_waiting_scope_clarification",
+  "runtime_modeling_status": "blocked",
+  "version": 2,
+  "contract_sha256": "1e07c64330f64a47f56ca85bd4c5e6f1846a7debe996666c7741e607f3badf16",
+  "mathematics_semantic_sha256": "af9eb60e95ba48c37c6c3276d4d388d75710c39e243e06b25f07eed86a6f5f87",
+  "mathematics_package_sha256": "654affd8a150d7d00d5425e4fa123636477974c76b43b0ae7d54ff1002602675",
+  "modeling_run_id": "d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b",
+  "modeling_folder": "runs\\modeling\\d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b",
+  "M1_receipt_sha256": "cdf202bc68b755aa6ba786d030047e649ed9aef0d6c74c691d863678bfa78ee8",
+  "M1_snapshot_sha256": "dba204ab7d0b72659a1c429fa3dcfc1c0fdf0812820fe7ce7f6ffdf437f08073",
+  "M1_checks": [
+    {
+      "schema_version": "1.0.0",
+      "check_id": "model",
+      "status": "PASS",
+      "evidence": [
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "contract",
+          "selector": "/problem"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "contract",
+          "selector": "/variables"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/dossier/structure"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/method_selection/selected_candidate_id"
+        }
+      ],
+      "explanation": "问题结构为单周期两产品两资源连续LP；目标与两资源约束线性、变量非负实数、有限性有条件成立；模型与方法选择一致，未擅自整数化。"
+    },
+    {
+      "schema_version": "1.0.0",
+      "check_id": "assumptions",
+      "status": "PASS",
+      "evidence": [
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "contract",
+          "selector": "/assumptions"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/dossier/assumptions/0"
+        }
+      ],
+      "explanation": "连续可分割、线性常系数、单周期无随机项写明来源为题意；数学包asm:linear与契约linear_divisible一致，影响与不适用范围已声明。"
+    },
+    {
+      "schema_version": "1.0.0",
+      "check_id": "units",
+      "status": "PASS",
+      "evidence": [
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "contract",
+          "selector": "/parameters"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/dossier/symbols"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/dossier/equations"
+        }
+      ],
+      "explanation": "目标项CNY、工时行hour、原料行kg、非负约束unit各自同量纲；参数单位CNY/unit、hour/unit、kg/unit、hour、kg一致，符号表单位与方程lhs/rhs_dimension相符。"
+    },
+    {
+      "schema_version": "1.0.0",
+      "check_id": "constraints",
+      "status": "PASS",
+      "evidence": [
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "contract",
+          "selector": "/constraints"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/contract_links"
+        }
+      ],
+      "explanation": "工时2x_A+x_B≤H、原料x_A+2x_B≤80及非负约束与题面、工作簿系数一致；约束逐条链到方程，非线性化或跨行相加。"
+    },
+    {
+      "schema_version": "1.0.0",
+      "check_id": "algorithm_premises",
+      "status": "PASS",
+      "evidence": [
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "sources",
+          "selector": "/cards/0/card"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/method_selection/candidates/0/premises"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "contract",
+          "selector": "/method/root_selection"
+        }
+      ],
+      "explanation": "lp卡片前提（线性、连续、单位一致、可行域）与题面匹配；失败边界覆盖不可行/无界/数值失败；HiGHS非通用业务求解器与教学案例局限已声明；对偶符号约定须先核对，已写入。"
+    },
+    {
+      "schema_version": "1.0.0",
+      "check_id": "validation_plan",
+      "status": "PASS",
+      "evidence": [
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "contract",
+          "selector": "/checks"
+        },
+        {
+          "schema_version": "1.0.0",
+          "artifact_id": "mathematics",
+          "selector": "/validation_plan"
+        }
+      ],
+      "explanation": "计划含原约束逐行残差、目标回算、顶点枚举+对偶证书、completeness；阈值与单位匹配，初始状态unknown，未预填数值；PDF全页与选图另留执行阶段证据。"
+    }
+  ],
+  "open_questions": [
+    "请确认产量为连续可分割非负实数（标准单位）而非整数件数，以及无需求上限/固定成本/随机性的范围，以便M1核对假设。",
+    "请确认基准单列与scenarios完整11项（含100hour重复容量交叉一致性）的验收口径，避免误当12次独立实验。",
+    "请确认对偶证书检查将采用lambda≥0、A^T lambda≥p与绝对间隙≤1e-6 CNY，并允许按HiGHS返回的乘子符号约定先核对再代入原式。",
+    "请确认当前只形成方案并提交独立M1，不执行数值求解、不写论文、不生成候选图或声称用户批准。"
+  ],
+  "actual_provider_calls": [
+    {
+      "path": "runs\\modeling\\854bce60-8d12-41e8-ad68-814066afa5b8\\modeling-abd6b6dd-53ba-40f8-acd2-2969af5f0c4c-metadata.json",
+      "sha256": "ddfe3d3d8ea2358328b5566b437d68c4d4e4805c3eb7d11f4b90b43f6f300754",
+      "call_id": "abd6b6dd-53ba-40f8-acd2-2969af5f0c4c",
+      "context_id": "6c56f125-a30f-4d9d-aa79-516eae7bb8a4",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "invalid_response",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "none",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 35.583661500000744,
+      "response_sha256": "d94a91479434dcd832975df0021717431d8feda26ebbabf4928409e185a4c0b4",
+      "usage": {
+        "prompt_tokens": 30184,
+        "total_tokens": 35851,
+        "completion_tokens": 5667,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30184
+        },
+        "completion_tokens_details": {
+          "text_tokens": 5667
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\854bce60-8d12-41e8-ad68-814066afa5b8\\planning-f6c6f5fc-340c-4852-a85b-8b9f022c841e-metadata.json",
+      "sha256": "cab4b01f3cb716120c4f487659e4e815b58f9df2844db279d7cd85a0299556be",
+      "call_id": "f6c6f5fc-340c-4852-a85b-8b9f022c841e",
+      "context_id": "752f80f0-94a3-4f66-a475-2546faf4a982",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "none",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 6.997391199998674,
+      "response_sha256": "62a9d3f55318e0be165dd1554b2f0773dbc5aa14e097006aceb393573354d290",
+      "usage": {
+        "prompt_tokens": 24318,
+        "total_tokens": 24625,
+        "completion_tokens": 307,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 24318
+        },
+        "completion_tokens_details": {
+          "text_tokens": 307
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\ee877442-d1ce-4523-9d01-fcb3d195ae45\\modeling-18f61157-b1d2-4eab-ba79-6698e3f86389-metadata.json",
+      "sha256": "bfaba1868838ead4d5a0cde89bd21bc5295f81f8858b6c06ca4d53c01418869b",
+      "call_id": "18f61157-b1d2-4eab-ba79-6698e3f86389",
+      "context_id": "234fce28-0c90-4cb1-b01f-6e46dd398743",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 32.3123504000032,
+      "response_sha256": "d076d0b80f276dc0e076403bb26d429dcdb292f0a2445812bb7c9c860baac878",
+      "usage": {
+        "prompt_tokens": 30275,
+        "total_tokens": 35922,
+        "completion_tokens": 5647,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 30275
+        },
+        "completion_tokens_details": {
+          "text_tokens": 5647
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\ee877442-d1ce-4523-9d01-fcb3d195ae45\\modeling-62b3c891-7aa8-467b-80ed-37da9a068380-metadata.json",
+      "sha256": "69889361f05df9da8fa7ac276745e457bbcd55a1c331bec1034ca8de4ce54024",
+      "call_id": "62b3c891-7aa8-467b-80ed-37da9a068380",
+      "context_id": "72694734-ebce-42e8-afe2-755211f7cde3",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 38.35272450000048,
+      "response_sha256": "0ce0ecf51e21b8f8301e5e6562e9f36b17cf1f1b7f8bcfb0fab8be8029d33afc",
+      "usage": {
+        "prompt_tokens": 30237,
+        "total_tokens": 35766,
+        "completion_tokens": 5529,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 30237
+        },
+        "completion_tokens_details": {
+          "text_tokens": 5529
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\ee877442-d1ce-4523-9d01-fcb3d195ae45\\planning-6cdcc1f9-1c7e-48e0-b2e7-bd1d6597a47e-metadata.json",
+      "sha256": "ed4b97828ea27da756a709486447fa23fc35579067e9bc5469bc67322af29c48",
+      "call_id": "6cdcc1f9-1c7e-48e0-b2e7-bd1d6597a47e",
+      "context_id": "706ba022-083f-413f-93d2-388fa9585db9",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 4.762609999997949,
+      "response_sha256": "4e3aa5b9b6e9bf6a750a5f183de24742d80072ef420c109549f3d349ee336a6e",
+      "usage": {
+        "prompt_tokens": 24332,
+        "total_tokens": 24682,
+        "completion_tokens": 350,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 24332
+        },
+        "completion_tokens_details": {
+          "text_tokens": 350
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\77f2e8c9-3f2c-4314-830b-67b3a6ef36fd\\modeling-38f5e889-4c6d-4390-adf1-f3985552ab59-metadata.json",
+      "sha256": "b848460ee60cef9cf07e818342376d74dbdcd4081b6fe00130d7b63ccecb023a",
+      "call_id": "38f5e889-4c6d-4390-adf1-f3985552ab59",
+      "context_id": "03004f91-3bfb-47ef-ac34-3257234114d9",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 40.42608139999356,
+      "response_sha256": "9912eb7608d9ea35f5d84d040379d7b7322e2a2b89f246e9ebc43ad59339918d",
+      "usage": {
+        "prompt_tokens": 30327,
+        "total_tokens": 37410,
+        "completion_tokens": 7083,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30327
+        },
+        "completion_tokens_details": {
+          "text_tokens": 7083
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\77f2e8c9-3f2c-4314-830b-67b3a6ef36fd\\modeling-9172b891-016e-45b4-97c1-113d2f3b1afa-metadata.json",
+      "sha256": "7cd9612cd3dd62e9aeb03892219cb025a177e47e804729c0164ef44525cf0021",
+      "call_id": "9172b891-016e-45b4-97c1-113d2f3b1afa",
+      "context_id": "dac36c84-f18a-42c3-99d4-ed44b5a6c73d",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 15.561419099998602,
+      "response_sha256": "c2756930e64d970012e4987d1c367cebf3470d3809a18b69d54ff80f2ddeed75",
+      "usage": {
+        "prompt_tokens": 30371,
+        "total_tokens": 32881,
+        "completion_tokens": 2510,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30371
+        },
+        "completion_tokens_details": {
+          "text_tokens": 2510
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\77f2e8c9-3f2c-4314-830b-67b3a6ef36fd\\planning-26e390b8-ddf9-4b41-a961-59aa9c5118c6-metadata.json",
+      "sha256": "744dce19b40800db2cb67fd054c053cba39ecfb9eaeab91837aee068b02769ea",
+      "call_id": "26e390b8-ddf9-4b41-a961-59aa9c5118c6",
+      "context_id": "3b98993d-e007-4fe2-9406-4207ba49e17b",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 3.769982899997558,
+      "response_sha256": "f1d1f70d9fdaf895048f6adc84cf31a60176e20c3cb7c2d5e4d870c55a8bdd8e",
+      "usage": {
+        "prompt_tokens": 24367,
+        "total_tokens": 24689,
+        "completion_tokens": 322,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 24367
+        },
+        "completion_tokens_details": {
+          "text_tokens": 322
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b\\attempt-0\\M1-82dc4d1a-f500-4856-9aa7-bd5dc8d38c59-metadata.json",
+      "sha256": "9d51f5cfe2e455151ddef5c904f3b1c23275cfec6477dd259550566ee211747e",
+      "call_id": "82dc4d1a-f500-4856-9aa7-bd5dc8d38c59",
+      "context_id": "a681dfd2-985f-4a03-bc3c-a6bb854d32b7",
+      "stage": "M1",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 5.6526633000030415,
+      "response_sha256": "256668a0fd91c0bc078914cc2ce07a06bf04a11f49f1f54bb01688cb22e4cd9c",
+      "usage": {
+        "prompt_tokens": 18443,
+        "total_tokens": 19237,
+        "completion_tokens": 794,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 18443
+        },
+        "completion_tokens_details": {
+          "text_tokens": 794
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b\\modeling-5c879275-8072-47e3-804b-6f548a13173d-metadata.json",
+      "sha256": "fda5db1a76760efac27d18dc26eecc4e4965dea500728c53ab399df56966738b",
+      "call_id": "5c879275-8072-47e3-804b-6f548a13173d",
+      "context_id": "657b5c45-9371-4463-82d8-f3c571916574",
+      "stage": "modeling",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 18.304185499997402,
+      "response_sha256": "1f11f1d63821c9ff3dcf8a390ea8d45029e9f8ac75bd21b47b4c7bae439f1447",
+      "usage": {
+        "prompt_tokens": 30563,
+        "total_tokens": 32945,
+        "completion_tokens": 2382,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "text_tokens": 30563
+        },
+        "completion_tokens_details": {
+          "text_tokens": 2382
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    },
+    {
+      "path": "runs\\modeling\\d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b\\planning-ed72c229-8b6c-42e8-b0c2-cb8592eaf4a2-metadata.json",
+      "sha256": "c22462457bfb517eb2845f5a8a7ba241f50a7b9c9138f9d57177675dd888e982",
+      "call_id": "ed72c229-8b6c-42e8-b0c2-cb8592eaf4a2",
+      "context_id": "7999beff-2c26-48bb-804b-cd25ef4a2e36",
+      "stage": "planning",
+      "configured_model": "deepseek-v4.1-flash-1017",
+      "status": "completed",
+      "independent_stateless_request": true,
+      "image_count": 0,
+      "output_protocol": "json_object",
+      "response_format_type": "json_object",
+      "server_schema_requested": false,
+      "server_schema_enforced": false,
+      "http_status": 200,
+      "elapsed_seconds": 3.287138600004255,
+      "response_sha256": "12be3a82d14ceaadd8f449f36e45aea30839a33d99aae3c4131b74739cbaec08",
+      "usage": {
+        "prompt_tokens": 24514,
+        "total_tokens": 24843,
+        "completion_tokens": 329,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "image_tokens": 0,
+          "text_tokens": 24514
+        },
+        "completion_tokens_details": {
+          "text_tokens": 329
+        }
+      },
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop"
+    }
+  ],
+  "provider_call_count": 11,
+  "actual_independent_reviews": 1,
+  "actual_routed_tool_operations": [
+    {
+      "route_path": "runs\\modeling\\854bce60-8d12-41e8-ad68-814066afa5b8\\resource-routing.json",
+      "route_sha256": "299e5e0781eef0e1bd81260df6851bcae3202ea04d3fe5ec524bf0d34d42c515",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\854bce60-8d12-41e8-ad68-814066afa5b8\\resource-contexts\\proposal-0\\resource-routing.json",
+      "route_sha256": "290ad510c052fbe278a8f33f0ea425e684ab413297558d71f3a2825398116509",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\ee877442-d1ce-4523-9d01-fcb3d195ae45\\resource-routing.json",
+      "route_sha256": "af310ee9f2f48e5c10bf5655c530fa568f5fd8ccd9f2c029148cd075ec9ea166",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\ee877442-d1ce-4523-9d01-fcb3d195ae45\\resource-contexts\\proposal-0\\resource-routing.json",
+      "route_sha256": "deafdc67b810be34421fdbece82f3fa5335f37308edb2f9b115c3bf916f817ae",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\ee877442-d1ce-4523-9d01-fcb3d195ae45\\resource-contexts\\proposal-1\\resource-routing.json",
+      "route_sha256": "9ce80520b459b6e3692c2a905d92fe2d41eab7c2f6f14d8a6cfe89cff4efb04c",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\77f2e8c9-3f2c-4314-830b-67b3a6ef36fd\\resource-routing.json",
+      "route_sha256": "6ab27db59ec2cdd4a252ad5eb55e5b116144f432335bf98a7cc2790cbc72916b",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\77f2e8c9-3f2c-4314-830b-67b3a6ef36fd\\resource-contexts\\proposal-0\\resource-routing.json",
+      "route_sha256": "a17cf5c1a9027151570fbb187d4d5bcdc14c12d989db46754a33ada6697f1512",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\77f2e8c9-3f2c-4314-830b-67b3a6ef36fd\\resource-contexts\\proposal-1\\resource-routing.json",
+      "route_sha256": "6eb2a51f01c3492bf20af3e23b27c10f8b0ae02e4b03b4beb9f578498d9a35ee",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b\\resource-routing.json",
+      "route_sha256": "b819ace7c152fdc569793046085612dd90277a50fd3ce266c9a7aa7a69d07334",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    },
+    {
+      "route_path": "runs\\modeling\\d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b\\resource-contexts\\proposal-0\\resource-routing.json",
+      "route_sha256": "21deb0ddf151323c9ee6786d27e7840b625159ddb27efa7eee6041bc1aca405b",
+      "tool": "spreadsheet-read",
+      "status": "passed",
+      "returncode": 0,
+      "input_sha256": "7a7e90437a4d5067a46e3aa636d4067aa7960eccfd6f65cffc710705338d07a0"
+    }
+  ],
+  "history": [
+    {
+      "run_id": "854bce60-8d12-41e8-ad68-814066afa5b8",
+      "status": "failed",
+      "attempts": []
+    },
+    {
+      "run_id": "ee877442-d1ce-4523-9d01-fcb3d195ae45",
+      "status": "needs_human",
+      "attempts": [
+        {
+          "status": "STRUCTURE_FAIL",
+          "attempt": 0,
+          "version": 1,
+          "feedback": {
+            "stage": "structure",
+            "issues": "Every retrieved source needs exactly one adoption/rejection decision",
+            "status": "FAIL",
+            "instruction": "Correct the JSON edits against the supplied schemas; do not invent fields."
+          },
+          "author_call_id": "62b3c891-7aa8-467b-80ed-37da9a068380"
+        },
+        {
+          "status": "STRUCTURE_FAIL",
+          "attempt": 1,
+          "version": 1,
+          "feedback": {
+            "stage": "structure",
+            "issues": "Every retrieved source needs exactly one adoption/rejection decision",
+            "status": "FAIL",
+            "instruction": "Correct the JSON edits against the supplied schemas; do not invent fields."
+          },
+          "author_call_id": "18f61157-b1d2-4eab-ba79-6698e3f86389"
+        }
+      ]
+    },
+    {
+      "run_id": "77f2e8c9-3f2c-4314-830b-67b3a6ef36fd",
+      "status": "needs_human",
+      "attempts": [
+        {
+          "status": "STRUCTURE_FAIL",
+          "attempt": 0,
+          "version": 1,
+          "feedback": {
+            "stage": "structure",
+            "issues": "Edit outside model and mathematical package",
+            "status": "FAIL",
+            "instruction": "Correct the JSON edits against the supplied schemas; do not invent fields."
+          },
+          "author_call_id": "38f5e889-4c6d-4390-adf1-f3985552ab59"
+        },
+        {
+          "status": "STRUCTURE_FAIL",
+          "attempt": 1,
+          "version": 1,
+          "feedback": {
+            "stage": "structure",
+            "issues": "Every retrieved source needs exactly one adoption/rejection decision; expected citation_ids=[\"algorithm:lp:ebd674f4acb3\"]; received=[]",
+            "status": "FAIL",
+            "instruction": "Correct the JSON edits against the supplied schemas; do not invent fields."
+          },
+          "author_call_id": "9172b891-016e-45b4-97c1-113d2f3b1afa"
+        }
+      ]
+    },
+    {
+      "run_id": "d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b",
+      "status": "blocked",
+      "attempts": [
+        {
+          "status": "PASS",
+          "attempt": 0,
+          "version": 2,
+          "proposal_path": "runs/modeling/d96320f5-a719-45dc-8bf7-ab2b2bdc4c1b/attempt-0/proposal.md",
+          "author_call_id": "5c879275-8072-47e3-804b-6f548a13173d",
+          "receipt_sha256": "cdf202bc68b755aa6ba786d030047e649ed9aef0d6c74c691d863678bfa78ee8",
+          "review_call_id": "4b44e9ae-cba7-4e98-916a-62da44e86673",
+          "snapshot_sha256": "dba204ab7d0b72659a1c429fa3dcfc1c0fdf0812820fe7ce7f6ffdf437f08073"
+        }
+      ]
+    }
+  ],
+  "cached_request_reused_without_calls_or_file_writes": true,
+  "premature_hand_refusals": [
+    {
+      "operation": "start_coding",
+      "status": "refused",
+      "reason": "Current explicit model approval required"
+    },
+    {
+      "operation": "start_writing",
+      "status": "refused",
+      "reason": "Current explicit model approval required"
+    }
+  ],
+  "open_questions_block_admission": "Current D2 model requires an independent M1 PASS before user approval/execution",
+  "real_user_approvals": 0,
+  "hand_runs_created": 0,
+  "execution_created": false,
+  "all_F6_completed": false,
+  "all_F6_6_completed": false,
+  "formal_exports_created": false,
+  "private_candidate_rebuilt_after_code_changes": false,
+  "not_yet_validated": [
+    "live coding and P1/P2",
+    "actual user model/result/manuscript/figure approvals",
+    "live writing and W1",
+    "formal export/full-page visual check and independent W2",
+    "DeepSeek Harness host integration"
+  ],
+  "database_reconnect_and_checkpoint_resume_preserved_gate": true,
+  "protected_history_hashes_verified": [
+    {
+      "path": "docs/release/source-completeness-20261114.json",
+      "sha256": "cb8fa2de4ac0a25d0618f309b73bed654d20fa43f49df670a3ba5bfd54c25cab"
+    },
+    {
+      "path": "docs/release/agpl-combined-distribution-20261114.json",
+      "sha256": "03b92d2c4709fa0262886b5b3da7ca7f0a37806d5a87c31d93aba6ffa894e263"
+    },
+    {
+      "path": "docs/release/environment-validation-exception-20261114.json",
+      "sha256": "b263cd883ee7e120313d38b722ccd004b4d0e74d83ef2823fa2bbf209a192b08"
+    },
+    {
+      "path": "docs/release/resource-disposition-20261111.json",
+      "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c"
+    }
+  ],
+  "exact_user_request": "进入F6.6真实模型驱动的三手任务、独立质检和用户确认链路验证",
+  "operator_scope": "New synthetic continuous LP; exposed operator baseline; same task retained across explicitly bounded protocol repair runs; no reviewer FAIL retried to force PASS",
+  "case_directory": "runs\\acceptance\\production-allocation-live-20261114",
+  "user_review": {
+    "path": "runs\\acceptance\\production-allocation-live-20261114\\model-review-v002.md",
+    "sha256": "909c104cd463d47d2661d6d87a927aa8866fb0bb7da7ff83841b89d0692dd2b1"
+  },
+  "regression": {
+    "pure_transport_schema_routing": {
+      "passed": 89,
+      "record": "tmp/three-hand-live-validation-20261114/final-regression.xml",
+      "integration_not_enabled_in_this_run": 22
+    },
+    "real_postgresql_with_synthetic_provider_test_fixtures": {
+      "passed": 22,
+      "record": "tmp/three-hand-live-validation-20261114/workflow-regression.xml",
+      "not_real_provider_acceptance": true
+    }
+  },
+  "fixed_defects": [
+    "Structured stages now request provider JSON mode while local strict validation remains; raw Writer Markdown and W2 schema override preserved; no response stripping or retry fallback.",
+    "Research source decisions are explicitly limited to references.cards; auto-loaded background resources have a separate role. Dynamic author schema lists exact citation IDs and cardinality.",
+    "Author patch schema names required object prefixes and all expected output fields. Structural repair feedback preserves precise errors and expected IDs, and requires a complete replacement Proposal.",
+    "Pure modeling test now uses the current installed algorithm context instead of the stale historical catalog; historical hashes/catalog not rewritten."
+  ],
+  "initial_failures_retained": [
+    "First data-preparation source kind rejected by schema; partial fixture saved in preparation-attempt-001, enum corrected before task creation.",
+    "First provider proposal fenced as Markdown and rejected with original response retained.",
+    "Second request exhausted its two attempts because background and research citations were mixed.",
+    "Third request exhausted its two attempts because patch paths lacked /contract/ prefix and repair omitted source decisions.",
+    "Initial transport regression surfaced the known historical-catalog test import; test moved to the actual current runtime helper.",
+    "Schema test fixture lacked new required fields during iteration; fixture corrected and final regressions passed."
+  ],
+  "changed_files": [
+    "src/modelcrew/model_client.py",
+    "src/modelcrew/modeling_hand.py",
+    "scripts/validate_three_hand_live.py",
+    "tests/test_modeling_hand.py",
+    "tests/test_writer_transport.py",
+    "docs/three-hand-live-validation.md",
+    "docs/release/three-hand-live-validation-20261114.json",
+    "docs/hand-runtime.md",
+    "docs/builtin-capabilities.md",
+    "docs/roadmap.md"
+  ]
+}

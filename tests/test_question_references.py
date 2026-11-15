@@ -1,4 +1,5 @@
 """D6 database/reference invariants. Every approval here is synthetic test data."""
+from modelcrew.project_assets import asset_path,local_history
 import copy,json,uuid
 from pathlib import Path
 import pytest
@@ -10,7 +11,7 @@ from modelcrew.contracts import digest
 
 @pytest.fixture
 def data(tmp_path):
-    contract=json.loads((ROOT/'contracts/examples/valid-2024-a-q1.json').read_text(encoding='utf-8'))
+    contract=json.loads((asset_path(ROOT,'contracts/examples/valid-2024-a-q1.json')).read_text(encoding='utf-8'))
     statement=tmp_path/'source.txt';statement.write_text('TEST_ONLY SYNTHETIC STATEMENT',encoding='utf-8')
     contract['inputs']=[{'id':'test-input','source_id':'statement','path':str(statement),'sha256':sha_file(statement),'role':'problem_statement'}]
     excerpt=tmp_path/'q2.txt';excerpt.write_text('TEST_ONLY SECOND QUESTION',encoding='utf-8')

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "source": "execution",
+  "target": "archive/research/model-helpers",
+  "purpose": "Historical helper or dependency input retained byte-identical; current dependency features use functional names",
+  "files": [
+    {
+      "old_path": "execution/full_q1_tail.py",
+      "new_path": "archive/research/model-helpers/full_q1_tail.py",
+      "sha256": "2b916c434a7ef94a83b245b2e07ed0d7f7fae103f8c710aabee00370ca1bb6cf",
+      "bytes": 4341
+    },
+    {
+      "old_path": "execution/full_q2_tail.py",
+      "new_path": "archive/research/model-helpers/full_q2_tail.py",
+      "sha256": "f4ba343372a42b7701fca792fbfd3fac582bb030bc7f804d5de67a91027b67d4",
+      "bytes": 11706
+    },
+    {
+      "old_path": "execution/probe_v2_solver.py",
+      "new_path": "archive/research/model-helpers/probe_v2_solver.py",
+      "sha256": "e4745d122e0e8aa64eadf7c4a5cb8b41775348f803f9c10836a6081e8dd9a626",
+      "bytes": 1693
+    },
+    {
+      "old_path": "execution/q2_support_tail.py",
+      "new_path": "archive/research/model-helpers/q2_support_tail.py",
+      "sha256": "a4d34f922fcf1616da8ca1b6110e975a3826e2e9c43d81a9ec596d31032e69af",
+      "bytes": 2194
+    },
+    {
+      "old_path": "execution/q2_tight_rate.py",
+      "new_path": "archive/research/model-helpers/q2_tight_rate.py",
+      "sha256": "ce0ae39ac243d54829efada7c9544fb39750b9dd4eb36bf022c5161808d392e0",
+      "bytes": 1309
+    }
+  ],
+  "approval_rewritten": false
+}

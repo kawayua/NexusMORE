@@ -1,4 +1,5 @@
 """Freeze and admit an independently authored P1 receipt; never fabricate one."""
+from modelcrew.project_assets import asset_path
 import argparse,json,uuid
 from pathlib import Path
 from modelcrew.config import ROOT
@@ -10,12 +11,12 @@ from scripts.run_q2_minimal import validate,TASK
 
 def prepare(folder):
     validate(folder);m=read(folder/'run.json');store=CollaborationStore(folder/'records')
-    origin_dir=ROOT/'stage-d/runs/modeling/q2-collision-20261109-v2'
+    origin_dir=asset_path(ROOT,'stage-d/runs/modeling/q2-collision-20261109-v2')
     origin=CollaborationStore(origin_dir/'records');old=origin.load(Snapshot,read(origin_dir/'run.json')['snapshot_sha256'])
     for cid in old.lineage_call_ids:store.register_call(origin.call(cid))
     source=old.model_copy(update={'artifacts':old.artifacts+[Artifact(artifact_id='frozen_inputs',kind='input',path=(folder/'inputs.json').relative_to(ROOT).as_posix(),sha256=sha_file(folder/'inputs.json'),author_call_ids=old.lineage_call_ids)]})
     sk=store.freeze(source);hk=store.handoff(sk,'coding',[a.artifact_id for a in source.artifacts]);coder=Call.model_validate(m['author']);write(folder/'formal-handoff.json',store.context(hk,coder.call_id))
-    previous=ROOT/'stage-d/runs/coding/q2-minimal-f27903ee91f64d4f85102ad0587f6738'
+    previous=asset_path(ROOT,'stage-d/runs/coding/q2-minimal-f27903ee91f64d4f85102ad0587f6738')
     previous_meta=read(previous/'run.json');prior=Call.model_validate(previous_meta['author']);store.register_call(prior)
     write(folder/'repair-lineage.json',{'previous_run':previous_meta['folder'],'previous_status':previous_meta['status'],'previous_execution_sha256':sha_file(previous/'execution.json'),'repair':'split SAT outputs to respect existing 1MiB per-file limit; batch interval root certification using nonexpansiveness; no model change','author_context':'same Codex author; review uses fresh context','attempt':2})
     bind=Binding(task_id=TASK,contract_version=2,contract_sha256=m['contract_sha256'],execution_id=folder.name,result_revision=1)
@@ -44,5 +45,5 @@ def admit(folder):
     print(json.dumps(result,ensure_ascii=False))
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','admit']);p.add_argument('--run',type=Path,required=True);a=p.parse_args();folder=a.run.resolve()
-    if folder.parent!=(ROOT/'stage-d/runs/coding').resolve():raise ValueError('invalid folder')
+    if folder.parent!=(asset_path(ROOT,'stage-d/runs/coding')).resolve():raise ValueError('invalid folder')
     (prepare if a.stage=='prepare' else admit)(folder)

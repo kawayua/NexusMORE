@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://modelcrew.local/contracts/method-selection-1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+    },
+    "fingerprint": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "solver": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_candidate_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_:./-]*$"
+          },
+          "decision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "premises": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "data": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "complexity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "validation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "fallback": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "decision",
+          "premises",
+          "data",
+          "sources",
+          "reason",
+          "complexity",
+          "risks",
+          "validation",
+          "fallback"
+        ]
+      },
+      "minItems": 1
+    },
+    "coverage_gap": {
+      "type": "string"
+    },
+    "conditions_evidence": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "fingerprint",
+    "model",
+    "solver",
+    "selected_candidate_id",
+    "candidates",
+    "coverage_gap",
+    "conditions_evidence"
+  ]
+}

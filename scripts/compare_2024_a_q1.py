@@ -1,9 +1,10 @@
 """Compare an isolated MiMo run's exported data with independent reference."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import argparse,json,hashlib
 import numpy as np
 from openpyxl import load_workbook
-ROOT=Path(__file__).resolve().parents[1];CASE=ROOT/'stage-a/2024-A-problem-1'
+ROOT=Path(__file__).resolve().parents[1];CASE=asset_path(ROOT,'stage-a/2024-A-problem-1')
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('run_dir',type=Path);a=ap.parse_args();run=a.run_dir.resolve();out=run/'output'
  refs=sorted(p for p in (CASE/'runs').glob('reference-*') if (p/'trajectories.npz').exists())

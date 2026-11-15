@@ -125,3 +125,11 @@ def test_unclassified_source_rejected_before_reading(tmp_path):
     manifest.write_text(json.dumps({'documents':[{'id':'blocked','same_problem_reference':None}]}), encoding='utf-8')
     with pytest.raises(ValueError, match='explicit same-problem classification'):
         prepare_corpus(manifest,tmp_path/'output')
+
+
+def test_requested_limit_and_unrelated_query_do_not_invent_bibliographic_metadata(indexed):
+    service, _ = indexed
+    limited = service.search('alpha', limit=1)
+    assert len(limited['hits']) == 1
+    assert 'doi' not in limited['hits'][0] and 'authors' not in limited['hits'][0]
+    assert service.search('beta', filters={'kind': 'paper'}, score_threshold=.99)['hits'] == []

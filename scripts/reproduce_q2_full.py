@@ -1,4 +1,5 @@
 """Repeat every primary partition with independently dispatched identical code."""
+from modelcrew.project_assets import asset_path
 import shutil,json
 from scripts.run_q2_full import active,job
 from scripts.run_d3_minimal import read,write
@@ -25,7 +26,7 @@ def main():
     event=read(folder/'collision-event.json');sub=folder/'support';sub.mkdir(exist_ok=True)
     base=(primary/'generated_solver.py').read_text(encoding='utf-8').split("if __name__=='__main__':full_main()")[0]
     values={'EVENT_A':event['first_event_enclosure_s'][0],'EVENT_B':event['first_event_enclosure_s'][1],'EVENT_LO':event['time_interval_s'][0],'EVENT_HI':event['time_interval_s'][1],'EVENT_SPEC':event['unique_contact_feature']}
-    code='\n'.join(k+'='+repr(v) for k,v in values.items())+'\n'+base+'\n'+(ROOT/'execution/q2_support_tail.py').read_text(encoding='utf-8-sig')
+    code='\n'.join(k+'='+repr(v) for k,v in values.items())+'\n'+base+'\n'+(asset_path(ROOT,'execution/q2_support_tail.py')).read_text(encoding='utf-8-sig')
     p=sub/'generated_solver.py'
     if not p.exists():p.write_text(code,encoding='utf-8')
     elif p.read_text(encoding='utf-8')!=code:raise ValueError('support source changed')

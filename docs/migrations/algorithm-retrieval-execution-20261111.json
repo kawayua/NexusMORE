@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "status": "passed",
+  "scope": "Algorithm retrieval data relocation and default callers; F0 remains incomplete",
+  "file_identities": [
+    {
+      "path": "runs/algorithm-retrieval/catalog.json",
+      "sha256": "5fe5331e595918fe50028fd441d6701039cb6dfeb79c2ca8dcca46ae57c1009f"
+    },
+    {
+      "path": "archive/research/retrieval-config/algorithm-index-20261111.json",
+      "sha256": "36cb7d00dacbaf4b320e320d7bbc3c4ee18bd00122d79be0c59ad49ad1b06439"
+    },
+    {
+      "path": "runs/algorithm-retrieval/index.json",
+      "sha256": "b81e8dcf350f80b745592a738717229624172aabaf246d007d59c8458492c799"
+    }
+  ],
+  "configuration_fields_changed": [
+    "catalog_path"
+  ],
+  "collection": "mc_cplus_d7099bf0f67ca9c72cd07ec6",
+  "catalog_sha256": "9e7dcfa619da64a22609a7db3ae26bc5b2fdaefeab929607c87504835e95afac",
+  "targeted_tests": {
+    "passed": 101
+  },
+  "full_regression": {
+    "passed": 586,
+    "skipped": 141,
+    "report": "tmp/algorithm-retrieval-migration-regression-v1.xml"
+  },
+  "relocation_verification": {
+    "records": 9,
+    "mapping_entries": 316,
+    "status": "passed"
+  },
+  "layout_guard": "passed",
+  "historical_assembly": {
+    "verified_files": 827,
+    "manuscript_review": "approved",
+    "figure_review": "approved",
+    "current_context_matches_frozen": false,
+    "can_export_current": false,
+    "evidence": "tmp/repository-historical-build-20261111-v5.json"
+  },
+  "live_probes": [
+    "tmp/algorithm-retrieval-migration-live-v1.json",
+    "tmp/algorithm-retrieval-mcp-default-v1/receipt.json"
+  ],
+  "source_revision_record": "docs/migrations/algorithm-source-revisions-20261111.json",
+  "index_rebuilt": false,
+  "model_downloaded": false,
+  "paid_model_called": false,
+  "approval_rewritten": false,
+  "limitations": [
+    "Local data and source snapshots are not a complete release or clean-clone recovery package",
+    "Other stage directories and paper retrieval defaults await later batches"
+  ]
+}

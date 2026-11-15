@@ -99,3 +99,53 @@ def test_schema_rejection_does_not_silently_retry_as_json_mode(tmp_path):
         with pytest.raises(ModelCallError):
             JsonModel(client=client,config={**CONFIG,'MODELCREW_W2_RESPONSE_FORMAT':'json_schema'}).call(tmp_path,'W2','independent',{'output_protocol':'w2_evidence_refs_v2','schema':Answer.model_json_schema()})
     assert len(calls)==1 and calls[0]['response_format']['type']=='json_schema'
+
+
+@pytest.mark.parametrize("stage", ["planning", "modeling", "M1", "Coder", "P1", "P2", "Writer-plan", "W1"])
+def test_structured_stages_request_json_and_preserve_fenced_failure(tmp_path, stage):
+    content='```json\n{"status":"PASS"}\n```'
+    calls=[]
+    def handler(request):
+        body=json.loads(request.content);calls.append(body)
+        assert body["response_format"] == {"type":"json_object"}
+        return httpx.Response(200,json={"choices":[{"finish_reason":"stop","message":{"content":content}}]})
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        with pytest.raises(json.JSONDecodeError):
+            JsonModel(client=client,config=CONFIG).call(tmp_path,stage,"Only JSON",{})
+    assert len(calls)==1
+    raw=json.loads(next(tmp_path.glob("*response.json")).read_text(encoding="utf-8"))
+    assert raw["choices"][0]["message"]["content"]==content
+    meta=json.loads(next(tmp_path.glob("*metadata.json")).read_text(encoding="utf-8"))
+    assert meta["response_format_type"]=="json_object" and not meta["server_schema_enforced"]
+    assert meta["status"]=="invalid_response"
+
+
+def test_native_json_request_keeps_raw_writer_protocol(tmp_path):
+    def handler(request):
+        assert "response_format" not in json.loads(request.content)
+        return httpx.Response(200,json={"choices":[{"finish_reason":"stop","message":{"content":TEXT}}]})
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        answer,meta=JsonModel(client=client,config=CONFIG).call(tmp_path,"Writer","raw Markdown",{"output_protocol":"raw_markdown_v1"})
+    assert answer=={"markdown":TEXT} and meta["response_format_type"]=="none"
+
+
+def test_writer_navigation_preserves_all_result_locations_and_exact_sources():
+    from modelcrew.hand_runtime import writer_evidence_navigation
+    from modelcrew.modeling_hand import pointer
+    evidence={'result':{'values':[{'value':{'figures':[{'deep':list(range(100))}]*9}},
+                                {'value':{'base':{'profit':2200},'scenarios':[], 'a/b~c':1}}]},
+              'sources':{'sources':[{'path':'case/statement.md','text':'SYNTHETIC'}]}}
+    navigation, locations, sources=writer_evidence_navigation(evidence)
+    assert locations[1]['selector']=='/values/1/value'
+    assert '/values/1/value/base' in navigation['result']
+    assert '/values/1/value/a~1b~0c' in navigation['result']
+    assert sources==['case/statement.md']
+    assert not any('limits' in p for p in navigation['result'])
+    for name,paths in navigation.items():
+        for path in paths:pointer(evidence[name],path)
+
+
+def test_writer_navigation_never_invents_numerics_or_references():
+    from modelcrew.hand_runtime import writer_evidence_navigation
+    nav,locations,sources=writer_evidence_navigation({'result':{'values':[]},'sources':{'sources':[]}})
+    assert locations==[] and sources==[] and nav['result']==['/values']

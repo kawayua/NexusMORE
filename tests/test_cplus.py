@@ -1,4 +1,5 @@
 """Condition and provenance boundaries; synthetic vectors do not evaluate semantics."""
+from modelcrew.project_assets import asset_path,local_history
 import copy
 import json
 from pathlib import Path
@@ -6,14 +7,23 @@ import pytest
 from pydantic import ValidationError
 from qdrant_client import QdrantClient
 from modelcrew.config import ROOT
-from modelcrew.algorithm_retrieval import AlgorithmRequest,AlgorithmRetriever,assess,verify_sources,build_index
+from modelcrew.retrieval_paths import algorithm_catalog_path
+from modelcrew.algorithm_retrieval import AlgorithmRequest,LegacyAlgorithmRetriever,assess,verify_sources,build_index
 from modelcrew.retrieval import RetrievalUnavailable
 from scripts.build_cplus_export import safe_math,tex_source
 from modelcrew.mathematics import validate_package
 
 
 @pytest.fixture
-def catalog():return json.loads((ROOT/'stage-c-plus/algorithm-catalog.json').read_text(encoding='utf-8'))
+def catalog():
+    # Isolated current-index test fixture exercises legacy vector guards. The historical catalog stays byte-identical.
+    from modelcrew.contracts import digest
+    from modelcrew.collaboration import sha_file
+    value=json.loads(algorithm_catalog_path(ROOT).read_text(encoding='utf-8'))
+    value['index']['sha256']=sha_file(asset_path(ROOT,'resources/algorithms/index.md'))
+    value['scope']='TEST_ONLY legacy card/vector behavior with current-index fixture; not historical admission'
+    value['catalog_sha256']=digest({k:v for k,v in value.items() if k!='catalog_sha256'})
+    return value
 
 
 class Vectors:
@@ -52,7 +62,7 @@ def test_catalog_tamper_rejected_before_embedding(catalog):
 def test_index_returns_full_section_and_excludes_failed_premises(catalog):
     client=QdrantClient(':memory:');model=Vectors();name=build_index(catalog,model,client)
     assert build_index(catalog,model,client)==name
-    service=AlgorithmRetriever.__new__(AlgorithmRetriever);service.client=client;service.catalog=catalog;service.embedder=model
+    service=LegacyAlgorithmRetriever.__new__(LegacyAlgorithmRetriever);service.client=client;service.catalog=catalog;service.embedder=model
     service.config={'collection':name}
     result=service.search(AlgorithmRequest(query='root',category='geometry',layer='numerical_algorithm',facts={'scalar_equation':True,'continuous_on_bracket':True,'opposite_endpoint_signs':True}))
     hit=result['hits'][0]
@@ -69,8 +79,8 @@ def test_export_rejects_executable_tex(latex):
 
 
 def test_tex_retains_all_equations_symbols_and_ids():
-    package=json.loads((ROOT/'stage-b-plus/examples/valid-bench-dragon.json').read_text(encoding='utf-8'))
-    contract=json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'))
+    package=json.loads((asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json')).read_text(encoding='utf-8'))
+    contract=json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'))
     validate_package(package,contract)
     source=tex_source(package,'bench-dragon',figure=True)
     assert all(e['latex'] in source and source.count('\\label{'+e['id']+'}')==1 for e in package['dossier']['equations'])

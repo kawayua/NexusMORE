@@ -1,4 +1,5 @@
 """End-to-end MCP client -> separate server -> local BGE -> real Qdrant."""
+from modelcrew.project_assets import asset_path
 import argparse
 import json
 import os
@@ -30,7 +31,7 @@ async def main(folder):
                 checks.append({'id':'initialize','passed':init.serverInfo.name=='modelcrew-paper-search','protocol_version':init.protocolVersion})
                 tools=await session.list_tools()
                 checks.append({'id':'discover_tool_and_schema','passed':{t.name for t in tools.tools}=={'paper_search','web_search','web_read','reference_get','algorithm_search'} and bool(tools.tools[0].outputSchema)})
-                queries=json.loads((ROOT/'stage-c/corpus/queries.json').read_text(encoding='utf-8-sig'))
+                queries=json.loads((asset_path(ROOT,'stage-c/corpus/queries.json')).read_text(encoding='utf-8-sig'))
                 for q in queries:
                     response=await session.call_tool('paper_search',{'query':q['query'],'limit':3,'filters':q['filters']})
                     envelope=Envelope.model_validate(response.structuredContent)
@@ -63,6 +64,6 @@ async def main(folder):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--output',type=Path,default=ROOT/'stage-c/runs'/('mcp-verification-'+datetime.now().strftime('%Y%m%dT%H%M%S%f')))
+    parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args()
     anyio.run(main,args.output)

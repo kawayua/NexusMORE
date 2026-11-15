@@ -1,4 +1,5 @@
 """Trusted Q2 minimal-run orchestration. Never import the generated payload on host."""
+from modelcrew.project_assets import asset_path
 import argparse,json,uuid
 from pathlib import Path
 import numpy as np
@@ -14,10 +15,10 @@ TASK='d6-bench-q2-20261109'
 def build():
     with workflow() as w,w.lock(TASK):
         s=approved(w,TASK,2)
-        folder=ROOT/'stage-d/runs/coding'/('q2-minimal-'+uuid.uuid4().hex)
+        folder=asset_path(ROOT,'stage-d/runs/coding')/('q2-minimal-'+uuid.uuid4().hex)
         folder.mkdir()
         contract=s['contract']['content']
-        source=ROOT/'stage-d/runs/full/full-ed1a97c89d2c4aa3a4a2298a44a8ce77/generated_solver.py'
+        source=asset_path(ROOT,'stage-d/runs/full/full-ed1a97c89d2c4aa3a4a2298a44a8ce77/generated_solver.py')
         core=source.read_text(encoding='utf-8').split('# D4 wrapper;')[0]
         core=core.replace('CONTRACT_SHA256 = "44e23c6a10b7581d82a2b2697159e7aaee1625d8486cb177bd541a9a36d2e61e"','CONTRACT_SHA256 = '+repr(s['contract']['sha256']))
         core=core[:core.index('CHECK_IDS =')]+ 'CHECK_IDS = '+repr([c['id'] for c in contract['checks']])+'\n'+core[core.index('ROD_L ='):]
@@ -30,7 +31,7 @@ def build():
         bind=Binding(task_id=TASK,contract_version=2,contract_sha256=s['contract']['sha256'])
         coder=Call(call_id=str(uuid.uuid4()),context_id=str(uuid.uuid4()),role='coding',binding=bind)
         store=CollaborationStore(folder/'records');store.register_call(coder)
-        origin=read(ROOT/'stage-d/q2-modeling/current-model.json')
+        origin=read(asset_path(ROOT,'stage-d/q2-modeling/current-model.json'))
         write(folder/'handoff.json',{'approved_model':origin,'model_sha256':s['contract']['sha256'],'M1_receipt_sha256':origin['M1_receipt_sha256'],'author':coder.model_dump(mode='json'),'source_artifacts':[{'path':str(source.relative_to(ROOT)),'sha256':sha_file(source),'use':'Q1 reviewed kinematic routines restricted to 0..300; Q2 collision code new'},{'path':'scripts/q2_minimal_payload.py','sha256':sha_file(payload),'use':'Q2 interval and SAT implementation'}],'algorithm_sources':[{'path':p,'sha256':sha_file(ROOT/p)} for p in ['resources/algorithms/index.md','resources/algorithms/numerical-geometry.md']]})
         write(folder/'code-evidence.json',{'code':code,'code_sha256':sha_file(folder/'generated_solver.py'),'authorship':'Codex coding context; no supplier Coder API called','scope':'minimal P1, no full first-event search'})
         meta=dict(task_id=TASK,contract_version=2,contract_sha256=s['contract']['sha256'],folder=folder.relative_to(ROOT).as_posix(),author=coder.model_dump(mode='json'),status='generated',code_sha256=sha_file(folder/'generated_solver.py'),user_result_confirmation='pending')
@@ -83,7 +84,7 @@ def validate(folder):
     expected={'time_s':(8,),'theta_rad':(8,224),'position_m':(8,224,2),'velocity_m_s':(8,224,2),'speed_m_s':(8,224),'sat_gap_m':(8,24531),'pair_i':(24531,),'pair_j':(24531,)}
     if set(data)!=set(expected) or any(data[k].shape!=shape or not np.isfinite(data[k]).all() for k,shape in expected.items()):raise ValueError('shape or finite')
     from scripts.reference_2024_a_q1 import solve
-    par=read(ROOT/'stage-a/2024-A-problem-1/parameters.json')
+    par=read(asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json'))
     ref=[solve(float(t),par) for t in data['time_s']]
     checks={}
     def check(k,x,lim):checks[k]={'passed':bool(x<=lim),'value':float(x),'limit':lim}
@@ -130,5 +131,5 @@ if __name__=='__main__':
     if a.stage=='build':build()
     else:
         folder=a.run.resolve()
-        if folder.parent!=(ROOT/'stage-d/runs/coding').resolve():raise ValueError('invalid folder')
+        if folder.parent!=(asset_path(ROOT,'stage-d/runs/coding')).resolve():raise ValueError('invalid folder')
         (execute if a.stage=='execute' else validate)(folder)

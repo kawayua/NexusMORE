@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "product": "枢模 · NexusMORE",
+  "version": "0.1.0.dev0",
+  "distribution_license": "AGPL-3.0-only",
+  "original_project_work_prior_license": "Apache-2.0; retained, not revoked",
+  "third_party_terms": "Preserved per file; combined distribution is not Apache-only or an unrestricted Apache/AGPL choice.",
+  "warranty": "NO WARRANTY; see complete AGPL sections 15 and 16.",
+  "license_files": {
+    "agpl": "licensing/AGPL-3.0.txt",
+    "apache": "licensing/Apache-2.0.txt"
+  },
+  "third_party_notice": "third-party-notices.md",
+  "source_materials": {
+    "filename": "nexusmore-0.1.0.dev0-agpl-source-materials.zip",
+    "access": "Publish alongside the matching binary with equivalent free source access before public distribution.",
+    "published_url": null,
+    "complete_corresponding_source_verified": false
+  },
+  "public_release_cleared": false,
+  "privacy": "User papers, keys and business data are not automatically covered software source."
+}

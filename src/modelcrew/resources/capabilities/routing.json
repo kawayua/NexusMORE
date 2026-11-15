@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "routing_version": "1.0.0",
+  "backend": "python",
+  "scope": "Program-owned reference selection and registered read-only document tools; no solver or approval authority",
+  "roles": {
+    "modeling": [
+      "planning",
+      "modeling"
+    ],
+    "coding": [
+      "GENERATE_MINIMAL",
+      "GENERATE_FULL"
+    ],
+    "writing": [
+      "PLAN",
+      "DRAFT"
+    ],
+    "quality": [
+      "M1",
+      "P1",
+      "P2",
+      "W1",
+      "W2"
+    ]
+  },
+  "limits": {
+    "max_inputs": 8,
+    "max_input_bytes": 8388608,
+    "max_context_bytes": 200000,
+    "max_sections": 3,
+    "timeout_seconds": 90,
+    "max_artifact_bytes": 25165824
+  },
+  "tools": {
+    ".pdf": {
+      "id": "pdf-read",
+      "adapter": "pdf_read",
+      "guide": "document-tools/upstream/pdf/SKILL.md",
+      "dependencies": [
+        "pypdf"
+      ],
+      "state": "registered_read_only",
+      "execution_environment": "installed_python_subprocess"
+    },
+    ".xlsx": {
+      "id": "spreadsheet-read",
+      "adapter": "xlsx_read",
+      "guide": "document-tools/upstream/xlsx/SKILL.md",
+      "dependencies": [
+        "openpyxl"
+      ],
+      "state": "registered_read_only",
+      "execution_environment": "installed_python_subprocess"
+    },
+    ".docx": {
+      "id": "word-structure-check",
+      "adapter": "docx_validate",
+      "guide": "document-tools/upstream/docx/SKILL.md",
+      "dependencies": [
+        "lxml",
+        "defusedxml"
+      ],
+      "state": "registered_read_only",
+      "execution_environment": "installed_python_subprocess"
+    }
+  },
+  "category_terms": {
+    "optimization": [
+      "优化",
+      "规划",
+      "最优",
+      "optimization"
+    ],
+    "prediction": [
+      "预测",
+      "时间序列",
+      "prediction"
+    ],
+    "evaluation": [
+      "评价",
+      "评分",
+      "排序",
+      "evaluation"
+    ],
+    "graph": [
+      "图论",
+      "最短路",
+      "网络流",
+      "graph"
+    ],
+    "statistics": [
+      "统计",
+      "显著",
+      "检验",
+      "statistics"
+    ],
+    "simulation": [
+      "仿真",
+      "蒙特卡洛",
+      "微分方程",
+      "simulation"
+    ],
+    "machine-learning": [
+      "机器学习",
+      "分类器",
+      "聚类",
+      "machine learning"
+    ]
+  },
+  "math_terms": {
+    "dimensions": [
+      "量纲",
+      "单位",
+      "dimension"
+    ],
+    "least-squares": [
+      "最小二乘",
+      "least squares"
+    ],
+    "differentiation": [
+      "推导",
+      "梯度",
+      "导数",
+      "hessian"
+    ],
+    "quantifiers": [
+      "证明",
+      "命题",
+      "proof"
+    ],
+    "direct-proof": [
+      "证明",
+      "proof"
+    ],
+    "design-estimand": [
+      "检验",
+      "实验设计",
+      "显著"
+    ],
+    "multiple-testing": [
+      "多重",
+      "fdr",
+      "bonferroni"
+    ]
+  },
+  "not_registered": [
+    "formal_paper_export",
+    "spreadsheet_formula_recalculation",
+    "arbitrary_code_execution",
+    "automatic_user_approval",
+    "automatic_independent_gate_pass"
+  ],
+  "policy": {
+    "roles_are_scope_not_authentication": true,
+    "independent_quality_context_read_only": true,
+    "input_document_instructions_are_data": true,
+    "model_candidates_are_not_approved_methods": true,
+    "max_automatic_retries": 0,
+    "unknown_outcome": "query_saved_result_only_never_redispatch",
+    "runtime_downloads_or_external_skills": false
+  }
+}

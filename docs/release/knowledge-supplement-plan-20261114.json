@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "status": "gap_inventory_for_user_targeted_supplementation_not_content_acceptance",
+  "full_knowledge_builtin": false,
+  "items": [
+    {
+      "id": "A1",
+      "category": "算法全文",
+      "title": "优化",
+      "status": "full_text_missing",
+      "current_coverage": "index/category labels and project selection notes; geometry/numerics supplement is limited",
+      "topics": "线性/整数规划、凸与非线性优化、多目标优化、约束可行性、求解状态与敏感性分析",
+      "target": "algorithms/knowledge/optimization.md",
+      "sources": [
+        {
+          "id": "resource-003",
+          "path": "assets/01-优化算法说明.md",
+          "sha256": "237d8d311d181de3c2e27733c75c8d23a2c6fcffef3607dae1fab4ed1910644d",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P1",
+      "action": "用户提供覆盖分发的授权资料，或按这些主题独立编写并核对；不直接复制未授权原文"
+    },
+    {
+      "id": "A2",
+      "category": "算法全文",
+      "title": "预测",
+      "status": "full_text_missing",
+      "current_coverage": "index/category labels and project selection notes; geometry/numerics supplement is limited",
+      "topics": "回归与拟合、时间序列、趋势与季节性、训练验证时间边界、误差指标与预测区间",
+      "target": "algorithms/knowledge/prediction.md",
+      "sources": [
+        {
+          "id": "resource-004",
+          "path": "assets/02-预测类算法说明.md",
+          "sha256": "1ee99a4d1330daea16e2dee9ad02c81570cac7fdd708af7c8c2d8a4598734bcf",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P1",
+      "action": "用户提供覆盖分发的授权资料，或按这些主题独立编写并核对；不直接复制未授权原文"
+    },
+    {
+      "id": "A3",
+      "category": "算法全文",
+      "title": "评价",
+      "status": "full_text_missing",
+      "current_coverage": "index/category labels and project selection notes; geometry/numerics supplement is limited",
+      "topics": "指标方向与标准化、权重依据、AHP一致性、熵权/TOPSIS、DEA及排序稳健性",
+      "target": "algorithms/knowledge/evaluation.md",
+      "sources": [
+        {
+          "id": "resource-005",
+          "path": "assets/03-评价类算法说明.md",
+          "sha256": "c6816bafa817a7e77d677f78bae2ad63dd8b7b26e72a7f39af6b06d6184fa9e9",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P1",
+      "action": "用户提供覆盖分发的授权资料，或按这些主题独立编写并核对；不直接复制未授权原文"
+    },
+    {
+      "id": "A4",
+      "category": "算法全文",
+      "title": "图论与网络",
+      "status": "full_text_missing",
+      "current_coverage": "index/category labels and project selection notes; geometry/numerics supplement is limited",
+      "topics": "图建模、最短路、生成树、网络流、匹配、容量及负权条件",
+      "target": "algorithms/knowledge/graph.md",
+      "sources": [
+        {
+          "id": "resource-006",
+          "path": "assets/04-图论与网络分析算法说明.md",
+          "sha256": "af4cc0a9e817b7c4276aa391fb190c72985389e4e42dfc8b6cad84e877187718",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P1",
+      "action": "用户提供覆盖分发的授权资料，或按这些主题独立编写并核对；不直接复制未授权原文"
+    },
+    {
+      "id": "A5",
+      "category": "算法全文",
+      "title": "统计分析与数据处理",
+      "status": "full_text_missing",
+      "current_coverage": "index/category labels and project selection notes; geometry/numerics supplement is limited",
+      "topics": "缺失与异常处理、描述统计、估计与检验、降维聚类、配对/重复设计、数据泄漏",
+      "target": "algorithms/knowledge/statistics.md",
+      "sources": [
+        {
+          "id": "resource-007",
+          "path": "assets/05-统计分析与数据处理算法说明.md",
+          "sha256": "f454368d61e1fda7788b66473e1a7453636889161c7de029b2dcf4c2fb454c4f",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P1",
+      "action": "用户提供覆盖分发的授权资料，或按这些主题独立编写并核对；不直接复制未授权原文"
+    },
+    {
+      "id": "A6",
+      "category": "算法全文",
+      "title": "综合与仿真",
+      "status": "full_text_missing",
+      "current_coverage": "index/category labels and project selection notes; geometry/numerics supplement is limited",
+      "topics": "Monte Carlo、微分/差分方程、动力系统、离散事件、初边值、误差/稳定性/收敛",
+      "target": "algorithms/knowledge/simulation.md",
+      "sources": [
+        {
+          "id": "resource-008",
+          "path": "assets/06-综合类算法说明.md",
+          "sha256": "cf97122bcaa48728b88de49d0db8fd3e4c113c1182b87f29980cc6c658dbf956",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P1",
+      "action": "用户提供覆盖分发的授权资料，或按这些主题独立编写并核对；不直接复制未授权原文"
+    },
+    {
+      "id": "A7",
+      "category": "算法全文",
+      "title": "机器学习",
+      "status": "full_text_missing",
+      "current_coverage": "index/category labels and project selection notes; geometry/numerics supplement is limited",
+      "topics": "分类与回归、特征与预处理、交叉验证、类别不平衡、可解释性、资源预算与基线",
+      "target": "algorithms/knowledge/machine-learning.md",
+      "sources": [
+        {
+          "id": "resource-009",
+          "path": "assets/07-机器学习算法说明.md",
+          "sha256": "b80bbfc0211ae2abde6b263ae391970ecd6d87ba3a3b68fa6c9cb36250e478db",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P1",
+      "action": "用户提供覆盖分发的授权资料，或按这些主题独立编写并核对；不直接复制未授权原文"
+    },
+    {
+      "id": "B1",
+      "category": "数学论证",
+      "title": "数学形式化与推导",
+      "status": "project_guidance_present_full_reference_partial",
+      "current_resources": [
+        "collaboration/mathematical-reasoning.md"
+      ],
+      "topics": "符号、定义域、量纲/维度、假设、合法变换、导数/积分/线性代数与误差核对",
+      "target": "mathematics/notation-and-derivation.md",
+      "sources": [
+        {
+          "id": "resource-249",
+          "path": "references/notation-guide.md",
+          "sha256": "8bae2a7bdde0ed5f254777b235ad9431f0090120ff86ee25b1994e62aa7ea639",
+          "redistribution_approved": false
+        }
+      ],
+      "source_mapping_note": "原数学入口 SKILL.md 是综合入口，并非专门统计教材；这里按枢模业务重新组织，不把原文件类别误作完整覆盖",
+      "priority": "P1",
+      "action": "在自编规范基础上补公式、条件、完整推导/证明/反例与复算案例"
+    },
+    {
+      "id": "B2",
+      "category": "数学论证",
+      "title": "证明方法与反例",
+      "status": "project_guidance_present_full_reference_partial",
+      "current_resources": [
+        "collaboration/proof-review.md"
+      ],
+      "topics": "直接证明、反证、归纳、构造、存在唯一性、必要/充分条件、反例和未证缺口",
+      "target": "mathematics/proof-methods.md",
+      "sources": [
+        {
+          "id": "resource-250",
+          "path": "references/proof-templates.md",
+          "sha256": "4ffeb9f44a2e4622eb4b33a56b3e6c97848195243ab7b68152e1ba35b022b974",
+          "redistribution_approved": false
+        }
+      ],
+      "source_mapping_note": "原数学入口 SKILL.md 是综合入口，并非专门统计教材；这里按枢模业务重新组织，不把原文件类别误作完整覆盖",
+      "priority": "P1",
+      "action": "在自编规范基础上补公式、条件、完整推导/证明/反例与复算案例"
+    },
+    {
+      "id": "B3",
+      "category": "数学论证",
+      "title": "统计论证与检验决策",
+      "status": "project_guidance_present_full_reference_partial",
+      "current_resources": [
+        "collaboration/statistical-validation.md"
+      ],
+      "topics": "抽样与实验单位、配对/重复/聚类、检验前提、效应量/区间、多重比较、可复算案例",
+      "target": "mathematics/statistical-reasoning.md",
+      "sources": [
+        {
+          "id": "resource-251",
+          "path": "SKILL.md",
+          "sha256": "d148489deb82f6e5b798eeaa87fc32fec39368bdecb67666cbcf07e2b0ee4e45",
+          "redistribution_approved": false
+        }
+      ],
+      "source_mapping_note": "原数学入口 SKILL.md 是综合入口，并非专门统计教材；这里按枢模业务重新组织，不把原文件类别误作完整覆盖",
+      "priority": "P1",
+      "action": "在自编规范基础上补公式、条件、完整推导/证明/反例与复算案例"
+    },
+    {
+      "id": "C1",
+      "category": "中文论文资料",
+      "title": "章节模板.md",
+      "status": "required_reference_missing",
+      "runtime_required_path": "paper/reference/章节模板.md",
+      "current_coverage": "paper policy/writer instructions and own zh/en engineering skeleton only",
+      "topics": "问题重述、分析、假设、唯一全局符号表、模型/求解、结果、检验、评价、结论及参考文献；单题与整篇汇编区别",
+      "sources": [
+        {
+          "id": "resource-102",
+          "path": "references/roles/论文手/references/章节模板.md",
+          "sha256": "cbea97d743aae83f4c5fe2021a4d6033cfd9b6c498ddc9d8f212ad84bd1667ea",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P0",
+      "action": "优先独立编写或取得明确分发授权；模板须携完整合法配套文件，并真实编译/同源导出验证"
+    },
+    {
+      "id": "C2",
+      "category": "中文论文资料",
+      "title": "写作规范.md",
+      "status": "required_reference_missing",
+      "runtime_required_path": "paper/reference/写作规范.md",
+      "current_coverage": "paper policy/writer instructions and own zh/en engineering skeleton only",
+      "topics": "中文数学建模体裁、证据与结论对应、假设与局限、公式/图表叙述及引用；不能用证明文章替代",
+      "sources": [
+        {
+          "id": "resource-100",
+          "path": "references/roles/论文手/references/写作规范.md",
+          "sha256": "57f1477595b648d6699d47ae578d1c4919ee6558390880cd62c10a938e7c96f1",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P0",
+      "action": "优先独立编写或取得明确分发授权；模板须携完整合法配套文件，并真实编译/同源导出验证"
+    },
+    {
+      "id": "C3",
+      "category": "中文论文资料",
+      "title": "论文格式规范.md",
+      "status": "required_reference_missing",
+      "runtime_required_path": "paper/reference/论文格式规范.md",
+      "current_coverage": "paper policy/writer instructions and own zh/en engineering skeleton only",
+      "topics": "标题摘要关键词、摘要首页/正文次页、A4版心字体、编号题注和交叉引用、Word原生公式",
+      "sources": [
+        {
+          "id": "resource-105",
+          "path": "references/roles/论文手/references/论文格式规范.md",
+          "sha256": "b5359295c362a6fbe94295bc332d8ea1a72792b3313f26b4b93532d69d2f7189",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P0",
+      "action": "优先独立编写或取得明确分发授权；模板须携完整合法配套文件，并真实编译/同源导出验证"
+    },
+    {
+      "id": "C4",
+      "category": "中文论文资料",
+      "title": "LaTeX格式规范.md",
+      "status": "required_reference_missing",
+      "runtime_required_path": "paper/reference/LaTeX格式规范.md",
+      "current_coverage": "paper policy/writer instructions and own zh/en engineering skeleton only",
+      "topics": "Tectonic 0.17.0/Pandoc 3.6.4 范围、同源AST、中文字体、警告阻断、全页检查与引用",
+      "sources": [
+        {
+          "id": "resource-099",
+          "path": "references/roles/论文手/references/LaTeX格式规范.md",
+          "sha256": "e6ff99e6fa47916febc53ceb4364aa1ef70ff0e16c6687d176e56bf07863e5a1",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P0",
+      "action": "优先独立编写或取得明确分发授权；模板须携完整合法配套文件，并真实编译/同源导出验证"
+    },
+    {
+      "id": "C5",
+      "category": "中文论文资料",
+      "title": "main.tex",
+      "status": "required_reference_missing",
+      "runtime_required_path": "paper/reference/main.tex",
+      "current_coverage": "paper policy/writer instructions and own zh/en engineering skeleton only",
+      "topics": "可编译的中文建模主模板、必要样式/类文件、字体许可与示例引用；现有工程骨架不等于完整论文模板",
+      "sources": [
+        {
+          "id": "resource-221",
+          "path": "tools/latex/assets/templates/cumcm/main.tex",
+          "sha256": "bcdcb449176640a60ff540210aa7b7a64d6a5e77465d5d06877bdb46d44de276",
+          "redistribution_approved": false
+        }
+      ],
+      "priority": "P0",
+      "action": "优先独立编写或取得明确分发授权；模板须携完整合法配套文件，并真实编译/同源导出验证"
+    }
+  ],
+  "known_existing_resources": [
+    "algorithms/index.md",
+    "algorithms/modelcrew-notes.md",
+    "algorithms/numerical-geometry.md",
+    "algorithms/hand-card-profiles-1.0.0.json",
+    "collaboration/mathematical-reasoning.md",
+    "collaboration/proof-review.md",
+    "collaboration/statistical-validation.md",
+    "paper/workflow.json",
+    "paper/writer-instructions.md",
+    "paper/chinese-modeling-policy.json",
+    "latex/zh-main.tex",
+    "latex/en-main.tex"
+  ],
+  "optional_additions_not_yet_user_frozen": [
+    "Each adopted algorithm: at least one checked positive example plus a failure/counterexample, sources and dependency versions",
+    "Task-specific domain references, e.g. geometry/collision/physics or optimization benchmarks, when the selected problem needs them"
+  ],
+  "acceptance": [
+    "original authorship or license covering intended redistribution and attribution",
+    "bounded coverage table: methods, prerequisites, formulas, steps, complexity/dependencies, failure modes, checks and references",
+    "UTF-8 Markdown/TeX preferred; Word/PDF source must be extractable and reviewed; no secrets or private data",
+    "actual package resource path, SHA-256 and version; wheel/sdist isolated reads",
+    "actual mathematical/numerical checks and Chinese-paper/runtime contract alignment; bibliography identifiers alone are not verified citations",
+    "new frozen contexts only; no edits to old approvals/hashes; F6 automatic routing remains separate"
+  ],
+  "original_ledger": {
+    "path": "docs/release/resource-disposition-20261111.json",
+    "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c"
+  },
+  "scope_note": "15项是本项目可补充资料包，不声称覆盖一切数学；三份原数学资源重新按本地业务拆分，不能与完整教材画等号"
+}

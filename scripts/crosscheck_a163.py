@@ -1,8 +1,9 @@
 """Cross-check manually read factual tables from public A163 page images."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import json,hashlib
 import numpy as np
-ROOT=Path(__file__).resolve().parents[1];CASE=ROOT/'stage-a/2024-A-problem-1'
+ROOT=Path(__file__).resolve().parents[1];CASE=asset_path(ROOT,'stage-a/2024-A-problem-1')
 # Manual transcription: image page 10, table 4.2. x/y rows interleaved.
 position=[
 [8.800000,5.799209,-4.084887,-2.963609,2.594494,4.420274],

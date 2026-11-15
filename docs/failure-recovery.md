@@ -1,6 +1,6 @@
 # C6：故障恢复与清理演练
 
-C6对工作流、独立MCP子进程、真实Docker和PostgreSQL/checkpointer开展了故障演练。最终24项检查通过，完整回归151项通过。原始证据为 `stage-c/runs/c6-failures-20261106a/verification.json`，对应案例dossier保存在同目录；[机器可读摘要](../stage-c/c6-failure-verification-summary.json)保留真实故障与注入故障的区别。
+C6对工作流、独立MCP子进程、真实Docker和PostgreSQL/checkpointer开展了故障演练。最终24项检查通过，完整回归151项通过。原始证据为 `stage-c/runs/c6-failures-20261106a/verification.json`，对应案例dossier保存在同目录；[机器可读摘要](../archive/research/stages/stage-c/c6-failure-verification-summary.json)保留真实故障与注入故障的区别。
 
 测试只创建test-c6-*任务，确认actor均为TEST_SIMULATED_USER；没有调用LLM、运行正式赛题、修改dragon-q1，也没有接入OCR或视觉模型。测试数据库故障只终止本次测试连接，不重启共享数据库服务。
 
@@ -42,4 +42,4 @@ pending-result发布新增job_sha256、run_id、code_sha256和authorization完�
 
 本轮确实中断了真实MCP进程并接管真实容器，但不是整机断电或所有进程崩溃窗口的穷尽证明。清理命令错误和已完成响应丢失采用受控注入；数据库为单连接终止，不是完整数据库停机。C4已覆盖内存、输出上限等容器约束，本轮没有重复运行所有C4用例。服务恢复需要显式resume/status；未新增自动告警、调度器、用户认证或无人值守清理服务。
 
-C1至C6工程检查已完成，可按[阶段C验收报告](../stage-c/stage-c-acceptance-report-20261106.md)审阅；用户验收尚未记录，未自动进入D。用户已取消强制新任务和空白建模上下文，后续可继续现有上下文，默认采用带出处的外部参考辅助建模。图片OCR按用户要求暂缓，多模态识图是已记录但未实现的方向；真实Modeler协作、论文引用位置与多角色修订在D实现和评估。
+C1至C6工程检查已完成，可按[阶段C验收报告](../archive/research/stages/stage-c/stage-c-acceptance-report-20261106.md)审阅；用户验收尚未记录，未自动进入D。用户已取消强制新任务和空白建模上下文，后续可继续现有上下文，默认采用带出处的外部参考辅助建模。图片OCR按用户要求暂缓，多模态识图是已记录但未实现的方向；真实Modeler协作、论文引用位置与多角色修订在D实现和评估。

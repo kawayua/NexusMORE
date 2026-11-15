@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "capability_version": "1.3.0",
+  "product": "枢模 · NexusMORE",
+  "backend": "python",
+  "shared_across_harnesses": true,
+  "supported_latex": {
+    "python": "3.13",
+    "compiler": "Tectonic 0.17.0",
+    "pandoc": "3.6.4",
+    "platform_verified": "Windows local cached compiler and native Word renderer",
+    "unsupported": [
+      "other_compilation_engines",
+      "external_bibtex_biber",
+      "arbitrary_latex_to_word"
+    ],
+    "runtime_version_pin_enforced": false
+  },
+  "paper_discovery": {
+    "default_sources": [
+      "paper_search"
+    ],
+    "allowed_sources": [
+      "paper_search",
+      "web_search"
+    ],
+    "dedicated_openalex_anysearch_registered": false,
+    "require_two_sources": false,
+    "match_is_verification": false
+  },
+  "capabilities": [
+    {
+      "id": "paper-discovery",
+      "module": "modelcrew.paper_discovery",
+      "functions": [
+        "discover",
+        "candidates"
+      ],
+      "status": "existing_search_tools_connected_conservative_candidate_grouping",
+      "formal_approval": false
+    },
+    {
+      "id": "document-workspace",
+      "module": "modelcrew.office_tools",
+      "functions": [
+        "doctor",
+        "profile",
+        "unpack",
+        "pack"
+      ],
+      "status": "read_only_profile_and_unchanged_member_roundtrip_probes",
+      "formal_approval": false
+    },
+    {
+      "id": "document-read-check",
+      "module": "modelcrew.document_tools",
+      "functions": [
+        "run",
+        "read_spreadsheet",
+        "verify_bundle"
+      ],
+      "status": "registered_tools_only_no_formula_recalculation",
+      "formal_approval": false
+    },
+    {
+      "id": "latex-tooling",
+      "module": "modelcrew.latex_tools",
+      "functions": [
+        "initialize",
+        "doctor",
+        "bind",
+        "build",
+        "validate",
+        "export_registered"
+      ],
+      "status": "probes_and_existing_registered_formal_route",
+      "formal_approval": false
+    },
+    {
+      "id": "algorithm-knowledge",
+      "module": "modelcrew.algorithm_knowledge",
+      "functions": [
+        "load_catalog",
+        "list_algorithms",
+        "read_algorithm",
+        "run_examples"
+      ],
+      "status": "versioned_references_and_fixed_educational_examples_only",
+      "formal_approval": false,
+      "general_business_solvers_registered": false
+    },
+    {
+      "id": "mathematical-knowledge",
+      "module": "modelcrew.mathematical_knowledge",
+      "functions": [
+        "load_catalog",
+        "list_topics",
+        "read_topic",
+        "run_examples"
+      ],
+      "status": "versioned_mathematical_references_and_fixed_educational_checks_only",
+      "formal_approval": false,
+      "automatic_theorem_prover": false,
+      "statistical_design_verified": false
+    },
+    {
+      "id": "resource-routing",
+      "module": "modelcrew.resource_routing",
+      "functions": [
+        "registry",
+        "route",
+        "freeze",
+        "frozen_context"
+      ],
+      "status": "versioned_program_owned_references_and_registered_read_only_document_routes",
+      "formal_approval": false,
+      "harness_end_to_end_verified": false
+    }
+  ],
+  "knowledge": {
+    "math_scope": [
+      "formalization",
+      "derivation",
+      "proof_review",
+      "statistical_design",
+      "global_notation"
+    ],
+    "resources": [
+      "collaboration/mathematical-reasoning.md",
+      "collaboration/statistical-validation.md",
+      "collaboration/proof-review.md",
+      "mathematics/index.md",
+      "mathematics/catalog.json",
+      "mathematics/formalization.md",
+      "mathematics/proof-methods.md",
+      "mathematics/statistical-reasoning.md"
+    ],
+    "project_authored": true,
+    "automatic_theorem_prover": false
+  },
+  "unregistered": [
+    "revision_accept_or_simplify",
+    "arbitrary_equation_placeholder_editing",
+    "spreadsheet_formula_recalculation",
+    "edited_office_workspace_publication",
+    "all_harness_automatic_routing"
+  ],
+  "policy": {
+    "guidance_version": "1.3.0",
+    "first_paper_delivery": "chinese_markdown",
+    "model_and_results_confirmation_required": true,
+    "separate_manuscript_and_figures_approval": true,
+    "one_global_symbol_table": true,
+    "all_pdf_pages_required": true,
+    "independent_read_only_gates": [
+      "M1",
+      "P1",
+      "P2",
+      "W1",
+      "W2"
+    ]
+  }
+}

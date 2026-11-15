@@ -1,4 +1,5 @@
 """Freeze updated A+ evidence plan separately; never alter old approvals or drafts."""
+from modelcrew.project_assets import asset_path
 import argparse,json
 from datetime import datetime,timezone
 from pathlib import Path
@@ -11,16 +12,16 @@ def write(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent
 def build(output,bundle):
     if output.exists():raise ValueError('Refusing to overwrite an existing A+ evidence-planning bundle')
     context=writing_context()
-    params_path=ROOT/'stage-a/2024-A-problem-1/parameters.json'
+    params_path=asset_path(ROOT,'stage-a/2024-A-problem-1/parameters.json')
     params=json.loads(params_path.read_text(encoding='utf-8'))
-    input_path=ROOT/'stage-a/2024-A-problem-1/input-manifest.json'
+    input_path=asset_path(ROOT,'stage-a/2024-A-problem-1/input-manifest.json')
     inputs=json.loads(input_path.read_text(encoding='utf-8'))
     statement=next(i for i in inputs['files'] if i['role']=='problem_statement')
     if sha(statement['path'])!=statement['sha256']:raise ValueError('Original statement bytes changed')
     catalog_path=bundle/'figure-catalog.json';catalog=json.loads(catalog_path.read_text(encoding='utf-8'))
     evidence=catalog['evidence'];data_path=ROOT/evidence['path']
     if sha(data_path)!=evidence['sha256']:raise ValueError('Confirmed trajectory bytes changed')
-    old_binding=json.loads((ROOT/'stage-a-plus/figure-evidence-plan.json').read_text(encoding='utf-8'))['evidence']
+    old_binding=json.loads((asset_path(ROOT,'stage-a-plus/figure-evidence-plan.json')).read_text(encoding='utf-8'))['evidence']
     if evidence!=old_binding:raise ValueError('Candidate data must retain the A+ historical execution binding')
     with np.load(data_path,allow_pickle=False) as d:geometry=geometry_evidence(params,d['time_s'],d['position_m'])
     consistency=check_catalog(geometry,catalog)
@@ -40,8 +41,8 @@ def build(output,bundle):
         if t['current_version']!=2 or t['result_revision']!=2 or not t['model_approved'] or not t['result_approved'] or str(result['execution_id'])!=evidence['execution_id']:raise ValueError('Existing confirmed result binding no longer current')
         production={'task_id':'dragon-q1','version':2,'result_revision':2,'execution_id':str(result['execution_id']),'contract_sha256':contract['sha256'],'model_approved':True,'result_approved':True,'inspection':'read_only'}
     sources=[params_path,input_path,Path(statement['path']),data_path,catalog_path,review_path,draft_path,
-             ROOT/'resources/paper/workflow.json',ROOT/'resources/paper/chinese-modeling-policy.json',
-             ROOT/'resources/algorithms/numerical-geometry.md',ROOT/'modelcrew/evidence_planning.py',ROOT/'scripts/prepare_aplus_evidence_plan.py']
+             asset_path(ROOT,'resources/paper/workflow.json'),asset_path(ROOT,'resources/paper/chinese-modeling-policy.json'),
+             asset_path(ROOT,'resources/algorithms/numerical-geometry.md'),ROOT/'modelcrew/evidence_planning.py',ROOT/'scripts/prepare_aplus_evidence_plan.py']
     source_records=[{'path':str(p),'sha256':sha(p)} for p in sources]
     output.mkdir(parents=True,exist_ok=False)
     figures=[]

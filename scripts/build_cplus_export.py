@@ -2,6 +2,7 @@
 
 No solver execution or approval; raw model-generated TeX is not accepted here.
 """
+from modelcrew.project_assets import asset_path
 import argparse
 import csv
 import hashlib
@@ -20,6 +21,7 @@ import matplotlib.pyplot as plt
 from matplotlib import ticker
 from matplotlib.text import Text
 from modelcrew.config import ROOT
+from modelcrew.tool_discovery import discover_tool,tex_cache_directory
 from modelcrew.contracts import digest
 from modelcrew.corpus import sha_file
 from modelcrew.mathematics import validate_package
@@ -42,7 +44,7 @@ def safe_math(text):
 
 
 def plot(folder,package,contract,qa_tools=None):
-    plan=json.loads((ROOT/'stage-a-plus/figure-evidence-plan.json').read_text(encoding='utf-8'))
+    plan=json.loads((asset_path(ROOT,'stage-a-plus/figure-evidence-plan.json')).read_text(encoding='utf-8'))
     source=ROOT/plan['evidence']['path']
     if sha_file(source)!=plan['evidence']['sha256'] or package['figures'][0]['data_sha256']!=sha_file(source):
         raise ValueError('Historical result figure hash mismatch')
@@ -165,8 +167,9 @@ def tex_source(package,name,figure=False):
 
 
 def build(folder,compiler,qa_tools=None):
+    compiler=discover_tool('tectonic',compiler)
     folder=folder.resolve();folder.mkdir(parents=True,exist_ok=False)
-    packages={name:json.loads((ROOT/f'stage-b-plus/examples/valid-{name}.json').read_text(encoding='utf-8')) for name in ('bench-dragon','resource')}
+    packages={name:json.loads((asset_path(ROOT,f'stage-b-plus/examples/valid-{name}.json')).read_text(encoding='utf-8')) for name in ('bench-dragon','resource')}
     contracts={name:json.loads((ROOT/('stage-b-plus/examples/contract-v2-snapshot.json' if name=='bench-dragon' else 'stage-b-plus/examples/resource-contract.json')).read_text(encoding='utf-8')) for name in packages}
     for name in packages:validate_package(packages[name],contracts[name])
     numerical=plot(folder,packages['bench-dragon'],contracts['bench-dragon'],qa_tools)
@@ -174,7 +177,7 @@ def build(folder,compiler,qa_tools=None):
     for name,package in packages.items():
         source=folder/(name+'.tex');source.write_text(tex_source(package,name,figure=name=='bench-dragon'),encoding='utf-8')
         command=[str(compiler.resolve()),'--untrusted','--keep-logs','--keep-intermediates','--outdir',str(folder),str(source)]
-        cache=ROOT/'stage-c-plus/tex-cache';cache.mkdir(exist_ok=True)
+        cache=tex_cache_directory(ROOT);cache.mkdir(parents=True,exist_ok=True)
         env={**os.environ,'TECTONIC_CACHE_DIR':str(cache),'TEMP':str(cache),'TMP':str(cache)}
         process=subprocess.run(command,capture_output=True,timeout=600,env=env)
         (folder/(name+'-build.stdout.log')).write_bytes(process.stdout);(folder/(name+'-build.stderr.log')).write_bytes(process.stderr)
@@ -190,7 +193,7 @@ def build(folder,compiler,qa_tools=None):
             spans=[s for b in page.get_text('dict')['blocks'] if 'lines' in b for line in b['lines'] for s in line['spans'] if s['text'].strip()]
             page_reports.append({'page':i,'min_font_pt':min(s['size'] for s in spans),
                                  'text_in_page':all(s['bbox'][0]>=0 and s['bbox'][1]>=0 and s['bbox'][2]<=page.rect.width+1 and s['bbox'][3]<=page.rect.height+1 for s in spans)})
-        results.append({'name':name,'command':command,'package_path':f'stage-b-plus/examples/valid-{name}.json','package_sha256':sha_file(ROOT/f'stage-b-plus/examples/valid-{name}.json'),
+        results.append({'name':name,'command':command,'package_path':f'stage-b-plus/examples/valid-{name}.json','package_sha256':sha_file(asset_path(ROOT,f'stage-b-plus/examples/valid-{name}.json')),
                         'contract_sha256':digest(contracts[name]),'dossier_sha256':digest(package['dossier']),
                         'structure_check':'passed','mathematical_review':check_dossier(package['dossier']),
                         'export_check':'passed' if not bad and refs and all(p['text_in_page'] and p['min_font_pt']>=5 for p in page_reports) else 'failed',
@@ -212,4 +215,4 @@ def build(folder,compiler,qa_tools=None):
     print(json.dumps({'folder':str(folder),'compiler':compiler_version,'documents':[{k:r[k] for k in ('name','export_check','equations','symbols','pages')} for r in results],'rod_max_m':numerical['rod_max_m'],'derivative_max':numerical['derivative_max_m2_per_s']},ensure_ascii=True))
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--compiler',type=Path,default=ROOT/'stage-c-plus/tools/tectonic.exe');p.add_argument('--qa-tools',type=Path);args=p.parse_args();build(args.output,args.compiler,args.qa_tools)
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--compiler',type=Path,default=None);p.add_argument('--qa-tools',type=Path);args=p.parse_args();build(args.output,args.compiler,args.qa_tools)

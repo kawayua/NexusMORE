@@ -51,7 +51,7 @@ API 为 `POST /tasks/{task_id}/modeling/runs`，请求字段为 version、guidan
 python -m scripts.verify_d2_modeling --task <new-development-task> --request-id <unique-id>
 ```
 
-具体运行结果、所有失败尝试及最新证据见 [D2 工程报告](../stage-d/d2/acceptance-report.md)。能力评价仅限本次固定回归题；跨结构建模质量、多小题依赖调度、代码执行和论文写作分别在后续阶段验证。
+具体运行结果、所有失败尝试及最新证据见 [D2 工程报告](../archive/research/stages/stage-d/d2/acceptance-report.md)。能力评价仅限本次固定回归题；跨结构建模质量、多小题依赖调度、代码执行和论文写作分别在后续阶段验证。
 
 
 ## 只读质检复核与总状态

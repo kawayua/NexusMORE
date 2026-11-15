@@ -1,0 +1,6 @@
+# evidence optional runtime dependencies; synchronized with pyproject.toml
+numpy==2.3.1
+openpyxl==3.1.5
+pydantic==2.13.4
+scipy==1.16.0
+sympy==1.13.1

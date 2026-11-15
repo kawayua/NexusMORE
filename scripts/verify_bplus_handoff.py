@@ -1,4 +1,5 @@
 """B+ durable handoff demonstration. Synthetic evidence and simulated actors only."""
+from modelcrew.project_assets import asset_path
 import copy,json,os,subprocess,sys,uuid
 from datetime import datetime,timezone
 from pathlib import Path
@@ -9,7 +10,7 @@ from modelcrew.workflow import Workflow,WorkflowError
 from modelcrew.mathematics import MathematicsError
 
 def main():
-    run=ROOT/'stage-b-plus/runs'/('handoff-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));run.mkdir(parents=True)
+    run=asset_path(ROOT,'stage-b-plus/runs')/('handoff-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'));run.mkdir(parents=True)
     checks=[]
     def check(name,ok,details=None):
         checks.append({'id':name,'passed':bool(ok),'details':details})
@@ -25,7 +26,7 @@ def main():
             cs=w.db.execute('SELECT version,sha256,content FROM mc_contracts WHERE task_id=%s ORDER BY version',('dragon-q1',)).fetchall()
             events=w.db.execute('SELECT kind,actor,payload FROM mc_events WHERE task_id=%s ORDER BY id',('dragon-q1',)).fetchall()
             return {'task':{k:str(t[k]) if k in ['execution_id','updated_at'] else t[k] for k in ['id','current_version','result_revision','phase','model_approved','result_approved','execution_id','thread_id','updated_at']},'contracts':[{'version':c['version'],'sha256':c['sha256'],'valid_hash':digest(c['content'])==c['sha256']} for c in cs],'event_digest':digest(events),'math_packages':w.db.execute('SELECT count(*) AS n FROM mc_math_packages WHERE task_id=%s',('dragon-q1',)).fetchone()['n']}
-    c=json.loads((ROOT/'stage-b-plus/examples/contract-v2-snapshot.json').read_text(encoding='utf-8'));p=json.loads((ROOT/'stage-b-plus/examples/valid-bench-dragon.json').read_text(encoding='utf-8'))
+    c=json.loads((asset_path(ROOT,'stage-b-plus/examples/contract-v2-snapshot.json')).read_text(encoding='utf-8'));p=json.loads((asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json')).read_text(encoding='utf-8'))
     fixture=run/'fixture.json';fixture.write_text('{"TEST_ONLY":true,"not_contest_result":true}',encoding='utf-8')
     manifest=run/'manifest.json';manifest.write_text(json.dumps({'description':'TEST_ONLY B+ version handoff; no model generated or numerical solve','contract_sha256':digest(c),'artifacts':[{'path':str(fixture),'sha256':file_hash(fixture),'role':'synthetic_bplus_fixture'}]},ensure_ascii=False),encoding='utf-8')
     config={'manifest_path':str(manifest),'manifest_sha256':file_hash(manifest)}
@@ -72,9 +73,9 @@ def main():
         after=production(w);check('production_task_unchanged',before==after)
         (run/'version1-dossier.json').write_text(json.dumps(dossier,ensure_ascii=False,indent=2,default=str),encoding='utf-8')
         (run/'final-state.json').write_text(json.dumps(s,ensure_ascii=False,indent=2,default=str),encoding='utf-8')
-    report={'stage':'B+','status':'passed','task_id':task,'checks':checks,'production_before':before,'production_after':after,'actors_are_simulated':True,'new_model_calls':0,'new_contest_solver_runs':0,'execution_mode':'synthetic fixture','full_tex_compilation':False,'source_package_sha256':file_hash(ROOT/'stage-b-plus/examples/valid-bench-dragon.json')}
+    report={'stage':'B+','status':'passed','task_id':task,'checks':checks,'production_before':before,'production_after':after,'actors_are_simulated':True,'new_model_calls':0,'new_contest_solver_runs':0,'execution_mode':'synthetic fixture','full_tex_compilation':False,'source_package_sha256':file_hash(asset_path(ROOT,'stage-b-plus/examples/valid-bench-dragon.json'))}
     target=run/'verification.json';target.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     summary={'stage':'B+','status':'passed','checks_passed':len(checks),'report_path':str(target.relative_to(ROOT)),'report_sha256':file_hash(target),'task_id':task}
-    (ROOT/'stage-b-plus/verification-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    (asset_path(ROOT,'stage-b-plus/verification-summary.json')).write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(summary,ensure_ascii=False))
 if __name__=='__main__':main()

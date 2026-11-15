@@ -1,0 +1,1330 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-13",
+  "milestone": "F2",
+  "status": "private_distribution_baseline_verified_F2_still_in_progress",
+  "user_instruction": "进入F2阶段",
+  "public_release_approved": false,
+  "platform": {
+    "system": "Windows",
+    "machine": "AMD64",
+    "python": "3.13.5"
+  },
+  "scope": "Private package construction, actual isolated installation and readonly/import verification; not full business or full-knowledge acceptance",
+  "artifacts": {
+    "schema_version": "1.0.0",
+    "status": "passed",
+    "scope": "private development build; no public upload, full-knowledge or runtime gate acceptance",
+    "build_isolation": false,
+    "builder": "setuptools.build_meta; installed build requirements",
+    "wheel": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\package-installation-20261113\\verified-build\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "4bf62655593d871913b79e955d275544d02e34f5988f32fbd88723bbd84ed43f",
+      "bytes": 721071,
+      "members": 276,
+      "resource_files": 200,
+      "module_files": 70,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    },
+    "sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\package-installation-20261113\\verified-build\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "f4070644029f0d98ce5cec2887e1b5a5c7e4e1a298c0c636eb53e430f2515bf3",
+      "bytes": 724718,
+      "members": 400,
+      "status": "passed"
+    },
+    "wheel_from_sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\package-installation-20261113\\verified-build\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "57043877233990ccfe99825b77cb937fd4d57272dbd7c21acbd9788abe7740f7",
+      "bytes": 721071,
+      "members": 276,
+      "resource_files": 200,
+      "module_files": 70,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "status": "passed"
+    }
+  },
+  "installed_environments": {
+    "core": {
+      "evidence": {
+        "path": "tmp/package-installation-20261113/core-verified.json",
+        "sha256": "a85443b9a958a3e6fd50ba471c4cee78c1d6fe15c13585bb1a3efee6d168ec70",
+        "bytes": 8250
+      },
+      "installation": "wheel; dependency wheels downloaded from PyPI, installed offline; verified candidate then reinstalled without changing core requirements",
+      "module_source": "venv site-packages, not repository src",
+      "system_site_packages": false,
+      "user_site_enabled": false,
+      "pytest_present": false,
+      "resources": {
+        "status": "passed",
+        "files": 200,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "document_tools": {
+        "status": "passed",
+        "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+        "files": 126,
+        "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+      },
+      "guidance_version": "1.3.0",
+      "guidance_files": 21,
+      "migrations": 12,
+      "pip_check": "No broken requirements found.",
+      "installed_distributions": [
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        }
+      ]
+    },
+    "workflow": {
+      "evidence": {
+        "path": "tmp/package-installation-20261113/workflow-verified.json",
+        "sha256": "79b00a4907434c50bedd9c590b5edb6b8f69417d5b83a6f1896668dbb0c8bdce",
+        "bytes": 13998
+      },
+      "installation": "sdist built with pip build isolation and offline wheelhouse; independently created venv; missing dependency repaired in package metadata, candidate rebuilt and reinstalled; existing declared dependencies retained",
+      "source_outside_cwd": true,
+      "module_source": "venv site-packages, not repository src",
+      "system_site_packages": false,
+      "user_site_enabled": false,
+      "pytest_present": false,
+      "modules_imported": [
+        "modelcrew.capabilities",
+        "modelcrew.paper_export",
+        "modelcrew.latex_tools",
+        "modelcrew.workflow",
+        "modelcrew.hand_runtime",
+        "modelcrew.modeling_hand",
+        "modelcrew.assembly_builds",
+        "modelcrew.algorithm_retrieval",
+        "modelcrew.code_executor_mcp"
+      ],
+      "resources": {
+        "status": "passed",
+        "files": 200,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "document_tools": {
+        "status": "passed",
+        "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+        "files": 126,
+        "manifest_sha256": "26a13a06bb8c67ff6d0239b1a4aed4ce7717451194a6083cfe956b630e6640ad"
+      },
+      "guidance_version": "1.3.0",
+      "guidance_files": 21,
+      "migrations": 12,
+      "pip_check": "No broken requirements found.",
+      "installed_distributions": [
+        {
+          "name": "annotated-types",
+          "version": "0.8.0"
+        },
+        {
+          "name": "anyio",
+          "version": "4.14.2"
+        },
+        {
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "name": "beautifulsoup4",
+          "version": "4.15.0"
+        },
+        {
+          "name": "certifi",
+          "version": "2026.10.23"
+        },
+        {
+          "name": "cffi",
+          "version": "2.1.1"
+        },
+        {
+          "name": "charset-normalizer",
+          "version": "3.5.2"
+        },
+        {
+          "name": "click",
+          "version": "8.5.1"
+        },
+        {
+          "name": "cryptography",
+          "version": "50.0.2"
+        },
+        {
+          "name": "distro",
+          "version": "1.9.0"
+        },
+        {
+          "name": "et_xmlfile",
+          "version": "2.0.0"
+        },
+        {
+          "name": "grpcio",
+          "version": "1.85.1"
+        },
+        {
+          "name": "h11",
+          "version": "0.16.0"
+        },
+        {
+          "name": "h2",
+          "version": "4.4.1"
+        },
+        {
+          "name": "hpack",
+          "version": "4.2.0"
+        },
+        {
+          "name": "httpcore",
+          "version": "1.0.9"
+        },
+        {
+          "name": "httpcore2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "httpx",
+          "version": "0.28.1"
+        },
+        {
+          "name": "httpx-sse",
+          "version": "0.4.3"
+        },
+        {
+          "name": "httpx2",
+          "version": "2.16.0"
+        },
+        {
+          "name": "hyperframe",
+          "version": "6.1.0"
+        },
+        {
+          "name": "idna",
+          "version": "3.20"
+        },
+        {
+          "name": "jsonpatch",
+          "version": "1.47"
+        },
+        {
+          "name": "jsonpointer",
+          "version": "3.12"
+        },
+        {
+          "name": "jsonschema",
+          "version": "4.26.0"
+        },
+        {
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        },
+        {
+          "name": "langchain-core",
+          "version": "1.8.0"
+        },
+        {
+          "name": "langchain-protocol",
+          "version": "0.0.21"
+        },
+        {
+          "name": "langgraph",
+          "version": "1.2.10"
+        },
+        {
+          "name": "langgraph-checkpoint",
+          "version": "4.3.1"
+        },
+        {
+          "name": "langgraph-checkpoint-postgres",
+          "version": "3.2.0"
+        },
+        {
+          "name": "langgraph-prebuilt",
+          "version": "1.1.1"
+        },
+        {
+          "name": "langgraph-sdk",
+          "version": "0.4.14"
+        },
+        {
+          "name": "langsmith",
+          "version": "0.14.17"
+        },
+        {
+          "name": "mcp",
+          "version": "1.30.0"
+        },
+        {
+          "name": "mpmath",
+          "version": "1.3.0"
+        },
+        {
+          "name": "nexusmore",
+          "version": "0.1.0.dev0"
+        },
+        {
+          "name": "numpy",
+          "version": "2.3.1"
+        },
+        {
+          "name": "openpyxl",
+          "version": "3.1.5"
+        },
+        {
+          "name": "orjson",
+          "version": "3.13.0"
+        },
+        {
+          "name": "ormsgpack",
+          "version": "1.13.1"
+        },
+        {
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "name": "pillow",
+          "version": "12.2.0"
+        },
+        {
+          "name": "pip",
+          "version": "25.1.1"
+        },
+        {
+          "name": "portalocker",
+          "version": "4.4.2"
+        },
+        {
+          "name": "protobuf",
+          "version": "7.36.2"
+        },
+        {
+          "name": "psycopg",
+          "version": "3.3.4"
+        },
+        {
+          "name": "psycopg-binary",
+          "version": "3.3.4"
+        },
+        {
+          "name": "psycopg-pool",
+          "version": "3.3.3"
+        },
+        {
+          "name": "pycparser",
+          "version": "3.12"
+        },
+        {
+          "name": "pydantic",
+          "version": "2.13.4"
+        },
+        {
+          "name": "pydantic-settings",
+          "version": "2.16.3"
+        },
+        {
+          "name": "pydantic_core",
+          "version": "2.46.4"
+        },
+        {
+          "name": "PyJWT",
+          "version": "2.15.1"
+        },
+        {
+          "name": "pypdf",
+          "version": "6.16.1"
+        },
+        {
+          "name": "python-dotenv",
+          "version": "1.2.4"
+        },
+        {
+          "name": "python-multipart",
+          "version": "0.0.33"
+        },
+        {
+          "name": "pywin32",
+          "version": "312"
+        },
+        {
+          "name": "PyYAML",
+          "version": "6.0.3"
+        },
+        {
+          "name": "qdrant-client",
+          "version": "1.20.0"
+        },
+        {
+          "name": "referencing",
+          "version": "0.37.0"
+        },
+        {
+          "name": "requests",
+          "version": "2.34.2"
+        },
+        {
+          "name": "requests-toolbelt",
+          "version": "1.0.0"
+        },
+        {
+          "name": "rpds-py",
+          "version": "2026.9.1"
+        },
+        {
+          "name": "scipy",
+          "version": "1.16.0"
+        },
+        {
+          "name": "sniffio",
+          "version": "1.3.1"
+        },
+        {
+          "name": "soupsieve",
+          "version": "4.1"
+        },
+        {
+          "name": "sse-starlette",
+          "version": "3.7.0"
+        },
+        {
+          "name": "starlette",
+          "version": "1.10.0"
+        },
+        {
+          "name": "sympy",
+          "version": "1.13.1"
+        },
+        {
+          "name": "tenacity",
+          "version": "9.2.1"
+        },
+        {
+          "name": "truststore",
+          "version": "0.10.5"
+        },
+        {
+          "name": "typing-inspection",
+          "version": "0.4.5"
+        },
+        {
+          "name": "typing_extensions",
+          "version": "4.16.0"
+        },
+        {
+          "name": "tzdata",
+          "version": "2026.6"
+        },
+        {
+          "name": "urllib3",
+          "version": "2.8.0"
+        },
+        {
+          "name": "uuid_utils",
+          "version": "0.19.0"
+        },
+        {
+          "name": "uvicorn",
+          "version": "0.54.0"
+        },
+        {
+          "name": "websockets",
+          "version": "17.4"
+        },
+        {
+          "name": "xxhash",
+          "version": "4.1.0"
+        },
+        {
+          "name": "zstandard",
+          "version": "0.25.0"
+        }
+      ]
+    }
+  },
+  "installed_files_match_candidate_wheel": true,
+  "tests": {
+    "python_existing_related_regression": {
+      "passed": 54,
+      "failed": 0,
+      "warnings": 1,
+      "warning": "pytest cache denied; later focused run disabled cache plugin",
+      "evidence_kind": "actual tool output",
+      "paths": [
+        "tests/test_package_resources.py",
+        "tests/test_packaged_assets.py",
+        "tests/test_assembly_builds.py",
+        "tests/test_paper_export_layout.py"
+      ]
+    },
+    "python_new_distribution_tests": 12,
+    "additional_configuration_layout_tests": 6,
+    "latest_focused_junit": {
+      "path": "tmp/package-installation-20261113/verified-packaging-tests.xml",
+      "sha256": "1ec82d1d1805c8eaf132012d39f4aed30e370ef4c3c69a559429051dd855f3ce",
+      "bytes": 2918
+    },
+    "latest_focused_test_class_counts": {
+      "tests.test_package_distribution": 12,
+      "tests.test_configuration": 3,
+      "tests.test_repository_layout": 3
+    },
+    "unique_python_tests_passed": 72,
+    "javascript_workflow_tests": {
+      "passed": 5,
+      "failed": 0,
+      "command": "node --test tests/harness/test-workflow.mjs",
+      "evidence_kind": "actual tool output"
+    }
+  },
+  "repository_checks": {
+    "final_layout": "passed; zero issues",
+    "relocation_records": 44,
+    "relocated_file_bytes_verified": 65666,
+    "links_verified_without_traversal": 1,
+    "scope": "registered file bytes and exact historical resolver only; database recovery not re-accepted",
+    "original_disposition_ledger_sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c"
+  },
+  "fixed_defects": [
+    "Export/render default imports depended on repository-only scripts; now package-local with legacy script bytes preserved",
+    "Native Word adapter lookup relied on repository scripts directory; now packaged resource",
+    "Own JS bridge, deployment templates and notices were not controlled package contents; now explicit allowlist and source-copy checks",
+    "Workflow direct imports lacked declared dependencies; isolated probe demonstrated missing beautifulsoup4 and corrected candidate passed",
+    "Test-only pytest was included in runtime groups; moved to dev-only declaration"
+  ],
+  "resource_delta_from_F1": {
+    "frozen_F1_count": 193,
+    "current_count": 200,
+    "added": [
+      "deployment/Dockerfile.runtime",
+      "deployment/postgres.yaml",
+      "deployment/qdrant.yaml",
+      "harness/nexusmore-workflow.js",
+      "harness/package.json",
+      "rendering/render-word.ps1",
+      "third-party-notices.md"
+    ],
+    "F1_snapshot_rewritten": false
+  },
+  "preserved_frozen_records": [
+    {
+      "path": "docs/release/release-scope-closure-20261113.json",
+      "sha256": "301bc9b555ab365e9a2bd12f31047e8526cf7b7678c4e6ba84580a1d4fcd814a",
+      "bytes": 5196
+    },
+    {
+      "path": "docs/release/release-scope-summary-20261112.json",
+      "sha256": "9882991ed89bb82b43702622adc678a711ee24e49554865cc3b2f55245d1364b",
+      "bytes": 420165
+    },
+    {
+      "path": "docs/release/release-scope-acceptance-20261112.json",
+      "sha256": "a4872360a5e8e6fe26ee9b1e44c79dc26d9259665cdd75de4bed2af8981d7ea9",
+      "bytes": 4260
+    },
+    {
+      "path": "docs/release/resource-disposition-20261111.json",
+      "sha256": "a13e9b8b35620d87c11f1b6979dfbf7c3f701590486042774c7a60414b3a7e1c",
+      "bytes": 181183
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "tmp/package-installation-20261113/verified-core-install.log",
+      "sha256": "de6bbec168cc8df53ed5220a7084ff588459fd69c3a7e81d251e728f21b668e0",
+      "bytes": 498
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-core-probe.log",
+      "sha256": "18681f04a80bf7fee72c2d3486eb01226e6e5e184859491f0fa28a2a6f2f7f87",
+      "bytes": 156
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-sdist-install.log",
+      "sha256": "b254fd11e143a6a0a6644df0599912ed40bedfc75bd30177ccfea3ef112587e3",
+      "bytes": 1358
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-workflow-dependencies.log",
+      "sha256": "a65783c8b9d9e1049df9f99b53079317fd37936f50d324bdcc6f37f12fe58b8f",
+      "bytes": 18097
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-workflow-probe.log",
+      "sha256": "d442ebcacbf49db17af67c3cc9ac15771a8ac06352c62394ea2a11547fe0d1c3",
+      "bytes": 159
+    },
+    {
+      "path": "tmp/package-installation-20261113/workflow-probe.log",
+      "sha256": "1d2f83d454a17004fb1431d495c883dccbb69b3685a298f8f4a71c86b8475169",
+      "bytes": 1993
+    },
+    {
+      "path": "tmp/package-installation-20261113/sdist-workflow-install.log",
+      "sha256": "98b23509244dd6b6f5abdbc5ba316ab4581729997f4fc09d9d05ae40203f0235",
+      "bytes": 15206
+    },
+    {
+      "path": "tmp/package-installation-20261113/sdist-workflow-install-no-cache.log",
+      "sha256": "d79926de3d345c1ce56e1f67e03df40a68dd4bfeed219ec848dc9f39c683c83d",
+      "bytes": 17649
+    },
+    {
+      "path": "tmp/package-installation-20261113/workflow-download.log",
+      "sha256": "62cd11187e9e2bf0a6182dedb5c45b1edb307c2aaabb44be6a978175db9750e5",
+      "bytes": 23836
+    },
+    {
+      "path": "tmp/package-installation-20261113/installed-probe.py",
+      "sha256": "e4d8d34e6acc17aa1cf548e33df1f44add50f69ba91d4d99238087f0d1fb188a",
+      "bytes": 3796
+    },
+    {
+      "path": "tmp/package-installation-20261113/core-verified.json",
+      "sha256": "a85443b9a958a3e6fd50ba471c4cee78c1d6fe15c13585bb1a3efee6d168ec70",
+      "bytes": 8250
+    },
+    {
+      "path": "tmp/package-installation-20261113/workflow-verified.json",
+      "sha256": "79b00a4907434c50bedd9c590b5edb6b8f69417d5b83a6f1896668dbb0c8bdce",
+      "bytes": 13998
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-packaging-tests.xml",
+      "sha256": "1ec82d1d1805c8eaf132012d39f4aed30e370ef4c3c69a559429051dd855f3ce",
+      "bytes": 2918
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-build/build-audit.json",
+      "sha256": "b1f02d170f7414d1f4cf4614c9124eb32bc2be191b32d4747cfa8187655f641f",
+      "bytes": 9910
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-build/build.log",
+      "sha256": "ae76b3cb7c88c571c5093d4c72b2b3a7eeb5a4870218f13c3da0120bbca89411",
+      "bytes": 163512
+    },
+    {
+      "path": "tmp/package-installation-20261113/verified-build/sdist-build.log",
+      "sha256": "130776cfbe9739df60cb90c9ad7b57eb228e5a2f31cf27c9ff774e9bcbb89ae1",
+      "bytes": 113193
+    }
+  ],
+  "source_files": [
+    {
+      "path": "pyproject.toml",
+      "sha256": "7d3c744c32df5bbc33a5303dd0f324ba0131f27f5ed151f6ce353e2fa4733319",
+      "bytes": 18436
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "0afaf003653b0448fc0414590c13085f9c0740eeb0521ff3a6e9b6bc134b562d",
+      "bytes": 18290
+    },
+    {
+      "path": "scripts/build_distribution.py",
+      "sha256": "40ba96201d3d3c37e59d351cf204ad415b01667199ec911665d37509929f710d",
+      "bytes": 5062
+    },
+    {
+      "path": "tests/test_package_distribution.py",
+      "sha256": "838d7b95132c44f75fbd41d8bfb6922bcf5fc10135aab182201dcc266e3f41d8",
+      "bytes": 3676
+    },
+    {
+      "path": "src/modelcrew/__main__.py",
+      "sha256": "940e6baa377363410e9f4c9d6d15d130d533843fc00f9cb64a23094c72f4c1b9",
+      "bytes": 11364
+    },
+    {
+      "path": "src/modelcrew/assembly_builds.py",
+      "sha256": "457dd7bde8193492c4a84a260b940f9de63a0b3d6cc845f46560ba7022092553",
+      "bytes": 32280
+    },
+    {
+      "path": "src/modelcrew/paper_export.py",
+      "sha256": "ecdf95eaf46a54d717eee29712f40df8e064a35d96e3b2842ab0c04a5a009d77",
+      "bytes": 24659
+    },
+    {
+      "path": "src/modelcrew/paper_render.py",
+      "sha256": "5bbca384dc4be8a13b6ce4d19d11f2e4cf3a722691d7a483b6fd1c7602974c97",
+      "bytes": 5747
+    },
+    {
+      "path": "src/modelcrew/resources/resource-manifest.json",
+      "sha256": "7a6fc5fae39a8ed0de34c5c337b5b63dd896f846839fd0ec5cc2b6cf20234f5f",
+      "bytes": 50442
+    },
+    {
+      "path": "docs/package-installation.md",
+      "sha256": "141b4a14e79e2d519f8a80e12c1622223da623c486e4e53827cca7bec44ea0de",
+      "bytes": 5296
+    },
+    {
+      "path": "configs/package-distribution.json",
+      "sha256": "77ba48fa0efb4bc27fbcd69949b8bef0b4bd96fa1f9260b3d6f2f8c762d1a207",
+      "bytes": 3487
+    }
+  ],
+  "downloaded_wheels": [
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/annotated_types-0.8.0-py3-none-any.whl",
+      "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0",
+      "bytes": 13427
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/anyio-4.14.2-py3-none-any.whl",
+      "sha256": "9f505dda5ac9f0c8309b5e8bd445a8c2bf7246f3ce950121e45ea15bc41d1494",
+      "bytes": 125813
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/attrs-26.1.0-py3-none-any.whl",
+      "sha256": "c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309",
+      "bytes": 67548
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/beautifulsoup4-4.15.0-py3-none-any.whl",
+      "sha256": "d6f88de62e1d4e38ecb1077eb9724cd0eff29d2a08ca16a401e9b9e93f117cf9",
+      "bytes": 109924
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/certifi-2026.10.23-py3-none-any.whl",
+      "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1",
+      "bytes": 135082
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/cffi-2.1.1-cp313-cp313-win_amd64.whl",
+      "sha256": "1aa5645c30469b09530c4ebca77ebf8f17618293c58f8549cb1a543a50236e7d",
+      "bytes": 185688
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/charset_normalizer-3.5.2-cp313-cp313-win_amd64.whl",
+      "sha256": "78456a747de8dc58360ffa581f30a002baf5aa28cb262536545e91f113ed7639",
+      "bytes": 206489
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/click-8.5.1-py3-none-any.whl",
+      "sha256": "8bb5376d2006950386f8c6427613334a2acadc5f559cb80e638d00b4df957e37",
+      "bytes": 126163
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+      "sha256": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c",
+      "bytes": 3824692
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/distro-1.9.0-py3-none-any.whl",
+      "sha256": "7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2",
+      "bytes": 20277
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/et_xmlfile-2.0.0-py3-none-any.whl",
+      "sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa",
+      "bytes": 18059
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/grpcio-1.85.1-cp313-cp313-win_amd64.whl",
+      "sha256": "c17d61af28b322c48ab3881c685e5f6e7e367c56844cf589ee7707be9477b969",
+      "bytes": 5606831
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/h11-0.16.0-py3-none-any.whl",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+      "bytes": 37515
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/h2-4.4.1-py3-none-any.whl",
+      "sha256": "0e25f1462b23c9cb82d9eb02e28bc706dac2a68cb457c6a0d74d63c8a2a5d0e6",
+      "bytes": 62636
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/hpack-4.2.0-py3-none-any.whl",
+      "sha256": "858ac0b02280fa582b5080d68db0899c62a80375e0e5413a74970c5e518b6986",
+      "bytes": 34246
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/httpcore-1.0.9-py3-none-any.whl",
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55",
+      "bytes": 78784
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/httpcore2-2.16.0-py3-none-any.whl",
+      "sha256": "5c4358319f2602d984ad93182c9fee5160f22e9da7babdda870a5e7c4e2dc34f",
+      "bytes": 85070
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/httpx-0.28.1-py3-none-any.whl",
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad",
+      "bytes": 73517
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/httpx2-2.16.0-py3-none-any.whl",
+      "sha256": "fd2c5d7909e8d86fe92d53020c310ca0e4e431b838c207c5754b9bbf0308d49a",
+      "bytes": 97880
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/httpx_sse-0.4.3-py3-none-any.whl",
+      "sha256": "0ac1c9fe3c0afad2e0ebb25a934a59f4c7823b60792691f779fad2c5568830fc",
+      "bytes": 8960
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/hyperframe-6.1.0-py3-none-any.whl",
+      "sha256": "b03380493a519fce58ea5af42e4a42317bf9bd425596f7a0835ffce80f1a42e5",
+      "bytes": 13007
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/idna-3.20-py3-none-any.whl",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "bytes": 69583
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/jsonpatch-1.47-py3-none-any.whl",
+      "sha256": "c9ba6de59c481bf2be05041514ecb0d97f994aa645c4e00831805dbe2281811a",
+      "bytes": 25270
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/jsonpointer-3.12-py3-none-any.whl",
+      "sha256": "89f391335ee2719ae72149e1bf30a4d4c7c5d92f15a3f53faa8d20cc7c6c7f19",
+      "bytes": 10562
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/jsonschema-4.26.0-py3-none-any.whl",
+      "sha256": "d489f15263b8d200f8387e64b4c3a75f06629559fb73deb8fdfb525f2dab50ce",
+      "bytes": 90630
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/jsonschema_specifications-2025.9.1-py3-none-any.whl",
+      "sha256": "98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe",
+      "bytes": 18437
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langchain_core-1.8.0-py3-none-any.whl",
+      "sha256": "89732f9e7d311de9913ba22caf921c72520145a829f05ec1d9c85013e904213c",
+      "bytes": 587077
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langchain_protocol-0.0.21-py3-none-any.whl",
+      "sha256": "7f42f9eae7c08bb9d74850057da50b5483970a3df91b7a8a5aadec6a3dfa4d12",
+      "bytes": 7418
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langgraph-1.2.10-py3-none-any.whl",
+      "sha256": "52c48bd42fa31a1de0e1c0f0ebfe342e11ca2957b8b3563f83dbd60d8e30f921",
+      "bytes": 247753
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langgraph_checkpoint-4.3.1-py3-none-any.whl",
+      "sha256": "215a826935c8db4d9676e79fd95943e5b3847d78604390898e1d98581cc594e5",
+      "bytes": 58093
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langgraph_checkpoint_postgres-3.2.0-py3-none-any.whl",
+      "sha256": "4d89526ab3dff0c71d575233e4132327f95812deb07b6c2e75fc473525b5b8fc",
+      "bytes": 55937
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langgraph_prebuilt-1.1.1-py3-none-any.whl",
+      "sha256": "fae17c22562e501940eb7aa052a15c58a431febbabf33f8ad172e1b44354a7e4",
+      "bytes": 42254
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langgraph_sdk-0.4.14-py3-none-any.whl",
+      "sha256": "d47a6755890ae537aa80613a3138680ac77f5d256a2d3953af95a96328e6964d",
+      "bytes": 171310
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/langsmith-0.14.17-py3-none-any.whl",
+      "sha256": "0aa2c79936c93c7cea9c55656f05e21cc5da715fecbdbda439d084adc08429be",
+      "bytes": 940828
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/mcp-1.30.0-py3-none-any.whl",
+      "sha256": "666edb5009503e1047c9d60346a756f94b261f05cc2625f23d41c728ffc484d0",
+      "bytes": 234581
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/mpmath-1.3.0-py3-none-any.whl",
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "bytes": 536198
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/numpy-2.3.1-cp313-cp313-win_amd64.whl",
+      "sha256": "8d5ee6eec45f08ce507a6570e06f2f879b374a552087a4179ea7838edbcbfa42",
+      "bytes": 12731565
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/openpyxl-3.1.5-py2.py3-none-any.whl",
+      "sha256": "5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2",
+      "bytes": 250910
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/orjson-3.13.0-cp313-cp313-win_amd64.whl",
+      "sha256": "4ee06e53b998c71ce3eb93b86222912fdd9dcced685ac64d4525d36fac338ea4",
+      "bytes": 121371
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/ormsgpack-1.13.1-cp313-cp313-win_amd64.whl",
+      "sha256": "a44134440bdba8df67474a5fdcb083bb524ebd5761493d3f473eba83937ce547",
+      "bytes": 173384
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/packaging-26.3-py3-none-any.whl",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "bytes": 129956
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pillow-12.2.0-cp313-cp313-win_amd64.whl",
+      "sha256": "390ede346628ccc626e5730107cde16c42d3836b89662a115a921f28440e6a3b",
+      "bytes": 7081266
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/portalocker-4.4.2-py3-none-any.whl",
+      "sha256": "e661b91af34fc1806740f8e0e42990fe55cd85cbae55675ac48a400a9656a51b",
+      "bytes": 129702
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/protobuf-7.36.2-cp310-abi3-win_amd64.whl",
+      "sha256": "a300819d441e078a5608c0d3c709796bb548136058fda017ae51d425b44fd353",
+      "bytes": 456514
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/psycopg-3.3.4-py3-none-any.whl",
+      "sha256": "b6bbc25ccf05c8fad3b061d9db2ef0909a555171b84b07f29458a447253d679a",
+      "bytes": 213001
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/psycopg_binary-3.3.4-cp313-cp313-win_amd64.whl",
+      "sha256": "dbfdb9b6cc79f31104a7b162a2b921b765fcc62af6c00540a167a8de47e4ed38",
+      "bytes": 3564592
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/psycopg_pool-3.3.3-py3-none-any.whl",
+      "sha256": "9b9cd6a4fcec47a410f7e82d408540e7f77b478509e91b44c1a5457a13e5ff37",
+      "bytes": 40304
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pycparser-3.12-py3-none-any.whl",
+      "sha256": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e",
+      "bytes": 62600
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pydantic-2.13.4-py3-none-any.whl",
+      "sha256": "45a282cde31d808236fd7ea9d919b128653c8b38b393d1c4ab335c62924d9aba",
+      "bytes": 472262
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pydantic_core-2.46.4-cp313-cp313-win_amd64.whl",
+      "sha256": "6b3ace8194b0e5204818c92802dcdca7fc6d88aabbb799d7c795540d9cd6d292",
+      "bytes": 2071819
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pydantic_settings-2.16.3-py3-none-any.whl",
+      "sha256": "d1db16a2d34006323a1b42c0640898da58adfbad7ec30baaa9e2b18aafc08999",
+      "bytes": 82679
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pyjwt-2.15.1-py3-none-any.whl",
+      "sha256": "42d59d631f7768a1028a64c7ff581a9bf7519804daf91fc5b6c56e30eec5e193",
+      "bytes": 33860
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pypdf-6.16.1-py3-none-any.whl",
+      "sha256": "63fec31c4092ae50b6729beedcb469055b60d20c834bde1c402df241f371f644",
+      "bytes": 382924
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/python_dotenv-1.2.4-py3-none-any.whl",
+      "sha256": "42269a8a5b3fd54ffa6f3d84b18abed50064717576b4ecf03dc4a55d8aa04fdc",
+      "bytes": 23266
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/python_multipart-0.0.33-py3-none-any.whl",
+      "sha256": "8f16c07b36add9da6b2ee87d3efcaf0a45a6de9c3d0a5dd94e9ccf7675a7bc45",
+      "bytes": 32253
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pywin32-312-cp313-cp313-win_amd64.whl",
+      "sha256": "c53e878d15a1c44788082bfe712a905433473aa38f86375b7cf8b45e3acbaaf9",
+      "bytes": 6914298
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/pyyaml-6.0.3-cp313-cp313-win_amd64.whl",
+      "sha256": "79005a0d97d5ddabfeeea4cf676af11e647e41d81c9a7722a193022accdb6b7c",
+      "bytes": 154090
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/qdrant_client-1.20.0-py3-none-any.whl",
+      "sha256": "0ab261197a497d16f3bf8a663c22e994f485c9fd7212d3c8b07c1a9de32fc152",
+      "bytes": 471157
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/referencing-0.37.0-py3-none-any.whl",
+      "sha256": "381329a9f99628c9069361716891d34ad94af76e461dcb0335825aecc7692231",
+      "bytes": 26766
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/requests-2.34.2-py3-none-any.whl",
+      "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+      "bytes": 73075
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/requests_toolbelt-1.0.0-py2.py3-none-any.whl",
+      "sha256": "cccfdd665f0a24fcf4726e690f65639d272bb0637b9b92dfd91a5568ccf6bd06",
+      "bytes": 54481
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/rpds_py-2026.9.1-cp313-cp313-win_amd64.whl",
+      "sha256": "3e93b2cd69a9830be33e03945cd7cda940a0a8bfcfbff41d6144f0cb0d3d8bd9",
+      "bytes": 222409
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/scipy-1.16.0-cp313-cp313-win_amd64.whl",
+      "sha256": "79a3c13d43c95aa80b87328a46031cf52508cf5f4df2767602c984ed1d3c6bbe",
+      "bytes": 38403710
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/setuptools-81.0.0-py3-none-any.whl",
+      "sha256": "fdd925d5c5d9f62e4b74b30d6dd7828ce236fd6ed998a08d81de62ce5a6310d6",
+      "bytes": 1062021
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/sniffio-1.3.1-py3-none-any.whl",
+      "sha256": "2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2",
+      "bytes": 10235
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/soupsieve-4.1-py3-none-any.whl",
+      "sha256": "e4d667b3974ce6e038e7390486b8093369854a1d345ffdd4c121dfc4a782e809",
+      "bytes": 52302
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/sse_starlette-3.7.0-py3-none-any.whl",
+      "sha256": "f1d3136caa12d129284fca3d2ded79bc9af943320b6472712955fea52a6d3eea",
+      "bytes": 18432
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/starlette-1.10.0-py3-none-any.whl",
+      "sha256": "478c0ab3b4ced6e82719849c118fa406f0278a3499c1a898cd15cd31bdc38ce4",
+      "bytes": 80571
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/sympy-1.13.1-py3-none-any.whl",
+      "sha256": "db36cdc64bf61b9b24578b6f7bab1ecdd2452cf008f34faa33776680c26d66f8",
+      "bytes": 6189177
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/tenacity-9.2.1-py3-none-any.whl",
+      "sha256": "9e56f17539296baab7beabb08b92f6ee3d7be92d8be72d763360677c2ad6580e",
+      "bytes": 32310
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/truststore-0.10.5-py3-none-any.whl",
+      "sha256": "9aaaedaefaf06d8b206278cf8b5012bc897f485a874503501e12d776df78951c",
+      "bytes": 19017
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "bytes": 45571
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/typing_inspection-0.4.5-py3-none-any.whl",
+      "sha256": "bc210535442b39e1bf2805e0c7a17dfd6a4ace760c84c7f7d16245d23a6b1c39",
+      "bytes": 14874
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/tzdata-2026.6-py2.py3-none-any.whl",
+      "sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+      "bytes": 348210
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/urllib3-2.8.0-py3-none-any.whl",
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+      "bytes": 135717
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/uuid_utils-0.19.0-cp310-abi3-win_amd64.whl",
+      "sha256": "b763ae8f23334ccd95d0b81fb19ee418f38f9e80ebfb521f313a9745280bc07c",
+      "bytes": 182891
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/uvicorn-0.54.0-py3-none-any.whl",
+      "sha256": "505bdb0f318731d45f1f712071fc781a8981f6847a31c902c9f5e652d4f67faf",
+      "bytes": 87427
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/websockets-17.4-cp313-cp313-win_amd64.whl",
+      "sha256": "203e42eb77e06f85778a908b34c5ad032f34e98a68ef33920d6685c1e65a9420",
+      "bytes": 219560
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/xxhash-4.1.0-cp313-cp313-win_amd64.whl",
+      "sha256": "3cb7f59ea87872554c5484afc43a7c1e6c5295f4b53e76a4bfffcf72b4a67877",
+      "bytes": 47517
+    },
+    {
+      "path": "tmp/package-installation-20261113/downloaded-wheels/zstandard-0.25.0-cp313-cp313-win_amd64.whl",
+      "sha256": "1f830a0dac88719af0ae43b8b2d6aef487d437036468ef3c2ea59c51f9d55fd5",
+      "bytes": 506232
+    }
+  ],
+  "remaining": [
+    {
+      "milestones": [
+        "F2",
+        "F5"
+      ],
+      "work": "Complete independently authored or authorized algorithm/mathematics/Chinese-paper knowledge and bundle required references; current 200 resources are not full knowledge"
+    },
+    {
+      "milestones": [
+        "F2",
+        "F4"
+      ],
+      "work": "Install and validate remaining optional dependency groups and supported toolchains in the chosen environment"
+    },
+    {
+      "milestones": [
+        "F3"
+      ],
+      "work": "Separate user workspaces and persistent data from installed config.ROOT and unify initialization/configuration"
+    },
+    {
+      "milestones": [
+        "F4"
+      ],
+      "work": "Clean-machine service deployment, initialization and persistence/recovery acceptance"
+    },
+    {
+      "milestones": [
+        "F6",
+        "G",
+        "H2"
+      ],
+      "work": "Actual selection/read/execution routing, DeepSeek Harness integration and end-to-end acceptance"
+    }
+  ],
+  "limitations": [
+    "A clean virtualenv is not a clean-machine end-to-end business acceptance",
+    "Only core/workflow groups were installed; full paper/retrieval/toolchain installation remains pending",
+    "Full seven-category algorithm/mathematics/Chinese-paper knowledge still requires independent authorship or authorization",
+    "Current config.ROOT still defaults to installation location; F3 must provide user data/workspace initialization before persistent new-user workflows",
+    "Case-specific historical benchmark scripts/data are intentionally not in the package",
+    "No live model, Docker/database service, real harness integration, paper approval or public publishing performed",
+    "Wheel archive bytes differ by build timestamps; source/resource member equivalence checked, bitwise reproducible ZIP build not asserted"
+  ]
+}

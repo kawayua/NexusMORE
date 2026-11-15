@@ -1,4 +1,5 @@
 """Read-only audit of the stage-B production demonstration and current files."""
+from modelcrew.project_assets import asset_path
 import json
 from datetime import datetime
 from pathlib import Path
@@ -13,7 +14,7 @@ from jsonschema import Draft202012Validator
 
 def main():
     for schema in SCHEMAS.values():Draft202012Validator.check_schema(schema)
-    Draft202012Validator.check_schema(json.loads((ROOT/'contracts/interpretation-claims-1.0.0.schema.json').read_text(encoding='utf-8')))
+    Draft202012Validator.check_schema(json.loads((asset_path(ROOT,'contracts/interpretation-claims-1.0.0.schema.json')).read_text(encoding='utf-8')))
     with Workflow() as w,w.lock('dragon-q1'),w.db.transaction():
         w.db.execute('SET TRANSACTION READ ONLY')
         state=w.inspect('dragon-q1');contracts=w.db.execute('SELECT * FROM mc_contracts WHERE task_id=%s ORDER BY version',('dragon-q1',)).fetchall()
@@ -31,7 +32,7 @@ def main():
     by_version={c['version']:c for c in contracts}
     for execution in executions:
         for a in execution['artifacts']:artifact_checks.append({'version':execution['version'],'execution_id':str(execution['id']),'mode':execution['mode'],'path':a['path'],'registered_sha256':a['sha256'],'current_sha256':file_hash(ROOT/a['path']) if (ROOT/a['path']).is_file() else None,'status':artifact_status(a)})
-    with np.load(ROOT/'stage-a/2024-A-problem-1/runs/reference-20261101T124835482890Z/trajectories.npz',allow_pickle=False) as known:
+    with np.load(asset_path(ROOT,'stage-a/2024-A-problem-1/runs/reference-20261101T124835482890Z/trajectories.npz'),allow_pickle=False) as known:
         reference={'位置':known['position_m'].transpose(1,2,0).reshape(448,301),'速度':known['speed_m_s'].T}
     numeric=[]
     for relative in ['stage-a/2024-A-problem-1/runs/bailian-20261101T150358548111Z','stage-b/runs/solver-v2-20261104T131332959555Z']:
@@ -46,7 +47,7 @@ def main():
     binding=all(e['contract_sha256']==by_version[e['version']]['sha256'] for e in executions)
     task={k:state['task'][k] for k in ['id','current_version','result_revision','phase','model_approved','result_approved','execution_id','thread_id']}
     report={'date':datetime.now().astimezone().isoformat(),'audit_mode':'read_only_production_task_and_files','task':task,'checkpoint_next':state['checkpoint_next'],'migrations':migrations,'contracts':contract_checks,'inputs':inputs,'execution_count':len(executions),'result_count':len(results),'summary_count':len(summaries),'confirmation_count':len(confirmations),'confirmations':confirmations,'execution_contract_bindings_valid':binding,'artifacts':artifact_checks,'artifact_issues':[a for a in artifact_checks if a['status']!='verified'],'current_numeric_recheck':numeric,'current_numeric_passed':all(c['passed'] and c['format_six_decimals'] for b in numeric for c in b['checks']),'historical_version_entries':entries,'historical_missing_archive_sections':{str(v):[k for k in ['proposal','feedback','next_step','code','experiment'] if not any(e['version']==v and e['kind']==k for e in entries)] for v in [1,2]},'new_model_calls':0,'new_solver_runs':0,'new_real_user_confirmations':0}
-    out=ROOT/'stage-b/stage-b-production-audit-20261106.json';out.write_text(json.dumps(report,ensure_ascii=False,indent=2,default=str)+'\n',encoding='utf-8')
+    out=asset_path(ROOT,'stage-b/stage-b-production-audit-20261106.json');out.write_text(json.dumps(report,ensure_ascii=False,indent=2,default=str)+'\n',encoding='utf-8')
     print(json.dumps({'task':task,'execution_count':len(executions),'artifact_issue_references':len(report['artifact_issues']),'distinct_changed_files':len({a['path'] for a in report['artifact_issues']}),'numeric_recheck_passed':report['current_numeric_passed'],'historical_entry_count':len(entries),'report':str(out)},ensure_ascii=False,indent=2,default=str))
 if __name__=='__main__':main()
 

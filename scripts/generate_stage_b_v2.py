@@ -1,4 +1,5 @@
 """Generate a feedback-informed v2 contract patch; never auto-approve it."""
+from modelcrew.project_assets import asset_path
 from pathlib import Path
 import sys,json,time,hashlib,copy
 from datetime import datetime,timezone
@@ -34,7 +35,7 @@ def apply_patch(original,ops):
 
 def main():
     cfg=config();key=cfg['MODELCREW_LLM_API_KEY']
-    folder=ROOT/'stage-b/runs'/datetime.now(timezone.utc).strftime('contract-v2-%Y%m%dT%H%M%S%fZ');folder.mkdir(parents=True)
+    folder=asset_path(ROOT,'stage-b/runs')/datetime.now(timezone.utc).strftime('contract-v2-%Y%m%dT%H%M%S%fZ');folder.mkdir(parents=True)
     with Workflow() as w:
         state=w.inspect('dragon-q1')
         if state['task']['current_version']!=1 or state['task']['phase']!='COMPLETED':raise ValueError('Expected completed v1 before feedback revision')

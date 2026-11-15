@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "platform": "linux/amd64",
+  "postgres": {
+    "image": "postgres:16@sha256:95206741a5b214807675e14165369d05b93a9cf692223b616d07cca227e74b0b",
+    "major": 16,
+    "container_port": 5432,
+    "preferred_host_port": 55432
+  },
+  "qdrant": {
+    "image": "qdrant/qdrant:v1.19.1@sha256:12364fe851b9f17356fc88189fc06d1b521262e04659ec7345975b00c9246a10",
+    "version": "1.19.1",
+    "container_port": 6333,
+    "preferred_host_port": 56333
+  },
+  "images_source": "existing official-named local RepoDigests; not a separate upstream registry attestation"
+}

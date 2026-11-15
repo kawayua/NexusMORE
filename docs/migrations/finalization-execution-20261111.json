@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0.0",
+  "status": "passed",
+  "scope": "Requested resource packaging, remaining local frozen-stage archival and final physical layout checks",
+  "overall_f0_accepted": false,
+  "final_layout_accepted": true,
+  "layout_checks": {
+    "root_stage_directories": 0,
+    "physical_and_git_visible_roots_checked": true,
+    "transitional_roots_removed": true,
+    "diff_whitespace_check": "passed"
+  },
+  "summary": {
+    "records": 44,
+    "mapping_entries": 65666,
+    "stage_regular_files": 64055,
+    "stage_archive_bytes": 2083956506,
+    "external_links_not_traversed": 1,
+    "runtime_working_copies": 1189
+  },
+  "runtime_resources": {
+    "identity_entries": 167,
+    "wheel_resource_files_including_manifest": 168,
+    "current_source_modules_verified_in_final_wheel": 59,
+    "sql_migrations": 12,
+    "official_document_tools_files": 126,
+    "private_reference_texts_excluded": true,
+    "wheel_and_sdist_built": true,
+    "final_source_distribution_rebuilt_outside_tree": true,
+    "sdist_rebuilt_wheel_install_resource_check": "tmp/f0-finalization-20261111/sdist-check/receipt.json",
+    "final_package_evidence": "tmp/f0-finalization-20261111/isolated-install-final.json",
+    "artifacts": [
+      {
+        "path": "tmp/f0-finalization-20261111/distributions-final/nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "b94d569ab480cabb2519a71d41b96f9349dbd1a836eb37d223fa7c3680b78cee",
+        "bytes": 638854
+      },
+      {
+        "path": "tmp/f0-finalization-20261111/distributions-final/nexusmore-0.1.0.dev0.tar.gz",
+        "sha256": "51b0f7454312e80870e519a8460aae05ad188863127c2e8c6da7d75f77447821",
+        "bytes": 635686
+      }
+    ],
+    "is_clean_dependency_environment": false
+  },
+  "relocation_verification": {
+    "status": "passed",
+    "records": 44,
+    "verified_files": 65666,
+    "links_verified_without_traversal": 1,
+    "scope": "registered_file_bytes_and_exact_resolver_only",
+    "database_recovery_verified": false
+  },
+  "immutable_archive": {
+    "stage_roots": 8,
+    "ordinary_files": 64055,
+    "ordinary_bytes": 2083956506,
+    "external_link_metadata_preserved_without_traversal": 1,
+    "stage_manifests": [
+      "docs/migrations/stage-a-archive-20261111.json",
+      "docs/migrations/stage-a-plus-archive-20261111.json",
+      "docs/migrations/stage-b-archive-20261111.json",
+      "docs/migrations/stage-b-plus-archive-20261111.json",
+      "docs/migrations/stage-c-archive-20261111.json",
+      "docs/migrations/stage-c-plus-archive-20261111.json",
+      "docs/migrations/stage-d-archive-20261111.json",
+      "docs/migrations/stage-e-archive-20261111.json"
+    ]
+  },
+  "resumable_working_copies": {
+    "runs": 1189,
+    "initial_identical_files": 49957,
+    "policy_key": "runtime_aliases",
+    "current_copy_and_original_resolvers_separate": true,
+    "database_path_keys_bulk_rewritten": false
+  },
+  "tests": {
+    "full_regression": {
+      "tests": 745,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 141,
+      "passed": 604,
+      "path": "tmp/f0-finalization-20261111/post-archive-regression-v3.xml"
+    },
+    "real_database_synthetic_runtime": {
+      "tests": 46,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "passed": 46,
+      "path": "tmp/f0-finalization-20261111/database-runtime-regression-v1.xml"
+    },
+    "latest_locator_boundaries": {
+      "tests": 88,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "passed": 88,
+      "path": "tmp/f0-finalization-20261111/final-helper-regression-v1.xml"
+    },
+    "latest_assembly_regression": {
+      "tests": 36,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "passed": 36,
+      "path": "tmp/f0-finalization-20261111/assembly-regression-v2.xml"
+    }
+  },
+  "historical_e": {
+    "build_id": "782dde15-590a-40a6-88f5-f7c8d7b6e4d6",
+    "assembly_run_id": "ab9d275b-d663-42a2-ba16-6523c522f371",
+    "historical_integrity_valid": true,
+    "verified_files": 827,
+    "historical_manuscript_review": "approved",
+    "historical_figure_review": "approved",
+    "can_export_current": false,
+    "new_approval_created": false,
+    "scope": "sealed historical files and existing scoped decisions; no current-policy admission",
+    "current_context_matches_frozen": false,
+    "database_read_only": true
+  },
+  "historical_e_evidence": "tmp/f0-finalization-20261111/historical-e-v2.json",
+  "live_retrieval": {
+    "status": "passed",
+    "algorithm_default_query": true,
+    "paper_default_queries": 4,
+    "algorithm_collection": "mc_cplus_d7099bf0f67ca9c72cd07ec6",
+    "paper_collection": "mc_c2_2973390669fe89ffc8a2e9ef",
+    "original_reference_restored_via_real_mcp": true,
+    "index_rebuilt": false,
+    "model_downloaded": false,
+    "paid_model_calls": 0,
+    "old_stage_directories_recreated": false
+  },
+  "live_retrieval_evidence": "tmp/f0-finalization-20261111/live-retrieval-final.json",
+  "navigation": {
+    "local_history_index": "docs/history/research-archive.md",
+    "current_doc_links_updated": 37,
+    "required_context_historical_link_text_preserved": [
+      {
+        "document": "docs/three-hand-collaboration.md",
+        "target": "../stage-d/d3/acceptance-report.md",
+        "resolved_historical_target": "archive/research/stages/stage-d/d3/acceptance-report.md",
+        "reason": "Required context document retained byte-identical; original link text retained, resolved target available in local-history navigation"
+      },
+      {
+        "document": "docs/three-hand-collaboration.md",
+        "target": "../stage-d/d2/acceptance-report.md",
+        "resolved_historical_target": "archive/research/stages/stage-d/d2/acceptance-report.md",
+        "reason": "Required context document retained byte-identical; original link text retained, resolved target available in local-history navigation"
+      }
+    ],
+    "exceptions_resolve_through_history_mapping": true
+  },
+  "recovery_and_backup": "tmp/f0-finalization-20261111/backups",
+  "caller_baseline": "tmp/f0-finalization-20261111/callers",
+  "original_source_revisions": "docs/migrations/finalization-source-revisions-20261111.json",
+  "retained_initial_attempts": [
+    "Resource-layout first regression had 6 stale direct-path fixture failures; updated maintained accessors, latest full regression passed",
+    "Stage-D preparation stopped at an external directory junction; retried with non-traversing os.walk and explicit link metadata, without copying external dependencies",
+    "First source-tree-external -I probe excluded required preinstalled dependencies; v2/v3/final state their dependency reuse",
+    "Initial serial long-list read-only checks and earlier nonintegrated regression attempts were stopped after performance diagnosis; only completed reports above are acceptance evidence"
+  ],
+  "original_approval_rewritten": false,
+  "original_review_hashes_rewritten": false,
+  "new_real_user_approval_created": false,
+  "formal_paper_export_performed": false,
+  "historical_jobs_reexecuted": 0,
+  "paid_model_calls": 0,
+  "downloads": 0,
+  "remaining_acceptance": [
+    "Project license and external knowledge redistribution or independent replacement decisions (F1/F5)",
+    "Full single-agent installation with complete authorized knowledge and dependency/environment provisioning (F2/F3/F4/F6)",
+    "Full clean-environment current workflow, export and routing acceptance; current missing private reference sources are explicit errors"
+  ],
+  "boundary": "Private development artifact and local migration checks, not authorization to publish or full F-stage acceptance"
+}
