@@ -1,0 +1,687 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-15",
+  "recorded_at": "2026-11-15T14:39:41.395898+00:00",
+  "status": "passed",
+  "milestone": "G4 local DSH connection",
+  "scope": "Existing Windows development installation: real DSH stdio discovery and fixed read-only ToolRuntime calls, human command, original connection panel, safe profile registration/rollback. Not full model-driven workflow acceptance or public release.",
+  "host": {
+    "metadata": {
+      "package.json": {
+        "name": "@deepseek-ai/dsh-desktop",
+        "version": "0.2.2-rc.1"
+      },
+      "dsh/package.json": {
+        "name": "@deepseek-ai/dsh-desktop-runtime",
+        "version": "0.2.2-rc.1"
+      },
+      "dsh/node_modules/@deepseek-ai/dsh-mcp-client/package.json": {
+        "name": "@deepseek-ai/dsh-mcp-client",
+        "version": "0.2.2-rc.1"
+      }
+    },
+    "asar_sha256": "5fa8a6b21bceb8f3e99e30efa2270efd0cc773a11e42aa0488f804a64b34e637",
+    "primary_installed_source_sha256": {
+      "dsh/node_modules/@deepseek-ai/dsh-app-boot/lib/index.js": "346f832224737cd9ab1b5e37d111ae232fdd78b5ab892fa3179c112baf6f0a22",
+      "dsh/node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js": "64dfc9127a47d9d453d72022b47d3b8d8a5c82cad756ac1114b09faf1a956120",
+      "dsh/node_modules/@deepseek-ai/dsh-tools/lib/index.js": "1889cbf718d64518dd83245d4dba1e1f080b2c5326259c3ed5b1be7a7666a2bd",
+      "dsh/node_modules/@deepseek-ai/dsh-client-connection/lib/index.js": "0ebcca7583e082716f79b0b55bc1749d48269cc8db2989b043b321b57abd3684",
+      "dsh/node_modules/@deepseek-ai/dsh-commands/lib/index.js": "88909a0915e4e3b2148c72a912987c3e29ba025b5dea589a0f4543040dc34750"
+    },
+    "python": {
+      "executable": "C:\\Program Files\\Python313\\python.exe",
+      "version": "3.13.5"
+    },
+    "installer_modified": false
+  },
+  "transport": {
+    "kind": "stdio",
+    "server_name": "nexusmore",
+    "python_module": "modelcrew.workflow_mcp",
+    "workspace": "D:/big-third-up/modelcrew",
+    "tool_call_timeout_ms": 900000
+  },
+  "registration": {
+    "profile": "%USERPROFILE%/.dsh/profiles/desktop",
+    "managed_ids": [
+      "nexusmore-workflow",
+      "nexusmore-connection-panel"
+    ],
+    "existing_prefix_bytes": 1477,
+    "original_prefix_preserved": true,
+    "before_sha256": "188239267f3fc22f9646517255a09efe5430780a4db1bca4b6215f120b3d2663",
+    "after_sha256": "bda3c2a71ba3e0c8345af4d91817643aed8d502503622c80c32196ced858f11b",
+    "backup_and_hash_guarded_rollback_available": true,
+    "idempotent_status": "already_configured",
+    "model_provider_or_credentials_modified": false,
+    "installer_result_is_not_live_host_verification": true
+  },
+  "actual_host": {
+    "scope": "actual DSH ToolRuntime -> MCP -> Python Workflow; read-only engineering diagnosis",
+    "status": "passed",
+    "registered_tool_count": 40,
+    "registered_tools": [
+      "mcp__nexusmore__artifact_read",
+      "mcp__nexusmore__artifacts_list",
+      "mcp__nexusmore__assembly_artifacts_list",
+      "mcp__nexusmore__assembly_build_status",
+      "mcp__nexusmore__assembly_compose",
+      "mcp__nexusmore__assembly_export",
+      "mcp__nexusmore__assembly_rebind",
+      "mcp__nexusmore__assembly_recover",
+      "mcp__nexusmore__assembly_render",
+      "mcp__nexusmore__assembly_review_w2",
+      "mcp__nexusmore__assembly_start",
+      "mcp__nexusmore__assembly_status",
+      "mcp__nexusmore__capabilities_read",
+      "mcp__nexusmore__hand_advance",
+      "mcp__nexusmore__hand_recheck",
+      "mcp__nexusmore__hand_start",
+      "mcp__nexusmore__hand_status",
+      "mcp__nexusmore__mathematics_publish",
+      "mcp__nexusmore__mathematics_read",
+      "mcp__nexusmore__modeling_recheck",
+      "mcp__nexusmore__modeling_start",
+      "mcp__nexusmore__modeling_status",
+      "mcp__nexusmore__operation_status",
+      "mcp__nexusmore__pending_list",
+      "mcp__nexusmore__project_create",
+      "mcp__nexusmore__project_read",
+      "mcp__nexusmore__projects_list",
+      "mcp__nexusmore__proposal_read",
+      "mcp__nexusmore__references_discuss",
+      "mcp__nexusmore__references_retrieve",
+      "mcp__nexusmore__result_read",
+      "mcp__nexusmore__task_create",
+      "mcp__nexusmore__task_restore",
+      "mcp__nexusmore__task_resume",
+      "mcp__nexusmore__task_revise",
+      "mcp__nexusmore__task_status",
+      "mcp__nexusmore__tasks_list",
+      "mcp__nexusmore__tool_evidence_read",
+      "mcp__nexusmore__version_read",
+      "mcp__nexusmore__versions_list"
+    ],
+    "calls": [
+      {
+        "operation": "capabilities_read",
+        "status": "ok",
+        "elapsed_ms": 154,
+        "response_sha256": "eb8d534381c0edd82f6ed9da37457462cf4ed7ed64c784686bacd1b4938da762",
+        "error_code": null,
+        "model_tool_count": 40,
+        "expected_tools_registered": true,
+        "trusted_capture_channels": [
+          "trusted_local_cli"
+        ]
+      },
+      {
+        "operation": "projects_list",
+        "status": "ok",
+        "elapsed_ms": 2028,
+        "response_sha256": "3a18943a470d9e2aeca4469d43ad32e0e2efd8005310e16c10a70f8a9a8c2dd2",
+        "error_code": null,
+        "returned_project_count": 50,
+        "project_page_limit": 50
+      }
+    ],
+    "model_request_sent": false,
+    "user_decision_created": false,
+    "checked_at": "2026-11-15T14:33:24.974Z"
+  },
+  "actual_host_command": {
+    "name": "/nexusmore",
+    "result": {
+      "kind": "success",
+      "text": "枢模 · NexusMORE：本地连接检查通过\nDSH 已注册业务 MCP 工具：40 项\ncapabilities_read：ok（45 ms）\nprojects_list：ok（104 ms）\n此命令只读，不调用模型，不创建业务任务或用户批准。\n遇到 needs_user_input，请在自己的本地终端运行：\npython -m modelcrew.trusted_decisions pending --project PROJECT_ID --task TASK_ID\npython -m modelcrew.trusted_decisions review --project PROJECT_ID --task TASK_ID\n正文和选图分别确认；聊天文字和宿主权限提示不等于业务批准。"
+    },
+    "engineering_session_id": "session-58cac402-d47a-4589-9e18-c07fae4c9fa6",
+    "capture": "Automated local engineering Remote invocation in a new test Session, not a real business user approval"
+  },
+  "panel": {
+    "actual_render_inspected": true,
+    "button_executed": true,
+    "status": "passed",
+    "project_authored": true,
+    "routes": [
+      "GET /api/nexusmore/status",
+      "POST /api/nexusmore/diagnose",
+      "GET /api/nexusmore/panel"
+    ],
+    "authentication": "Existing DSH Connection exact-Fetch owner admission; no new listener or arbitrary tool proxy"
+  },
+  "normal_launch": {
+    "Status": "passed",
+    "DesktopProcessId": 22088,
+    "DesktopExecutable": "D:\\deepseekharness\\DeepSeek Harness.exe",
+    "DebugArgumentsAbsent": true,
+    "McpProcessCount": 1,
+    "McpProcesses": [
+      {
+        "ProcessId": 39336,
+        "ParentProcessId": 29196,
+        "Executable": "C:\\Program Files\\Python313\\python.exe",
+        "Module": "modelcrew.workflow_mcp"
+      }
+    ],
+    "temporary_debug_port_open": false,
+    "normal_mode_after_restart_calls_not_repeated_without_debugging": true
+  },
+  "history": {
+    "status": "passed",
+    "old_business_tables_unchanged": 24,
+    "old_rows_unchanged": 81202,
+    "migrations_before": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "migrations_after": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "new_tables": {
+      "mc_business_operations": 0,
+      "mc_business_operation_events": 0,
+      "mc_business_artifacts": 0,
+      "mc_trusted_user_events": 0,
+      "mc_trusted_user_event_claims": 0
+    },
+    "historical_files_unchanged": 127,
+    "protected_profile_and_g1_g3_files_unchanged": 11,
+    "leftover_test_databases": []
+  },
+  "regressions": {
+    "dsh_profile_package_and_layout": {
+      "passed": 49,
+      "skipped": 0
+    },
+    "business_mcp": {
+      "passed": 130,
+      "skipped": [
+        {
+          "test": "tests.test_document_tool_boundaries.test_official_comment_definitions_roundtrip_xml_and_invalid_reply_keeps_input",
+          "reason": "Install the declared documents dependencies for official comment validation"
+        }
+      ],
+      "business_mcp_cases": 25
+    },
+    "trusted_user": {
+      "passed": 112,
+      "skipped": [],
+      "trusted_decision_cases": 39
+    },
+    "javascript": {
+      "dsh_connection_cases_passed": 9,
+      "legacy_bridge_cases_passed": 5,
+      "failed": 0
+    },
+    "counts_overlap_not_additive": true
+  },
+  "distribution": {
+    "status": "passed",
+    "wheel": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\dsh-local-connection-20261115-v001\\package\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "6b87122bf5a1d038ff109e68bac92a2cac4731c69c44f2c053e24382ccb9f6c1",
+      "bytes": 1061706,
+      "members": 335,
+      "resource_files": 234,
+      "module_files": 91,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "PyYAML==6.0.3; extra == \"dsh\"",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "dsh",
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "license_expression": "AGPL-3.0-only",
+      "license_files": [
+        "LICENSE",
+        "THIRD_PARTY_NOTICES.md",
+        "docs/licenses/Apache-2.0.txt",
+        "docs/combined-distribution-license.md"
+      ],
+      "status": "passed"
+    },
+    "sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\dsh-local-connection-20261115-v001\\package\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+      "sha256": "b889873429e016db04928d9532a2d01cbf2c3d012050d24b5842f938b5d40171",
+      "bytes": 1097791,
+      "members": 487,
+      "status": "passed"
+    },
+    "wheel_from_sdist": {
+      "path": "D:\\big-third-up\\modelcrew\\tmp\\dsh-local-connection-20261115-v001\\package\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "f065301eee48d3a0c435e87131863d02efcea03c7d5a086bb00b5a8d021845a8",
+      "bytes": 1061706,
+      "members": 335,
+      "resource_files": 234,
+      "module_files": 91,
+      "requires_python": "<3.14,>=3.13",
+      "requires_dist": [
+        "jsonschema<5,>=4.26",
+        "PyYAML==6.0.3; extra == \"dsh\"",
+        "matplotlib==3.10.3; extra == \"figures\"",
+        "numpy==2.3.1; extra == \"figures\"",
+        "openpyxl==3.1.5; extra == \"figures\"",
+        "Pillow==12.2.0; extra == \"figures\"",
+        "PyMuPDF==1.27.2.3; extra == \"figures\"",
+        "pypdf==6.16.1; extra == \"figures\"",
+        "anyio==4.14.2; extra == \"workflow\"",
+        "beautifulsoup4==4.15.0; extra == \"workflow\"",
+        "httpx==0.28.1; extra == \"workflow\"",
+        "jsonschema==4.26.0; extra == \"workflow\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+        "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+        "langgraph==1.2.10; extra == \"workflow\"",
+        "mcp==1.30.0; extra == \"workflow\"",
+        "numpy==2.3.1; extra == \"workflow\"",
+        "openpyxl==3.1.5; extra == \"workflow\"",
+        "Pillow==12.2.0; extra == \"workflow\"",
+        "portalocker==4.4.2; extra == \"workflow\"",
+        "psycopg[binary]==3.3.4; extra == \"workflow\"",
+        "pydantic==2.13.4; extra == \"workflow\"",
+        "pypdf==6.16.1; extra == \"workflow\"",
+        "qdrant-client==1.20.0; extra == \"workflow\"",
+        "scipy==1.16.0; extra == \"workflow\"",
+        "sympy==1.13.1; extra == \"workflow\"",
+        "anyio==4.14.2; extra == \"retrieval\"",
+        "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+        "fastapi==0.162.0; extra == \"retrieval\"",
+        "httpx==0.28.1; extra == \"retrieval\"",
+        "jsonschema==4.26.0; extra == \"retrieval\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+        "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+        "langgraph==1.2.10; extra == \"retrieval\"",
+        "mcp==1.30.0; extra == \"retrieval\"",
+        "numpy==2.3.1; extra == \"retrieval\"",
+        "openpyxl==3.1.5; extra == \"retrieval\"",
+        "Pillow==12.2.0; extra == \"retrieval\"",
+        "portalocker==4.4.2; extra == \"retrieval\"",
+        "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+        "pydantic==2.13.4; extra == \"retrieval\"",
+        "pypdf==6.16.1; extra == \"retrieval\"",
+        "qdrant-client==1.20.0; extra == \"retrieval\"",
+        "sentence-transformers==6.0.0; extra == \"retrieval\"",
+        "uvicorn==0.52.1; extra == \"retrieval\"",
+        "defusedxml==0.7.1; extra == \"documents\"",
+        "lxml==6.1.1; extra == \"documents\"",
+        "openpyxl==3.1.5; extra == \"documents\"",
+        "pdfplumber==0.11.10; extra == \"documents\"",
+        "PyMuPDF==1.27.2.3; extra == \"documents\"",
+        "pypdf==6.16.1; extra == \"documents\"",
+        "python-docx==1.2.0; extra == \"documents\"",
+        "anyio==4.14.2; extra == \"paper\"",
+        "beautifulsoup4==4.15.0; extra == \"paper\"",
+        "defusedxml==0.7.1; extra == \"paper\"",
+        "fastapi==0.162.0; extra == \"paper\"",
+        "httpx==0.28.1; extra == \"paper\"",
+        "jsonschema==4.26.0; extra == \"paper\"",
+        "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+        "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+        "langgraph==1.2.10; extra == \"paper\"",
+        "lxml==6.1.1; extra == \"paper\"",
+        "matplotlib==3.10.3; extra == \"paper\"",
+        "mcp==1.30.0; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"paper\"",
+        "openpyxl==3.1.5; extra == \"paper\"",
+        "pdfplumber==0.11.10; extra == \"paper\"",
+        "Pillow==12.2.0; extra == \"paper\"",
+        "portalocker==4.4.2; extra == \"paper\"",
+        "psycopg[binary]==3.3.4; extra == \"paper\"",
+        "pydantic==2.13.4; extra == \"paper\"",
+        "PyMuPDF==1.27.2.3; extra == \"paper\"",
+        "pypdf==6.16.1; extra == \"paper\"",
+        "python-docx==1.2.0; extra == \"paper\"",
+        "qdrant-client==1.20.0; extra == \"paper\"",
+        "scipy==1.16.0; extra == \"paper\"",
+        "sentence-transformers==6.0.0; extra == \"paper\"",
+        "sympy==1.13.1; extra == \"paper\"",
+        "uvicorn==0.52.1; extra == \"paper\"",
+        "numpy==2.3.1; extra == \"evidence\"",
+        "openpyxl==3.1.5; extra == \"evidence\"",
+        "pydantic==2.13.4; extra == \"evidence\"",
+        "scipy==1.16.0; extra == \"evidence\"",
+        "sympy==1.13.1; extra == \"evidence\"",
+        "build>=1.2; extra == \"dev\"",
+        "pytest==9.0.3; extra == \"dev\"",
+        "setuptools>=81; extra == \"dev\""
+      ],
+      "extras": [
+        "dsh",
+        "figures",
+        "workflow",
+        "retrieval",
+        "documents",
+        "paper",
+        "evidence",
+        "dev"
+      ],
+      "license_expression": "AGPL-3.0-only",
+      "license_files": [
+        "LICENSE",
+        "THIRD_PARTY_NOTICES.md",
+        "docs/licenses/Apache-2.0.txt",
+        "docs/combined-distribution-license.md"
+      ],
+      "status": "passed"
+    },
+    "external_install": {
+      "status": "passed",
+      "reports": [
+        {
+          "status": "passed",
+          "module_path": "D:\\nexusmore-validation\\g4-dsh-local-connection-20261115-v001\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+          "resource_sha256": "436859041bda94408915ec06a25fe26c565f6713642de79205f12b54b0b6bd31",
+          "mcp_tools": 40,
+          "resources": {
+            "status": "passed",
+            "files": 234,
+            "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+          },
+          "source_tree_imported": false,
+          "dependency_mode": "system-site-packages; not a clean Windows installation",
+          "kind": "wheel"
+        },
+        {
+          "status": "passed",
+          "module_path": "D:\\nexusmore-validation\\g4-dsh-local-connection-20261115-v001\\venv\\Lib\\site-packages\\modelcrew\\__init__.py",
+          "resource_sha256": "436859041bda94408915ec06a25fe26c565f6713642de79205f12b54b0b6bd31",
+          "mcp_tools": 40,
+          "resources": {
+            "status": "passed",
+            "files": 234,
+            "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+          },
+          "source_tree_imported": false,
+          "dependency_mode": "system-site-packages; not a clean Windows installation",
+          "kind": "wheel_from_sdist"
+        }
+      ]
+    },
+    "resources": {
+      "status": "passed",
+      "files": 234,
+      "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+    },
+    "fresh_windows_install_verified": false
+  },
+  "database_migration_report_fix": {
+    "before": "CLI reported hardcoded 13 even after migration 014",
+    "after": "Reports actual max(version) from mc_migrations",
+    "actual_database_current_version": 14
+  },
+  "boundaries": {
+    "model_generation_requests_sent": 0,
+    "solver_requests_sent": 0,
+    "real_business_tasks_created": 0,
+    "trusted_user_events_created": 0,
+    "user_approvals_created": 0,
+    "trusted_host_ui_enabled": false,
+    "trusted_decision_fallback": "G3 trusted_local_cli",
+    "model_mcp_privileged_tools_exposed": false,
+    "all_40_operations_executed_by_a_real_model": false,
+    "full_model_driven_end_to_end_verified": false,
+    "other_hosts_verified": false,
+    "G5_fault_matrix_complete": false,
+    "public_release_cleared": false
+  },
+  "source_identities": [
+    {
+      "path": "src/modelcrew/dsh_integration.py",
+      "bytes": 12102,
+      "sha256": "78af3c10838f25d2301e0ccd9dc82390b83c2936be731929105cd68e73fa0a93"
+    },
+    {
+      "path": "src/modelcrew/workflow_mcp.py",
+      "bytes": 5880,
+      "sha256": "61aacff84da7bcdda6e9e145a0881820bce7ba711607440b670be26b01f53131"
+    },
+    {
+      "path": "src/modelcrew/business_adapter.py",
+      "bytes": 36535,
+      "sha256": "5123099ee134caa4038b9dbcae18fdbe93ba22e528eacac39c32ca495147820f"
+    },
+    {
+      "path": "src/harness/nexusmore-dsh.mjs",
+      "bytes": 8765,
+      "sha256": "436859041bda94408915ec06a25fe26c565f6713642de79205f12b54b0b6bd31"
+    },
+    {
+      "path": "src/modelcrew/resources/harness/nexusmore-dsh.mjs",
+      "bytes": 8765,
+      "sha256": "436859041bda94408915ec06a25fe26c565f6713642de79205f12b54b0b6bd31"
+    },
+    {
+      "path": "tests/test_dsh_integration.py",
+      "bytes": 5547,
+      "sha256": "5d4b28458990b55920e13d6ff7fe5a0bf821c3be0324dd7bce583449c1f50ac1"
+    },
+    {
+      "path": "tests/harness/dsh-connection.test.mjs",
+      "bytes": 5798,
+      "sha256": "513fe21c60a3f230a21d9e9b57453491aa83a5e678cd2f9456a91631f4823f10"
+    },
+    {
+      "path": "docs/dsh-local-connection.md",
+      "bytes": 8004,
+      "sha256": "1b460a2007e5fabf803a4b66c7e54a48fab0ba840fe38391a60822ebba9dec32"
+    },
+    {
+      "path": "scripts/build_distribution.py",
+      "bytes": 6168,
+      "sha256": "22e075fe5f41d944a40a51c41795ae6cd22887b1e629f350f9b509d367615b98"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 20671,
+      "sha256": "052fe35e15bfe3d6518e73b2af7f1083cb030bc5bed7a6043e0c11e48186bae8"
+    },
+    {
+      "path": "configs/dependencies/dsh.txt",
+      "bytes": 15,
+      "sha256": "89eadaba9f081385bb56c41c62fc6e182c31bfe158a49760e7c4c0ec36b1c6ae"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/actual-host-diagnosis.json",
+      "bytes": 2732,
+      "sha256": "bf5bd54d33cfc73ed9a6b54bd6cff56b3754d58cc6d9809b18da6c45f9dc913e"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/actual-host-command.json",
+      "bytes": 855,
+      "sha256": "cc528cbf340e041a611e634c78a1d3036fba4d03e68349f884f80b6a2d9102dd"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/panel-ui-readback.json",
+      "bytes": 3036,
+      "sha256": "bbccd8cc804cef8445b02229495cdd98af5f34e5aa9257b2a867040527b5fd62"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/connection-panel.png",
+      "bytes": 72862,
+      "sha256": "9d85d47d414bdbcaa3c0bed7cd35b885a1d892b3cb937c9c157fe9bbe08ac7e4"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/normal-launch-verification.json",
+      "bytes": 393,
+      "sha256": "dd05154fbb95334a71ba76e4a63b04c8efa11c4100972e655b6034b9f4f96c96"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/history-verification.json",
+      "bytes": 706,
+      "sha256": "cf53c8693e8b2e85b366bd8215b50f4639ff8d08275ff60d7b1c90557e171e11"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/installed-host-identity.json",
+      "bytes": 1340,
+      "sha256": "041205657589b2ec9d25f80ce0d8862e6149fbe1d62f6ff94e770245945b05c5"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/idempotent-registration.json",
+      "bytes": 193,
+      "sha256": "7e043e62d91614ee7e7e5d6b1ae711eed038d2094c9de9fcea57c91fa7c04b0f"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/external-install.json",
+      "bytes": 1330,
+      "sha256": "fb2986bb1f0b342bf07830714a320b0e9c9f2cbaa5ce47db56aba276660e95a5"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/pytest-final.xml",
+      "bytes": 7153,
+      "sha256": "3dd39eeb8063e40d53493c83e3e98f07736677c3ea0c79f08f8d66dbb1f33bb7"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/node-final.log",
+      "bytes": 1284,
+      "sha256": "a65dc246b0fccfc539626606db40d5e2e04e51868a3460e1a7de88624a770c0a"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/business-regression/verification.json",
+      "bytes": 6380,
+      "sha256": "7f76b72ff0a5aa245b6b6823f45e13050c011667eb610e262db4d2d80f2b066a"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/trust-regression/verification.json",
+      "bytes": 2939,
+      "sha256": "0ab4520c379c569c27a29c446f99f894ee1552247ee3739143266e610e1fcfcf"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/package/build-audit.json",
+      "bytes": 10853,
+      "sha256": "8b2af173fef6878ce0f1ee1933ff2b0dc7f801a3dfc1b20ef00d3b74a2ab31b0"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/database-before.json",
+      "bytes": 3498,
+      "sha256": "cb423eeae293818f7525432bcceb3948e2acaed962e235b63e01173597be2b33"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/database-after.json",
+      "bytes": 3516,
+      "sha256": "004878b9ab371aabb4b5a1a198c5a2b5bdc97717f65b35b8c39e4eb74998d080"
+    },
+    {
+      "path": "tmp/dsh-local-connection-20261115-v001/protected-before.json",
+      "bytes": 1593,
+      "sha256": "73c033a7790f3eb36a52e9d17e66e78ae98d4c39189991557e5856a345a392ed"
+    }
+  ]
+}

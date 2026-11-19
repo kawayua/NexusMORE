@@ -5,7 +5,7 @@ from email.parser import BytesParser
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import subprocess
 import sys
 import tarfile
@@ -53,6 +53,64 @@ def audit_wheel(path):
                 'requires_python':metadata['Requires-Python'],'requires_dist':metadata.get_all('Requires-Dist',[]),
                 'extras':metadata.get_all('Provides-Extra',[]),'license_expression':metadata['License-Expression'],'license_files':project['project']['license-files'],'status':'passed'}
 
+def audit_sdist(path, *, root=None):
+    """Validate exact source inputs before extraction; no private paths or links."""
+    root = Path(root or ROOT).resolve()
+    project = tomllib.loads((root/'pyproject.toml').read_text(encoding='utf-8'))
+    extra = json.loads((root/'configs/distribution-files.json').read_text(encoding='utf-8'))
+    if extra['schema_version'] != '1.0.0':
+        raise ValueError('Unknown source distribution policy')
+    required = set(extra['sdist_files'])
+    required |= {'src/modelcrew/'+p for p in project['tool']['setuptools']['package-data']['modelcrew']}
+    required |= {p.relative_to(root).as_posix() for p in (root/'src/modelcrew').glob('*.py')}
+    required |= {p.relative_to(root).as_posix() for p in (root/'tests').rglob('*')
+                 if p.is_file() and p.suffix in {'.py', '.mjs'} and '__pycache__' not in p.parts}
+    prefix = project['project']['name'].replace('-', '_')+'-'+project['project']['version']
+    generated = {'PKG-INFO', 'setup.cfg'}
+    generated |= {'src/nexusmore.egg-info/'+n for n in ('PKG-INFO', 'SOURCES.txt', 'dependency_links.txt',
+                  'entry_points.txt', 'requires.txt', 'top_level.txt')}
+    allowed_dirs = {prefix}
+    for relative in required | generated:
+        allowed_dirs.update(str(p) for p in PurePosixPath(prefix+'/'+relative).parents if str(p) != '.')
+    found, names, total = set(), set(), 0
+    with tarfile.open(path) as archive:
+        members = archive.getmembers()
+        if len(members) > 10000:
+            raise ValueError('Source archive exceeds member bound')
+        for member in members:
+            name = member.name
+            parts = PurePosixPath(name).parts
+            if not parts or parts[0] != prefix or name in names or any(x in {'.', '..'} for x in name.split('/')) or ':' in name or chr(92) in name or name.startswith('/'):
+                raise ValueError('Unsafe or duplicate source archive member')
+            names.add(name)
+            if member.isdir():
+                if name.rstrip('/') not in allowed_dirs:
+                    raise ValueError('Unexpected source directory: '+name)
+                continue
+            if not member.isfile():
+                raise ValueError('Source archive links and special members are forbidden')
+            relative = '/'.join(parts[1:])
+            if relative not in required | generated:
+                raise ValueError('Unexpected source member: '+relative)
+            total += member.size
+            if member.size > 16*1024*1024 or total > 128*1024*1024:
+                raise ValueError('Source archive exceeds byte bound')
+            if relative in required:
+                source = root/relative
+                resolved = source.resolve()
+                if not resolved.is_relative_to(root) or source.is_symlink() or (hasattr(source, 'is_junction') and source.is_junction()):
+                    raise ValueError('Source input escapes repository')
+                if archive.extractfile(member).read() != source.read_bytes():
+                    raise ValueError('Source member identity mismatch: '+relative)
+            found.add(relative)
+    missing = sorted(required-found)
+    if missing:
+        raise ValueError({'missing_sdist_files': missing})
+    return {'path': str(path), 'sha256': sha(Path(path)), 'bytes': Path(path).stat().st_size,
+            'members': len(members), 'required_source_files': len(required), 'status': 'passed',
+            'prefix': prefix, 'symlinks_or_special_members_allowed': False}
+
+
 def build(output):
     output = output.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -63,12 +121,9 @@ def build(output):
         whl = wheel_dir/backend.build_wheel(str(wheel_dir))
         sdist = sdist_dir/backend.build_sdist(str(sdist_dir))
     wheel_report = audit_wheel(whl)
+    sdist_report = audit_sdist(sdist)
     with tarfile.open(sdist) as t:
-        names = t.getnames(); prefix = names[0].split('/')[0]+'/'
-        relative = [n.removeprefix(prefix) for n in names if n != prefix[:-1]]
-        forbidden = [n for n in relative if not (n in {'LICENSE','README.md','AGENTS.md','pyproject.toml','MANIFEST.in','THIRD_PARTY_NOTICES.md','PKG-INFO','setup.cfg','src','tests','docs','docs/package-installation.md','docs/user-configuration.md','docs/environment-preparation.md','docs/resource-routing.md','docs/combined-distribution-license.md','docs/licenses','docs/licenses/Apache-2.0.txt','scripts','scripts/build_distribution.py','scripts/build_environment_bundle.py','scripts/build_agpl_source_materials.py','scripts/probe_optional_dependencies.py','scripts/probe_retrieval_paper.py'} or n.startswith(('src/modelcrew/','src/nexusmore.egg-info','tests/')) or n=='src/modelcrew')]
-        if forbidden:
-            raise ValueError({'unexpected_sdist_members':forbidden})
+        prefix = sdist_report['prefix']+'/'
         extracted=output/'sdist-source';extracted.mkdir()
         t.extractall(extracted, filter='data')
     rebuilt=output/'wheel-from-sdist';rebuilt.mkdir()
@@ -78,7 +133,7 @@ def build(output):
     rebuilt_report=audit_wheel(next(rebuilt.glob('*.whl')))
     report={'schema_version':'1.0.0','status':'passed','scope':'private development build; no public upload, full-knowledge or runtime gate acceptance',
             'build_isolation':False,'builder':'setuptools.build_meta; installed build requirements',
-            'wheel':wheel_report,'sdist':{'path':str(sdist),'sha256':sha(sdist),'bytes':sdist.stat().st_size,'members':len(names),'status':'passed'},
+            'wheel':wheel_report,'sdist':sdist_report,
             'wheel_from_sdist':rebuilt_report}
     with (output/'build-audit.json').open('x',encoding='utf-8') as f:json.dump(report,f,ensure_ascii=False,indent=2)
     return report

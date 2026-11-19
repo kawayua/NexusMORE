@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "milestone": "H1",
+  "status": "initial_preparation_checked_not_user_accepted",
+  "authorization": {
+    "source": "User message in this conversation",
+    "statement": "接下来我们进入h阶段**跨环境评测与开源首发准备**，建议先推进 H1 验证数据与评测方案。G 的通过范围以现有 DSH 实测为准，其他宿主、干净环境及公开发行仍需后续验收。",
+    "scope": "Start H1 preparation; no H1 acceptance or public release approval inferred."
+  },
+  "delivered": {
+    "public_smoke_cases": 2,
+    "historical_development_references": 2,
+    "registered_full_research_inputs": 0,
+    "registered_holdout_cases": 0,
+    "real_llm_runs": 0
+  },
+  "checks": {
+    "unit_tests_passed": 22,
+    "unit_tests_failed": 0,
+    "unit_tests_skipped": 0,
+    "catalog_and_oracles": "passed",
+    "repository_layout": "passed",
+    "commands": [
+      {
+        "name": "unit",
+        "command": [
+          "C:\\Program Files\\Python313\\python.exe",
+          "-m",
+          "pytest",
+          "tests/test_evaluation_data.py",
+          "-q",
+          "--junitxml=D:\\big-third-up\\modelcrew\\runs\\evaluation\\data-preparation-20261119-v1\\unit.xml"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "catalog",
+        "command": [
+          "C:\\Program Files\\Python313\\python.exe",
+          "-m",
+          "scripts.check_evaluation_data",
+          "--output",
+          "D:\\big-third-up\\modelcrew\\runs\\evaluation\\data-preparation-20261119-v1\\catalog-check.json"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "layout",
+        "command": [
+          "C:\\Program Files\\Python313\\python.exe",
+          "-m",
+          "scripts.check_repository_layout",
+          "--final"
+        ],
+        "returncode": 0
+      }
+    ]
+  },
+  "baseline_preservation": {
+    "G_acceptance": {
+      "path": "docs/release/g-stage-user-acceptance-20261119.json",
+      "sha256": "6d8966e5002cbfdb7526fbff310c9b01973067b264418982b131ec8171e1baa6"
+    },
+    "G5_acceptance": {
+      "path": "docs/release/g5-acceptance-20261119.json",
+      "sha256": "43bb55ae2a3debb43168a5e3bee564d301ad452df858ec49886e56ab88224b3c"
+    },
+    "G5_referenced_evidence_hashes_verified": 15,
+    "G5_final_pdf_hash_verified": "a9e3faa6bcfad799835e1209f6eeb0a7210f6256b3bc38a8259ba89e78e8b54d",
+    "scope": "Read-only file hash verification only; G tests and business actions not rerun."
+  },
+  "files": [
+    {
+      "path": "docs/evaluation-protocol.md",
+      "sha256": "1784a5d3ff29ab1d462391bd8aa4b8e1b59e4fbec65b8baeaaf32658e3f63e86"
+    },
+    {
+      "path": "configs/evaluation/data-catalog-1.0.0.json",
+      "sha256": "346dc79013e78174baed9fa81a611f0122cda47934aa60d92e147ac8c001c8da"
+    },
+    {
+      "path": "examples/validation/README.md",
+      "sha256": "b7097a52a2d98e348ad42061c0d44a3ec6de44fb59358c4da406a8db8e397321"
+    },
+    {
+      "path": "examples/validation/reservoir-balance.json",
+      "sha256": "cefc6698512e80e17ed894e5937707b03cbd897eaefbe4135294369257ddbaa9"
+    },
+    {
+      "path": "examples/validation/integer-allocation.json",
+      "sha256": "4dee62f9231448712261d59e6030695c5fba5b29f515f515a755d175fa4a3d73"
+    },
+    {
+      "path": "scripts/check_evaluation_data.py",
+      "sha256": "4192d062fa9835e4323a52294ef8f0714e285309e02542ee03da7e204afa5f55"
+    },
+    {
+      "path": "tests/test_evaluation_data.py",
+      "sha256": "86a29db2dd594ef4d59caba7a936bf98d1aa828d2102466193e12bd270b57a17"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "runs/evaluation/data-preparation-20261119-v1/catalog-check.json",
+      "sha256": "2d61779154fd47ec0a76ecdf822101879b92b2d0af084eb9791cbc67ed342b42"
+    },
+    {
+      "path": "runs/evaluation/data-preparation-20261119-v1/catalog.log",
+      "sha256": "2d61779154fd47ec0a76ecdf822101879b92b2d0af084eb9791cbc67ed342b42"
+    },
+    {
+      "path": "runs/evaluation/data-preparation-20261119-v1/layout.log",
+      "sha256": "ffc191c8827771bc64efe9b9bb5ac285125dd7827558e532025d82902c370bc2"
+    },
+    {
+      "path": "runs/evaluation/data-preparation-20261119-v1/unit.log",
+      "sha256": "9654193dd7f3946185f533ffa75eae11499f8e46c2e8d983e6d15b93763c5beb"
+    },
+    {
+      "path": "runs/evaluation/data-preparation-20261119-v1/unit.xml",
+      "sha256": "59164d13b1daa221d244e09c1c677d4e37de30213082b7acceaff6f6195604fe"
+    }
+  ],
+  "pending": [
+    "Register lawfully available complete research inputs.",
+    "Select and isolate holdout problem families with exposure evidence.",
+    "Freeze rubric, independent scorers, repeat count and paid execution budgets.",
+    "User review of H1; H2/H3 actual execution and H4/H5 remain separate."
+  ],
+  "boundaries": {
+    "H1_user_accepted": false,
+    "clean_environment_verified": false,
+    "other_hosts_verified": false,
+    "supplier_called": false,
+    "business_database_mutated": false,
+    "paper_generated_or_reexported": false,
+    "public_release_approved": false
+  }
+}

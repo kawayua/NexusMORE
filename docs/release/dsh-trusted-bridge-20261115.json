@@ -1,0 +1,823 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-15",
+  "recorded_at": "2026-11-15T15:59:58.867232+00:00",
+  "milestone": "G3 native host bridge after G4.1 compatibility verification",
+  "status": "passed",
+  "scope": "Implemented local DSH native human-command capture -> private Python worker -> existing G3/native Workflow; engineering validation, not real-user business acceptance or complete G5",
+  "supported_baseline": {
+    "host": "DeepSeek Harness Desktop",
+    "version": "0.2.2-rc.1",
+    "platform": "Windows",
+    "asar_sha256": "5fa8a6b21bceb8f3e99e30efa2270efd0cc773a11e42aa0488f804a64b34e637",
+    "python": "3.13.5"
+  },
+  "implementation": {
+    "protocol": "nexusmore-dsh-decisions/1",
+    "trusted_capture_channels": [
+      "trusted_local_cli",
+      "trusted_host_ui"
+    ],
+    "model_tool_count": 40,
+    "approval_mcp_tools_added": 0,
+    "http_approval_routes_added": 0,
+    "network_listener_added": false,
+    "private_worker_entry": "python -m modelcrew.dsh_decisions --private-stdio",
+    "operations": [
+      "task_decide",
+      "hand_decide",
+      "assembly_decide"
+    ],
+    "human_commands": [
+      "/nexusmore-review",
+      "/nexusmore-review-status"
+    ],
+    "source_of_business_state": "existing PostgreSQL/Workflow",
+    "migration": 15,
+    "new_evidence_table": "mc_trusted_host_captures",
+    "request_contract": "1.0.0 unchanged",
+    "conversation_ttl_seconds": 600,
+    "max_review_json_bytes": 2097152,
+    "max_private_frame_bytes": 8388608,
+    "status_history_limit": 10,
+    "status_never_redispatches": true,
+    "ordinary_shell_pipe_rejected": true
+  },
+  "trust_boundary": {
+    "os_process_token_principal": true,
+    "actual_dsh_parent_and_pid_checked": true,
+    "installed_adapter_hash_checked": true,
+    "exact_live_root_agent_enforced_by_host_user_questions_service": true,
+    "backend_question_nonces_and_raw_answers_bound": true,
+    "full_review_and_request_rechecked_at_capture_and_submission": true,
+    "durable_independent_host_capture_required": true,
+    "local_os_owner_and_installed_host_are_trust_root": true,
+    "same_account_arbitrary_code_or_sql_outside_boundary": true,
+    "remote_multitenant_identity_proved": false,
+    "json_actor_or_event_reference_alone_authorizes": false
+  },
+  "actual_host_validation": {
+    "production_profile_commands": {
+      "commands": [
+        "nexusmore",
+        "nexusmore-review",
+        "nexusmore-review-status",
+        "nexusmore-ui-check"
+      ],
+      "temporary_engineering_commands_absent": true
+    },
+    "production_backend_resolution_and_parent_bound_status": true,
+    "production_registered_mcp_tools": 40,
+    "production_read_operations": [
+      "capabilities_read",
+      "projects_list"
+    ],
+    "full_native_ui_scope": "Temporary fixed-scope engineering plugin calls the identical packaged runNativeReview and Python worker against a dedicated probe workspace/database; normal profile status command verified separately",
+    "native_review_ui_visually_inspected": true,
+    "native_cases": {
+      "reject_to_core_succeeded": {
+        "operation_name": "task_decide",
+        "request_id": "user-052a4bb5f1d447d2bb30aa937342cca8",
+        "request_sha256": "d0c54651cfc6cf5cdb111e19d36debee496a81576db444dbde9acb697f86ce36",
+        "scope": {
+          "task_id": "native-5f6f9fd127194986928efbf5cdcec938",
+          "project_id": "g2-8349b37188f34153a5e64723f5d81a8d"
+        },
+        "state": "succeeded",
+        "result_sha256": "9820da2ccb9a2f97846f5cad2be855d164779a3883f3f971fa2d867feb8b9a6e"
+      },
+      "final_confirmation_cancelled": {
+        "status": "cancelled_or_failed",
+        "engineering_only": true
+      },
+      "approve_without_m1_rejected": {
+        "code": "workflow_conflict",
+        "message": "业务状态不允许当前操作",
+        "recovery": "read_state"
+      },
+      "final_hardened_runtime_reject_to_core_succeeded": {
+        "operation_name": "task_decide",
+        "request_id": "user-49a0b862008e47aa9f1ae08a8cf901a3",
+        "request_sha256": "ff97bd54fa649f469b0a72928a938dd3edce2523f156ab510aeec15d46bc3aa1",
+        "scope": {
+          "task_id": "native-0e8d85d0182443b8ab7b199e69e2d67e",
+          "project_id": "g2-50e4274e64bd4b51b338adca80757141"
+        },
+        "state": "succeeded",
+        "result_sha256": "6db93c26286d6a49ca89386b9e70ffa7316c9e54d40e5a126a632f50d50b8736"
+      }
+    },
+    "restart_read_only_recovery": true,
+    "isolated_database_audit": {
+      "status": "passed",
+      "counts_before_restart_status": {
+        "events": 3,
+        "host_captures": 3,
+        "claims": 2,
+        "model_approvals": 0,
+        "model_rejections": 2,
+        "executions": 0
+      },
+      "counts_after_restart_status": {
+        "events": 3,
+        "host_captures": 3,
+        "claims": 2,
+        "model_approvals": 0,
+        "model_rejections": 2,
+        "executions": 0
+      },
+      "per_case": {
+        "reject": {
+          "core_decisions": 1,
+          "captures": 1
+        },
+        "cancel": {
+          "core_decisions": 0,
+          "captures": 0
+        },
+        "approve_blocked": {
+          "core_decisions": 1,
+          "captures": 2
+        }
+      },
+      "all_captures_explicitly_engineering": true,
+      "no_real_user_approval": true,
+      "no_model_or_solver_requests": true,
+      "native_host_restart_read_only_recovery": true,
+      "source_principal_kinds": [
+        "windows_process_token"
+      ],
+      "transcript_steps": [
+        4,
+        4,
+        4
+      ],
+      "captured_bindings": [
+        {
+          "task_id": "native-5f6f9fd127194986928efbf5cdcec938",
+          "version": 1,
+          "project_id": "g2-8349b37188f34153a5e64723f5d81a8d",
+          "contract_sha256": "c9b062d5dad8dbb786602a17a51c9129ec5657c0507b4652e62316155c922b72"
+        },
+        {
+          "task_id": "native-0e8d85d0182443b8ab7b199e69e2d67e",
+          "version": 1,
+          "project_id": "g2-50e4274e64bd4b51b338adca80757141",
+          "contract_sha256": "c9b062d5dad8dbb786602a17a51c9129ec5657c0507b4652e62316155c922b72"
+        },
+        {
+          "task_id": "native-0e8d85d0182443b8ab7b199e69e2d67e",
+          "version": 1,
+          "project_id": "g2-50e4274e64bd4b51b338adca80757141",
+          "contract_sha256": "c9b062d5dad8dbb786602a17a51c9129ec5657c0507b4652e62316155c922b72"
+        }
+      ]
+    },
+    "real_user_approval_created": false,
+    "model_or_solver_requests": 0,
+    "temporary_plugin_and_database_removed": {
+      "temporary_profile_entry_removed": true,
+      "original_profile_sha256_restored": "bda3c2a71ba3e0c8345af4d91817643aed8d502503622c80c32196ced858f11b",
+      "engineering_database_dropped": "nexusmore_dsh_ui_probe_888161f4ae34",
+      "temporary_database_credential_file_removed": true,
+      "real_business_approvals_created": false
+    }
+  },
+  "regressions": {
+    "native_python": 40,
+    "native_host_javascript": 26,
+    "g3": {
+      "passed": 112,
+      "skipped": [],
+      "trusted_decision_cases": 39
+    },
+    "business_mcp": {
+      "passed": 130,
+      "skipped": [
+        {
+          "test": "tests.test_document_tool_boundaries.test_official_comment_definitions_roundtrip_xml_and_invalid_reply_keeps_input",
+          "reason": "Install the declared documents dependencies for official comment validation"
+        }
+      ],
+      "business_mcp_cases": 25
+    },
+    "package_registration_contract_layout_python": 90,
+    "quality_gate_doubles_are_not_independent_acceptance": true,
+    "transient_test_environment_note": "First G3 regression: 111 passed/1 failed at psycopg.connect with Windows TCP error 10048; fresh disposable serial rerun: 112 passed. No OS or service settings changed.",
+    "external_probe_harness_note": "Initial synthetic-profile script asserted installed rather than existing configured status; profile was read back and rolled back before corrected install/rollback probe passed."
+  },
+  "distribution": {
+    "audit": {
+      "schema_version": "1.0.0",
+      "status": "passed",
+      "scope": "private development build; no public upload, full-knowledge or runtime gate acceptance",
+      "build_isolation": false,
+      "builder": "setuptools.build_meta; installed build requirements",
+      "wheel": {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\dsh-g3-bridge-20261115-v001\\package-final\\wheel\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "b141d34f040ffb7e8466973b67f9364be08acf56476aefd36494859b49410677",
+        "bytes": 1073800,
+        "members": 338,
+        "resource_files": 236,
+        "module_files": 92,
+        "requires_python": "<3.14,>=3.13",
+        "requires_dist": [
+          "jsonschema<5,>=4.26",
+          "PyYAML==6.0.3; extra == \"dsh\"",
+          "matplotlib==3.10.3; extra == \"figures\"",
+          "numpy==2.3.1; extra == \"figures\"",
+          "openpyxl==3.1.5; extra == \"figures\"",
+          "Pillow==12.2.0; extra == \"figures\"",
+          "PyMuPDF==1.27.2.3; extra == \"figures\"",
+          "pypdf==6.16.1; extra == \"figures\"",
+          "anyio==4.14.2; extra == \"workflow\"",
+          "beautifulsoup4==4.15.0; extra == \"workflow\"",
+          "httpx==0.28.1; extra == \"workflow\"",
+          "jsonschema==4.26.0; extra == \"workflow\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+          "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+          "langgraph==1.2.10; extra == \"workflow\"",
+          "mcp==1.30.0; extra == \"workflow\"",
+          "numpy==2.3.1; extra == \"workflow\"",
+          "openpyxl==3.1.5; extra == \"workflow\"",
+          "Pillow==12.2.0; extra == \"workflow\"",
+          "portalocker==4.4.2; extra == \"workflow\"",
+          "psycopg[binary]==3.3.4; extra == \"workflow\"",
+          "pydantic==2.13.4; extra == \"workflow\"",
+          "pypdf==6.16.1; extra == \"workflow\"",
+          "qdrant-client==1.20.0; extra == \"workflow\"",
+          "scipy==1.16.0; extra == \"workflow\"",
+          "sympy==1.13.1; extra == \"workflow\"",
+          "anyio==4.14.2; extra == \"retrieval\"",
+          "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+          "fastapi==0.162.0; extra == \"retrieval\"",
+          "httpx==0.28.1; extra == \"retrieval\"",
+          "jsonschema==4.26.0; extra == \"retrieval\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+          "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+          "langgraph==1.2.10; extra == \"retrieval\"",
+          "mcp==1.30.0; extra == \"retrieval\"",
+          "numpy==2.3.1; extra == \"retrieval\"",
+          "openpyxl==3.1.5; extra == \"retrieval\"",
+          "Pillow==12.2.0; extra == \"retrieval\"",
+          "portalocker==4.4.2; extra == \"retrieval\"",
+          "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+          "pydantic==2.13.4; extra == \"retrieval\"",
+          "pypdf==6.16.1; extra == \"retrieval\"",
+          "qdrant-client==1.20.0; extra == \"retrieval\"",
+          "sentence-transformers==6.0.0; extra == \"retrieval\"",
+          "uvicorn==0.52.1; extra == \"retrieval\"",
+          "defusedxml==0.7.1; extra == \"documents\"",
+          "lxml==6.1.1; extra == \"documents\"",
+          "openpyxl==3.1.5; extra == \"documents\"",
+          "pdfplumber==0.11.10; extra == \"documents\"",
+          "PyMuPDF==1.27.2.3; extra == \"documents\"",
+          "pypdf==6.16.1; extra == \"documents\"",
+          "python-docx==1.2.0; extra == \"documents\"",
+          "anyio==4.14.2; extra == \"paper\"",
+          "beautifulsoup4==4.15.0; extra == \"paper\"",
+          "defusedxml==0.7.1; extra == \"paper\"",
+          "fastapi==0.162.0; extra == \"paper\"",
+          "httpx==0.28.1; extra == \"paper\"",
+          "jsonschema==4.26.0; extra == \"paper\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+          "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+          "langgraph==1.2.10; extra == \"paper\"",
+          "lxml==6.1.1; extra == \"paper\"",
+          "matplotlib==3.10.3; extra == \"paper\"",
+          "mcp==1.30.0; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"paper\"",
+          "openpyxl==3.1.5; extra == \"paper\"",
+          "pdfplumber==0.11.10; extra == \"paper\"",
+          "Pillow==12.2.0; extra == \"paper\"",
+          "portalocker==4.4.2; extra == \"paper\"",
+          "psycopg[binary]==3.3.4; extra == \"paper\"",
+          "pydantic==2.13.4; extra == \"paper\"",
+          "PyMuPDF==1.27.2.3; extra == \"paper\"",
+          "pypdf==6.16.1; extra == \"paper\"",
+          "python-docx==1.2.0; extra == \"paper\"",
+          "qdrant-client==1.20.0; extra == \"paper\"",
+          "scipy==1.16.0; extra == \"paper\"",
+          "sentence-transformers==6.0.0; extra == \"paper\"",
+          "sympy==1.13.1; extra == \"paper\"",
+          "uvicorn==0.52.1; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"evidence\"",
+          "openpyxl==3.1.5; extra == \"evidence\"",
+          "pydantic==2.13.4; extra == \"evidence\"",
+          "scipy==1.16.0; extra == \"evidence\"",
+          "sympy==1.13.1; extra == \"evidence\"",
+          "build>=1.2; extra == \"dev\"",
+          "pytest==9.0.3; extra == \"dev\"",
+          "setuptools>=81; extra == \"dev\""
+        ],
+        "extras": [
+          "dsh",
+          "figures",
+          "workflow",
+          "retrieval",
+          "documents",
+          "paper",
+          "evidence",
+          "dev"
+        ],
+        "license_expression": "AGPL-3.0-only",
+        "license_files": [
+          "LICENSE",
+          "THIRD_PARTY_NOTICES.md",
+          "docs/licenses/Apache-2.0.txt",
+          "docs/combined-distribution-license.md"
+        ],
+        "status": "passed"
+      },
+      "sdist": {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\dsh-g3-bridge-20261115-v001\\package-final\\sdist\\nexusmore-0.1.0.dev0.tar.gz",
+        "sha256": "b5694ccab8df7a5578f95189eedf4ada2d72ef5c68645c5adb2ff589c809583c",
+        "bytes": 1116312,
+        "members": 491,
+        "status": "passed"
+      },
+      "wheel_from_sdist": {
+        "path": "D:\\big-third-up\\modelcrew\\tmp\\dsh-g3-bridge-20261115-v001\\package-final\\wheel-from-sdist\\nexusmore-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "530e1bfc360b733d9e41e71b42da35a1ac241caef74690d40cfc24b5755066de",
+        "bytes": 1073800,
+        "members": 338,
+        "resource_files": 236,
+        "module_files": 92,
+        "requires_python": "<3.14,>=3.13",
+        "requires_dist": [
+          "jsonschema<5,>=4.26",
+          "PyYAML==6.0.3; extra == \"dsh\"",
+          "matplotlib==3.10.3; extra == \"figures\"",
+          "numpy==2.3.1; extra == \"figures\"",
+          "openpyxl==3.1.5; extra == \"figures\"",
+          "Pillow==12.2.0; extra == \"figures\"",
+          "PyMuPDF==1.27.2.3; extra == \"figures\"",
+          "pypdf==6.16.1; extra == \"figures\"",
+          "anyio==4.14.2; extra == \"workflow\"",
+          "beautifulsoup4==4.15.0; extra == \"workflow\"",
+          "httpx==0.28.1; extra == \"workflow\"",
+          "jsonschema==4.26.0; extra == \"workflow\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"workflow\"",
+          "langgraph-checkpoint==4.3.1; extra == \"workflow\"",
+          "langgraph==1.2.10; extra == \"workflow\"",
+          "mcp==1.30.0; extra == \"workflow\"",
+          "numpy==2.3.1; extra == \"workflow\"",
+          "openpyxl==3.1.5; extra == \"workflow\"",
+          "Pillow==12.2.0; extra == \"workflow\"",
+          "portalocker==4.4.2; extra == \"workflow\"",
+          "psycopg[binary]==3.3.4; extra == \"workflow\"",
+          "pydantic==2.13.4; extra == \"workflow\"",
+          "pypdf==6.16.1; extra == \"workflow\"",
+          "qdrant-client==1.20.0; extra == \"workflow\"",
+          "scipy==1.16.0; extra == \"workflow\"",
+          "sympy==1.13.1; extra == \"workflow\"",
+          "anyio==4.14.2; extra == \"retrieval\"",
+          "beautifulsoup4==4.15.0; extra == \"retrieval\"",
+          "fastapi==0.162.0; extra == \"retrieval\"",
+          "httpx==0.28.1; extra == \"retrieval\"",
+          "jsonschema==4.26.0; extra == \"retrieval\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"retrieval\"",
+          "langgraph-checkpoint==4.3.1; extra == \"retrieval\"",
+          "langgraph==1.2.10; extra == \"retrieval\"",
+          "mcp==1.30.0; extra == \"retrieval\"",
+          "numpy==2.3.1; extra == \"retrieval\"",
+          "openpyxl==3.1.5; extra == \"retrieval\"",
+          "Pillow==12.2.0; extra == \"retrieval\"",
+          "portalocker==4.4.2; extra == \"retrieval\"",
+          "psycopg[binary]==3.3.4; extra == \"retrieval\"",
+          "pydantic==2.13.4; extra == \"retrieval\"",
+          "pypdf==6.16.1; extra == \"retrieval\"",
+          "qdrant-client==1.20.0; extra == \"retrieval\"",
+          "sentence-transformers==6.0.0; extra == \"retrieval\"",
+          "uvicorn==0.52.1; extra == \"retrieval\"",
+          "defusedxml==0.7.1; extra == \"documents\"",
+          "lxml==6.1.1; extra == \"documents\"",
+          "openpyxl==3.1.5; extra == \"documents\"",
+          "pdfplumber==0.11.10; extra == \"documents\"",
+          "PyMuPDF==1.27.2.3; extra == \"documents\"",
+          "pypdf==6.16.1; extra == \"documents\"",
+          "python-docx==1.2.0; extra == \"documents\"",
+          "anyio==4.14.2; extra == \"paper\"",
+          "beautifulsoup4==4.15.0; extra == \"paper\"",
+          "defusedxml==0.7.1; extra == \"paper\"",
+          "fastapi==0.162.0; extra == \"paper\"",
+          "httpx==0.28.1; extra == \"paper\"",
+          "jsonschema==4.26.0; extra == \"paper\"",
+          "langgraph-checkpoint-postgres==3.2.0; extra == \"paper\"",
+          "langgraph-checkpoint==4.3.1; extra == \"paper\"",
+          "langgraph==1.2.10; extra == \"paper\"",
+          "lxml==6.1.1; extra == \"paper\"",
+          "matplotlib==3.10.3; extra == \"paper\"",
+          "mcp==1.30.0; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"paper\"",
+          "openpyxl==3.1.5; extra == \"paper\"",
+          "pdfplumber==0.11.10; extra == \"paper\"",
+          "Pillow==12.2.0; extra == \"paper\"",
+          "portalocker==4.4.2; extra == \"paper\"",
+          "psycopg[binary]==3.3.4; extra == \"paper\"",
+          "pydantic==2.13.4; extra == \"paper\"",
+          "PyMuPDF==1.27.2.3; extra == \"paper\"",
+          "pypdf==6.16.1; extra == \"paper\"",
+          "python-docx==1.2.0; extra == \"paper\"",
+          "qdrant-client==1.20.0; extra == \"paper\"",
+          "scipy==1.16.0; extra == \"paper\"",
+          "sentence-transformers==6.0.0; extra == \"paper\"",
+          "sympy==1.13.1; extra == \"paper\"",
+          "uvicorn==0.52.1; extra == \"paper\"",
+          "numpy==2.3.1; extra == \"evidence\"",
+          "openpyxl==3.1.5; extra == \"evidence\"",
+          "pydantic==2.13.4; extra == \"evidence\"",
+          "scipy==1.16.0; extra == \"evidence\"",
+          "sympy==1.13.1; extra == \"evidence\"",
+          "build>=1.2; extra == \"dev\"",
+          "pytest==9.0.3; extra == \"dev\"",
+          "setuptools>=81; extra == \"dev\""
+        ],
+        "extras": [
+          "dsh",
+          "figures",
+          "workflow",
+          "retrieval",
+          "documents",
+          "paper",
+          "evidence",
+          "dev"
+        ],
+        "license_expression": "AGPL-3.0-only",
+        "license_files": [
+          "LICENSE",
+          "THIRD_PARTY_NOTICES.md",
+          "docs/licenses/Apache-2.0.txt",
+          "docs/combined-distribution-license.md"
+        ],
+        "status": "passed"
+      }
+    },
+    "external_install": {
+      "status": "passed",
+      "module_path": "D:\\nexusmore-validation\\g3-native-dsh-bridge-20261115-v001\\venv\\Lib\\site-packages\\modelcrew\\dsh_decisions.py",
+      "resources": {
+        "status": "passed",
+        "files": 236,
+        "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+      },
+      "model_tools": 40,
+      "capture_channels": [
+        "trusted_local_cli",
+        "trusted_host_ui"
+      ],
+      "operator_install_rollback": "passed",
+      "actual_dsh_connection_in_this_external_environment": false,
+      "system_site_packages": true,
+      "source_checkout_cwd": false,
+      "fresh_windows": false,
+      "adapter_sha256": "7bea7e633a0a360c90b782affc7066507c6acf729be244d9693d46f29093db28"
+    },
+    "resources": {
+      "status": "passed",
+      "files": 236,
+      "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+    },
+    "fresh_windows_verified": false,
+    "public_release_authorized": false
+  },
+  "preservation": {
+    "historical_business_tables_byte_projection_unchanged": 29,
+    "historical_business_rows_unchanged": 81202,
+    "new_host_capture_table_empty": true,
+    "protected_release_and_contract_files_unchanged": 16,
+    "historical_files_sha256_unchanged": 127,
+    "dsh_profile_sha256_unchanged": "bda3c2a71ba3e0c8345af4d91817643aed8d502503622c80c32196ced858f11b",
+    "live_trusted_event_and_claim_tables_empty": true
+  },
+  "normal_launch": {
+    "normal_launch": true,
+    "temporary_debug_port_closed": true,
+    "single_host_mcp_child": true,
+    "processes": {
+      "main": [
+        42652
+      ],
+      "host": [
+        23268
+      ],
+      "mcp": [
+        {
+          "parent": 23268,
+          "pid": 42612
+        }
+      ]
+    },
+    "private_worker_count": 0,
+    "normal_main_alive": true
+  },
+  "protected_original_identities": {
+    "docs\\release\\algorithm-entrypoint-closure-20261115.json": "58a7772335211d20de21d264960e02cb51ec48d894060cb06ba250d432c312f9",
+    "docs\\release\\business-tool-contract-freeze-20261115.json": "9cd5b72f71e0578e8f618cdc9526341ae8dab8327d2a2517f267e1e5233b8557",
+    "docs\\release\\business-workflow-mcp-20261115.json": "6bb6addf6e6fb7146c72f79961b3ab0d57f463f80fca19ddd05d29605b0acfca",
+    "docs\\release\\dsh-local-connection-20261115.json": "d0f2708189252518c2da19a775158d21da9aaad5ade63f6e01d3f3ea07a8a508",
+    "docs\\release\\dsh-native-ui-compatibility-20261115.json": "1307cda8e688f6796144f1376d9558a56647ade1690876107bd249e8e1e2f185",
+    "docs\\release\\formal-paper-export-validation-20261115.json": "f8ce1e8bbc18b297d1da59b54c8892a583a4ba5d01a144acbf523341d1a5523a",
+    "docs\\release\\full-result-validation-20261115.json": "dd0ffc5f3722cfc7b3b947298f6a7aacbb3e15e9f63b80295ca07e94220b63af",
+    "docs\\release\\internal-routing-closure-20261115.json": "e2115743df262a735b316a6beca2ae734211c5cd15f84e92dd2b3a8e2c6c4f84",
+    "docs\\release\\trusted-user-decisions-20261115.json": "b524a65add9976a8ee3b33f28fc44d28f11e70ea204fdca137d424fe4c7786af",
+    "docs\\release\\writing-review-validation-20261115.json": "77f1398fed9a6997d89b97a6fd9bcad85a248286b9a8472fb0a5a25528a53cf4",
+    "src\\modelcrew\\resources\\contracts\\business-examples-1.0.0.json": "3eb58d2f286b88fb596410b2e0436ff8c0e218e7ae4fa1ac5da10a2f20acda04",
+    "src\\modelcrew\\resources\\contracts\\business-request-1.0.0.schema.json": "4890324f48cced2b349fdab69a146d8ced8c0f241d5564f08ea630731f371a46",
+    "src\\modelcrew\\resources\\contracts\\business-response-1.0.0.schema.json": "352b3c930c329d3ea431c0ee01c57bc7ca74489b46e3bfe514495cfc5aaa13b0",
+    "src\\modelcrew\\resources\\contracts\\business-tools-1.0.0.json": "748a31ae1ee08abbbeb7669a7b70e39f88672efbf6f05f25b61fd2dae9ffdfe4",
+    "src\\modelcrew\\business_contract.py": "65fe89cdac4734ec9832d7a8f9d8f06641c6cefe146ec66fc05d2fac345aa4a9",
+    "src\\modelcrew\\resources\\migrations\\014_trusted_user_events.sql": "ae574f3b115257192a8305f1029f60392355a2a1a1de15fce09c6c39525dca20"
+  },
+  "remaining": [
+    "Real-user business decisions and independent quality gates remain separate acceptance",
+    "Complete real-host disconnection/expiry/failure/path-boundary matrix remains G5",
+    "Arbitrary subset figure selection and generic final_decide remain unsupported",
+    "No new native complete image/PDF review renderer; existing actual review/full-page rules still apply",
+    "Other hosts/platforms and remote identity protocols not validated"
+  ],
+  "source_identities": [
+    {
+      "path": "src/modelcrew/trusted_decisions.py",
+      "sha256": "ef199b177eb22cc9da3fd51e5a77c29f1c7057c7171612b7f0360b14368a2c28",
+      "bytes": 28300
+    },
+    {
+      "path": "src/modelcrew/dsh_decisions.py",
+      "sha256": "8d663f29b688efe403434bca46a4a903a7e461904b6127c65067667e94ec1660",
+      "bytes": 20454
+    },
+    {
+      "path": "src/modelcrew/dsh_integration.py",
+      "sha256": "5bd062789c118e9564abbd69ea95718c58842dcb7b55dc60ab3906594a3016eb",
+      "bytes": 12442
+    },
+    {
+      "path": "src/modelcrew/business_adapter.py",
+      "sha256": "94d435d5fd29fdfb26708022e82cc258b9044350879c75f6c810a28442dbf976",
+      "bytes": 36022
+    },
+    {
+      "path": "src/harness/nexusmore-dsh.mjs",
+      "sha256": "780491ee08e14ed0da7512a8b499101e5f8d318668ca01f94a410eca3af7695a",
+      "bytes": 12120
+    },
+    {
+      "path": "src/harness/nexusmore-dsh-decisions.mjs",
+      "sha256": "7bea7e633a0a360c90b782affc7066507c6acf729be244d9693d46f29093db28",
+      "bytes": 7056
+    },
+    {
+      "path": "src/modelcrew/resources/harness/nexusmore-dsh.mjs",
+      "sha256": "780491ee08e14ed0da7512a8b499101e5f8d318668ca01f94a410eca3af7695a",
+      "bytes": 12120
+    },
+    {
+      "path": "src/modelcrew/resources/harness/nexusmore-dsh-decisions.mjs",
+      "sha256": "7bea7e633a0a360c90b782affc7066507c6acf729be244d9693d46f29093db28",
+      "bytes": 7056
+    },
+    {
+      "path": "src/modelcrew/resources/migrations/015_trusted_host_captures.sql",
+      "sha256": "5ef8aba7962fdf7dff63990866dbbd74b4bd76cf3bc77cfacc679b643f6afed7",
+      "bytes": 755
+    },
+    {
+      "path": "src/modelcrew/resources/resource-manifest.json",
+      "sha256": "34bae1d4bbd7cfecf5df970014503a02295b206685fc8c29262a8e210c7ab38a",
+      "bytes": 58658
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "2938beaa3eceaf9edeec0b9f93c974eb08ef000bc723409bbc0ce6faf91caad5",
+      "bytes": 20509
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "14d33566f910b225ff38488f5592ddd336b44537cedc2ba265e9ae6c3cbcfdd3",
+      "bytes": 21435
+    },
+    {
+      "path": "tests/test_dsh_decisions.py",
+      "sha256": "4894179e0101344ead5037f203e0cb303f026d4a0ed23a92418886bf29472387",
+      "bytes": 14941
+    },
+    {
+      "path": "tests/test_dsh_integration.py",
+      "sha256": "457b835f5f3b4ee45fd0b3071f62bc20f5e7e019e31960fa6b023ca6332b9bc7",
+      "bytes": 6407
+    },
+    {
+      "path": "tests/harness/dsh-decisions.test.mjs",
+      "sha256": "4b22f4f01acfdf15cf5bf9143d63d96d6bc8b650e7e488b0d6f07feca0fba7eb",
+      "bytes": 6335
+    },
+    {
+      "path": "tests/harness/dsh-connection.test.mjs",
+      "sha256": "dc8944805c9ac401bcee8ecfdde87a8ad41e7daab42e1b18bf49dcac842a6a9f",
+      "bytes": 10128
+    },
+    {
+      "path": "tests/test_packaged_assets.py",
+      "sha256": "1cd49fbde96638b27b939e85f7af42e411a04da4cbbf5d39e6b1cc99531523ce",
+      "bytes": 2993
+    },
+    {
+      "path": "scripts/verify_dsh_decisions.py",
+      "sha256": "47aca0290af8996a69c777c562225286ab0d053201d4960f95fc71217c34cdf7",
+      "bytes": 3588
+    },
+    {
+      "path": "scripts/verify_trusted_decisions.py",
+      "sha256": "92ec1ced1d06a5860ee71e926d7c0e01522b4e986dfb0172e8fba02b8bd14067",
+      "bytes": 6326
+    },
+    {
+      "path": "scripts/verify_business_mcp.py",
+      "sha256": "7c2450c4064c1a7515afa7efd1975fb77266861f0f2bda6faadbabc22a3234c9",
+      "bytes": 6090
+    },
+    {
+      "path": "docs/dsh-local-connection.md",
+      "sha256": "c2a56e68f4e7e437d0b5e099c57157409c456dc373115edabaa0d19b04e4c4d0",
+      "bytes": 16477
+    },
+    {
+      "path": "docs/trusted-user-decisions.md",
+      "sha256": "fd0483657f2454e9a6c125d561c4c8937aae75864fdc1dd0dbbcb2f318475b97",
+      "bytes": 9290
+    },
+    {
+      "path": "README.md",
+      "sha256": "58c158303b75c0316b3c92ad142a0eebe7932d57f228532239987b8649e54093",
+      "bytes": 19873
+    },
+    {
+      "path": "docs/roadmap.md",
+      "sha256": "0f65017eaa456562ea44054144e662191b16731893a9b733e1fbd9326ef4c5e0",
+      "bytes": 66004
+    },
+    {
+      "path": "docs/open-source-harness-roadmap.md",
+      "sha256": "b14992e2099d3b66ba16328396f40b05534ad3f0fb2820f28317fdcb7aaace80",
+      "bytes": 19557
+    }
+  ],
+  "evidence": [
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/protected-before.json",
+      "sha256": "a76d20da71dd4f5bc533c3dbec39bf2f44a2a018ad947a4403ba746b0056cd60",
+      "bytes": 2117
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/database-before.json",
+      "sha256": "53c8c0cdebb9e7295f8321d03b1a455055b57f09a6ea6b6d046ebf92d836f0c9",
+      "bytes": 4354
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/database-after.json",
+      "sha256": "b6af5c8ac5e500cf4e9cdb78dd5cd4c18daff68033f76f08104bca3a7928cdae",
+      "bytes": 4509
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/preservation.json",
+      "sha256": "4fdf5ad8311086fb44698662427e26e893c1324a5bf55fcf13e5d42ddf20abaf",
+      "bytes": 414
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/engineering-context.json",
+      "sha256": "e1f3f12c710cbc221965a40401d169a2a5ff9eedef464262c80ebd921ad0bb9c",
+      "bytes": 268
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/engineering-scopes.json",
+      "sha256": "e5b3c2cdae301bd10214f5a10c95368148e5fc4cf7ed53b49c6940993bafa495",
+      "bytes": 423
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/engineering-profile-record.json",
+      "sha256": "99e5bbc13800fd380cf691cbbfed0b465bab51d37d539d4a6f34e76b1543c13a",
+      "bytes": 465
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/engineering-cleanup.json",
+      "sha256": "e4c81869fc5e7bdd4fc5f391e222415ded0f3e2489d832fb64c35abb1516a4c7",
+      "bytes": 328
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-production-status-command.json",
+      "sha256": "0688029b15cfe2ccd8a57ec7704b3f5e2359be7838d1c942f7bfb78a2d5c919d",
+      "bytes": 387
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-confirmation-readback.json",
+      "sha256": "be5b23450425f1af3471abf31da77760e8ca6a6c78e0cc7eb3d61cdcfdcf5952",
+      "bytes": 214
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-reject-result.json",
+      "sha256": "eadfaeb0279eaf93400c95a1d6a7472a2ad64ae968d6dd50fea12d998df1e3de",
+      "bytes": 8632
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-cancel-result.json",
+      "sha256": "c1b0d9c6015ffa5e066d1529472c5c089414fd9bb9b2346775a5a177b2d44311",
+      "bytes": 68
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-approve_blocked-result.json",
+      "sha256": "234c9e8861446dc773d93c55c9bdacd3cd6e5f6bb1269621032fd404984c7d65",
+      "bytes": 543
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-final-runtime-reject-result.json",
+      "sha256": "8342322acbacf4d0bf45fb44e296696c24d9f739f878e92693a3cf567873d240",
+      "bytes": 8595
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-restart-status.json",
+      "sha256": "50f15a4253ba0c739766f65e11333a79f8096e2349a0047813bdba2efc849ef5",
+      "bytes": 11394
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-database-audit.json",
+      "sha256": "afa607448d48fb1e9cc9cd3273b500ae65fbee932adfe7605982228baddace9b",
+      "bytes": 1712
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/production-native-commands.json",
+      "sha256": "4617da8e5ccae9c07627c2774dfd07dadad57c3bc28b8d88595bb399d7142e9a",
+      "bytes": 177
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/production-host-diagnosis.json",
+      "sha256": "d32fa211579007a4cd50984993c2ba3b00d90cc7b457ce0fb37f2804b5e82468",
+      "bytes": 2584
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/production-final-status-command.json",
+      "sha256": "16a44df9c5121e4fa0ce6ea1b11f5cfa469d0df9edcae6df352082409f4edc91",
+      "bytes": 387
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/normal-launch-verification.json",
+      "sha256": "7e209d90d274e065a1b40fbde32c9d913a3ebc781b2234a2f2e2af9ffa567da3",
+      "bytes": 346
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/native-regression-final/verification.json",
+      "sha256": "a71ce04502d63add59c3a9b10daf465b41db68d35ab4d90786eb29b2203e52f1",
+      "bytes": 3007
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/native-regression-final/pytest.xml",
+      "sha256": "567c222cfe14adcd94c212102ab4ef648e8513e17aad97824f70c77ce7b5e76d",
+      "bytes": 5332
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/g3-regression-final/verification.json",
+      "sha256": "efefadf81497353a4d5781270a4238c2c465ae429da597567ff3d9fa4e427330",
+      "bytes": 2942
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/g3-regression-final/pytest-results.xml",
+      "sha256": "4d0fdbf5453207934b9781092f86fba603f0c0edec1e3e9a774fd00dd1406f47",
+      "bytes": 15765
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/business-regression/verification.json",
+      "sha256": "19b8fc46b4686e548ee5112b311c26bbec2840effa0a5d314044d98ed8b67274",
+      "bytes": 6425
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/package-regression.xml",
+      "sha256": "a8cf7a0518fc62f5e757fb8db1fff6e5289e1a051f9966a1949816febec36444",
+      "bytes": 12631
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/node-regression.log",
+      "sha256": "7b431d4659dadec52fcdf63827c5957d72073a65dfc1f1e1691148af02f4f5df",
+      "bytes": 2165
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/package-final/build-audit.json",
+      "sha256": "5fb2a34fed840e08aaab656f38177851f49811fc7b01bd76f2a69f5297552cba",
+      "bytes": 10850
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/external-install.json",
+      "sha256": "7508b20367f1b273774e305f8f9697b9aeed7acd343f2fae5097764b8a30c2b3",
+      "bytes": 725
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/actual-native-confirmation.png",
+      "sha256": "fef6c3401c846df7561e87888d7880879a6cbca7ac3e5d7f0915e88d1ec7c039",
+      "bytes": 108677
+    },
+    {
+      "path": "tmp/dsh-g3-bridge-20261115-v001/engineering-host-probe.mjs",
+      "sha256": "ca1abf8104e947fcda46e5463bd1775ea0faf9601c69cdd9123c139aba873db4",
+      "bytes": 2327
+    }
+  ]
+}

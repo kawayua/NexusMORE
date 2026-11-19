@@ -283,6 +283,9 @@ def _compose(w,row,input_row,previous,context):
 
 
 def decision(w,project,build_id,**kwargs):
+    if kwargs.get('approve_figures'):
+        from .combined_paper_review import assembly_decision
+        return assembly_decision(w,project,build_id,kwargs)
     req=Decision.model_validate(kwargs)
     row=load(w,project,build_id);input_row=inputs.load(w,project,str(row['assembly_run_id']))
     with locks_for(w,project,input_row):

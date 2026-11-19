@@ -39,11 +39,12 @@ DEFAULTS = {
     'schema_version': '1.0.0',
     'paths': {'data_dir': 'runs'},
     'model': {'provider': '', 'base_url': '', 'name': '', 'api_key_env': 'MODELCREW_LLM_API_KEY',
-              'm1_model': '', 'w2_model': '', 'w2_response_format': 'json_object'},
+              'm1_model': '', 'w2_model': '', 'vision_model':'', 'w2_response_format': 'json_object'},
     'database': {'url_env': 'MODELCREW_DATABASE_URL'},
     'retrieval': {'paper_config': '', 'algorithm_config': '', 'qdrant_url': 'http://127.0.0.1:56333',
                   'model_path': ''},
     'execution': {'root': '', 'image': 'modelcrew-reference:py313'},
+    'autonomy': {'coder_repairs': 'off', 'statement': ''},
     'export': {'pandoc': '', 'tectonic': '', 'tex_cache': '', 'cjk_font': ''},
 }
 SCHEMA = {'type':'object', 'additionalProperties':False, 'required':['schema_version'],
@@ -52,6 +53,8 @@ for _section, _values in DEFAULTS.items():
     if isinstance(_values, dict):
         SCHEMA['properties'][_section] = {'type':'object','additionalProperties':False,
             'properties':{key:{'type':'string'} for key in _values}}
+SCHEMA['properties']['autonomy']['properties']['coder_repairs'] = {'enum':['off','standing']}
+SCHEMA['properties']['autonomy']['properties']['statement'] = {'type':'string','maxLength':2000}
 SCHEMA['properties']['model']['properties']['w2_response_format'] = {'enum':['json_object','json_schema']}
 for _section, _key in [('model','api_key_env'),('database','url_env')]:
     SCHEMA['properties'][_section]['properties'][_key] = {'type':'string','pattern':'^[A-Z][A-Z0-9_]*$'}
@@ -63,6 +66,7 @@ ENV_SETTINGS = {
     'MODELCREW_DATA_DIR': ('paths','data_dir'),
     'MODELCREW_LLM_PROVIDER': ('model','provider'), 'MODELCREW_LLM_BASE_URL': ('model','base_url'),
     'MODELCREW_LLM_MODEL': ('model','name'), 'MODELCREW_M1_MODEL': ('model','m1_model'),
+    'MODELCREW_VISION_MODEL': ('model','vision_model'),
     'MODELCREW_W2_MODEL': ('model','w2_model'), 'MODELCREW_W2_RESPONSE_FORMAT': ('model','w2_response_format'),
     'MODELCREW_RETRIEVAL_CONFIG': ('retrieval','paper_config'),
     'MODELCREW_ALGORITHM_CONFIG': ('retrieval','algorithm_config'),

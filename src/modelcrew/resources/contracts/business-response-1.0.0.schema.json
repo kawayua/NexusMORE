@@ -1,0 +1,1059 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "operation": {
+      "enum": [
+        "project_create",
+        "projects_list",
+        "tasks_list",
+        "task_create",
+        "task_status",
+        "versions_list",
+        "version_read",
+        "proposal_read",
+        "modeling_start",
+        "modeling_recheck",
+        "modeling_status",
+        "assembly_start",
+        "assembly_status",
+        "assembly_rebind",
+        "assembly_compose",
+        "assembly_build_status",
+        "assembly_decide",
+        "assembly_bind_reviews",
+        "assembly_export",
+        "assembly_render",
+        "assembly_review_w2",
+        "assembly_retry_w2_delivery",
+        "assembly_recover",
+        "hand_start",
+        "hand_status",
+        "hand_advance",
+        "hand_repair",
+        "hand_recheck",
+        "hand_decide",
+        "result_read",
+        "artifacts_list",
+        "mathematics_read",
+        "mathematics_publish",
+        "task_decide",
+        "task_revise",
+        "task_restore",
+        "task_resume",
+        "references_retrieve",
+        "references_discuss",
+        "tool_evidence_read",
+        "capabilities_read",
+        "project_read",
+        "question_import",
+        "pending_list",
+        "operation_status",
+        "artifact_read",
+        "manuscript_register_revision",
+        "figures_select",
+        "final_decide",
+        "assembly_artifacts_list"
+      ]
+    },
+    "request_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "running",
+        "needs_user_input",
+        "blocked",
+        "outcome_unknown",
+        "error"
+      ]
+    },
+    "binding": {
+      "$ref": "#/$defs/Binding"
+    },
+    "phase": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "replayed": {
+      "type": "boolean"
+    },
+    "pending": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pending_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+          },
+          "kind": {
+            "enum": [
+              "model",
+              "result",
+              "manuscript",
+              "figures",
+              "final"
+            ]
+          },
+          "binding": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/Binding"
+              },
+              {
+                "required": [
+                  "project_id"
+                ]
+              }
+            ]
+          },
+          "artifact_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "uniqueItems": true
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000,
+            "pattern": "\\S"
+          },
+          "allowed_decisions": {
+            "const": [
+              "approve",
+              "reject"
+            ]
+          },
+          "decision_operation": {
+            "enum": [
+              "task_decide",
+              "hand_decide",
+              "assembly_decide",
+              "final_decide"
+            ]
+          }
+        },
+        "required": [
+          "pending_id",
+          "kind",
+          "binding",
+          "artifact_ids",
+          "prompt",
+          "allowed_decisions",
+          "decision_operation"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "model",
+                    "result"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "binding": {
+                  "required": [
+                    "task_id",
+                    "version",
+                    "contract_sha256"
+                  ]
+                },
+                "decision_operation": {
+                  "const": "task_decide"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "result"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "binding": {
+                  "required": [
+                    "execution_id",
+                    "result_revision"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "manuscript",
+                    "figures"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "binding": {
+                  "required": [
+                    "artifact_sha256"
+                  ]
+                },
+                "decision_operation": {
+                  "enum": [
+                    "hand_decide",
+                    "assembly_decide"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "final"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "binding": {
+                  "required": [
+                    "build_id",
+                    "source_sha256"
+                  ]
+                },
+                "decision_operation": {
+                  "const": "final_decide"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              "task_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "run_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              "build_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              }
+            },
+            "required": [
+              "project_id"
+            ],
+            "additionalProperties": false
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "media_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+          },
+          "readable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "artifact_id",
+          "owner",
+          "sha256",
+          "media_type",
+          "bytes",
+          "role",
+          "readable"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "data": {
+      "description": "Diagnostic JSON from native core. Not a stable automation surface. Paths and secrets must be removed.",
+      "type": [
+        "object",
+        "array",
+        "null"
+      ]
+    },
+    "chunk": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "artifact_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "bytes_returned": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 262144
+            },
+            "total_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "encoding": {
+              "const": "base64"
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 349528,
+              "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+            },
+            "eof": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "artifact_id",
+            "sha256",
+            "offset",
+            "bytes_returned",
+            "total_bytes",
+            "encoding",
+            "content",
+            "eof"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "code": {
+              "enum": [
+                "unsupported_contract_version",
+                "unsupported_operation",
+                "invalid_request",
+                "not_found",
+                "workflow_conflict",
+                "stale_binding",
+                "idempotency_conflict",
+                "user_input_required",
+                "untrusted_user_event",
+                "artifact_access_denied",
+                "artifact_changed",
+                "dependency_unavailable",
+                "service_unavailable",
+                "retrieval_unavailable",
+                "outcome_unknown",
+                "review_failed",
+                "review_blocked",
+                "internal_error"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20000,
+              "pattern": "\\S"
+            },
+            "recovery": {
+              "enum": [
+                "explicit_revision",
+                "fix_request",
+                "new_request_after_review",
+                "query_operation_status",
+                "read_state",
+                "repair_dependency",
+                "trusted_user_action"
+              ]
+            }
+          },
+          "required": [
+            "code",
+            "message",
+            "recovery"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "receipt": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "operation_name": {
+              "enum": [
+                "project_create",
+                "task_create",
+                "modeling_start",
+                "modeling_recheck",
+                "assembly_start",
+                "assembly_rebind",
+                "assembly_compose",
+                "assembly_decide",
+                "assembly_bind_reviews",
+                "assembly_export",
+                "assembly_render",
+                "assembly_review_w2",
+                "assembly_retry_w2_delivery",
+                "assembly_recover",
+                "hand_start",
+                "hand_advance",
+                "hand_repair",
+                "hand_recheck",
+                "hand_decide",
+                "mathematics_publish",
+                "task_decide",
+                "task_revise",
+                "task_restore",
+                "task_resume",
+                "references_retrieve",
+                "references_discuss",
+                "question_import",
+                "manuscript_register_revision",
+                "figures_select",
+                "final_decide"
+              ]
+            },
+            "request_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "request_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "scope": {
+              "$ref": "#/$defs/Binding"
+            },
+            "state": {
+              "enum": [
+                "claimed",
+                "dispatched",
+                "succeeded",
+                "failed",
+                "outcome_unknown"
+              ]
+            },
+            "result_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "operation_name",
+            "request_id",
+            "request_sha256",
+            "scope",
+            "state",
+            "result_sha256"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "contract_version",
+    "operation",
+    "request_id",
+    "status",
+    "binding",
+    "phase",
+    "replayed",
+    "pending",
+    "artifacts",
+    "data",
+    "chunk",
+    "error",
+    "receipt"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nexusmore:business-response:1.0.0",
+  "$defs": {
+    "Binding": {
+      "type": "object",
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "contract_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "build_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "execution_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "result_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "context_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "error",
+              "outcome_unknown",
+              "blocked"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "enum": [
+                  "unsupported_contract_version",
+                  "unsupported_operation",
+                  "invalid_request",
+                  "not_found",
+                  "workflow_conflict",
+                  "stale_binding",
+                  "idempotency_conflict",
+                  "user_input_required",
+                  "untrusted_user_event",
+                  "artifact_access_denied",
+                  "artifact_changed",
+                  "dependency_unavailable",
+                  "service_unavailable",
+                  "retrieval_unavailable",
+                  "outcome_unknown",
+                  "review_failed",
+                  "review_blocked",
+                  "internal_error"
+                ]
+              },
+              "message": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20000,
+                "pattern": "\\S"
+              },
+              "recovery": {
+                "enum": [
+                  "explicit_revision",
+                  "fix_request",
+                  "new_request_after_review",
+                  "query_operation_status",
+                  "read_state",
+                  "repair_dependency",
+                  "trusted_user_action"
+                ]
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "recovery"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "error": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "needs_user_input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pending": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "outcome_unknown"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "code": {
+                "const": "outcome_unknown"
+              },
+              "recovery": {
+                "const": "query_operation_status"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "artifact_read"
+          },
+          "status": {
+            "const": "ok"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "chunk": {
+            "type": "object",
+            "properties": {
+              "artifact_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "offset": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "bytes_returned": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 262144
+              },
+              "total_bytes": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "encoding": {
+                "const": "base64"
+              },
+              "content": {
+                "type": "string",
+                "maxLength": 349528,
+                "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+              },
+              "eof": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "artifact_id",
+              "sha256",
+              "offset",
+              "bytes_returned",
+              "total_bytes",
+              "encoding",
+              "content",
+              "eof"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "chunk": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "operation_status"
+          },
+          "status": {
+            "const": "ok"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "type": "object",
+            "properties": {
+              "operation_name": {
+                "enum": [
+                  "project_create",
+                  "task_create",
+                  "modeling_start",
+                  "modeling_recheck",
+                  "assembly_start",
+                  "assembly_rebind",
+                  "assembly_compose",
+                  "assembly_decide",
+                  "assembly_bind_reviews",
+                  "assembly_export",
+                  "assembly_render",
+                  "assembly_review_w2",
+                  "assembly_retry_w2_delivery",
+                  "assembly_recover",
+                  "hand_start",
+                  "hand_advance",
+                  "hand_repair",
+                  "hand_recheck",
+                  "hand_decide",
+                  "mathematics_publish",
+                  "task_decide",
+                  "task_revise",
+                  "task_restore",
+                  "task_resume",
+                  "references_retrieve",
+                  "references_discuss",
+                  "question_import",
+                  "manuscript_register_revision",
+                  "figures_select",
+                  "final_decide"
+                ]
+              },
+              "request_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              "request_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "scope": {
+                "$ref": "#/$defs/Binding"
+              },
+              "state": {
+                "enum": [
+                  "claimed",
+                  "dispatched",
+                  "succeeded",
+                  "failed",
+                  "outcome_unknown"
+                ]
+              },
+              "result_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "operation_name",
+              "request_id",
+              "request_sha256",
+              "scope",
+              "state",
+              "result_sha256"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "enum": [
+              "project_create",
+              "task_create",
+              "modeling_start",
+              "modeling_recheck",
+              "assembly_start",
+              "assembly_rebind",
+              "assembly_compose",
+              "assembly_decide",
+              "assembly_bind_reviews",
+              "assembly_export",
+              "assembly_render",
+              "assembly_review_w2",
+              "assembly_retry_w2_delivery",
+              "assembly_recover",
+              "hand_start",
+              "hand_advance",
+              "hand_repair",
+              "hand_recheck",
+              "hand_decide",
+              "mathematics_publish",
+              "task_decide",
+              "task_revise",
+              "task_restore",
+              "task_resume",
+              "references_retrieve",
+              "references_discuss",
+              "question_import",
+              "manuscript_register_revision",
+              "figures_select",
+              "final_decide"
+            ]
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "running",
+              "needs_user_input"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "type": "object",
+            "properties": {
+              "operation_name": {
+                "enum": [
+                  "project_create",
+                  "task_create",
+                  "modeling_start",
+                  "modeling_recheck",
+                  "assembly_start",
+                  "assembly_rebind",
+                  "assembly_compose",
+                  "assembly_decide",
+                  "assembly_bind_reviews",
+                  "assembly_export",
+                  "assembly_render",
+                  "assembly_review_w2",
+                  "assembly_retry_w2_delivery",
+                  "assembly_recover",
+                  "hand_start",
+                  "hand_advance",
+                  "hand_repair",
+                  "hand_recheck",
+                  "hand_decide",
+                  "mathematics_publish",
+                  "task_decide",
+                  "task_revise",
+                  "task_restore",
+                  "task_resume",
+                  "references_retrieve",
+                  "references_discuss",
+                  "question_import",
+                  "manuscript_register_revision",
+                  "figures_select",
+                  "final_decide"
+                ]
+              },
+              "request_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              "request_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "scope": {
+                "$ref": "#/$defs/Binding"
+              },
+              "state": {
+                "enum": [
+                  "claimed",
+                  "dispatched",
+                  "succeeded",
+                  "failed",
+                  "outcome_unknown"
+                ]
+              },
+              "result_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "operation_name",
+              "request_id",
+              "request_sha256",
+              "scope",
+              "state",
+              "result_sha256"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-15",
+  "recorded_at_utc": "2026-11-15T04:43:11.868186+00:00",
+  "milestone": "G1",
+  "contract_version": "1.0.0",
+  "status": "engineering_contract_frozen_user_milestone_acceptance_not_recorded",
+  "authorization": {
+    "user_request": "接下来我们进入G1：冻结完整业务工具契约，为接入deepseekharness做准备",
+    "new_user_approval_minted": false,
+    "independent_business_gate_approval_minted": false
+  },
+  "scope": {
+    "product": "枢模 · NexusMORE",
+    "first_host_target": "DSH",
+    "mcp_business_adapter_implemented": false,
+    "trusted_host_user_event_verification_implemented": false,
+    "real_host_integration_tested": false,
+    "model_or_solver_called": false,
+    "formal_paper_generated": false,
+    "public_release_authorized": false,
+    "F5_deferral_and_clean_windows_exception_unchanged": true
+  },
+  "contract_audit": {
+    "contract_version": "1.0.0",
+    "status": "passed",
+    "operations": 50,
+    "core_status": {
+      "mapped": 39,
+      "partial": 5,
+      "missing": 6
+    },
+    "scope": "contract validation only; no business/MCP/host execution",
+    "adapter_implemented": false,
+    "user_approval_created": false
+  },
+  "contract_files": [
+    {
+      "path": "src/modelcrew/resources/contracts/business-tools-1.0.0.json",
+      "sha256": "748a31ae1ee08abbbeb7669a7b70e39f88672efbf6f05f25b61fd2dae9ffdfe4",
+      "bytes": 49418
+    },
+    {
+      "path": "src/modelcrew/resources/contracts/business-request-1.0.0.schema.json",
+      "sha256": "4890324f48cced2b349fdab69a146d8ced8c0f241d5564f08ea630731f371a46",
+      "bytes": 137962
+    },
+    {
+      "path": "src/modelcrew/resources/contracts/business-response-1.0.0.schema.json",
+      "sha256": "352b3c930c329d3ea431c0ee01c57bc7ca74489b46e3bfe514495cfc5aaa13b0",
+      "bytes": 28326
+    },
+    {
+      "path": "src/modelcrew/resources/contracts/business-examples-1.0.0.json",
+      "sha256": "3eb58d2f286b88fb596410b2e0436ff8c0e218e7ae4fa1ac5da10a2f20acda04",
+      "bytes": 21057
+    }
+  ],
+  "implementation_and_documentation": [
+    {
+      "path": "src/modelcrew/business_contract.py",
+      "sha256": "65fe89cdac4734ec9832d7a8f9d8f06641c6cefe146ec66fc05d2fac345aa4a9",
+      "bytes": 10178
+    },
+    {
+      "path": "tests/test_business_contract.py",
+      "sha256": "e6214d47529cddcccedfd28692054f3d1aac9c7c106f5f7a3c195c2b8cd3a843",
+      "bytes": 14803
+    },
+    {
+      "path": "docs/business-tool-contract.md",
+      "sha256": "2356b7ab9e0a79ed889a00709dff706b8f38a47af90b84fd8d32ea9002420630",
+      "bytes": 17787
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "3582c2546094f9787c44ac64bf518a78f2689d62d784f3d75f6eb9a47e7a86d4",
+      "bytes": 20497
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "c7a5226e9b149b1b3b20001d2a0513f3bf2093a5145ee56832054acd78f9ffb1",
+      "bytes": 21216
+    },
+    {
+      "path": "src/modelcrew/resources/resource-manifest.json",
+      "sha256": "64166d653fcabce920f817d90bc50386e7f8a7f5e085f0c84e7d51a7c1f074ed",
+      "bytes": 58914
+    }
+  ],
+  "current_core_mapping_sources": [
+    {
+      "path": "src/modelcrew/api.py",
+      "sha256": "748e4c8035afbbbeedf1226c0d835f99080adde63f817b1120451364e0fc8d59",
+      "bytes": 16990
+    },
+    {
+      "path": "src/modelcrew/workflow.py",
+      "sha256": "e0478b66638c0b2f2bd15a26eb7bbe23540859482f059bef6858cce832e03417",
+      "bytes": 41185
+    },
+    {
+      "path": "src/modelcrew/hand_runtime.py",
+      "sha256": "b6fc902ba5b5e4d40d8170b5fda48d7ac7123eb0d924ad7ba372af73ad14ac50",
+      "bytes": 63818
+    },
+    {
+      "path": "src/modelcrew/hand_repair.py",
+      "sha256": "935646e4b6eccf59704c1c1b3991a143158933db79fa8b807c2ba816b630e9de",
+      "bytes": 6217
+    },
+    {
+      "path": "src/modelcrew/assembly_runtime.py",
+      "sha256": "a113e1df97322ad60726bed0acd1f8e51188a165ecf364a83d78d02e72d5de28",
+      "bytes": 15946
+    },
+    {
+      "path": "src/modelcrew/assembly_builds.py",
+      "sha256": "457dd7bde8193492c4a84a260b940f9de63a0b3d6cc845f46560ba7022092553",
+      "bytes": 32280
+    },
+    {
+      "path": "src/modelcrew/assembly_binding.py",
+      "sha256": "9eaec27622ac61a29f2066fb27f1972ad4742f6c0f42943b8691456f7804b592",
+      "bytes": 9709
+    },
+    {
+      "path": "src/modelcrew/assembly_w2.py",
+      "sha256": "aa9ce98db4b00eac37025f5901e57d51a7596c474b1a4a03721f2b2dc5e53130",
+      "bytes": 21210
+    },
+    {
+      "path": "src/modelcrew/question_references.py",
+      "sha256": "63bc0a98ce2e88941fd705b537dda3d5406ea929d6c47898000939b5a2a5d567",
+      "bytes": 13039
+    },
+    {
+      "path": "src/harness/nexusmore-workflow.js",
+      "sha256": "67c155f1a420b3fe20ac9787d1c50325a56aa2fe03872e8ac3a24952138491ab",
+      "bytes": 4835
+    },
+    {
+      "path": "src/modelcrew/resources/harness/nexusmore-workflow.js",
+      "sha256": "67c155f1a420b3fe20ac9787d1c50325a56aa2fe03872e8ac3a24952138491ab",
+      "bytes": 4835
+    }
+  ],
+  "missing_generic_operations": [
+    "pending_list",
+    "operation_status",
+    "artifact_read",
+    "manuscript_register_revision",
+    "figures_select",
+    "final_decide"
+  ],
+  "partially_available_core_operations": [
+    "task_create",
+    "artifacts_list",
+    "capabilities_read",
+    "question_import",
+    "assembly_artifacts_list"
+  ],
+  "tests": {
+    "python_contract_specific": {
+      "passed": 32,
+      "skipped": 0
+    },
+    "python_related_regression": {
+      "passed": 105,
+      "skipped": [
+        {
+          "test": "tests.test_document_tool_boundaries.test_official_comment_definitions_roundtrip_xml_and_invalid_reply_keeps_input",
+          "reason": "Install the declared documents dependencies for official comment validation"
+        }
+      ]
+    },
+    "legacy_js_bridge": {
+      "passed": 5,
+      "failed": 0
+    },
+    "bundled_resources": {
+      "status": "passed",
+      "files": 231,
+      "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+    },
+    "distribution": {
+      "status": "passed",
+      "wheel_sdist_and_rebuilt_wheel_audited": true,
+      "source_external_installed_wheel_candidates": 2,
+      "requests_validated_per_candidate": 19,
+      "responses_validated_per_candidate": 4,
+      "modules_do_not_import_database_or_model_runtime": true,
+      "prepared_base_dependencies_explicitly_reused": true,
+      "fresh_operating_system_tested": false
+    },
+    "historical_identity_check": {
+      "status": "passed",
+      "files": 121,
+      "scope": "all pre-existing Git-tracked docs/release, contract and collaboration files",
+      "no_historical_files_modified": true
+    }
+  },
+  "evidence": [
+    {
+      "path": "tmp/business-contract-package-20261115-v001/build-audit.json",
+      "sha256": "7b9c9cbc10920467b8c4e52a8b36547f2594003f9feeadf7b55ab7e2edbcf641",
+      "bytes": 10729
+    },
+    {
+      "path": "tmp/business-contract-package-20261115-v001/installed-probe.json",
+      "sha256": "bdf0642f247cd23568c472973e5f866b4718c252f9f8b9c022e40bc445c06068",
+      "bytes": 2133
+    },
+    {
+      "path": "tmp/business-contract-package-20261115-v001/pytest-results.xml",
+      "sha256": "7d2aea2535a7b1d78f5f3c17a5a8f9e7040b6d57bf063ff4590abb7d6c41a38b",
+      "bytes": 15137
+    },
+    {
+      "path": "tmp/business-contract-package-20261115-v001/pytest.log",
+      "sha256": "b503437e533ffaef6ce904f4897494fb07341f1f9ca58dd7e9106bab033604ce",
+      "bytes": 197
+    },
+    {
+      "path": "tmp/business-contract-package-20261115-v001/legacy-bridge-tests.log",
+      "sha256": "64c5914f5abec32a1d07bea462cbb83facb47df53162bded017e633fee2dd629",
+      "bytes": 589
+    },
+    {
+      "path": "tmp/business-contract-package-20261115-v001/historical-identity-check.json",
+      "sha256": "b39380836345dd66210a686ef3a428f0fb643f8b4c57283b948b2e9fc464cecd",
+      "bytes": 15810
+    }
+  ],
+  "next_phase": "G2: implement standard full-workflow MCP using this contract; durable claims/status, pending projection, registered artifacts and safe path resolution first. G3/G4/G5 remain distinct.",
+  "limitations": [
+    "Line schema validation does not authenticate a user or compare against current DB state",
+    "Core HTTP body snapshots are not permission to pass arbitrary local paths",
+    "Legacy JS bridge remains 0.1.0 with ten operations; 1.0.0 catalog is not tools/list",
+    "Word official comment XML validation dependency missing; existing test skipped",
+    "No live PostgreSQL/model/harness end-to-end run in G1",
+    "No changes to old frozen contexts, prior approvals, or public release gates"
+  ]
+}

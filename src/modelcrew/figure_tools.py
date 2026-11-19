@@ -165,7 +165,10 @@ def audit_catalog(catalog_path, output_dir):
         for fmt in paths:
             _asset(catalog_path.parent, figure['files'][fmt])
         checked.append({'figure_id': figure['id'], 'pdf': preview.name+'/pdf-check.json',
-                        'pdf_report_sha256': sha(preview/'pdf-check.json'), 'page_count': pdf['page_count']})
+                        'pdf_report_sha256': sha(preview/'pdf-check.json'), 'page_count': pdf['page_count'],
+                        'pdf_status':pdf['status'],
+                        'page_review_evidence':[{'page':page['page'],'findings':page['findings'],
+                            'warnings':page['warnings'],'fonts':page['fonts']} for page in pdf['pages']]})
     if sha(catalog_path) != original:
         raise ValueError('Figure catalog changed during audit')
     result = {'schema_version': '1.0.0', 'status': 'passed', 'catalog_sha256': original,

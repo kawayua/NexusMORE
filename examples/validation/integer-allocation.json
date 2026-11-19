@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "id": "integer-allocation",
+  "kind": "synthetic_smoke",
+  "statement": "某工坊有12工时预算，生产A、B两类产品。A每件耗2工时、收益5元、最多4件；B每件耗3工时、收益8元、最多3件。件数为非负整数。求最大收益并给出全部最优分配、耗时和预算余量。仅验证小样例链路，不计入真实LLM研究题求解率。",
+  "input": {
+    "budget_hours": 12,
+    "products": [
+      {
+        "name": "A",
+        "hours": 2,
+        "revenue_cny": 5,
+        "max_units": 4
+      },
+      {
+        "name": "B",
+        "hours": 3,
+        "revenue_cny": 8,
+        "max_units": 3
+      }
+    ]
+  },
+  "expected": {
+    "optimal_revenue_cny": 31,
+    "optimal_allocations": [
+      {
+        "A": 3,
+        "B": 2,
+        "used_hours": 12,
+        "slack_hours": 0
+      }
+    ]
+  },
+  "oracle": "bounded_exhaustive_enumeration",
+  "accuracy_basis": "exact_integer_arithmetic_no_rounding_tolerance",
+  "origin": "Project-authored synthetic scenario; no contest text or historical solution copied.",
+  "license": "AGPL-3.0-only"
+}

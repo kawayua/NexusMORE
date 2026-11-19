@@ -8,14 +8,18 @@ import hashlib,os,tempfile
 from pathlib import Path
 from .config import ROOT
 
-def snapshot_artifacts(artifacts):
+def snapshot_artifacts(artifacts, *, retain_input_type=False):
     result=[]
     for item in artifacts:
         source=Path(item['path'])
         if not source.is_absolute():source=asset_path(ROOT,source)
         data=source.read_bytes();actual=hashlib.sha256(data).hexdigest()
         if actual.lower()!=item['sha256'].lower():raise ValueError('Artifact changed before snapshot')
-        destination=ROOT/'artifacts/sha256'/actual/'content'
+        # Existing snapshots keep their original name and identity. New input
+        # aliases retain only a supported parser suffix, never a caller basename.
+        suffix=source.suffix.lower() if retain_input_type else ''
+        if suffix not in {'.csv','.tsv','.xlsx','.npy','.npz','.json','.geojson','.png','.jpg','.jpeg','.tif','.tiff','.bmp','.pdf','.txt','.md'}:suffix=''
+        destination=ROOT/'artifacts/sha256'/actual/('content'+suffix)
         destination.parent.mkdir(parents=True,exist_ok=True)
         if destination.exists():
             if hashlib.sha256(destination.read_bytes()).hexdigest()!=actual:raise ValueError('Artifact snapshot corrupted')

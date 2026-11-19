@@ -154,8 +154,8 @@
     },
     {
       "path": "collaboration/manifest.json",
-      "sha256": "a076e6ea8a857f51fcb2a8f7e5ecf4f282b6e979b7269c606bf521f991592fd3",
-      "bytes": 7501,
+      "sha256": "58e19ebc82010c1362d0b8dbb0a9ab2b7a3e581f3dac1822dddc91d505a6483b",
+      "bytes": 7767,
       "disposition": "project_authored_collaboration_guidance"
     },
     {
@@ -229,6 +229,30 @@
       "sha256": "169e005d3bd4db0d5a16ef1d84417bf6a40de46aa661bae2b7b7a946beca16d1",
       "bytes": 4926,
       "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "contracts/business-examples-1.0.0.json",
+      "sha256": "3eb58d2f286b88fb596410b2e0436ff8c0e218e7ae4fa1ac5da10a2f20acda04",
+      "bytes": 21057,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "contracts/business-request-1.0.0.schema.json",
+      "sha256": "4890324f48cced2b349fdab69a146d8ced8c0f241d5564f08ea630731f371a46",
+      "bytes": 137962,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "contracts/business-response-1.0.0.schema.json",
+      "sha256": "352b3c930c329d3ea431c0ee01c57bc7ca74489b46e3bfe514495cfc5aaa13b0",
+      "bytes": 28326,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "contracts/business-tools-1.0.0.json",
+      "sha256": "748a31ae1ee08abbbeb7669a7b70e39f88672efbf6f05f25b61fd2dae9ffdfe4",
+      "bytes": 49418,
+      "disposition": "project_authored_private_development"
     },
     {
       "path": "contracts/collaboration-artifact-1.0.0.schema.json",
@@ -1143,6 +1167,30 @@
       "disposition": "project_runtime_private_development"
     },
     {
+      "path": "harness/nexusmore-dsh-client.js",
+      "sha256": "68357b5f8f20b02efbfce5e1ea15259c586f2734305a19289ce82ae7e71a5900",
+      "bytes": 8248,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "harness/nexusmore-dsh-conversation.mjs",
+      "sha256": "00ad30addcb08c355943b97941af52b29bc9581bb9a5c3ba51fa51c861c1b054",
+      "bytes": 38812,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "harness/nexusmore-dsh-decisions.mjs",
+      "sha256": "464b3d00c224a2aa1341207a293cfdd5d1f2bdd6478baa3dc55fba1eefa314f6",
+      "bytes": 8942,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "harness/nexusmore-dsh.mjs",
+      "sha256": "6d56d1b8874d1ddb5545d214e0daa92529bd127229c627f2d907881d4342abde",
+      "bytes": 12508,
+      "disposition": "project_authored_private_development"
+    },
+    {
       "path": "harness/nexusmore-workflow.js",
       "sha256": "67c155f1a420b3fe20ac9787d1c50325a56aa2fe03872e8ac3a24952138491ab",
       "bytes": 4835,
@@ -1150,9 +1198,9 @@
     },
     {
       "path": "harness/package.json",
-      "sha256": "01d15954c518a17286d42bdd0921985f9197684b97787ba73ffb41295ebc1943",
-      "bytes": 190,
-      "disposition": "project_runtime_private_development"
+      "sha256": "1645ecb331eaaf8a5950b13679d3421d31b63d3527b0b1cd9866c81f02038a1e",
+      "bytes": 589,
+      "disposition": "project_authored_private_development"
     },
     {
       "path": "latex/en-main.tex",
@@ -1293,6 +1341,24 @@
       "disposition": "project_runtime_private_development"
     },
     {
+      "path": "migrations/013_business_mcp.sql",
+      "sha256": "e658ebc9320ce7f48737094632b5d0228eed976e15303f145c478e90e091b341",
+      "bytes": 1840,
+      "disposition": "project_authored_private_development"
+    },
+    {
+      "path": "migrations/014_trusted_user_events.sql",
+      "sha256": "ae574f3b115257192a8305f1029f60392355a2a1a1de15fce09c6c39525dca20",
+      "bytes": 1464,
+      "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "migrations/015_trusted_host_captures.sql",
+      "sha256": "5ef8aba7962fdf7dff63990866dbbd74b4bd76cf3bc77cfacc679b643f6afed7",
+      "bytes": 755,
+      "disposition": "project_runtime_private_development"
+    },
+    {
       "path": "paper/chinese-modeling-policy.json",
       "sha256": "6b95ed10ae065c8b3a2896df8bcc320463a08910125b28f1662bfdaf0280ea65",
       "bytes": 2354,
@@ -1342,8 +1408,8 @@
     },
     {
       "path": "project-policy/scientific-figure-contract.md",
-      "sha256": "34976d9abcc3e2831f3bdd889c314981cde8f981166077c45657fe3454e9c2ea",
-      "bytes": 5528,
+      "sha256": "a6911559b2c874dd7b1857f85218d55d70927022aa2e0e47d639237f4d99d92c",
+      "bytes": 5560,
       "disposition": "project_runtime_private_development"
     },
     {
@@ -1363,6 +1429,12 @@
       "sha256": "cee4d299641248aa89ea7ed3d17fbde463bb9bb1f07d49a22e1bf912873840b7",
       "bytes": 2885,
       "disposition": "project_runtime_private_development"
+    },
+    {
+      "path": "collaboration/modeling-proposal.md",
+      "disposition": "project_authored_private_development",
+      "sha256": "994307c5583fff01305bed7ad6e30ff6f22828386912b339f235f986908f6975",
+      "bytes": 3547
     }
   ],
   "excluded_local_references": [

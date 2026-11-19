@@ -11,6 +11,7 @@ from modelcrew.api import create_app
 from modelcrew.config import ROOT
 from modelcrew.contracts import digest
 from modelcrew.inputs import file_hash
+from modelcrew.workflow import Workflow, WorkflowError
 
 
 def test_http_workflow_preserves_gates_and_versions():
@@ -48,17 +49,20 @@ def test_http_workflow_preserves_gates_and_versions():
         assert client.get(prefix+'/result').json()['result'] is None
         action = {'actor': 'TEST_SIMULATED_USER', 'request_id': 'model-1', 'version': 1,
                   'kind': 'model', 'decision': 'approve'}
-        first = client.post(prefix+'/actions', json=action)
-        assert first.status_code == 200, first.text
-        execution_id = first.json()['execution']['id']
-        assert first.json()['task']['phase'] == 'WAITING_RESULT_APPROVAL'
-        repeated = client.post(prefix+'/actions', json=action)
-        assert repeated.status_code == 200 and repeated.json()['execution']['id'] == execution_id
-        assert client.post(prefix+'/actions', json={**action, 'decision': 'reject', 'reason': 'TEST_ONLY reject'}).status_code == 409
-        stale = {**action, 'kind': 'result', 'request_id': 'stale-result', 'result_revision': 2}
-        assert client.post(prefix+'/actions', json=stale).status_code == 409
-        approved = client.post(prefix+'/actions', json={**stale, 'request_id': 'result-1', 'result_revision': 1})
-        assert approved.status_code == 200 and approved.json()['task']['phase'] == 'COMPLETED'
+        # G3: HTTP actor strings never authorize decisions. Native calls below
+        # are explicitly trusted synthetic fixture setup, not HTTP approvals.
+        assert client.post(prefix+'/actions', json=action).status_code == 403
+        with Workflow() as w:
+            first = w.action(task, **action)
+            execution_id = first['execution']['id']
+            assert first['task']['phase'] == 'WAITING_RESULT_APPROVAL'
+            assert w.action(task, **action)['execution']['id'] == execution_id
+            with pytest.raises(WorkflowError):
+                w.action(task, **{**action, 'decision': 'reject', 'reason': 'TEST_ONLY reject'})
+            stale = {**action, 'kind': 'result', 'request_id': 'stale-result', 'result_revision': 2}
+            with pytest.raises(WorkflowError): w.action(task, **stale)
+            approved = w.action(task, **{**stale, 'request_id': 'result-1', 'result_revision': 1})
+            assert approved['task']['phase'] == 'COMPLETED'
         artifacts = client.get(prefix+'/artifacts?version=1').json()
         assert len(artifacts['executions']) == 1
         assert artifacts['executions'][0]['artifacts'][0]['integrity'] == 'verified'
@@ -70,7 +74,7 @@ def test_http_workflow_preserves_gates_and_versions():
         assert revised.status_code == 200, revised.text
         assert revised.json()['task']['current_version'] == 2
         assert not revised.json()['task']['model_approved'] and revised.json()['execution'] is None
-        assert client.post(prefix+'/actions', json={**action, 'request_id': 'stale-model'}).status_code == 409
+        assert client.post(prefix+'/actions', json={**action, 'request_id': 'stale-model'}).status_code == 403
         assert len(client.get(prefix+'/versions').json()) == 2
         assert client.get(prefix+'/versions/1').json()['is_current'] is False
         assert client.get('/tasks/unknown-api-task').status_code == 404

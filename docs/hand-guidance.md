@@ -35,3 +35,8 @@
 2026-11-12 LaTeX适配增补：新增项目自编 `latex-tooling.md`，当前15份规范、guidance_version=1.2.0、186项发行资源；coding/writing/P2/W1/W2按路由读取，新任务冻结，历史快照保留。上文14份/182项为当次历史验收数字。工具探针与正式导出的边界及本轮验证见[LaTeX工具](latex-tools.md)。
 
 2026-11-12 剩余资料适配更新：当前guidance_version=1.3.0，共21份规范、193项资源。新增共享产品入口、引用检索、受控文档工作区、数学形式化、统计验证与证明审查6份指南；LaTeX指南明确现有支持版本。三手/独立节点按路由读取，统计解释进入writing/W1/W2；新冻结生效，旧快照/缓存不改。79项相关回归、1项真实PostgreSQL集成通过，源码外按正常安装布局读取wheel并实测Office/候选档案。详见[本轮实现](capability-adaptation.md)与[回执](release/remaining-resource-adaptation-20261112.json)，不外推为完整供应商或所有宿主验收。
+
+
+## 建模方案审阅约束（2026-11-17）
+
+新运行使用 collaboration 1.4.0，建模与 M1 同时冻结 modeling-proposal.md（协议1.0.0）。可读方案的结构、来源、正文摘要与13项独立语义审查已接入 modeling_hand，不是仅声明提示词。程序只证明结构与引用合格，不能冒称数学自动证明；不要求在建模阶段编造结果。历史冻结材料、阈值与批准不追改。范围与部署见[建模方案审阅标准](modeling-proposal-standard.md)。

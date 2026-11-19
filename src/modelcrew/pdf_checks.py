@@ -29,8 +29,19 @@ def _fonts(resources, seen=None):
         embedded = all(any(key in member.get('/FontDescriptor', {}).get_object()
                            for key in ['/FontFile', '/FontFile2', '/FontFile3'])
                        if '/FontDescriptor' in member else False for member in members)
-        result.append({'name': str(name), 'base_font': str(font.get('/BaseFont', '')),
-                       'type': str(font.get('/Subtype', '')), 'embedded': embedded})
+        mismatches=[]
+        for member in members:
+            if '/FontDescriptor' not in member:continue
+            descriptor=member['/FontDescriptor'].get_object()
+            # FontFile2/CIDFontType2 require TrueType outlines. Matplotlib can
+            # label an OpenType-CFF subset this way; some renderers drop glyphs.
+            if '/FontFile2' in descriptor:
+                program=descriptor['/FontFile2'].get_object().get_data()
+                if program[:4]==b'OTTO':mismatches.append('OpenType-CFF program declared as TrueType FontFile2')
+        item={'name': str(name), 'base_font': str(font.get('/BaseFont', '')),
+              'type': str(font.get('/Subtype', '')), 'embedded': embedded}
+        if mismatches:item['program_type_mismatches']=mismatches
+        result.append(item)
     if '/XObject' in obj:
         for ref in obj['/XObject'].get_object().values():
             result += _fonts(ref.get_object().get('/Resources'), seen)
@@ -90,6 +101,8 @@ def inspect_pdf(source, output_dir, *, dpi=144, minimum_font_pt=5, max_pages=100
             warnings = []
             if any(not f['embedded'] for f in fonts):
                 warnings.append('unembedded_font_requires_review')
+            if any(f.get('program_type_mismatches') for f in fonts):
+                warnings.append('embedded_font_program_type_mismatch_requires_visual_review')
             if not spans:
                 warnings.append('no_extractable_text_requires_visual_review')
             pages.append({'page': index, 'width_pt': page.rect.width, 'height_pt': page.rect.height,
@@ -114,8 +127,15 @@ def verify_pdf_report(source, output_dir, report):
     """Admission check against actual PDF and EVERY preview, including last page."""
     import fitz
     output = Path(output_dir).resolve()
-    if report.get('status') != 'passed' or report.get('source_sha256') != sha(source):
-        raise ValueError('PDF check failed or source changed')
+    actual_sha=sha(source)
+    if report.get('source_sha256') != actual_sha:
+        raise ValueError('PDF source changed: '+Path(source).name+'; report/source SHA256 differ')
+    if report.get('status') != 'passed':
+        details=[]
+        for page in report.get('pages',[]):
+            if page.get('findings'):
+                details.append('page '+str(page.get('page'))+': '+', '.join(page['findings']))
+        raise ValueError('PDF check failed: '+Path(source).name+'; '+('; '.join(details) or 'report status='+str(report.get('status'))))
     with fitz.open(source) as document:
         count = len(document)
     pages = report.get('pages', [])

@@ -269,7 +269,7 @@ def test_http_build_routes_share_workflow_and_reject_invalid_decisions():
         assert client.post(path+'/exports',json={'request_id':'e','actor':'TEST'}).status_code==200
         assert client.post(path+'/renders',json={'request_id':'r','actor':'TEST','export_request_id':'e'}).status_code==200
         assert client.post(path+'/recover').status_code==200
-        assert client.post(path+'/decisions',json={'request_id':'d','actor':'codex','kind':'manuscript','decision':'approve','statement':'TEST','reason':'TEST','artifact_sha256':'a'*64}).status_code==422
+        assert client.post(path+'/decisions',json={'request_id':'d','actor':'codex','kind':'manuscript','decision':'approve','statement':'TEST','reason':'TEST','artifact_sha256':'a'*64}).status_code==403
     assert [c[0] for c in calls]==['compose','export']
 
 def test_bind_existing_reviews_requires_exact_content_and_keeps_original_records(setup):
@@ -597,3 +597,32 @@ def test_w2_rejects_omitted_physical_pages(w2_ready):
     request=assembly_w2.W2Request.model_validate(args)
     with pytest.raises(WorkflowError,match='complete PDF'):
         assembly_w2.packet(row,request,base)
+
+
+class W2V3Model:
+    calls=0
+    def call(self,folder,stage,system,data,**kwargs):
+        self.calls+=1
+        assert data['output_protocol']=='w2_evidence_refs_v3'
+        refs=data['evidence'];pages=data['pages']
+        return {'protocol_version':'3.0.0',
+            'checks':[{'check_id':c,'status':'PASS','evidence_refs':[refs[0]['ref_id']],
+                       'explanation':'SYNTHETIC detail '*50} for c in data['required_checks']],
+            'issues':[],'pages_reviewed':[{'page_ref':p['page_ref'],'status':'PASS','finding':'SYNTHETIC page'} for p in pages]},{'status':'completed','call_id':'synthetic-v3'}
+
+
+def test_v3_runtime_admission_preserves_long_original_details(w2_ready,monkeypatch):
+    from modelcrew import assembly_w2 as w2
+    from modelcrew.contracts import digest
+    monkeypatch.setattr(w2,'CURRENT_PROTOCOL','3.0.0')
+    w,bid,req=w2_ready;model=W2V3Model()
+    result=w2.start(w,'p',bid,model=model,**req)
+    assert result['phase']=='W2_PASSED' and model.calls==1
+    op=w.rows[bid]['payload']['w2_reviews'][req['request_id']]
+    base=ab.ROOT/op['folder'];raw=json.loads((base/'answer.json').read_text(encoding='utf-8'))
+    details=json.loads((base/'review-details.json').read_text(encoding='utf-8'))
+    assert raw==details and len(raw['checks'][0]['explanation'])>300
+    compiled=json.loads((base/'compiled-answer.json').read_text(encoding='utf-8'))
+    assert compiled['compilation']['detail_report']['canonical_sha256']==digest(raw)
+    assert 'review-details.json' in compiled['native_answer']['checks'][0]['explanation']
+    assert str((base/'review-details.json').relative_to(ab.ROOT).as_posix()) in w.rows[bid]['payload']['sealed']

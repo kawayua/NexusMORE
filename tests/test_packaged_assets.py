@@ -11,7 +11,7 @@ def test_runtime_resources_are_complete_and_private_inputs_are_excluded():
     checked=verify_resources()
     assert checked['status']=='passed' and checked['files']>=167
     assert asset_path(ROOT,'contracts/model-contract-1.1.0.schema.json').is_file()
-    assert len(list(asset_path(ROOT,'migrations').glob('*.sql')))==12
+    assert len(list(asset_path(ROOT,'migrations').glob('*.sql')))==15
     assert asset_path(ROOT,'execution/sandbox_runner.py').is_file()
     for name in ['paper/reference/main.tex','algorithms/reference/assets']:
         with pytest.raises(FileNotFoundError):resource(name)

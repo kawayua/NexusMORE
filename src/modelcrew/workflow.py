@@ -497,6 +497,11 @@ class Workflow:
         return decision(self,task,run_id,**kwargs)
 
 
+    def authorize_coder_repair(self,task,run_id,**kwargs):
+        """Trusted local host only; model callers can only consume via advance_hand."""
+        from .coder_repair import authorize
+        return authorize(self,task,run_id,**kwargs)
+
     def repair_hand(self,task,run_id,**kwargs):
         from .hand_repair import repair
         return repair(self,task,run_id,**kwargs)

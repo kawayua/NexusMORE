@@ -6,6 +6,7 @@ def pytest_configure(config):
     # Historical evidence tests enforce repository boundaries. Allocate a new
     # ignored workspace directory, never reuse a stage run or prior evidence.
     if config.option.basetemp is None:
+        (config.rootpath / "tmp").mkdir(parents=True, exist_ok=True)
         config.option.basetemp = str(config.rootpath / "tmp" / ("pytest-" + uuid.uuid4().hex))
 
 

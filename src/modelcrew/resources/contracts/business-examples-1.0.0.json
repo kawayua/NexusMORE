@@ -1,0 +1,618 @@
+{
+  "contract_version": "1.0.0",
+  "scope": "Synthetic wire examples only. No request executed, artifact registered, review passed, or user decision submitted. SHA256 placeholders do not prove real bytes.",
+  "requests": [
+    {
+      "contract_version": "1.0.0",
+      "operation": "project_create",
+      "arguments": {
+        "body": {
+          "id": "demo",
+          "title": "契约合成示例"
+        }
+      },
+      "request_id": "sample-project_create"
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "question_import",
+      "arguments": {
+        "target_id": "q1-intake",
+        "revision": 1,
+        "case_id": "synthetic",
+        "question_id": "q1",
+        "statement_artifact_id": "input-1",
+        "statement_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "pages": [
+          1
+        ],
+        "excerpt_artifact_id": "excerpt-1"
+      },
+      "request_id": "sample-question_import"
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "modeling_start",
+      "arguments": {
+        "task_id": "q1",
+        "body": {
+          "version": 1,
+          "actor": "host",
+          "request_id": "sample-modeling_start",
+          "guidance": "建立有约束的生产配比模型。"
+        }
+      },
+      "request_id": "sample-modeling_start",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "task_decide",
+      "arguments": {
+        "task_id": "q1",
+        "body": {
+          "actor": "user",
+          "request_id": "sample-task_decide",
+          "version": 1,
+          "kind": "model",
+          "decision": "approve",
+          "reason": "仅为未执行的契约样例",
+          "defer_execution": true
+        }
+      },
+      "request_id": "sample-task_decide",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "user_event": {
+        "event_id": "synthetic-event-1",
+        "channel": "trusted_local_cli",
+        "statement_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "task_decide",
+      "arguments": {
+        "task_id": "q1",
+        "body": {
+          "actor": "user",
+          "request_id": "sample-task_decide",
+          "version": 1,
+          "kind": "result",
+          "decision": "approve",
+          "reason": "仅为未执行的契约样例",
+          "result_revision": 1
+        }
+      },
+      "request_id": "sample-task_decide",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "user_event": {
+        "event_id": "synthetic-event-1",
+        "channel": "trusted_local_cli",
+        "statement_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "hand_start",
+      "arguments": {
+        "task_id": "q1",
+        "hand": "coding",
+        "body": {
+          "version": 1,
+          "actor": "host",
+          "request_id": "sample-hand_start",
+          "guidance": "按已确认方案执行，不改动硬性方法。"
+        }
+      },
+      "request_id": "sample-hand_start",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "hand_advance",
+      "arguments": {
+        "task_id": "q1",
+        "run_id": "run-1"
+      },
+      "request_id": "sample-hand_advance",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "pending_list",
+      "arguments": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "run_id": "run-1"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "hand_decide",
+      "arguments": {
+        "task_id": "q1",
+        "run_id": "run-1",
+        "body": {
+          "actor": "user",
+          "request_id": "sample-hand_decide-manuscript",
+          "kind": "manuscript",
+          "decision": "approve",
+          "statement": "仅为合成契约样例",
+          "reason": "没有实际提交决定",
+          "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "request_id": "sample-hand_decide-manuscript",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "user_event": {
+        "event_id": "synthetic-event-1",
+        "channel": "trusted_local_cli",
+        "statement_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "hand_decide",
+      "arguments": {
+        "task_id": "q1",
+        "run_id": "run-1",
+        "body": {
+          "actor": "user",
+          "request_id": "sample-hand_decide-figures",
+          "kind": "figures",
+          "decision": "approve",
+          "statement": "仅为合成契约样例",
+          "reason": "没有实际提交决定",
+          "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "request_id": "sample-hand_decide-figures",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "user_event": {
+        "event_id": "synthetic-event-1",
+        "channel": "trusted_local_cli",
+        "statement_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "task_restore",
+      "arguments": {
+        "task_id": "q1",
+        "body": {
+          "actor": "host",
+          "request_id": "sample-task_restore",
+          "version": 1,
+          "kind": "restore_version",
+          "source_version": 1,
+          "reason": "创建新待确认版本，保留旧批准"
+        }
+      },
+      "request_id": "sample-task_restore",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "artifact_read",
+      "arguments": {
+        "owner": {
+          "project_id": "demo",
+          "task_id": "q1",
+          "version": 1
+        },
+        "artifact_id": "manuscript-1",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "offset": 0,
+        "max_bytes": 4096
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "operation_status",
+      "arguments": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "run_id": "run-1",
+        "operation_name": "hand_advance",
+        "request_id": "sample-hand_advance"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "figures_select",
+      "arguments": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "run_id": "run-1",
+        "catalog_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "selected_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "新建选图修订版本"
+      },
+      "request_id": "sample-figures_select",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "manuscript_register_revision",
+      "arguments": {
+        "project_id": "demo",
+        "build_id": "build-1",
+        "manuscript_artifact_id": "revision-1",
+        "manuscript_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "previous_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "reason": "精确修订稿另建版本"
+      },
+      "request_id": "sample-manuscript_register_revision",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "assembly_export",
+      "arguments": {
+        "project_id": "demo",
+        "build_id": "build-1",
+        "body": {
+          "actor": "host",
+          "request_id": "sample-assembly_export"
+        }
+      },
+      "request_id": "sample-assembly_export",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "assembly_render",
+      "arguments": {
+        "project_id": "demo",
+        "build_id": "build-1",
+        "body": {
+          "actor": "host",
+          "request_id": "sample-assembly_render",
+          "export_request_id": "export-1"
+        }
+      },
+      "request_id": "sample-assembly_render",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "assembly_review_w2",
+      "arguments": {
+        "project_id": "demo",
+        "build_id": "build-1",
+        "body": {
+          "actor": "host",
+          "request_id": "sample-assembly_review_w2",
+          "export_request_id": "export-1",
+          "render_request_id": "render-1"
+        }
+      },
+      "request_id": "sample-assembly_review_w2",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "final_decide",
+      "arguments": {
+        "project_id": "demo",
+        "build_id": "build-1",
+        "export_request_id": "export-1",
+        "render_request_id": "render-1",
+        "w2_request_id": "w2-1",
+        "artifacts": [
+          {
+            "artifact_id": "pdf-1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "artifact_id": "docx-1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "decision": "approve",
+        "reason": "仅为未执行的成品确认契约示例"
+      },
+      "request_id": "sample-final_decide",
+      "expected_binding": {
+        "project_id": "demo",
+        "task_id": "q1",
+        "version": 1,
+        "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "run_id": "run-1",
+        "build_id": "build-1",
+        "execution_id": "execution-1",
+        "result_revision": 1,
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "user_event": {
+        "event_id": "synthetic-event-1",
+        "channel": "trusted_local_cli",
+        "statement_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "contract_version": "1.0.0",
+      "operation": "pending_list",
+      "request_id": null,
+      "status": "needs_user_input",
+      "binding": {
+        "project_id": "demo"
+      },
+      "phase": null,
+      "replayed": false,
+      "pending": [
+        {
+          "pending_id": "pending_42cda64f42a425143c35fe8db68fa9ff0767358969b70a8067270cc0d1d53b97",
+          "kind": "manuscript",
+          "binding": {
+            "project_id": "demo",
+            "task_id": "q1",
+            "version": 1,
+            "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "run_id": "run-1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "artifact_ids": [
+            "manuscript-1"
+          ],
+          "prompt": "请通过可信入口分别审阅并决定。",
+          "allowed_decisions": [
+            "approve",
+            "reject"
+          ],
+          "decision_operation": "hand_decide"
+        },
+        {
+          "pending_id": "pending_b19470289258c8b98bdaa00b859a7230f7a990c881d60ed847b693ca7c74553b",
+          "kind": "figures",
+          "binding": {
+            "project_id": "demo",
+            "task_id": "q1",
+            "version": 1,
+            "contract_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "run_id": "run-1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "artifact_ids": [
+            "figures-1"
+          ],
+          "prompt": "请通过可信入口分别审阅并决定。",
+          "allowed_decisions": [
+            "approve",
+            "reject"
+          ],
+          "decision_operation": "hand_decide"
+        }
+      ],
+      "artifacts": [],
+      "data": null,
+      "chunk": null,
+      "error": null,
+      "receipt": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "hand_advance",
+      "request_id": "sample-hand_advance",
+      "status": "outcome_unknown",
+      "binding": {},
+      "phase": null,
+      "replayed": false,
+      "pending": [],
+      "artifacts": [],
+      "data": null,
+      "chunk": null,
+      "error": {
+        "code": "outcome_unknown",
+        "message": "派发结果未知，请查询原请求。",
+        "recovery": "query_operation_status"
+      },
+      "receipt": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "artifact_read",
+      "request_id": null,
+      "status": "ok",
+      "binding": {},
+      "phase": null,
+      "replayed": false,
+      "pending": [],
+      "artifacts": [],
+      "data": null,
+      "chunk": {
+        "artifact_id": "artifact-1",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "offset": 0,
+        "bytes_returned": 3,
+        "total_bytes": 3,
+        "encoding": "base64",
+        "content": "YWJj",
+        "eof": true
+      },
+      "error": null,
+      "receipt": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "operation": "operation_status",
+      "request_id": "sample-hand_advance",
+      "status": "ok",
+      "binding": {},
+      "phase": null,
+      "replayed": false,
+      "pending": [],
+      "artifacts": [],
+      "data": null,
+      "chunk": null,
+      "error": null,
+      "receipt": {
+        "operation_name": "hand_advance",
+        "request_id": "sample-hand_advance",
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "scope": {
+          "project_id": "demo",
+          "task_id": "q1",
+          "run_id": "run-1"
+        },
+        "state": "dispatched",
+        "result_sha256": null
+      }
+    }
+  ]
+}

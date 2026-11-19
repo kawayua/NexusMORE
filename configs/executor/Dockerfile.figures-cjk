@@ -1,0 +1,13 @@
+# New image; do not mutate historical executor images or execution receipts.
+ARG BASE_IMAGE=nexusmore-figures:py313-20261114
+FROM ${BASE_IMAGE}
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends fonts-noto-cjk fontconfig \
+    && rm -rf /var/lib/apt/lists/*
+# Matplotlib enumerates only the first TTC face; expose the Simplified Chinese face.
+RUN python -c "from fontTools.ttLib import TTCollection; from pathlib import Path; c=TTCollection('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'); f=next(f for f in c.fonts if any(n.toUnicode()=='Noto Sans CJK SC' for n in f['name'].names if n.nameID in (1,16))); p=Path('/usr/share/fonts/truetype/noto'); p.mkdir(parents=True,exist_ok=True); f.save(str(p/'NotoSansCJKsc-Regular.otf'))" \
+    && fc-cache -f
+ENV MPLCONFIGDIR=/tmp/matplotlib XDG_CACHE_HOME=/tmp/cache
+USER 10001:10001
+WORKDIR /work

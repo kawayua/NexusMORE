@@ -35,6 +35,31 @@ def sections(text):
     return result
 
 
+
+def numbered_references(text):
+    """Accept explicit [n] and Markdown n. / n) entries without inventing sources."""
+    refs = {}; current = None
+    for line in text.splitlines():
+        if not line.strip():continue
+        match = re.fullmatch(r'\s*(?:\[(\d+)\]\s*|(\d+)[.)]\s+)(.+)',line)
+        if match:
+            current = str(int(match[1] or match[2]))
+            if current == '0':raise ValueError('Invalid reference number')
+            if current in refs:raise ValueError('Duplicate reference number')
+            refs[current] = match[3].strip()
+        elif current is None or re.match(r'^\s*(?:\[\d+\]|\d+[.)])\s*$',line):
+            raise ValueError('References must use explicit numbered entries')
+        else:refs[current] += '\n'+line
+    return refs
+
+
+def figure_asset_stem(question, figure_id):
+    """Catalog IDs are semantic identifiers; filenames must also work on Windows."""
+    original=question+'-'+figure_id
+    if re.fullmatch(r'[A-Za-z0-9_.-]+',original):return original
+    return question+'-figure-'+digest(figure_id)[:24]
+
+
 def normalize(question, text, catalog, patches):
     if '@@ASM_' in text:
         raise ValueError('Reserved assembly marker in source')
@@ -67,16 +92,7 @@ def normalize(question, text, catalog, patches):
             generated_captions.append({'section':name,'local_number':next_table,'caption':title})
             return title+'\n\n'+match[0]
         split[name] = re.sub(r'^\|[^\n]+\|\n\|[ :|\-]+\|(?:\n\|[^\n]*\|)*', caption, body, flags=re.M)
-    refs = {}
-    bib = split.pop('参考文献')
-    matches = list(re.finditer(r'^\[(\d+)\]\s*(.*(?:\n(?!\[\d+\])[^\n]+)*)', bib, re.M))
-    for m in matches:
-        key = m[1]
-        if key in refs:
-            raise ValueError('Duplicate reference number')
-        refs[key] = m[2].strip()
-    if re.sub(r'\s+', '', re.sub(r'^\[\d+\]\s*.*(?:\n(?!\[\d+\])[^\n]+)*', '', bib, flags=re.M)):
-        raise ValueError('References must use explicit numbered entries')
+    refs = numbered_references(split.pop('参考文献'))
     figures = copy.deepcopy(catalog['figures'])
     formal = [f for f in figures if f['formal']]
     if len({f['number'] for f in formal}) != len(formal):
@@ -119,8 +135,7 @@ def compose(inputs, output, title, cross_references=None, question_titles=None, 
                 refs.append(value)
             maps['citations'][q][key] = refs.index(value)+1
         for figure in item['figures']:
-            if not figure['formal']:
-                continue
+            # Retain backup candidates and their evidence; only formal figures enter prose.
             f = copy.deepcopy(figure)
             f['id'] = q+'-'+f['id']
             f['question_ids'] = [q]
@@ -128,7 +143,7 @@ def compose(inputs, output, title, cross_references=None, question_titles=None, 
                 src = inside(Path(item['figure_base']), asset['path'])
                 if sha_file(src) != asset['sha256']:
                     raise ValueError('Changed figure asset')
-                name = f['id']+'.'+fmt
+                name = figure_asset_stem(q,figure['id'])+'.'+fmt
                 # IDs supplied by catalogs must also be safe filename parts.
                 if not re.fullmatch(r'[A-Za-z0-9_.-]+', name):
                     raise ValueError('Unsafe figure ID')
@@ -136,7 +151,7 @@ def compose(inputs, output, title, cross_references=None, question_titles=None, 
                 with target.open('xb') as stream:
                     stream.write(src.read_bytes())
                 asset['path'] = 'figures/'+name
-            f['local_number'] = f['number']
+            f['local_number'] = f.get('number')
             catalog_figures.append(f)
         source_map.append({'question_id': q, 'identity': item['identity'],
                            'normalized_sha256': item['normalized_sha256'], 'edits': item['edits'],
@@ -148,7 +163,7 @@ def compose(inputs, output, title, cross_references=None, question_titles=None, 
     equation_counts = {q:0 for q in chapters}
     for item in inputs:
         q = item['question_id']
-        local_paths = {f['files']['png']['path']:q+'-'+f['id'] for f in item['figures'] if f['formal']}
+        local_paths = {f['files']['png']['path']:figure_asset_stem(q,f['id']) for f in item['figures'] if f['formal']}
         body = {}
         for name, original in item['sections'].items():
             if name=='符号说明':continue
@@ -247,7 +262,7 @@ def compose(inputs, output, title, cross_references=None, question_titles=None, 
     # Keep images separate from caption paragraphs for the existing exporter.
     text = re.sub(r'(!\[[^]]+\]\([^)]+\))\n(图\d+)',r'\1\n\n\2',text)
     (output/MD_NAME).write_text(text,encoding='utf-8')
-    catalog = {'question_ids':list(chapters), 'figures': sorted(catalog_figures,key=lambda f:f['number']),
+    catalog = {'question_ids':list(chapters), 'figures': sorted(catalog_figures,key=lambda f:(not f['formal'],f.get('number') or 0,f['id'])),
                'evidence': {'chapters':source_map, 'composer_version':VERSION}}
     (output/'figure-catalog.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2),encoding='utf-8')
     report = validate_draft(output/MD_NAME,output/'figure-catalog.json')

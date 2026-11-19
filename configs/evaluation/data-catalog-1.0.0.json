@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-19",
+  "milestone": "H1",
+  "status": "draft_preparation_not_user_accepted",
+  "baseline": {
+    "path": "docs/release/g-stage-user-acceptance-20261119.json",
+    "sha256": "6d8966e5002cbfdb7526fbff310c9b01973067b264418982b131ec8171e1baa6",
+    "scope": "existing local DSH evidence only"
+  },
+  "public_assets": [
+    {
+      "path": "examples/validation/README.md",
+      "sha256": "b7097a52a2d98e348ad42061c0d44a3ec6de44fb59358c4da406a8db8e397321"
+    }
+  ],
+  "cases": [
+    {
+      "id": "reservoir-balance",
+      "family_id": "reservoir-balance",
+      "tier": "smoke",
+      "split": "public_smoke",
+      "path": "examples/validation/reservoir-balance.json",
+      "sha256": "cefc6698512e80e17ed894e5937707b03cbd897eaefbe4135294369257ddbaa9",
+      "origin": "project_authored_synthetic",
+      "license": "AGPL-3.0-only",
+      "exposure": "public_reference_in_repository",
+      "eligible_for_research_solve_rate": false
+    },
+    {
+      "id": "integer-allocation",
+      "family_id": "integer-allocation",
+      "tier": "smoke",
+      "split": "public_smoke",
+      "path": "examples/validation/integer-allocation.json",
+      "sha256": "4dee62f9231448712261d59e6030695c5fba5b29f515f515a755d175fa4a3d73",
+      "origin": "project_authored_synthetic",
+      "license": "AGPL-3.0-only",
+      "exposure": "public_reference_in_repository",
+      "eligible_for_research_solve_rate": false
+    },
+    {
+      "id": "historical-dragon-q1",
+      "family_id": "historical-dragon",
+      "tier": "research",
+      "split": "development",
+      "status": "historical_reference_only",
+      "coverage": "Only the previously developed problem 1; not the full contest problem.",
+      "source_reference": "docs/roadmap.md",
+      "source_sha256": null,
+      "source_role": "historical_navigation_only",
+      "input_registered": false,
+      "exposure": "seen_in_development_with_external_references",
+      "exposure_details": "Historical modeling, references, mathematics, figures and user review have already been used.",
+      "eligible_for_research_solve_rate": false,
+      "redistribution": "not_authorized_by_this_catalog"
+    },
+    {
+      "id": "historical-dsh-q1",
+      "family_id": "historical-dsh-drying",
+      "tier": "research",
+      "split": "development",
+      "status": "historical_reference_only",
+      "coverage": "G5 actual Q1 only; not the full research problem or a fresh run.",
+      "source_reference": "docs/release/g5-acceptance-20261119.json",
+      "source_sha256": "43bb55ae2a3debb43168a5e3bee564d301ad452df858ec49886e56ab88224b3c",
+      "source_role": "historical_evidence",
+      "input_registered": false,
+      "exposure": "seen_in_development_with_external_references",
+      "exposure_details": "Completed DSH debugging, model/results/paper iterations and user acceptance; accepted numerical deviation and original FAIL remain.",
+      "eligible_for_research_solve_rate": false,
+      "redistribution": "not_authorized_by_this_catalog"
+    }
+  ],
+  "holdout": {
+    "status": "not_registered",
+    "cases": [],
+    "blockers": [
+      "Independent custodian must select complete research problems with lawful local access.",
+      "Freeze problem-family split, inputs, exposure audit and external scoring rubric before any model call.",
+      "Do not inspect or publish private holdout problem text in development."
+    ]
+  },
+  "public_release_approved": false,
+  "real_llm_evaluation_executed": false
+}

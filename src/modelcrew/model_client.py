@@ -40,7 +40,7 @@ class JsonModel:
     def call(self, folder, stage, system, data, *, max_tokens=10000, image_inputs=None):
         folder = Path(folder)
         identifier = str(uuid.uuid4())
-        model = (self.config.get('MODELCREW_M1_MODEL') if stage == 'M1' else self.config.get('MODELCREW_W2_MODEL') if stage == 'W2' else None) or self.config['MODELCREW_LLM_MODEL']
+        model = (self.config.get('MODELCREW_VISION_MODEL') if stage=='P2' and image_inputs else self.config.get('MODELCREW_M1_MODEL') if stage == 'M1' else self.config.get('MODELCREW_W2_MODEL') if stage == 'W2' else None) or self.config['MODELCREW_LLM_MODEL']
         # New stateless request each time; M1 receives evidence, not author chat history.
         request = {'model': model, 'max_tokens': max_tokens,
                    'enable_thinking': False, 'thinking': {'type': 'disabled'},
@@ -50,14 +50,15 @@ class JsonModel:
         # JSON mode is not server-side schema validation; local strict checks remain.
         if not (stage == 'Writer' and data.get('output_protocol') == 'raw_markdown_v1'):
             request['response_format'] = {'type': 'json_object'}
-        if stage=='W2' and data.get('output_protocol')=='w2_evidence_refs_v2':
+        if stage=='W2' and data.get('output_protocol') in ('w2_evidence_refs_v2','w2_evidence_refs_v3'):
             mode=self.config.get('MODELCREW_W2_RESPONSE_FORMAT','json_object')
             if mode not in ['json_object','json_schema']:
                 raise ModelCallError('Unsupported W2 response format configuration',domain='not_sent')
             request['response_format']={'type':mode}
             if mode=='json_schema':
                 request['response_format']['json_schema']={
-                    'name':'w2_evidence_refs_v2','strict':True,'schema':data['schema']}
+                    'name':data['output_protocol'],'strict':True,'schema':data['schema']}
+        image_manifest=[]
         if image_inputs:
             if len(image_inputs)>100:raise ModelCallError('Too many review images')
             parts=[{'type':'text','text':request['messages'][1]['content']}]
@@ -67,6 +68,8 @@ class JsonModel:
                     raise ModelCallError('Review image changed before dispatch')
                 if not raw.startswith(b'\x89PNG\r\n\x1a\n'):
                     raise ModelCallError('Review images must be PNG')
+                image_manifest.append({'image_id':image.get('image_id'), 'sha256':image['sha256'],
+                    'size_bytes':len(raw),'label':image['label']})
                 parts.append({'type':'text','text':image['label']})
                 parts.append({'type':'image_url','image_url':{'url':'data:image/png;base64,'+base64.b64encode(raw).decode('ascii'),'detail':'high'}})
             request['messages'][1]['content']=parts
@@ -77,6 +80,8 @@ class JsonModel:
         write('-request.json', request)
         meta = {'call_id': identifier, 'context_id': str(uuid.uuid4()), 'stage': stage,
                 'configured_model': model, 'status': 'started', 'independent_stateless_request': True, 'image_count':len(image_inputs or []),
+                'image_manifest':image_manifest,'image_bytes_total':sum(i['size_bytes'] for i in image_manifest),
+                'request_record_sha256':hashlib.sha256(Path(str(prefix)+'-request.json').read_bytes()).hexdigest(),
                 'output_protocol': data.get('output_protocol', 'json_object') if stage in ['Writer','W2'] else 'json_object',
                 'response_format_type':request.get('response_format',{}).get('type','none'),
                 'server_schema_requested':request.get('response_format',{}).get('type')=='json_schema',

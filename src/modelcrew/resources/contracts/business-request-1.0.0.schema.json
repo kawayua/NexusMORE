@@ -1,0 +1,5529 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nexusmore:business-request:1.0.0",
+  "title": "NexusMORE frozen business request 1.0.0",
+  "$defs": {
+    "Action": {
+      "properties": {
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "model",
+            "result",
+            "revise_model",
+            "revise_mathematics",
+            "revise_interpretation",
+            "restore_version"
+          ],
+          "title": "Kind"
+        },
+        "decision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "approve",
+                "reject"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Decision"
+        },
+        "result_revision": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Result Revision"
+        },
+        "defer_execution": {
+          "type": "boolean",
+          "title": "Defer Execution",
+          "default": false
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 20000,
+          "title": "Reason",
+          "default": ""
+        },
+        "contract": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Contract"
+        },
+        "source_version": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Version"
+        },
+        "claims": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Claims"
+        },
+        "structured_only": {
+          "type": "boolean",
+          "title": "Structured Only",
+          "default": false
+        },
+        "executor_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "historical-fixture",
+                "manifest-fixture",
+                "reviewed-run",
+                "mcp-code-executor",
+                "pending-code"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Key"
+        },
+        "executor_config": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Config"
+        },
+        "math_package": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Package"
+        },
+        "math_semantic_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Semantic Sha256"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "actor",
+        "request_id",
+        "version",
+        "kind"
+      ],
+      "title": "Action"
+    },
+    "AssemblyRequest": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "required_questions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Required Questions"
+        },
+        "chapters": {
+          "items": {
+            "$ref": "#/$defs/ChapterInput"
+          },
+          "type": "array",
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Chapters"
+        },
+        "allow_partial": {
+          "type": "boolean",
+          "title": "Allow Partial",
+          "default": false
+        },
+        "previous_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Previous Run Id"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "required_questions",
+        "chapters"
+      ],
+      "title": "AssemblyRequest"
+    },
+    "ChapterInput": {
+      "properties": {
+        "question_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Question Id"
+        },
+        "task_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Task Id"
+        },
+        "run_id": {
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Run Id"
+        },
+        "source_project_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 200,
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Project Id"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "question_id",
+        "task_id",
+        "run_id"
+      ],
+      "title": "ChapterInput"
+    },
+    "ComposeRequest": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[^\\r\\n#]+$",
+          "title": "Title"
+        },
+        "abstract": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10000,
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Abstract"
+        },
+        "keywords": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000,
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Keywords"
+        },
+        "patches": {
+          "items": {
+            "$ref": "#/$defs/Patch"
+          },
+          "type": "array",
+          "maxItems": 100,
+          "title": "Patches"
+        },
+        "cross_references": {
+          "items": {
+            "$ref": "#/$defs/CrossReference"
+          },
+          "type": "array",
+          "maxItems": 100,
+          "title": "Cross References"
+        },
+        "symbol_table": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/GlobalSymbol"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Symbol Table"
+        },
+        "previous_build_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Previous Build Id"
+        },
+        "question_titles": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "title": "Question Titles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "title"
+      ],
+      "title": "ComposeRequest"
+    },
+    "CrossReference": {
+      "properties": {
+        "source_question": {
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Source Question"
+        },
+        "target_question": {
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Target Question"
+        },
+        "phrase": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Phrase"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^(figures|tables|equations)$",
+          "title": "Kind"
+        },
+        "local_number": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Local Number"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "source_question",
+        "target_question",
+        "phrase",
+        "kind",
+        "local_number"
+      ],
+      "title": "CrossReference"
+    },
+    "Decision": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "pattern": "^user$",
+          "title": "Actor"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^(manuscript|figures)$",
+          "title": "Kind"
+        },
+        "decision": {
+          "type": "string",
+          "pattern": "^(approve|reject)$",
+          "title": "Decision"
+        },
+        "statement": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Statement"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason"
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Artifact Sha256"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "kind",
+        "decision",
+        "statement",
+        "reason",
+        "artifact_sha256"
+      ],
+      "title": "Decision"
+    },
+    "DeliveryRetry": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "reason"
+      ],
+      "title": "DeliveryRetry"
+    },
+    "ExportRequest": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor"
+      ],
+      "title": "ExportRequest"
+    },
+    "GlobalSymbol": {
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Symbol"
+        },
+        "meaning": {
+          "type": "string",
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Meaning"
+        },
+        "unit": {
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Unit"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SymbolSource"
+          },
+          "type": "array",
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Sources"
+        },
+        "applicable_questions": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "maxItems": 100,
+              "minItems": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Applicable Questions"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Reason"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "symbol",
+        "meaning",
+        "unit",
+        "sources",
+        "reason"
+      ],
+      "title": "GlobalSymbol"
+    },
+    "HTTPValidationError": {
+      "properties": {
+        "detail": {
+          "items": {
+            "$ref": "#/$defs/ValidationError"
+          },
+          "type": "array",
+          "title": "Detail"
+        }
+      },
+      "type": "object",
+      "title": "HTTPValidationError"
+    },
+    "HandDecision": {
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "manuscript",
+            "figures"
+          ],
+          "title": "Kind"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approve",
+            "reject"
+          ],
+          "title": "Decision"
+        },
+        "actor": {
+          "type": "string",
+          "const": "user",
+          "title": "Actor"
+        },
+        "statement": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Statement"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason"
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Artifact Sha256"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "kind",
+        "decision",
+        "actor",
+        "statement",
+        "reason",
+        "artifact_sha256",
+        "request_id"
+      ],
+      "title": "HandDecision"
+    },
+    "HandRecheck": {
+      "properties": {
+        "rationale": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Rationale"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "rationale"
+      ],
+      "title": "HandRecheck"
+    },
+    "MathematicalPublish": {
+      "properties": {
+        "package": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Package"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Reason"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "package",
+        "actor",
+        "request_id",
+        "reason"
+      ],
+      "title": "MathematicalPublish"
+    },
+    "ModelingRecheck": {
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        },
+        "rationale": {
+          "type": "string",
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Rationale"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "version",
+        "actor",
+        "request_id",
+        "rationale"
+      ],
+      "title": "ModelingRecheck"
+    },
+    "ModelingRun": {
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        },
+        "guidance": {
+          "type": "string",
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Guidance"
+        },
+        "auto_correct": {
+          "type": "boolean",
+          "title": "Auto Correct",
+          "default": true
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "version",
+        "actor",
+        "request_id",
+        "guidance"
+      ],
+      "title": "ModelingRun"
+    },
+    "Patch": {
+      "properties": {
+        "question_id": {
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Question Id"
+        },
+        "before": {
+          "type": "string",
+          "maxLength": 50000,
+          "minLength": 1,
+          "title": "Before"
+        },
+        "after": {
+          "type": "string",
+          "maxLength": 50000,
+          "title": "After"
+        },
+        "expected_count": {
+          "type": "integer",
+          "maximum": 1000.0,
+          "minimum": 1.0,
+          "title": "Expected Count",
+          "default": 1
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "question_id",
+        "before",
+        "after",
+        "reason"
+      ],
+      "title": "Patch"
+    },
+    "ProjectCreate": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Id"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Title"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "title"
+      ],
+      "title": "ProjectCreate"
+    },
+    "RebindRequest": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Reason"
+        },
+        "expected_previous_context": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Expected Previous Context"
+        },
+        "expected_current_context": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Expected Current Context"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "reason",
+        "expected_previous_context",
+        "expected_current_context"
+      ],
+      "title": "RebindRequest"
+    },
+    "ReferenceDecision": {
+      "properties": {
+        "reference_id": {
+          "type": "string",
+          "pattern": "^ref_[0-9a-f]{64}$",
+          "title": "Reference Id"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "adopted",
+            "rejected",
+            "considered"
+          ],
+          "title": "Decision"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "reference_id",
+        "decision"
+      ],
+      "title": "ReferenceDecision"
+    },
+    "ReferenceDiscussion": {
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "proposal",
+            "feedback"
+          ],
+          "title": "Kind"
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Text"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/ReferenceDecision"
+          },
+          "type": "array",
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "References"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "version",
+        "kind",
+        "text",
+        "references",
+        "actor",
+        "request_id"
+      ],
+      "title": "ReferenceDiscussion"
+    },
+    "ReferenceRetrieval": {
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "tool": {
+          "type": "string",
+          "enum": [
+            "paper_search",
+            "web_search",
+            "web_read",
+            "reference_get",
+            "algorithm_search"
+          ],
+          "title": "Tool"
+        },
+        "arguments": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Arguments"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "version",
+        "tool",
+        "arguments",
+        "actor",
+        "request_id"
+      ],
+      "title": "ReferenceRetrieval"
+    },
+    "RenderRequest": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "export_request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Export Request Id"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "export_request_id"
+      ],
+      "title": "RenderRequest"
+    },
+    "RepairRequest": {
+      "properties": {
+        "stage": {
+          "type": "string",
+          "enum": [
+            "minimal",
+            "full"
+          ],
+          "title": "Stage",
+          "default": "minimal"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Request Id"
+        },
+        "statement": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Statement"
+        },
+        "rationale": {
+          "type": "string",
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Rationale"
+        },
+        "code_path": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Code Path"
+        },
+        "code_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Code Sha256"
+        },
+        "previous_code_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Previous Code Sha256"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "version",
+        "actor",
+        "request_id",
+        "statement",
+        "rationale",
+        "code_path",
+        "code_sha256",
+        "previous_code_sha256"
+      ],
+      "title": "RepairRequest"
+    },
+    "ReviewBindingRequest": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Reason"
+        },
+        "review_path": {
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Review Path"
+        },
+        "review_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Review Sha256"
+        },
+        "original_source": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000,
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Original Source"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "reason",
+        "review_path",
+        "review_sha256"
+      ],
+      "title": "ReviewBindingRequest"
+    },
+    "RunRequest": {
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Request Id"
+        },
+        "guidance": {
+          "type": "string",
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Guidance"
+        },
+        "minimal_scope": {
+          "type": "string",
+          "maxLength": 20000,
+          "title": "Minimal Scope",
+          "default": "Use a bounded representative subset; do not claim full coverage."
+        },
+        "full_scope": {
+          "type": "string",
+          "maxLength": 20000,
+          "title": "Full Scope",
+          "default": "Compute all outputs required by the confirmed contract."
+        },
+        "limits": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Limits"
+        },
+        "figure_catalog": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Figure Catalog"
+        },
+        "sources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "maxItems": 30,
+          "title": "Sources"
+        },
+        "result_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "maxItems": 32,
+          "title": "Result Evidence"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "version",
+        "actor",
+        "request_id",
+        "guidance"
+      ],
+      "title": "RunRequest"
+    },
+    "SearchFilters": {
+      "properties": {
+        "doc_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 200,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Doc Id"
+        },
+        "case_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 200,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Case Id"
+        },
+        "kind": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "paper",
+                "algorithm",
+                "problem_statement"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Kind"
+        },
+        "year": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "maximum": 2100.0,
+              "minimum": 1900.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Year"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "SearchFilters"
+    },
+    "SearchQuery": {
+      "properties": {
+        "query": {
+          "type": "string",
+          "maxLength": 400,
+          "minLength": 1,
+          "title": "Query"
+        },
+        "limit": {
+          "type": "integer",
+          "maximum": 20.0,
+          "minimum": 1.0,
+          "title": "Limit",
+          "default": 5
+        },
+        "filters": {
+          "$ref": "#/$defs/SearchFilters"
+        },
+        "score_threshold": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Score Threshold",
+          "default": 0.0
+        },
+        "include_same_problem": {
+          "type": "boolean",
+          "title": "Include Same Problem",
+          "default": true
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "title": "SearchQuery"
+    },
+    "SymbolSource": {
+      "properties": {
+        "question_id": {
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Question Id"
+        },
+        "symbol": {
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Symbol"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "question_id",
+        "symbol"
+      ],
+      "title": "SymbolSource"
+    },
+    "TaskCreate": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Id"
+        },
+        "contract": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Contract"
+        },
+        "executor_key": {
+          "type": "string",
+          "enum": [
+            "historical-fixture",
+            "manifest-fixture",
+            "reviewed-run",
+            "mcp-code-executor",
+            "pending-code"
+          ],
+          "title": "Executor Key"
+        },
+        "executor_config": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Executor Config"
+        },
+        "math_package": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Package"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "contract",
+        "executor_key"
+      ],
+      "title": "TaskCreate"
+    },
+    "ValidationError": {
+      "properties": {
+        "loc": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "type": "array",
+          "title": "Location"
+        },
+        "msg": {
+          "type": "string",
+          "title": "Message"
+        },
+        "type": {
+          "type": "string",
+          "title": "Error Type"
+        },
+        "input": {
+          "title": "Input"
+        },
+        "ctx": {
+          "type": "object",
+          "title": "Context"
+        }
+      },
+      "type": "object",
+      "required": [
+        "loc",
+        "msg",
+        "type"
+      ],
+      "title": "ValidationError"
+    },
+    "W2Request": {
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Request Id"
+        },
+        "actor": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "export_request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Export Request Id"
+        },
+        "render_request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$",
+          "title": "Render Request Id"
+        },
+        "recheck_of": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Recheck Of"
+        },
+        "rationale": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000,
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rationale"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "request_id",
+        "actor",
+        "export_request_id",
+        "render_request_id"
+      ],
+      "title": "W2Request"
+    },
+    "Binding": {
+      "type": "object",
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "contract_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "build_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "execution_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "result_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "context_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "UserEvent": {
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "channel": {
+          "enum": [
+            "trusted_local_cli",
+            "trusted_host_ui"
+          ]
+        },
+        "statement_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "event_id",
+        "channel",
+        "statement_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "request_project_create": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "project_create"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "body": {
+              "$ref": "#/$defs/ProjectCreate"
+            }
+          },
+          "required": [
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id"
+      ],
+      "additionalProperties": false
+    },
+    "request_projects_list": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "projects_list"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_tasks_list": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "tasks_list"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "limit": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          "required": [
+            "project_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_task_create": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "task_create"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/TaskCreate"
+            }
+          },
+          "required": [
+            "project_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id"
+      ],
+      "additionalProperties": false
+    },
+    "request_task_status": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "task_status"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_versions_list": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "versions_list"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_version_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "version_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "task_id",
+            "version"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_proposal_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "proposal_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_modeling_start": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "modeling_start"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/ModelingRun"
+            }
+          },
+          "required": [
+            "task_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_modeling_recheck": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "modeling_recheck"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/ModelingRecheck"
+            }
+          },
+          "required": [
+            "task_id",
+            "run_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "run_id",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_modeling_status": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "modeling_status"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_start": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_start"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/AssemblyRequest"
+            }
+          },
+          "required": [
+            "project_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "project_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_status": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_status"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "project_id",
+            "run_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_rebind": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_rebind"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/RebindRequest"
+            }
+          },
+          "required": [
+            "project_id",
+            "run_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "project_id",
+                "run_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_compose": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_compose"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/ComposeRequest"
+            }
+          },
+          "required": [
+            "project_id",
+            "run_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "project_id",
+                "run_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_build_status": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_build_status"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_decide": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_decide"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/Decision"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id",
+                "artifact_sha256"
+              ]
+            }
+          ]
+        },
+        "user_event": {
+          "$ref": "#/$defs/UserEvent"
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding",
+        "user_event"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_bind_reviews": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_bind_reviews"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/ReviewBindingRequest"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_export": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_export"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/ExportRequest"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_render": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_render"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/RenderRequest"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_review_w2": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_review_w2"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/W2Request"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_retry_w2_delivery": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_retry_w2_delivery"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "review_request_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/DeliveryRetry"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id",
+            "review_request_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_recover": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_recover"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_hand_start": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "hand_start"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "hand": {
+              "enum": [
+                "coding",
+                "writing"
+              ]
+            },
+            "body": {
+              "$ref": "#/$defs/RunRequest"
+            }
+          },
+          "required": [
+            "task_id",
+            "hand",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_hand_status": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "hand_status"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id",
+            "run_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_hand_advance": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "hand_advance"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id",
+            "run_id"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "run_id",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_hand_repair": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "hand_repair"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/RepairRequest"
+            }
+          },
+          "required": [
+            "task_id",
+            "run_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "run_id",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_hand_recheck": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "hand_recheck"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/HandRecheck"
+            }
+          },
+          "required": [
+            "task_id",
+            "run_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "run_id",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_hand_decide": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "hand_decide"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/HandDecision"
+            }
+          },
+          "required": [
+            "task_id",
+            "run_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "run_id",
+                "task_id",
+                "version",
+                "artifact_sha256"
+              ]
+            }
+          ]
+        },
+        "user_event": {
+          "$ref": "#/$defs/UserEvent"
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding",
+        "user_event"
+      ],
+      "additionalProperties": false
+    },
+    "request_result_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "result_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_artifacts_list": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "artifacts_list"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "version": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Version"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_mathematics_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "mathematics_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "task_id",
+            "version"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_mathematics_publish": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "mathematics_publish"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "body": {
+              "$ref": "#/$defs/MathematicalPublish"
+            }
+          },
+          "required": [
+            "task_id",
+            "version",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "Action_task_decide": {
+      "properties": {
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "kind": {
+          "enum": [
+            "model",
+            "result"
+          ]
+        },
+        "decision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "approve",
+                "reject"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Decision"
+        },
+        "result_revision": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Result Revision"
+        },
+        "defer_execution": {
+          "type": "boolean",
+          "title": "Defer Execution",
+          "default": false
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 20000,
+          "title": "Reason",
+          "default": ""
+        },
+        "contract": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Contract"
+        },
+        "source_version": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Version"
+        },
+        "claims": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Claims"
+        },
+        "structured_only": {
+          "type": "boolean",
+          "title": "Structured Only",
+          "default": false
+        },
+        "executor_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "historical-fixture",
+                "manifest-fixture",
+                "reviewed-run",
+                "mcp-code-executor",
+                "pending-code"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Key"
+        },
+        "executor_config": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Config"
+        },
+        "math_package": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Package"
+        },
+        "math_semantic_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Semantic Sha256"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "actor",
+        "request_id",
+        "version",
+        "kind",
+        "decision"
+      ],
+      "title": "Action",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "result",
+                  "revise_interpretation"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "result_revision"
+            ],
+            "properties": {
+              "result_revision": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "revise_model"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "contract"
+            ],
+            "properties": {
+              "contract": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "revise_mathematics"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "math_package"
+            ],
+            "properties": {
+              "math_package": {
+                "type": "object"
+              },
+              "contract": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "revise_model",
+                      "revise_mathematics",
+                      "revise_interpretation",
+                      "restore_version"
+                    ]
+                  }
+                }
+              },
+              {
+                "required": [
+                  "decision"
+                ],
+                "properties": {
+                  "decision": {
+                    "const": "reject"
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "reason"
+            ],
+            "properties": {
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20000,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "defer_execution"
+            ],
+            "properties": {
+              "defer_execution": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "kind": {
+                "const": "model"
+              },
+              "decision": {
+                "const": "approve"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          }
+        }
+      ]
+    },
+    "request_task_decide": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "task_decide"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/Action_task_decide"
+            }
+          },
+          "required": [
+            "task_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        },
+        "user_event": {
+          "$ref": "#/$defs/UserEvent"
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding",
+        "user_event"
+      ],
+      "additionalProperties": false
+    },
+    "Action_task_revise": {
+      "properties": {
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "kind": {
+          "enum": [
+            "revise_model",
+            "revise_mathematics",
+            "revise_interpretation"
+          ]
+        },
+        "decision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "approve",
+                "reject"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Decision"
+        },
+        "result_revision": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Result Revision"
+        },
+        "defer_execution": {
+          "type": "boolean",
+          "title": "Defer Execution",
+          "default": false
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 20000,
+          "title": "Reason",
+          "default": ""
+        },
+        "contract": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Contract"
+        },
+        "source_version": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Version"
+        },
+        "claims": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Claims"
+        },
+        "structured_only": {
+          "type": "boolean",
+          "title": "Structured Only",
+          "default": false
+        },
+        "executor_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "historical-fixture",
+                "manifest-fixture",
+                "reviewed-run",
+                "mcp-code-executor",
+                "pending-code"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Key"
+        },
+        "executor_config": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Config"
+        },
+        "math_package": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Package"
+        },
+        "math_semantic_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Semantic Sha256"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "actor",
+        "request_id",
+        "version",
+        "kind"
+      ],
+      "title": "Action",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "result",
+                  "revise_interpretation"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "result_revision"
+            ],
+            "properties": {
+              "result_revision": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "revise_model"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "contract"
+            ],
+            "properties": {
+              "contract": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "revise_mathematics"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "math_package"
+            ],
+            "properties": {
+              "math_package": {
+                "type": "object"
+              },
+              "contract": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "revise_model",
+                      "revise_mathematics",
+                      "revise_interpretation",
+                      "restore_version"
+                    ]
+                  }
+                }
+              },
+              {
+                "required": [
+                  "decision"
+                ],
+                "properties": {
+                  "decision": {
+                    "const": "reject"
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "reason"
+            ],
+            "properties": {
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20000,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "defer_execution"
+            ],
+            "properties": {
+              "defer_execution": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "kind": {
+                "const": "model"
+              },
+              "decision": {
+                "const": "approve"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          }
+        }
+      ]
+    },
+    "request_task_revise": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "task_revise"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/Action_task_revise"
+            }
+          },
+          "required": [
+            "task_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "Action_task_restore": {
+      "properties": {
+        "actor": {
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Actor"
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "title": "Request Id"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Version"
+        },
+        "kind": {
+          "enum": [
+            "restore_version"
+          ]
+        },
+        "decision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "approve",
+                "reject"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Decision"
+        },
+        "result_revision": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Result Revision"
+        },
+        "defer_execution": {
+          "type": "boolean",
+          "title": "Defer Execution",
+          "default": false
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 20000,
+          "title": "Reason",
+          "default": ""
+        },
+        "contract": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Contract"
+        },
+        "source_version": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Version"
+        },
+        "claims": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Claims"
+        },
+        "structured_only": {
+          "type": "boolean",
+          "title": "Structured Only",
+          "default": false
+        },
+        "executor_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "historical-fixture",
+                "manifest-fixture",
+                "reviewed-run",
+                "mcp-code-executor",
+                "pending-code"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Key"
+        },
+        "executor_config": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Executor Config"
+        },
+        "math_package": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Package"
+        },
+        "math_semantic_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Math Semantic Sha256"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "actor",
+        "request_id",
+        "version",
+        "kind",
+        "source_version"
+      ],
+      "title": "Action",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "result",
+                  "revise_interpretation"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "result_revision"
+            ],
+            "properties": {
+              "result_revision": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "revise_model"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "contract"
+            ],
+            "properties": {
+              "contract": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "revise_mathematics"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "math_package"
+            ],
+            "properties": {
+              "math_package": {
+                "type": "object"
+              },
+              "contract": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "revise_model",
+                      "revise_mathematics",
+                      "revise_interpretation",
+                      "restore_version"
+                    ]
+                  }
+                }
+              },
+              {
+                "required": [
+                  "decision"
+                ],
+                "properties": {
+                  "decision": {
+                    "const": "reject"
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "reason"
+            ],
+            "properties": {
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20000,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "defer_execution"
+            ],
+            "properties": {
+              "defer_execution": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "kind": {
+                "const": "model"
+              },
+              "decision": {
+                "const": "approve"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          }
+        }
+      ]
+    },
+    "request_task_restore": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "task_restore"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/Action_task_restore"
+            }
+          },
+          "required": [
+            "task_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_task_resume": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "task_resume"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_references_retrieve": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "references_retrieve"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/ReferenceRetrieval"
+            }
+          },
+          "required": [
+            "task_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_references_discuss": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "references_discuss"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "body": {
+              "$ref": "#/$defs/ReferenceDiscussion"
+            }
+          },
+          "required": [
+            "task_id",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "contract_sha256",
+                "task_id",
+                "version"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_tool_evidence_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "tool_evidence_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "version": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Version"
+            }
+          },
+          "required": [
+            "task_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_capabilities_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "capabilities_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_project_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "project_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "project_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_question_import": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "question_import"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "target_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "case_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "question_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "statement_artifact_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "statement_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "pages": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "excerpt_artifact_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "target_id",
+            "revision",
+            "case_id",
+            "question_id",
+            "statement_artifact_id",
+            "statement_sha256",
+            "pages",
+            "excerpt_artifact_id"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id"
+      ],
+      "additionalProperties": false
+    },
+    "request_pending_list": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "pending_list"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "project_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_operation_status": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "operation_status"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "operation_name": {
+              "enum": [
+                "project_create",
+                "task_create",
+                "modeling_start",
+                "modeling_recheck",
+                "assembly_start",
+                "assembly_rebind",
+                "assembly_compose",
+                "assembly_decide",
+                "assembly_bind_reviews",
+                "assembly_export",
+                "assembly_render",
+                "assembly_review_w2",
+                "assembly_retry_w2_delivery",
+                "assembly_recover",
+                "hand_start",
+                "hand_advance",
+                "hand_repair",
+                "hand_recheck",
+                "hand_decide",
+                "mathematics_publish",
+                "task_decide",
+                "task_revise",
+                "task_restore",
+                "task_resume",
+                "references_retrieve",
+                "references_discuss",
+                "question_import",
+                "manuscript_register_revision",
+                "figures_select",
+                "final_decide"
+              ]
+            },
+            "request_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "project_id",
+            "operation_name",
+            "request_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_artifact_read": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "artifact_read"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "object",
+              "properties": {
+                "project_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+                },
+                "task_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "run_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+                },
+                "build_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+                }
+              },
+              "required": [
+                "project_id"
+              ],
+              "additionalProperties": false
+            },
+            "artifact_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 262144
+            }
+          },
+          "required": [
+            "owner",
+            "artifact_id",
+            "sha256",
+            "offset",
+            "max_bytes"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "request_manuscript_register_revision": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "manuscript_register_revision"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "manuscript_artifact_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "manuscript_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "previous_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20000,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "project_id",
+            "manuscript_artifact_id",
+            "manuscript_sha256",
+            "previous_sha256",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "project_id",
+                "source_sha256"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_figures_select": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "figures_select"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "run_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "catalog_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "selected_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20000,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "project_id",
+            "catalog_sha256",
+            "selected_ids",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "project_id",
+                "source_sha256"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding"
+      ],
+      "additionalProperties": false
+    },
+    "request_final_decide": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "final_decide"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "export_request_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "render_request_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "w2_request_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "artifacts": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                },
+                "required": [
+                  "artifact_id",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "decision": {
+              "enum": [
+                "approve",
+                "reject"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20000,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id",
+            "export_request_id",
+            "render_request_id",
+            "w2_request_id",
+            "artifacts",
+            "decision",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+        },
+        "expected_binding": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Binding"
+            },
+            {
+              "required": [
+                "build_id",
+                "project_id",
+                "source_sha256"
+              ]
+            }
+          ]
+        },
+        "user_event": {
+          "$ref": "#/$defs/UserEvent"
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments",
+        "request_id",
+        "expected_binding",
+        "user_event"
+      ],
+      "additionalProperties": false
+    },
+    "request_assembly_artifacts_list": {
+      "type": "object",
+      "properties": {
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "operation": {
+          "const": "assembly_artifacts_list"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "build_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "project_id",
+            "build_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract_version",
+        "operation",
+        "arguments"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/request_project_create"
+    },
+    {
+      "$ref": "#/$defs/request_projects_list"
+    },
+    {
+      "$ref": "#/$defs/request_tasks_list"
+    },
+    {
+      "$ref": "#/$defs/request_task_create"
+    },
+    {
+      "$ref": "#/$defs/request_task_status"
+    },
+    {
+      "$ref": "#/$defs/request_versions_list"
+    },
+    {
+      "$ref": "#/$defs/request_version_read"
+    },
+    {
+      "$ref": "#/$defs/request_proposal_read"
+    },
+    {
+      "$ref": "#/$defs/request_modeling_start"
+    },
+    {
+      "$ref": "#/$defs/request_modeling_recheck"
+    },
+    {
+      "$ref": "#/$defs/request_modeling_status"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_start"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_status"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_rebind"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_compose"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_build_status"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_decide"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_bind_reviews"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_export"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_render"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_review_w2"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_retry_w2_delivery"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_recover"
+    },
+    {
+      "$ref": "#/$defs/request_hand_start"
+    },
+    {
+      "$ref": "#/$defs/request_hand_status"
+    },
+    {
+      "$ref": "#/$defs/request_hand_advance"
+    },
+    {
+      "$ref": "#/$defs/request_hand_repair"
+    },
+    {
+      "$ref": "#/$defs/request_hand_recheck"
+    },
+    {
+      "$ref": "#/$defs/request_hand_decide"
+    },
+    {
+      "$ref": "#/$defs/request_result_read"
+    },
+    {
+      "$ref": "#/$defs/request_artifacts_list"
+    },
+    {
+      "$ref": "#/$defs/request_mathematics_read"
+    },
+    {
+      "$ref": "#/$defs/request_mathematics_publish"
+    },
+    {
+      "$ref": "#/$defs/request_task_decide"
+    },
+    {
+      "$ref": "#/$defs/request_task_revise"
+    },
+    {
+      "$ref": "#/$defs/request_task_restore"
+    },
+    {
+      "$ref": "#/$defs/request_task_resume"
+    },
+    {
+      "$ref": "#/$defs/request_references_retrieve"
+    },
+    {
+      "$ref": "#/$defs/request_references_discuss"
+    },
+    {
+      "$ref": "#/$defs/request_tool_evidence_read"
+    },
+    {
+      "$ref": "#/$defs/request_capabilities_read"
+    },
+    {
+      "$ref": "#/$defs/request_project_read"
+    },
+    {
+      "$ref": "#/$defs/request_question_import"
+    },
+    {
+      "$ref": "#/$defs/request_pending_list"
+    },
+    {
+      "$ref": "#/$defs/request_operation_status"
+    },
+    {
+      "$ref": "#/$defs/request_artifact_read"
+    },
+    {
+      "$ref": "#/$defs/request_manuscript_register_revision"
+    },
+    {
+      "$ref": "#/$defs/request_figures_select"
+    },
+    {
+      "$ref": "#/$defs/request_final_decide"
+    },
+    {
+      "$ref": "#/$defs/request_assembly_artifacts_list"
+    }
+  ]
+}

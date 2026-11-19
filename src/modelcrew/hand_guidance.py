@@ -105,6 +105,8 @@ def guidance_context(bundle, selector, *, english=False):
             'protocol': manifest['boundaries']['figure_tools_protocol'],
             'backend': 'python', 'all_pdf_pages_required': True,
             'html_panel': False, 'machine_checks_are_visual_approval': False}
+    if 'modeling_proposal_protocol' in manifest['boundaries'] and selector in ('modeling','M1'):
+        context['modeling_proposal_policy']={'version':manifest['boundaries']['modeling_proposal_protocol']}
     return context
 
 

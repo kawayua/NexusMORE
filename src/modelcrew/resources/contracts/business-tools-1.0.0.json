@@ -1,0 +1,1342 @@
+{
+  "contract_version": "1.0.0",
+  "product": "枢模 · NexusMORE",
+  "frozen_on": "2026-11-15",
+  "milestone": "G1",
+  "status": "contract_frozen_runtime_adapter_not_implemented",
+  "authoritative_state": "PostgreSQL business records; checkpoints are repairable projections",
+  "transport": "not_selected_G2",
+  "first_host_target": "DSH; real host integration and compatibility pending G4/G5",
+  "operations": [
+    {
+      "name": "project_create",
+      "description": "创建项目",
+      "mutating": true,
+      "scope": "workspace",
+      "channel": "model",
+      "input_ref": "#/$defs/request_project_create",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.create_project",
+        "http": {
+          "method": "POST",
+          "path": "/projects"
+        },
+        "body_model": "ProjectCreate"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "natural_key_project_id_title",
+      "status_operation": "operation_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "projects_list",
+      "description": "列出项目",
+      "mutating": false,
+      "scope": "workspace",
+      "channel": "model",
+      "input_ref": "#/$defs/request_projects_list",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.list_projects",
+        "http": {
+          "method": "GET",
+          "path": "/projects"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "operation_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "tasks_list",
+      "description": "列出项目任务",
+      "mutating": false,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_tasks_list",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.list_tasks",
+        "http": {
+          "method": "GET",
+          "path": "/projects/{project_id}/tasks"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "operation_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "task_create",
+      "description": "从已校验建模契约建立待确认任务",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_task_create",
+      "core": {
+        "status": "partial",
+        "service": "Workflow.create",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/tasks"
+        },
+        "body_model": "TaskCreate"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "operation_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "No core request_id replay; duplicate ID currently conflicts; durable adapter ledger required"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "task_status",
+      "description": "查询业务状态及事件",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_task_status",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.inspect",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "versions_list",
+      "description": "列出方案版本",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_versions_list",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.versions",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/versions"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "version_read",
+      "description": "读取指定版本档案",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_version_read",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.version_dossier",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/versions/{version}"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "proposal_read",
+      "description": "读取方案与数学、参考证据",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_proposal_read",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.inspect",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/proposal"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "modeling_start",
+      "description": "启动建模及独立M1",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_modeling_start",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.run_modeling",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/modeling/runs"
+        },
+        "body_model": "ModelingRun"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "core_request_id",
+      "status_operation": "modeling_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "modeling_recheck",
+      "description": "显式复核建模证据",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_modeling_recheck",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.recheck_modeling",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/modeling/{run_id}/recheck"
+        },
+        "body_model": "ModelingRecheck"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "modeling_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "modeling_status",
+      "description": "查询建模运行",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_modeling_status",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.modeling_status",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/modeling"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "read_only",
+      "status_operation": "modeling_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_start",
+      "description": "冻结已通过单题的汇编输入",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_start",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.start_assembly",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-runs"
+        },
+        "body_model": "AssemblyRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_status",
+      "description": "查询汇编输入",
+      "mutating": false,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_status",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.assembly_status",
+        "http": {
+          "method": "GET",
+          "path": "/projects/{project_id}/assembly-runs/{run_id}"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "assembly_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_rebind",
+      "description": "有界编辑规范更新重绑定",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_rebind",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.rebind_assembly",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-runs/{run_id}/rebindings"
+        },
+        "body_model": "RebindRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_compose",
+      "description": "建立新的汇编审阅稿",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_compose",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.compose_assembly",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-runs/{run_id}/builds"
+        },
+        "body_model": "ComposeRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_build_status",
+      "description": "查询汇编构建与审阅状态",
+      "mutating": false,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_build_status",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.assembly_build_status",
+        "http": {
+          "method": "GET",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_decide",
+      "description": "分别提交汇编正文或选图决定",
+      "mutating": true,
+      "scope": "project",
+      "channel": "trusted_user",
+      "input_ref": "#/$defs/request_assembly_decide",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.assembly_build_decision",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}/decisions"
+        },
+        "body_model": "Decision"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "G3 trusted event verification"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_bind_reviews",
+      "description": "绑定独立审阅证据",
+      "mutating": true,
+      "scope": "project",
+      "channel": "local_operator",
+      "input_ref": "#/$defs/request_assembly_bind_reviews",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.bind_assembly_reviews",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}/review-bindings"
+        },
+        "body_model": "ReviewBindingRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "Local evidence path resolver required; model must not nominate arbitrary review files"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_export",
+      "description": "从批准Markdown/AST同源导出",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_export",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.export_assembly",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}/exports"
+        },
+        "body_model": "ExportRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_render",
+      "description": "真实渲染并生成全部页面预览",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_render",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.render_assembly",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}/renders"
+        },
+        "body_model": "RenderRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_review_w2",
+      "description": "请求独立全页W2",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_review_w2",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.review_assembly_w2",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}/w2-reviews"
+        },
+        "body_model": "W2Request"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_retry_w2_delivery",
+      "description": "受控重取既有W2交付",
+      "mutating": true,
+      "scope": "project",
+      "channel": "local_operator",
+      "input_ref": "#/$defs/request_assembly_retry_w2_delivery",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.retry_assembly_w2_delivery",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}/w2-reviews/{review_request_id}/retry-delivery"
+        },
+        "body_model": "DeliveryRetry"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_recover",
+      "description": "恢复已有汇编操作",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_recover",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.recover_assembly",
+        "http": {
+          "method": "POST",
+          "path": "/projects/{project_id}/assembly-builds/{build_id}/recover"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "No generic core request ledger for this endpoint; durable claim/reconcile before dispatch required"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "hand_start",
+      "description": "启动代码手或论文手",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_hand_start",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.start_hand",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/hands/{hand}/runs"
+        },
+        "body_model": "RunRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "core_request_id",
+      "status_operation": "hand_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "hand_status",
+      "description": "查询三手运行",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_hand_status",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.hand_status",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/hand-runs/{run_id}"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "read_only",
+      "status_operation": "hand_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "hand_advance",
+      "description": "推进一个持久阶段",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_hand_advance",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.advance_hand",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/hand-runs/{run_id}/advance"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "hand_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "No generic core request ledger for this endpoint; durable claim/reconcile before dispatch required"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "hand_repair",
+      "description": "操作者定点代码修复",
+      "mutating": true,
+      "scope": "task",
+      "channel": "local_operator",
+      "input_ref": "#/$defs/request_hand_repair",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.repair_hand",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/hand-runs/{run_id}/repair"
+        },
+        "body_model": "RepairRequest"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "hand_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "hand_recheck",
+      "description": "显式触发独立复核",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_hand_recheck",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.recheck_hand",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/hand-runs/{run_id}/recheck"
+        },
+        "body_model": "HandRecheck"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "hand_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "hand_decide",
+      "description": "分别提交单题正文或选图决定",
+      "mutating": true,
+      "scope": "task",
+      "channel": "trusted_user",
+      "input_ref": "#/$defs/request_hand_decide",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.hand_decision",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/hand-runs/{run_id}/decisions"
+        },
+        "body_model": "HandDecision"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "hand_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "G3 trusted event verification"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "result_read",
+      "description": "读取当前结果与执行证据",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_result_read",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.inspect",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/result"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "artifacts_list",
+      "description": "列出任务版本登记产物",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_artifacts_list",
+      "core": {
+        "status": "partial",
+        "service": "Workflow.version_dossier",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/artifacts"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "Existing API omits some hand/assembly-only outputs; normalized owner-scoped registry required"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "mathematics_read",
+      "description": "读取数学论证包",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_mathematics_read",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.mathematical_proposal",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/versions/{version}/mathematics"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "mathematics_publish",
+      "description": "发布待审数学论证",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_mathematics_publish",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.publish_mathematics",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/versions/{version}/mathematics"
+        },
+        "body_model": "MathematicalPublish"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "task_decide",
+      "description": "提交方案或结果决定",
+      "mutating": true,
+      "scope": "task",
+      "channel": "trusted_user",
+      "input_ref": "#/$defs/request_task_decide",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.action",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/actions"
+        },
+        "body_model": "Action_task_decide"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope/version/hash projection",
+        "G3 trusted event verification"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "task_revise",
+      "description": "修订方案、论证或解释",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_task_revise",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.action",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/actions"
+        },
+        "body_model": "Action_task_revise"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope/version/hash projection"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "task_restore",
+      "description": "创建源于旧版的新待确认版本",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_task_restore",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.action",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/actions"
+        },
+        "body_model": "Action_task_restore"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope/version/hash projection"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "task_resume",
+      "description": "恢复既有任务检查点",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_task_resume",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.resume",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/resume"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": true,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response",
+        "No generic core request ledger for this endpoint; durable claim/reconcile before dispatch required"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "references_retrieve",
+      "description": "在版本内检索并存证",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_references_retrieve",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.retrieve_references",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/references/retrieve"
+        },
+        "body_model": "ReferenceRetrieval"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "references_discuss",
+      "description": "记录参考文献采纳讨论",
+      "mutating": true,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_references_discuss",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.discuss_references",
+        "http": {
+          "method": "POST",
+          "path": "/tasks/{task_id}/references/discussions"
+        },
+        "body_model": "ReferenceDiscussion"
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "core_request_id",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "tool_evidence_read",
+      "description": "读取工具及引用证据",
+      "mutating": false,
+      "scope": "task",
+      "channel": "model",
+      "input_ref": "#/$defs/request_tool_evidence_read",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.tool_evidence",
+        "http": {
+          "method": "GET",
+          "path": "/tasks/{task_id}/tool-evidence"
+        },
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "task_status",
+      "gaps": [
+        "G2 envelope projection and sanitized response"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "capabilities_read",
+      "description": "读取冻结版本、接口及实际可用性",
+      "mutating": false,
+      "scope": "workspace",
+      "channel": "model",
+      "input_ref": "#/$defs/request_capabilities_read",
+      "core": {
+        "status": "partial",
+        "service": "modelcrew.business_contract.load_contract",
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "operation_status",
+      "gaps": [
+        "Local contract reader only; G2 discovery endpoint not implemented"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "project_read",
+      "description": "读取项目身份",
+      "mutating": false,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_project_read",
+      "core": {
+        "status": "mapped",
+        "service": "Workflow.require_project",
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "operation_status",
+      "gaps": [
+        "No HTTP route; G2 wrapper required"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "question_import",
+      "description": "登记题面与指定页摘录；不创建已确认模型",
+      "mutating": true,
+      "scope": "workspace",
+      "channel": "local_operator",
+      "input_ref": "#/$defs/request_question_import",
+      "core": {
+        "status": "partial",
+        "service": "Workflow.question_intake",
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "natural_key_target_revision",
+      "status_operation": "operation_status",
+      "gaps": [
+        "Core accepts local paths; registered input resolver and HTTP route missing",
+        "Project/task association and attachments require G2 intake adapter"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "pending_list",
+      "description": "读取版本绑定的独立待确认项",
+      "mutating": false,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_pending_list",
+      "core": {
+        "status": "missing",
+        "service": null,
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "Aggregate existing inspect/hand_status/assembly_build_status without creating approvals",
+        "Stable pending IDs and current hashes must be generated and revalidated by core adapter"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "operation_status",
+      "description": "按原请求键查询持久化派发回执",
+      "mutating": false,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_operation_status",
+      "core": {
+        "status": "missing",
+        "service": null,
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "No uniform durable business-operation ledger; existing per-feature receipts are authoritative inputs"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "artifact_read",
+      "description": "按归属、登记ID与哈希有界读取产物",
+      "mutating": false,
+      "scope": "workspace",
+      "channel": "model",
+      "input_ref": "#/$defs/request_artifact_read",
+      "core": {
+        "status": "missing",
+        "service": null,
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "operation_status",
+      "gaps": [
+        "Owner-scoped registered artifact resolver and bounded bytes reader missing; arbitrary paths/URLs forbidden"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "manuscript_register_revision",
+      "description": "登记精确修订稿，保留历史正文与批准",
+      "mutating": true,
+      "scope": "project",
+      "channel": "local_operator",
+      "input_ref": "#/$defs/request_manuscript_register_revision",
+      "core": {
+        "status": "missing",
+        "service": null,
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "F6 used auditable one-off local registration, not a generic service",
+        "Must create new run/build; re-review affected content; no overwrite"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "figures_select",
+      "description": "登记明确图ID选择的新审阅版本",
+      "mutating": true,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_figures_select",
+      "core": {
+        "status": "missing",
+        "service": null,
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "Current hand_decision approves existing formal flags, not arbitrary selection",
+        "Additive unselected candidates must not revoke unchanged manuscript approval"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "final_decide",
+      "description": "提交与精确正式成品绑定的真实用户确认",
+      "mutating": true,
+      "scope": "project",
+      "channel": "trusted_user",
+      "input_ref": "#/$defs/request_final_decide",
+      "core": {
+        "status": "missing",
+        "service": null,
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "adapter_ledger_required",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "F6 final acceptance used auditable local operation; no generic final approval API",
+        "Requires all pages verified, current independent W2, exact artifact hashes and trusted user event"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    },
+    {
+      "name": "assembly_artifacts_list",
+      "description": "列出汇编构建登记产物",
+      "mutating": false,
+      "scope": "project",
+      "channel": "model",
+      "input_ref": "#/$defs/request_assembly_artifacts_list",
+      "core": {
+        "status": "partial",
+        "service": "Workflow.assembly_build_status",
+        "http": null,
+        "body_model": null
+      },
+      "adapter_status": "not_implemented",
+      "legacy_bridge_0_1_0": false,
+      "idempotency": "read_only",
+      "status_operation": "assembly_build_status",
+      "gaps": [
+        "Existing status exposes nested exports/renders; normalized immutable artifact registry missing"
+      ],
+      "result_contract": "BusinessResponse; native core payload is diagnostic only; stable fields must be projected by adapter"
+    }
+  ],
+  "errors": {
+    "unsupported_contract_version": {
+      "recovery": "fix_request",
+      "description": "版本不受支持"
+    },
+    "unsupported_operation": {
+      "recovery": "fix_request",
+      "description": "操作未注册或尚未接通"
+    },
+    "invalid_request": {
+      "recovery": "fix_request",
+      "description": "参数、类型或语义非法"
+    },
+    "not_found": {
+      "recovery": "fix_request",
+      "description": "归属范围内对象不存在"
+    },
+    "workflow_conflict": {
+      "recovery": "read_state",
+      "description": "业务状态不允许当前操作"
+    },
+    "stale_binding": {
+      "recovery": "read_state",
+      "description": "版本或哈希已过期"
+    },
+    "idempotency_conflict": {
+      "recovery": "new_request_after_review",
+      "description": "同键不同参数；禁止替换旧请求"
+    },
+    "user_input_required": {
+      "recovery": "trusted_user_action",
+      "description": "必须展示独立待确认项"
+    },
+    "untrusted_user_event": {
+      "recovery": "trusted_user_action",
+      "description": "没有可核验用户事件"
+    },
+    "artifact_access_denied": {
+      "recovery": "fix_request",
+      "description": "未登记、跨归属或越界产物"
+    },
+    "artifact_changed": {
+      "recovery": "read_state",
+      "description": "登记产物哈希不匹配"
+    },
+    "dependency_unavailable": {
+      "recovery": "repair_dependency",
+      "description": "依赖缺失或不可用"
+    },
+    "service_unavailable": {
+      "recovery": "query_operation_status",
+      "description": "服务故障，修改可能已提交"
+    },
+    "retrieval_unavailable": {
+      "recovery": "read_state",
+      "description": "检索故障；不得当作空结果"
+    },
+    "outcome_unknown": {
+      "recovery": "query_operation_status",
+      "description": "已派发结果未知，禁止自动重发"
+    },
+    "review_failed": {
+      "recovery": "explicit_revision",
+      "description": "独立质检失败"
+    },
+    "review_blocked": {
+      "recovery": "explicit_revision",
+      "description": "独立质检证据不足"
+    },
+    "internal_error": {
+      "recovery": "query_operation_status",
+      "description": "脱敏内部异常，修改可能已提交"
+    }
+  },
+  "out_of_scope": [
+    "Public release",
+    "Provider/model substitution",
+    "Automatic user approval",
+    "Other LaTeX engines or arbitrary TeX to Word",
+    "MCP transport implementation",
+    "Real DSH integration"
+  ],
+  "semantics": {
+    "mutation_identity": "scope + operation + request_id; canonical request SHA-256 includes expected_binding and trusted event ref; same key/different bytes conflicts",
+    "legacy_key_collision": "Core feature ledgers may have wider namespaces than operation; adapter must reserve legacy keys or reject collisions before dispatch",
+    "unknown_outcome": "Persist claim before I/O. Query authoritative status with original key. Never auto resend, including with new request ID",
+    "approval": "Model tools do not receive trusted_user/local_operator operations. UserEvent is a reference to independently captured evidence, not authentication by submitted JSON",
+    "versioning": "Contract schema semver distinct from integer model version, result revision, run/build IDs, collaboration version and protocol version",
+    "binding": "Compare all submitted binding fields against authoritative state under core lock before effect; never infer approval from phase alone",
+    "completion": "Solver completion, export, rendering, independent W2 and final user acceptance are distinct; no inference between them",
+    "artifact": "Only owner-scoped registered immutable artifacts; no caller filesystem path/URL; hash-check bytes before bounded read; no mutable outputs as frozen artifacts",
+    "first_host_profile": "Production task creation uses pending-code with empty executor_config; fixture backends are test-only. Model approval must explicitly defer_execution=true before coding hand; never silently edit the user-confirmed payload.",
+    "protocol_scope": "Business contract 1.0.0 selects neither MCP protocol version nor transport; G2 decides and tests these separately.",
+    "pending_identity": "pending_id = pending_ + SHA256(canonical JSON object {kind, binding, artifact_ids: sorted(artifact_ids)}). Separate manuscript and figures items. Absence is not approval.",
+    "response_binding": "Current authoritative binding after operation; may advance version on revision. Diagnostic data and phase cannot substitute for pending, receipt or artifact fields."
+  }
+}

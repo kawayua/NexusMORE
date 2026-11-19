@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "guidance_version": "1.3.0",
+  "guidance_version": "1.4.0",
   "authorship": "NexusMORE project-authored local operating guidance; no upstream source text, script or DOCX copied",
   "responsibilities": {
     "modeling": [
@@ -63,7 +63,8 @@
       "reference-search.md",
       "mathematical-reasoning.md",
       "statistical-validation.md",
-      "proof-review.md"
+      "proof-review.md",
+      "modeling-proposal.md"
     ],
     "coding": [
       "common-rules.md",
@@ -101,7 +102,8 @@
       "reference-search.md",
       "mathematical-reasoning.md",
       "statistical-validation.md",
-      "proof-review.md"
+      "proof-review.md",
+      "modeling-proposal.md"
     ],
     "P1": [
       "common-rules.md",
@@ -259,6 +261,11 @@
       "path": "proof-review.md",
       "sha256": "5cb3ba19bc46638f837ceda53f6290543f18de820c4c0b96ceccec02b758bc76",
       "bytes": 2288
+    },
+    {
+      "path": "modeling-proposal.md",
+      "sha256": "994307c5583fff01305bed7ad6e30ff6f22828386912b339f235f986908f6975",
+      "bytes": 3547
     }
   ],
   "boundaries": {
@@ -272,6 +279,7 @@
     "html_panel_included": false,
     "all_pdf_pages_required": true,
     "latex_tools_protocol": "1.0.0",
-    "local_adaptation_protocol": "1.0.0"
+    "local_adaptation_protocol": "1.0.0",
+    "modeling_proposal_protocol": "1.0.0"
   }
 }

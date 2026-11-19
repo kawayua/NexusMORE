@@ -2,7 +2,7 @@
 
 **最新论文要求（2026-11-07）**：中文正文、数学建模论文结构，math-reasoning 仅用于公式推导/证明/核对；先 Markdown 审阅与用户选图，再正式排版。三类候选图各至少 3 张、合计至少 9 张，暂选/正式入文至少 8 幅；旧默认图数和宽泛数学工具职责由此次要求覆盖。详见[中文论文规范](chinese-modeling-paper.md)。
 
-更新：2026-11-06。参考用户指定 `C:/Users/y'y/.qoder-cn/skills/nature-figure` 的 SKILL.md、manifest.yaml、static/core/contract.md、static/core/stance.md、references/qa-contract.md。当前是项目规范与实施计划，没有生成新图、安装依赖或接入外部审图脚本。
+更新：2026-11-06。参考用户指定 `历史本地配图参考目录（原始路径保留于本机来源档案）` 的 SKILL.md、manifest.yaml、static/core/contract.md、static/core/stance.md、references/qa-contract.md。当前是项目规范与实施计划，没有生成新图、安装依赖或接入外部审图脚本。
 
 ## 图先服务于论证
 

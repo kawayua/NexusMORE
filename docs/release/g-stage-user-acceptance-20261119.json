@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "milestone": "G",
+  "status": "accepted",
+  "user_acceptance": {
+    "source": "Explicit user message in this conversation",
+    "statement": "验收整个g阶段通过",
+    "scope": "整个G阶段；按已记录的首个DSH宿主与本机业务验收范围收口"
+  },
+  "accepted_milestones": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G4.1",
+    "G4.2",
+    "G5"
+  ],
+  "scope": "枢模 · NexusMORE 完整业务工具契约、工作流MCP、可信用户决定与身份边界、本机DSH接入及原生对话审阅桥接、完整业务与故障交互验收；以既有记录中的实现和实测边界为准。",
+  "evidence": {
+    "G1": [
+      {
+        "path": "docs/release/business-tool-contract-freeze-20261115.json",
+        "sha256": "9cd5b72f71e0578e8f618cdc9526341ae8dab8327d2a2517f267e1e5233b8557"
+      }
+    ],
+    "G2": [
+      {
+        "path": "docs/release/business-workflow-mcp-20261115.json",
+        "sha256": "6bb6addf6e6fb7146c72f79961b3ab0d57f463f80fca19ddd05d29605b0acfca"
+      }
+    ],
+    "G3": [
+      {
+        "path": "docs/release/trusted-user-decisions-20261115.json",
+        "sha256": "b524a65add9976a8ee3b33f28fc44d28f11e70ea204fdca137d424fe4c7786af"
+      },
+      {
+        "path": "docs/release/dsh-trusted-bridge-20261115.json",
+        "sha256": "77c1b32d8030e391ca655a0cedb138dcd38b6dca2da9be8f47fa12db8d7c6f25"
+      }
+    ],
+    "G4": [
+      {
+        "path": "docs/release/dsh-local-connection-20261115.json",
+        "sha256": "d0f2708189252518c2da19a775158d21da9aaad5ade63f6e01d3f3ea07a8a508"
+      },
+      {
+        "path": "docs/release/dsh-native-ui-compatibility-20261115.json",
+        "sha256": "1307cda8e688f6796144f1376d9558a56647ade1690876107bd249e8e1e2f185"
+      },
+      {
+        "path": "docs/release/dsh-conversation-workspace-20261116.json",
+        "sha256": "ded784acaf1cec9576713bbcdc4ea34bdbc799f7996db28a0124f991d26c80b0"
+      },
+      {
+        "path": "docs/release/dsh-chat-review-20261116.json",
+        "sha256": "d4d62d8cbc61f44582cbcd3cd7c0454ab1cfb0315668b1bc920bad93cde901d8"
+      }
+    ],
+    "G5": [
+      {
+        "path": "docs/release/g5-acceptance-20261119.json",
+        "sha256": "43bb55ae2a3debb43168a5e3bee564d301ad452df858ec49886e56ab88224b3c"
+      },
+      {
+        "path": "docs/validation/g5-acceptance-20261119.md",
+        "sha256": "493789db0e29ce522eb69c10cef7afb06b2d5e90b93c3d435d67418db1a0f94f"
+      }
+    ]
+  },
+  "verified_g5_evidence_files": [
+    {
+      "path": "runs/validation/g5-final-20261119-r1/run-result.json",
+      "sha256": "8a8040ac77e368ef7befbfa3e4b445d9f26bdf2bba43f5af4e77edafb28e4c5b"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/database.xml",
+      "sha256": "2da3abffb9ca6315218e60421a36c9305e10f99faa31b0ffa0fb6f504130d86f"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/database.log",
+      "sha256": "79645d8675c59e9d783da9e776387b25ee2d563497644b05cd4babc01b0dea6a"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/unit.xml",
+      "sha256": "7f19d1c48ec4c38ef35a989f8f3c8c87d5d78794c374573d3ef94112aeb27212"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/unit.log",
+      "sha256": "8ff642b76ec7e9662f2f8b0152ca7a2531eb2d6d9763543ec09a0e04cdc22eb4"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/javascript.log",
+      "sha256": "995fc7830c52de66b0ee179ee77d99472f82e97ed464994dae6c025d2da33963"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/source-identity.json",
+      "sha256": "618f7284e9eb909bccd5d12db4a20ea8c997d5cc3988cacacc3dc4e1aefa53e1"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/environment.json",
+      "sha256": "d965614fa00102ac2c6da0ab25c7408e9196c90159a08604a34addc25161092d"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/live-before.json",
+      "sha256": "3bf52a032351585c0acf2067ea59170a2f1f4e6671ca6546508e502ccf85ca75"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/live-after.json",
+      "sha256": "3bf52a032351585c0acf2067ea59170a2f1f4e6671ca6546508e502ccf85ca75"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/host-identity.json",
+      "sha256": "eeaad2bb6f312b81d99d7cbd58b8a3f352f78f3e3307eef96c32cf1c98a45ac8"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/isolated-database-evidence.json",
+      "sha256": "2666ca7b53256399ff208a09334e2fedf31f342a44d05ea7f2eac96c1e4de4db"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/resources.json",
+      "sha256": "c55f6c401575291d2e2e60b6b80edf9084a81259f3cf683a8c19814df410e523"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/acceptance-matrix.json",
+      "sha256": "aa36598abf4e5082b0a66c6cee8f383463a23fa5add8da47aa0a1389c5879360"
+    },
+    {
+      "path": "runs/validation/g5-final-20261119-r1/real-q1-evidence.json",
+      "sha256": "f3c072f8ed5fea3ac4eac7469d5a4348fe0952da86c49220d5982ce902f1b40e"
+    }
+  ],
+  "verified_final_pdf": {
+    "path": "output/paper/assembly-runtime/134d08ff-b255-404c-9651-bc20d72a13ac/asm-export-q1-v9-repro-v1/paper.pdf",
+    "sha256": "a9e3faa6bcfad799835e1209f6eeb0a7210f6256b3bc38a8259ba89e78e8b54d"
+  },
+  "existing_verification": {
+    "total_passed": 417,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "source": "docs/release/g5-acceptance-20261119.json",
+    "rerun_in_this_turn": false
+  },
+  "preserved_boundaries": [
+    "不扩大为其他宿主或全新机器安装通过",
+    "不自动通过H阶段或授予公开发行许可；原F5暂缓与环境例外继续保留",
+    "问题一已接受误差、原阈值FAIL与历史批准保留，不改写为原精度达标",
+    "不更改默认候选图三类各至少3张、合计至少9张与正式入文至少8幅要求",
+    "不新增或补签模型、结果、正文、配图、排版业务批准"
+  ],
+  "actions_this_turn": {
+    "documentation_only": true,
+    "business_database_mutated": false,
+    "supplier_called": false,
+    "numerical_recomputation": false,
+    "paper_reexport": false,
+    "public_release": false
+  },
+  "next_stage": {
+    "milestone": "H",
+    "status": "not_started_by_this_acceptance",
+    "entry": "docs/open-source-harness-roadmap.md#h跨环境评测与开源首发验收"
+  }
+}

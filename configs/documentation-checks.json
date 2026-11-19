@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "documents": [
+    "README.md",
+    "docs/user-guide.md",
+    "docs/contributing.md",
+    "docs/compatibility.md",
+    "docs/troubleshooting.md",
+    "docs/architecture.md",
+    "docs/history/project-progress.md",
+    ".github/ISSUE_TEMPLATE/bug_report.md",
+    ".github/ISSUE_TEMPLATE/feature_request.md",
+    ".github/pull_request_template.md"
+  ],
+  "archive_record": "docs/release/h-stage-sequencing-decision-20261119.json",
+  "private_roots": [
+    "archive",
+    "runs",
+    "output",
+    "artifacts",
+    "tmp",
+    "data",
+    "configs/local"
+  ],
+  "cli_help": [
+    {
+      "module": "modelcrew",
+      "args": [
+        "--help"
+      ],
+      "expected": [
+        "init",
+        "resources-check",
+        "doctor",
+        "environment"
+      ]
+    },
+    {
+      "module": "modelcrew",
+      "args": [
+        "doctor",
+        "--help"
+      ],
+      "expected": [
+        "--profile",
+        "--services",
+        "workflow"
+      ]
+    },
+    {
+      "module": "modelcrew",
+      "args": [
+        "environment",
+        "--help"
+      ],
+      "expected": [
+        "setup",
+        "status",
+        "--offline"
+      ]
+    },
+    {
+      "module": "modelcrew.dsh_integration",
+      "args": [
+        "render",
+        "--help"
+      ],
+      "expected": [
+        "--python",
+        "--workspace"
+      ]
+    },
+    {
+      "module": "modelcrew.dsh_integration",
+      "args": [
+        "install",
+        "--help"
+      ],
+      "expected": [
+        "--python",
+        "--workspace",
+        "--profile"
+      ]
+    },
+    {
+      "module": "modelcrew.workflow_mcp",
+      "args": [
+        "--help"
+      ],
+      "expected": [
+        "describe",
+        "migrate",
+        "serve"
+      ]
+    }
+  ]
+}

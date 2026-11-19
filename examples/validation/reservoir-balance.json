@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "id": "reservoir-balance",
+  "kind": "synthetic_smoke",
+  "statement": "某蓄水池初始蓄水100 m³，容量120 m³。连续4小时各小时开始先流入、再按需供水；不足时如实报告缺口，超容量时弃水。给出逐小时水量、供水、缺口、弃水和总水量平衡。仅验证数据读取与执行/产物链路，不代表完整研究赛题。",
+  "input": {
+    "initial_m3": 100,
+    "capacity_m3": 120,
+    "inflow_m3": [
+      10,
+      0,
+      5,
+      0
+    ],
+    "demand_m3": [
+      20,
+      30,
+      25,
+      15
+    ],
+    "step_hours": 1
+  },
+  "expected": {
+    "end_storage_m3": [
+      90,
+      60,
+      40,
+      25
+    ],
+    "supplied_m3": [
+      20,
+      30,
+      25,
+      15
+    ],
+    "shortage_m3": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "spill_m3": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "balance_residual_m3": 0
+  },
+  "oracle": "integer_mass_balance",
+  "accuracy_basis": "exact_integer_arithmetic_no_rounding_tolerance",
+  "origin": "Project-authored synthetic scenario; no contest text or historical solution copied.",
+  "license": "AGPL-3.0-only"
+}

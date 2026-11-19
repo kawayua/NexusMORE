@@ -4,6 +4,7 @@ from functools import lru_cache
 from typing import Annotated, Any, Literal
 
 import psycopg
+import re
 from fastapi import Depends, FastAPI, Query, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -148,6 +149,26 @@ def default_retriever():
 def create_app(workflow_factory: Callable = Workflow, retrieval_factory: Callable | None = None) -> FastAPI:
     app = FastAPI(title='ModelCrew local API', version='0.1.0',
                   description='Trusted local API. Actors are audit labels. Confirmation and recovery reuse stage B.')
+
+    @app.middleware('http')
+    async def user_decision_boundary(request: Request, call_next):
+        # A local HTTP request/actor label is not independent user capture.
+        # Reject before dependency resolution (and before opening a database).
+        path = request.url.path.rstrip('/')
+        blocked = False
+        if request.method == 'POST':
+            blocked = bool(re.fullmatch(r'/tasks/[^/]+/hand-runs/[^/]+/decisions|/projects/[^/]+/assembly-builds/[^/]+/decisions', path))
+            if re.fullmatch(r'/tasks/[^/]+/actions', path):
+                try:
+                    body = await request.json()
+                    blocked = isinstance(body, dict) and body.get('kind') in ('model', 'result')
+                except ValueError:
+                    pass  # Native body validation still reports malformed JSON.
+        if blocked:
+            return JSONResponse(status_code=403, content={'error': {
+                'code': 'untrusted_user_event',
+                'message': 'Actor labels and HTTP bodies cannot authorize user decisions; use python -m modelcrew.trusted_decisions review.'}})
+        return await call_next(request)
 
     def workflow():
         # A connection/checkpointer pair per request; never share sessions across threads.

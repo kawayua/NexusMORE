@@ -1,5 +1,8 @@
 # 统一安装包与安装验证
 
+**当前使用入口（2026-11-19）**：[使用指南](user-guide.md)与[兼容范围](compatibility.md)汇总当前操作；G已按既有本地DSH实测范围验收，干净设备按用户决定在开源后补测。本页下方带日期的实施/验收段落保留历史时点含义，正文与配图的当前交互以合并审阅规则为准。
+
+
 2026-11-14：F4 新增私有 Windows 准备包与 bootstrap.ps1：可自动准备隔离 CPython 3.13.5、全部生产 extra、独立 PostgreSQL/Qdrant、迁移、执行器与固定版本文档工具。核心 wheel 的最小依赖约定不变，准备包组合使用全部所需组。详见[服务与环境准备](environment-preparation.md)；Docker/WSL2、Harness、Word授权及全新机器验收边界仍照实保留。
 
 2026-11-14 F3：新增统一用户配置、`modelcrew init`、脱敏 `config-show` 与分级 `doctor`。安装包默认写入 %LOCALAPPDATA%/NexusMORE/workspace，支持 MODELCREW_WORKSPACE 或全局 --workspace；数据目录留在工作区内，历史开发根和批准记录保持兼容。首次使用先 `modelcrew init`，明确填写模型端点、模型名和 key 后按所需依赖组诊断。详见[用户配置与初始化](user-configuration.md)。该入口不安装原生工具、不启动 Docker 服务、不发模型请求，F4及后续业务/宿主验收仍需分别完成。

@@ -92,3 +92,21 @@ def test_composer_identity_includes_symbol_adapter(tmp_path,monkeypatch):
     fake=tmp_path/'symbol_adapter.py';fake.write_text('Changed helper implementation',encoding='utf-8')
     monkeypatch.setattr(sy,'__file__',str(fake))
     assert ac.implementation_sha256()!=before
+
+
+def test_four_column_source_table_preserves_original_scope():
+    i=item('q1',[('$x$','位置','m')]);i['sections']['符号说明']=i['sections']['符号说明'].replace('| 单位 |','| 单位 | 适用范围 |').replace('|---|---|---|','|---|---|---|---|').replace('| m |','| m | 边界，$[0,R]$ |')
+    result=build([i]);assert result['rows'][0]['source_scopes'][0]['scope']=='边界，$[0,R]$'
+    assert '问题一（边界，$[0,R]$）' in markdown(result,{'q1':'问题一'})
+
+
+def test_scope_labels_do_not_repeat_long_chapter_titles():
+    from modelcrew.assembly_symbols import scope_label
+    title='问题 1：圆柱形药材预热平衡阶段温度与水分浓度数值模拟'
+    i=item('q1',[('$x$','位置，取值 0—1','m')])
+    i['sections']['符号说明']=i['sections']['符号说明'].replace('| 符号 | 含义 | 单位 |','| 符号 | 含义 | 单位 | 适用范围 |').replace('|---|---|---|','|---|---|---|---|').replace('| $x$ | 位置，取值 0—1 | m |','| $x$ | 位置，取值 0—1 | m | 全域 |')
+    titles={'q1':title};r=build([i]);text=markdown(r,titles)
+    assert '问题 1（全域）' in text and title not in text
+    assert titles['q1']==title and r['rows'][0]['meaning']=='位置，取值 0—1'
+    assert scope_label('q2','问题二：验证')=='问题二'
+    assert scope_label('q3','区域模型')=='区域模型'

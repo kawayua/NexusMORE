@@ -1,6 +1,7 @@
 {
   "schema_version": "1.0.0",
   "allowed_roots": [
+    ".github",
     ".env.example",
     ".gitattributes",
     ".gitignore",

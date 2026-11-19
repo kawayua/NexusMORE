@@ -1,0 +1,386 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-15",
+  "recorded_at": "2026-11-15T15:17:21.541445+00:00",
+  "milestone": "G4.1",
+  "status": "passed",
+  "scope": "Local DSH native interaction compatibility engineering verification only; no trusted host business approval adapter or user acceptance",
+  "conclusion": {
+    "native_interaction_adaptable": true,
+    "trusted_host_ui_adapter_implemented": false,
+    "trusted_host_ui_enabled": false,
+    "current_trusted_capture_channels": [
+      "trusted_local_cli"
+    ]
+  },
+  "host": {
+    "desktop_version": "0.2.2-rc.1",
+    "platform": "Windows",
+    "asar_sha256": "5fa8a6b21bceb8f3e99e30efa2270efd0cc773a11e42aa0488f804a64b34e637",
+    "installed_source_identities": {
+      "dsh/node_modules/@deepseek-ai/dsh-user-questions/lib/index.js": {
+        "sha256": "69fee77aa57cc43de583d53a4877394c4cf3b5d58b8d7579fd8095c0a015bfbd",
+        "bytes": 29917
+      },
+      "dsh/node_modules/@deepseek-ai/dsh-client-ui-user-questions/lib/client.js": {
+        "sha256": "efb462b82314243b2c0693a35a4dcb161944f14fb07bddb731c244da54f25a6d",
+        "bytes": 107744
+      },
+      "dsh/node_modules/@deepseek-ai/dsh-tool-ask-user/lib/index.js": {
+        "sha256": "bd67c94dcecde5c8c0211a5f347fd28ae9c650d631a5d7f4d6f285dd13250438",
+        "bytes": 11183
+      },
+      "dsh/node_modules/@deepseek-ai/dsh-user-approval/lib/index.js": {
+        "sha256": "45b7c170b6897f15a338037b1951997a1b99018c30b5fc95f7e08ad798075be2",
+        "bytes": 8979
+      },
+      "dsh/node_modules/@deepseek-ai/dsh-api-remotes/lib/index.js": {
+        "sha256": "719d9ad01bb3066ab84ecd824f30d630871ed0edcf1ff32df4d6931a553fc3f5",
+        "bytes": 7106
+      }
+    },
+    "upstream_files_modified": false
+  },
+  "entry": {
+    "command": "/nexusmore-ui-check",
+    "implementation": "host human command -> userQuestions.ask -> native DSH question card -> host callback",
+    "fixed_synthetic_content": true,
+    "business_parameters_accepted": false,
+    "extra_model_tools": 0,
+    "timeout_ms": 120000,
+    "local_engineering_status_route": "GET /api/nexusmore/status",
+    "answers_saved_or_echoed": false,
+    "status_storage": "process memory only; resets on restart"
+  },
+  "actual_native_ui": {
+    "automated_engineering_probe_not_real_user_approval": true,
+    "screenshot_visually_inspected": true,
+    "chinese_details_rendered": true,
+    "cases": {
+      "selection": {
+        "status": "passed",
+        "native_service": "userQuestions.ask",
+        "presentation": "native_question_card",
+        "engineering_only": true,
+        "model_request_sent": false,
+        "user_decision_created": false,
+        "trusted_host_ui_enabled": false,
+        "checked_at": "2026-11-15T15:12:56.268Z"
+      },
+      "cancel-option": {
+        "status": "cancelled",
+        "native_service": "userQuestions.ask",
+        "presentation": "native_question_card",
+        "engineering_only": true,
+        "model_request_sent": false,
+        "user_decision_created": false,
+        "trusted_host_ui_enabled": false,
+        "checked_at": "2026-11-15T15:13:15.148Z"
+      },
+      "skip": {
+        "status": "cancelled_or_failed",
+        "engineering_only": true,
+        "user_decision_created": false,
+        "trusted_host_ui_enabled": false,
+        "checked_at": "2026-11-15T15:13:15.398Z"
+      },
+      "freeform": {
+        "status": "cancelled_or_failed",
+        "engineering_only": true,
+        "user_decision_created": false,
+        "trusted_host_ui_enabled": false,
+        "checked_at": "2026-11-15T15:13:15.768Z"
+      },
+      "close": {
+        "status": "cancelled_or_failed",
+        "engineering_only": true,
+        "user_decision_created": false,
+        "trusted_host_ui_enabled": false,
+        "checked_at": "2026-11-15T15:13:34.411Z"
+      }
+    },
+    "actual_host_timeout_tested": false,
+    "large_manuscript_or_figure_review_tested": false
+  },
+  "connection_regression": {
+    "status": "passed",
+    "registered_model_tools": 40,
+    "actual_read_operations": [
+      "capabilities_read",
+      "projects_list"
+    ]
+  },
+  "regressions": {
+    "native_plugin_tests": {
+      "passed": 17
+    },
+    "dsh_registration_package_layout_tests": {
+      "passed": 29
+    },
+    "trusted_decision_regression": {
+      "passed": 112,
+      "skipped": [],
+      "trusted_decision_cases": 39
+    }
+  },
+  "distribution": {
+    "status": "passed",
+    "resources": 234,
+    "wheel_audited": true,
+    "sdist_rebuilt_and_wheel_audited": true,
+    "new_external_install_tested": false,
+    "fresh_windows_tested": false,
+    "build_audit": "tmp/dsh-native-ui-20261115-v001/package-final/build-audit.json",
+    "resource_verification": {
+      "status": "passed",
+      "files": 234,
+      "scope": "declared runtime resources; full knowledge intake and release licensing remain separate"
+    }
+  },
+  "normal_launch": {
+    "normal_launch": true,
+    "temporary_debug_port_closed": true,
+    "single_host_mcp_child": true,
+    "processes": {
+      "main": [
+        17848
+      ],
+      "host": [
+        9496
+      ],
+      "mcp": [
+        {
+          "parent": 9496,
+          "pid": 4124
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "protected_reports_unchanged": 4,
+    "historical_files_unchanged": 127,
+    "profile_unchanged_since_g4": true,
+    "profile_sha256": "bda3c2a71ba3e0c8345af4d91817643aed8d502503622c80c32196ced858f11b",
+    "business_approval_channel_changed": false
+  },
+  "business_database": {
+    "historical_table_counts_unchanged": {
+      "mc_assembly_build_events": 52,
+      "mc_assembly_builds": 6,
+      "mc_assembly_runs": 4,
+      "mc_backend_attempts": 4722,
+      "mc_backend_receipts": 1999,
+      "mc_contracts": 6990,
+      "mc_events": 17237,
+      "mc_executions": 2594,
+      "mc_hand_events": 17782,
+      "mc_hand_runs": 957,
+      "mc_math_packages": 2660,
+      "mc_mcp_traces": 1208,
+      "mc_modeling_events": 4435,
+      "mc_modeling_runs": 828,
+      "mc_projects": 74,
+      "mc_question_intakes": 320,
+      "mc_question_references": 153,
+      "mc_reference_discussions": 161,
+      "mc_references": 248,
+      "mc_requests": 8254,
+      "mc_results": 2927,
+      "mc_summaries": 913,
+      "mc_tasks": 5388,
+      "mc_version_entries": 1290
+    },
+    "other_business_tables_empty": {
+      "mc_business_artifacts": 0,
+      "mc_business_operation_events": 0,
+      "mc_business_operations": 0,
+      "mc_trusted_user_event_claims": 0,
+      "mc_trusted_user_events": 0
+    },
+    "migrations": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "row_hash_comparison_performed": false,
+    "read_only_transaction": true
+  },
+  "remaining_for_business_native_decisions": [
+    "Trusted host callback capture bound to local OS principal, host instance/session and a private one-time challenge",
+    "Backend-authored full pending review, immutable binding and bytes rechecked at capture and submission",
+    "Separate manuscript and figure decisions with explicit reason/statement; free text and skipped/cancelled answers never approve",
+    "Reuse G3 durable single-event claim, idempotency, expiry, unknown-outcome reconciliation and replay fencing",
+    "Real-user business validation plus disconnect/restart matrix; no stage approval supplied by engineering automation"
+  ],
+  "boundaries": {
+    "model_requests_sent": 0,
+    "solver_requests_sent": 0,
+    "real_user_approvals_created": false,
+    "database_migration_added": false,
+    "remote_identity_authentication_proved": false,
+    "tool_permission_dialog_is_business_approval": false,
+    "same_os_account_arbitrary_code_outside_boundary": true,
+    "public_release_authorized": false
+  },
+  "protected_historical_reports": {
+    "docs/release/business-tool-contract-freeze-20261115.json": "9cd5b72f71e0578e8f618cdc9526341ae8dab8327d2a2517f267e1e5233b8557",
+    "docs/release/business-workflow-mcp-20261115.json": "6bb6addf6e6fb7146c72f79961b3ab0d57f463f80fca19ddd05d29605b0acfca",
+    "docs/release/trusted-user-decisions-20261115.json": "b524a65add9976a8ee3b33f28fc44d28f11e70ea204fdca137d424fe4c7786af",
+    "docs/release/dsh-local-connection-20261115.json": "d0f2708189252518c2da19a775158d21da9aaad5ade63f6e01d3f3ea07a8a508"
+  },
+  "source_identities": [
+    {
+      "path": "src/harness/nexusmore-dsh.mjs",
+      "sha256": "2f8a01c427097651abe5e76373560697b73d47b44d5ac5622147f98e038d4c31",
+      "bytes": 11826
+    },
+    {
+      "path": "src/modelcrew/resources/harness/nexusmore-dsh.mjs",
+      "sha256": "2f8a01c427097651abe5e76373560697b73d47b44d5ac5622147f98e038d4c31",
+      "bytes": 11826
+    },
+    {
+      "path": "tests/harness/dsh-connection.test.mjs",
+      "sha256": "3dc762466059318d62f9d69208f86b3e49513fdb38bb3398ef561989283b4b31",
+      "bytes": 10111
+    },
+    {
+      "path": "src/modelcrew/resources/resource-manifest.json",
+      "sha256": "d0f0f78c67f9b27ce466bf6ca96f0251220f750ab66150c576836b25604bf0b6",
+      "bytes": 58194
+    },
+    {
+      "path": "docs/dsh-local-connection.md",
+      "sha256": "90b5800dd732e48c7adc23399ab12503bd368efbd3c527648b5536d448281b36",
+      "bytes": 10992
+    },
+    {
+      "path": "README.md",
+      "sha256": "d56d0241dc1fef5ee976db60a9c69a2c7d472287ab8de6328140d200ee77df10",
+      "bytes": 19336
+    },
+    {
+      "path": "docs/roadmap.md",
+      "sha256": "df4360673465972f08b4e1b9b143613fa541b27ae37ec19d3a0a237ea1e9a9fc",
+      "bytes": 65427
+    },
+    {
+      "path": "docs/open-source-harness-roadmap.md",
+      "sha256": "8e8d271d21104dd9ccead33d7a5549e7be2b58b40c3cac0d88229be78dac9417",
+      "bytes": 19043
+    }
+  ],
+  "evidence": [
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/actual-host-diagnosis.json",
+      "sha256": "0da3463089a81c28839c97b09f4f4d8d5814a21fa77bf5e34746857f3deda352",
+      "bytes": 2554
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/actual-native-cancel-option.json",
+      "sha256": "c51e8d366f8c16a88b9cc54e59ec18206190794c253788e23e74285526485fd1",
+      "bytes": 292
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/actual-native-close.json",
+      "sha256": "76bd90f4ec4306d7a03fa29cc8fd072f4691dda1d292c8095bc82707243f3777",
+      "bytes": 185
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/actual-native-freeform.json",
+      "sha256": "5293354326ce34b247561a11887388b1b81081a6c1a269b3074fa921feb5eba2",
+      "bytes": 185
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/actual-native-selection.json",
+      "sha256": "f0d246f43ac47c7bebb6e1f22f55ca73c7c6b234d31ba45455629fe867168eba",
+      "bytes": 289
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/actual-native-skip.json",
+      "sha256": "e03f3ed4e7deeae4c152e32a6415c4512fdc7f542419a7a218cfc81d3a86c28c",
+      "bytes": 185
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/automated-engineering-selection.json",
+      "sha256": "84c80c60aa96d0980dd1957efd4a858da283265740af0d720915503e7ef448ed",
+      "bytes": 93
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/business-database-check.json",
+      "sha256": "5cd13ce705a77073d874f9b4815d906e62b15fbd6327c1aaa7c013b272581c91",
+      "bytes": 1202
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/native-callback-readback.json",
+      "sha256": "926bb3b7f14ba7adb8473d486b9152f12db79844ef224313399cc2066da0895d",
+      "bytes": 88
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/native-card-readback.json",
+      "sha256": "8bcf6a5670c1896d8c40e38dc71f5bc7004c9b513e0143375405a13d6ebd4a98",
+      "bytes": 833
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/native-source-identities.json",
+      "sha256": "5df16ee94a4ba1901f5122e7b7be5e45ed1e526015af6c47ac92bc3c9a1be34b",
+      "bytes": 903
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/normal-launch-verification.json",
+      "sha256": "43b91b887b08a14dc5274c118a1dd73c097790bb9682f09a3fcf30e9fc990651",
+      "bytes": 283
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/preservation.json",
+      "sha256": "daf45716f7dbefc774140216cf6829ce09c5848c562f01a48e797a56aa81691f",
+      "bytes": 253
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/protected-before.json",
+      "sha256": "bc718b67d78e4ccafbd6ee48d1d0eaa54bc5bbc3d7ddc00dce2ba50db4c77723",
+      "bytes": 503
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/session.json",
+      "sha256": "2afc753a6746b63fca7349b1baa523a13242727b5f65e2bdd10de88a9e9fd1bb",
+      "bytes": 128
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/native-final-question-card.png",
+      "sha256": "607b1d597af6113ffeb5a731259dd23bbddcac6365f0c25b9378d62bfeadc193",
+      "bytes": 70742
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/node-tests.log",
+      "sha256": "5ce09ad3b4e6966edd09e2910def21187e144e16f0ab0f801faa19e57a572442",
+      "bytes": 1463
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/pytest.xml",
+      "sha256": "c1fc33a9e8be8e3f61572a55c40509370943ba1664fbf16604da85d0ee9d7165",
+      "bytes": 3994
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/trust-regression/verification.json",
+      "sha256": "f15e6955452fd74fea470dc1618dbf422c3c3548bdd877dfccec36a5a1d64bd5",
+      "bytes": 2925
+    },
+    {
+      "path": "tmp/dsh-native-ui-20261115-v001/package-final/build-audit.json",
+      "sha256": "2a197bf709278a2b0c6a531629334b786ccb8c4d4ef2848320cb809788cbe231",
+      "bytes": 10850
+    }
+  ]
+}

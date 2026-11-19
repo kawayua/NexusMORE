@@ -1,0 +1,21 @@
+{
+  "scope": "single-run numeric engineering test; no paper/export acceptance",
+  "acceptance_record": "runs/acceptance/numeric-only-test-20261116-v001/acceptance.json",
+  "acceptance_sha256": "1404302daba0e193c5b6e2e4ac8f6258041239d3af8f03d9e0f29cf0d6a8a589",
+  "native_review_record": "runs/acceptance/numeric-only-test-20261116-v001/native-review.json",
+  "native_review_sha256": "90b7eccf281f843f09faaa300473b7253fc8f96a7405931744d4cbea836d56ce",
+  "source_sha256": {
+    "src\\modelcrew\\numeric_test_scope.py": "165cd27ef3e8f7131891a2eb3287adb541c273ad7476af2d148033f42a97442f",
+    "src\\modelcrew\\hand_runtime.py": "45e72fa56c00339812989fea3dcc98178647063afe8bf9c8d333a52f76e035d0",
+    "src\\modelcrew\\hand_repair.py": "5f883c4f8a4a168dc17ca36e891c79613553ede4511e4a46de186e1eae58d2f0",
+    "tests\\test_hand_runtime.py": "b625232113c8bf6515c372118b7d8995ae51af3362148d68e83aee96babff99f",
+    "docs\\numeric-only-test-scope.md": "432035588e484e70b33d36f02c28dc42fcb76096d63dd7d892192576054519ff"
+  },
+  "verification": {
+    "unique_tests_passed": 44,
+    "supplier_P2": "PASS",
+    "user_result_approval": false
+  },
+  "historical_files_preserved": true,
+  "global_figure_policy_changed": false
+}

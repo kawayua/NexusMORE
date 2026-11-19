@@ -154,3 +154,39 @@ def test_m1_pointer_navigation_preserves_root_paths_before_large_subtrees():
     assert paths[:len(value)]==["/"+key for key in value]
     assert "/dossier/validation_plan" not in paths
     for path in paths: pointer(value,path)
+
+
+@pytest.mark.parametrize('auto_correct,valid_second,expected_calls', [(True,True,2),(True,False,2),(False,True,1)])
+def test_planning_structural_feedback_is_bounded_and_never_coerces_unknown(tmp_path,auto_correct,valid_second,expected_calls):
+    from modelcrew.modeling_hand import planning_result
+    valid={'task_graph':[{'id':'q1','scope':'scope','conclusion_type':'simulation'}],
+        'category':'simulation','research_question':'root','facts':{}}
+    invalid={**valid,'facts':{'symmetry':'unknown_requires_model_review'}}
+    class Provider:
+        def __init__(self):self.inputs=[]
+        def call(self,folder,stage,system,data,**kwargs):
+            self.inputs.append(copy.deepcopy(data))
+            return (valid if valid_second and len(self.inputs)>1 else invalid),{'call_id':str(len(self.inputs))}
+    provider=Provider();payload={'calls':[]}
+    if auto_correct and valid_second:
+        plan,meta=planning_result(provider,tmp_path,{},payload,auto_correct=auto_correct)
+        assert plan.facts=={} and meta['call_id']=='2'
+    else:
+        with pytest.raises(ValidationError):planning_result(provider,tmp_path,{},payload,auto_correct=auto_correct)
+    assert len(provider.inputs)==expected_calls
+    assert payload['planning_attempts'][0]['status']=='STRUCTURE_FAIL'
+    assert (tmp_path/'planning-validation-0.json').exists()
+    if expected_calls==2:
+        assert provider.inputs[1]['planning_feedback']['issues'][0]['loc']==('facts','symmetry')
+
+
+def test_planning_transport_ambiguity_is_never_retried(tmp_path):
+    from modelcrew.modeling_hand import planning_result
+    class Provider:
+        calls=0
+        def call(self,*args,**kwargs):
+            self.calls+=1
+            raise ModelCallError('Model transport outcome unknown; no automatic resend')
+    provider=Provider()
+    with pytest.raises(ModelCallError):planning_result(provider,tmp_path,{}, {'calls':[]}, auto_correct=True)
+    assert provider.calls==1

@@ -55,6 +55,8 @@ def main():
         import os
         if a.workspace is not None: os.environ['MODELCREW_WORKSPACE']=str(a.workspace.absolute())
         if a.config is not None: os.environ['MODELCREW_CONFIG']=str(a.config.absolute())
+        if a.cmd=='act' and a.kind in ('model','result'):
+            raise ValueError('Actor labels and command arguments cannot authorize user decisions; use python -m modelcrew.trusted_decisions review.')
         if a.cmd=='environment':
             from . import service_environment as services
             if a.action=='prepare':answer=services.prepare()

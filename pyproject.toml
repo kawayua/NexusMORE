@@ -14,6 +14,7 @@ dependencies = ["jsonschema>=4.26,<5"]
 classifiers = ["Private :: Do Not Upload"]
 
 [project.optional-dependencies]
+dsh = ["PyYAML==6.0.3"]
 figures = ["matplotlib==3.10.3", "numpy==2.3.1", "openpyxl==3.1.5", "Pillow==12.2.0", "PyMuPDF==1.27.2.3", "pypdf==6.16.1"]
 workflow = ["anyio==4.14.2", "beautifulsoup4==4.15.0", "httpx==0.28.1", "jsonschema==4.26.0", "langgraph-checkpoint-postgres==3.2.0", "langgraph-checkpoint==4.3.1", "langgraph==1.2.10", "mcp==1.30.0", "numpy==2.3.1", "openpyxl==3.1.5", "Pillow==12.2.0", "portalocker==4.4.2", "psycopg[binary]==3.3.4", "pydantic==2.13.4", "pypdf==6.16.1", "qdrant-client==1.20.0", "scipy==1.16.0", "sympy==1.13.1"]
 retrieval = ["anyio==4.14.2", "beautifulsoup4==4.15.0", "fastapi==0.162.0", "httpx==0.28.1", "jsonschema==4.26.0", "langgraph-checkpoint-postgres==3.2.0", "langgraph-checkpoint==4.3.1", "langgraph==1.2.10", "mcp==1.30.0", "numpy==2.3.1", "openpyxl==3.1.5", "Pillow==12.2.0", "portalocker==4.4.2", "psycopg[binary]==3.3.4", "pydantic==2.13.4", "pypdf==6.16.1", "qdrant-client==1.20.0", "sentence-transformers==6.0.0", "uvicorn==0.52.1"]
@@ -50,6 +51,10 @@ modelcrew = [
     "resources/mathematics/statistical-reasoning.md",
     "resources/rendering/render-word.ps1",
     "resources/harness/nexusmore-workflow.js",
+    "resources/harness/nexusmore-dsh.mjs",
+    "resources/harness/nexusmore-dsh-decisions.mjs",
+    "resources/harness/nexusmore-dsh-conversation.mjs",
+    "resources/harness/nexusmore-dsh-client.js",
     "resources/harness/package.json",
     "resources/deployment/Dockerfile.runtime",
     "resources/deployment/postgres.yaml",
@@ -77,6 +82,7 @@ modelcrew = [
     "resources/collaboration/model-contract.md",
     "resources/collaboration/model-selection.md",
     "resources/collaboration/modeling-hand.md",
+    "resources/collaboration/modeling-proposal.md",
     "resources/collaboration/paper-structure.md",
     "resources/collaboration/quality-gates.md",
     "resources/collaboration/writing-hand.md",
@@ -94,6 +100,10 @@ modelcrew = [
     "resources/algorithms/modelcrew-notes.md",
     "resources/algorithms/numerical-geometry.md",
     "resources/contracts/README.md",
+    "resources/contracts/business-tools-1.0.0.json",
+    "resources/contracts/business-examples-1.0.0.json",
+    "resources/contracts/business-request-1.0.0.schema.json",
+    "resources/contracts/business-response-1.0.0.schema.json",
     "resources/contracts/collaboration-artifact-1.0.0.schema.json",
     "resources/contracts/collaboration-binding-1.0.0.schema.json",
     "resources/contracts/collaboration-call-1.0.0.schema.json",
@@ -251,6 +261,9 @@ modelcrew = [
     "resources/migrations/010_hand_runtime.sql",
     "resources/migrations/011_assembly_inputs.sql",
     "resources/migrations/012_assembly_builds.sql",
+    "resources/migrations/013_business_mcp.sql",
+    "resources/migrations/014_trusted_user_events.sql",
+    "resources/migrations/015_trusted_host_captures.sql",
     "resources/paper/reference/chapter-template.md",
     "resources/paper/reference/writing-guidelines.md",
     "resources/paper/reference/paper-format.md",

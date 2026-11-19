@@ -18,7 +18,17 @@ from .model_client import JsonModel,ModelCallError
 from .workflow import WorkflowError
 
 
-CURRENT_PROTOCOL='2.2.0'
+CURRENT_PROTOCOL='3.0.0'
+
+
+def reference_protocol(version):
+    if version=='2.2.0':
+        from . import w2_protocol
+        return w2_protocol
+    if version=='3.0.0':
+        from . import w2_protocol_v3
+        return w2_protocol_v3
+    raise WorkflowError('Unsupported frozen W2 protocol')
 
 class W2Request(builds.RenderRequest):
     render_request_id: str = Field(pattern=r'^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$')
@@ -40,7 +50,7 @@ class W2Answer(M1Answer):
     pages_reviewed: list[PageReview] = Field(min_length=2,max_length=100)
 
 
-def packet(row,req,base):
+def packet(row,req,base,*,workflow=None):
     p=row['payload'];export=p['exports'].get(req.export_request_id);render=p.get('renders',{}).get(req.render_request_id)
     if (not export or export['phase']!='EXPORTED' or not render or render['phase']!='RENDERED'
             or render['export_request_id']!=req.export_request_id or render['result'].get('status')!='passed'):
@@ -103,9 +113,18 @@ def packet(row,req,base):
     guidance_sha256 = freeze_guidance(base)
     p['sealed'][builds.rel(base/SNAPSHOT_NAME)] = guidance_sha256
     data['nexusmore_guidance'] = frozen_context(base, guidance_sha256, 'W2')
-    if CURRENT_PROTOCOL=='2.2.0':
-        from .w2_protocol import prepare
-        refs,view,_=prepare(data)
+    if CURRENT_PROTOCOL=='3.0.0':
+        from .w2_runtime_evidence import collect
+        from .mcp_client import executor_root
+        input_row=builds.inputs.load(workflow, str(row['project_id']), str(row['assembly_run_id']))
+        for chapter in input_row['payload']['chapters']:
+            report=collect(workflow,chapter,root=builds.ROOT,executor=executor_root())
+            name='runtime-reproduction-'+chapter['question_id'];path=base/(name+'.json')
+            view={'source':'Bound external executor records and accepted independent P2; no new execution','value':report}
+            builds.inputs.write_once(path,view);p['sealed'][builds.rel(path)]=sha_file(path)
+            add('claim-'+name,path,'reproduction',view)
+    if CURRENT_PROTOCOL in ('2.2.0','3.0.0'):
+        refs,view,_=reference_protocol(CURRENT_PROTOCOL).prepare(data)
         data['review_protocol']={'version':CURRENT_PROTOCOL,'registry':refs,
                                  'model_packet_sha256':digest(view)}
         builds.inputs.write_once(base/'model-packet.json',view)
@@ -123,7 +142,7 @@ def packet(row,req,base):
         call=Call(call_id=role+'-provenance-import-'+str(uuid.uuid4()),context_id=str(uuid.uuid4()),role=role,binding=binding)
         store.register_call(call);authors.append(call)
     artifacts=[Artifact(artifact_id=k,kind=v['kind'],path=v['path'],sha256=v['sha256'],
-                 author_call_ids=[authors[1 if v['kind']=='figure' else 0].call_id]) for k,v in files.items()]
+                 author_call_ids=[authors[1 if v['kind'] in ('figure','reproduction') else 0].call_id]) for k,v in files.items()]
     snap=Snapshot(binding=binding,hand='writing',artifacts=artifacts,lineage_call_ids=[a.call_id for a in authors])
     snapshot=store.freeze(snap)
     reviewer=Call(call_id='W2-'+str(uuid.uuid4()),context_id=str(uuid.uuid4()),role='quality',binding=binding)
@@ -156,7 +175,7 @@ def start(w,project,build_id,*,model=None,_retry_delivery=False,**kwargs):
             if (not req.recheck_of and row['phase']!='WAITING_W2') or not builds.reviews(row)['can_export']:
                 raise WorkflowError('Current approved rendered build required before W2')
             base=builds.folder(build_id)/'w2'/req.request_id;base.mkdir(parents=True,exist_ok=False)
-            proof=packet(row,req,base)
+            proof=packet(row,req,base,workflow=w)
             op={'request_sha256':identity,'request':req.model_dump(exclude_none=True),'phase':'DISPATCHING',
                 'folder':builds.rel(base),**proof};ops[req.request_id]=op
             p['current_w2_request_id']=req.request_id
@@ -188,9 +207,9 @@ def start(w,project,build_id,*,model=None,_retry_delivery=False,**kwargs):
             else:
                 images=[{**i,'path':str(workspace_path(builds.ROOT,i['path']))} for i in data['images']]
                 model_data=data
-                if data.get('review_protocol',{}).get('version')=='2.2.0':
-                    from .w2_protocol import prepare
-                    refs,model_data,protocol_images=prepare(data)
+                if data.get('review_protocol',{}).get('version') in ('2.2.0','3.0.0'):
+                    protocol=reference_protocol(data['review_protocol']['version'])
+                    refs,model_data,protocol_images=protocol.prepare(data)
                     if refs!=data['review_protocol']['registry'] or digest(model_data)!=data['review_protocol']['model_packet_sha256']:
                         raise WorkflowError('W2 model packet or registered evidence changed')
                     images=[{**i,'path':str(workspace_path(builds.ROOT,i['path']))} for i in protocol_images]
@@ -209,9 +228,16 @@ def start(w,project,build_id,*,model=None,_retry_delivery=False,**kwargs):
             builds.save(w,row,'W2_DELIVERY_BLOCKED' if not_sent else 'W2_RECOVERY_REQUIRED');raise
         try:
             native=answer
-            if data.get('review_protocol',{}).get('version')=='2.2.0':
-                from .w2_protocol import compile_answer
-                native,compilation=compile_answer(answer,data,data['review_protocol']['registry'])
+            if data.get('review_protocol',{}).get('version') in ('2.2.0','3.0.0'):
+                protocol=reference_protocol(data['review_protocol']['version'])
+                native,compilation=protocol.compile_answer(answer,data,data['review_protocol']['registry'])
+                if data['review_protocol']['version']=='3.0.0':
+                    detail=base/'review-details.json'
+                    if detail.exists():
+                        if builds.read(detail)!=answer:raise WorkflowError('W2 detail report changed')
+                    else:builds.inputs.write_once(detail,answer)
+                    p['sealed'][builds.rel(detail)]=sha_file(detail)
+                    compilation['detail_report'].update(path=builds.rel(detail),file_sha256=sha_file(detail))
                 compiled={'compilation':compilation,'native_answer':native}
                 target=base/'compiled-answer.json'
                 if target.exists():

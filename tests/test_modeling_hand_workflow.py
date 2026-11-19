@@ -12,6 +12,7 @@ from modelcrew.contracts import digest
 from modelcrew.collaboration import REQUIRED_CHECKS, sha_file
 from modelcrew.modeling_hand import assert_m1
 from modelcrew.workflow import Workflow, WorkflowError
+from proposal_fixtures import document, audit
 
 
 class FixtureModel:
@@ -26,7 +27,8 @@ class FixtureModel:
             baseline=data['baseline']['contract'];steps=baseline['method']['steps']+['Fixture user guidance: '+data['user_guidance']+'; rework='+str(bool(data['M1_feedback']))]
             decisions=[{'citation_id':c['citation_id'],'decision':'adopted','reason':'Need a scalar bracket','adaptation':'Prove premises for this case','limitations':'Caller facts are unknown until model review'} for c in data['references']['cards']]
             return {'task_graph':graph,'edits':[{'op':'replace','path':'/contract/method/steps','value':steps}],
-                    'source_decisions':decisions,'proposal':'合成模型输出：'+data['user_guidance'],'questions':[]},meta
+                    'source_decisions':decisions,'proposal':'合成模型输出：'+data['user_guidance'],'questions':[],
+                    'review_document':document(baseline['sources'][0]['id'])},meta
         state=self.statuses.pop(0) if self.statuses else 'PASS'
         checks=[{'check_id':c,'status':'PASS','explanation':'Fixture only; no mathematical assessment',
                  'evidence':[{'artifact_id':'contract','selector':'/missing' if self.invalid_selector else '/method'}]} for c in REQUIRED_CHECKS['M1']]
@@ -34,7 +36,7 @@ class FixtureModel:
         if state!='PASS':
             checks[0]['status']=state
             issues=[{'check_id':'model','severity':'blocking','domain':'model','target':'modeling','reason':'Injected issue','recheck':'M1 after revision'}]
-        return {'status':state,'checks':checks,'issues':issues},meta
+        return {'status':state,'checks':checks,'issues':issues,'proposal_audit':audit()},meta
 
 
 @pytest.fixture
@@ -235,9 +237,10 @@ def test_schema_failure_has_one_bounded_repair_without_publishing_invalid_contra
         assert 'mathematical_package_schema' in model.calls[2]['data']
 
 
-def test_explicit_read_only_recheck_preserves_fail_and_cannot_loop(task):
+@pytest.mark.parametrize('initial_status',['FAIL','BLOCKED'])
+def test_explicit_read_only_recheck_preserves_fail_and_cannot_loop(task,initial_status):
     with Workflow() as w:
-        result=invoke(w,task,FixtureModel(['FAIL']),auto_correct=False)
+        result=invoke(w,task,FixtureModel([initial_status]),auto_correct=False)
         old_key=result['receipt_sha256'];old_snapshot=result['snapshot_sha256']
         reviewer=FixtureModel()
         second=w.recheck_modeling(task,version=result['version'],run_id=result['run_id'],actor='TEST_REVIEW_OPERATOR',request_id='recheck-once',rationale='Inspect a contradictory assertion against original evidence',model=reviewer)
@@ -396,3 +399,265 @@ def test_malformed_recheck_exhausts_budget_without_becoming_unknown_or_resending
         assert w.recheck_modeling(task,**args)["status"]=="needs_human" and len(reviewer.calls)==1
         with pytest.raises(WorkflowError,match="budget"):w.recheck_modeling(task,**{**args,"request_id":"resend"})
         assert not w.task(task)["model_approved"]
+
+
+
+def test_summary_only_new_proposal_cannot_publish_contract_or_reach_M1(task):
+    class SummaryOnly(FixtureModel):
+        def call(self,*args,**kwargs):
+            value,meta=super().call(*args,**kwargs)
+            if args[1]=='modeling':value.pop('review_document')
+            return value,meta
+    model=SummaryOnly()
+    with Workflow() as w:
+        result=invoke(w,task,model,auto_correct=False)
+        assert result['status']=='needs_human' and result['attempts'][0]['status']=='STRUCTURE_FAIL'
+        assert w.task(task)['current_version']==1 and not w.task(task)['model_approved']
+        assert [c['stage'] for c in model.calls]==['planning','modeling']
+
+
+def test_new_M1_blanket_pass_without_section_audit_is_blocked(task):
+    class BlankPass(FixtureModel):
+        def call(self,*args,**kwargs):
+            value,meta=super().call(*args,**kwargs)
+            if args[1]=='M1':value.pop('proposal_audit')
+            return value,meta
+    with Workflow() as w:
+        result=invoke(w,task,BlankPass(),auto_correct=False)
+        assert result['status']=='blocked'
+        with pytest.raises(WorkflowError,match='independent M1'):assert_m1(w,w.task(task))
+        assert not w.task(task)['model_approved']
+
+
+def test_subcriterion_math_failure_overrides_declared_M1_pass(task):
+    class WrongOrder(FixtureModel):
+        def call(self,*args,**kwargs):
+            value,meta=super().call(*args,**kwargs)
+            if args[1]=='M1':
+                finding=next(x for x in value['proposal_audit'] if x['criterion']=='convergence_reasoning')
+                finding.update(status='FAIL',explanation='合成反例：加密比值1.5不能证明二阶收敛。')
+            return value,meta
+    with Workflow() as w:
+        result=invoke(w,task,WrongOrder(),auto_correct=False)
+        assert result['status']=='needs_human' and result['attempts'][-1]['status']=='FAIL'
+        assert not w.task(task)['model_approved']
+
+
+def test_readable_proposal_edit_after_M1_blocks_new_admission(task):
+    with Workflow() as w:
+        result=invoke(w,task,FixtureModel())
+        assert assert_m1(w,w.task(task))
+        path=ROOT/result['attempts'][-1]['proposal_path']
+        path.write_text('Changed user-facing proposal',encoding='utf-8')
+        with pytest.raises(WorkflowError,match='Readable modeling proposal changed'):assert_m1(w,w.task(task))
+
+
+def test_recheck_precondition_rejection_does_not_claim_or_fence_task(task):
+    from modelcrew.business_adapter import BusinessAdapter
+    from modelcrew.business_store import BusinessStore
+    with Workflow() as w:
+        w.setup()
+        result=invoke(w,task,FixtureModel())
+        current=w.task(task)
+        sha=w.db.execute('SELECT sha256 FROM mc_contracts WHERE task_id=%s AND version=%s',(task,result['version'])).fetchone()['sha256']
+    key='recheck-already-passed'
+    request={'contract_version':'1.0.0','operation':'modeling_recheck','request_id':key,
+        'expected_binding':{'task_id':task,'run_id':result['run_id'],'version':result['version'],'contract_sha256':sha},
+        'arguments':{'task_id':task,'run_id':result['run_id'],'body':{'version':result['version'],
+            'actor':'TEST_REVIEW_OPERATOR','request_id':key,'rationale':'An already passed review cannot be challenged'}}}
+    response=BusinessAdapter().invoke('modeling_recheck',request)
+    assert response['status']=='error' and response['error']['code']=='workflow_conflict'
+    with Workflow() as w:
+        store=BusinessStore(w.db)
+        scope={'project_id':current['project_id'],'task_id':task,'run_id':result['run_id']}
+        assert store.get(scope,'modeling_recheck',key) is None
+        assert store.unresolved('task:'+task) is None
+        assert not w.task(task)['model_approved']
+
+
+def test_internal_reference_repair_receives_located_feedback_before_any_publish(task):
+    class InternalFirst(FixtureModel):
+        def __init__(self):super().__init__();self.invalid=True
+        def call(self,*args,**kwargs):
+            value,meta=super().call(*args,**kwargs)
+            if args[1]=='modeling' and self.invalid:
+                self.invalid=False
+                value['review_document']['verification_plan']+=' eq:heat2d'
+            return value,meta
+    model=InternalFirst()
+    with Workflow() as w:
+        result=invoke(w,task,model)
+        assert result['status']=='ready' and result['version']==2
+        assert [a['status'] for a in result['attempts']]==['STRUCTURE_FAIL','PASS']
+        correction=model.calls[2]['data']
+        error=correction['M1_feedback']['validation_errors'][0]
+        assert error['loc']==['review_document','verification_plan'] and error['matched_text']=='eq:heat2d'
+        assert 'eq:heat2d' in correction['readable_prose_rule']['forbidden_examples']
+        assert [c['stage'] for c in model.calls]==['planning','modeling','modeling','M1']
+        assert not w.task(task)['model_approved']
+
+
+def test_missing_m1_item_routes_to_review_recovery_without_rewriting_author(task):
+    class MissingReviewItem(FixtureModel):
+        def call(self,*args,**kwargs):
+            value,meta=super().call(*args,**kwargs)
+            if args[1]=='M1':value['checks']=[x for x in value['checks'] if x['check_id']!='validation_plan']
+            return value,meta
+    model=MissingReviewItem()
+    with Workflow() as w:
+        result=invoke(w,task,model)
+        assert result['status']=='needs_human' and result['rework_target']=='recovery'
+        assert result['failure_domain']=='review_output'
+        assert result['review_coverage']['missing']==['validation_plan']
+        assert [c['stage'] for c in model.calls]==['planning','modeling','M1']
+        assert not w.task(task)['model_approved']
+        from modelcrew.collaboration import CollaborationStore,Receipt
+        receipt=CollaborationStore(asset_path(ROOT,result['folder'])/'records').load(Receipt,result['receipt_sha256'])
+        assert receipt.status=='BLOCKED' and len(receipt.checks)==6
+        assert next(x for x in receipt.checks if x.check_id=='validation_plan').status=='BLOCKED'
+
+
+class RecordedPartialM1(FixtureModel):
+    def call(self,folder,stage,system,data,**kwargs):
+        value,meta=super().call(folder,stage,system,data,**kwargs)
+        if stage=='modeling':value['edits']=[]
+        if stage=='M1':
+            value['checks']=[c for c in value['checks'] if c['check_id']!='validation_plan']
+            response=Path(folder)/('M1-'+meta['call_id']+'-response.json')
+            response.write_text(json.dumps({'choices':[{'finish_reason':'stop','message':{'content':json.dumps(value)}}]}),encoding='utf-8')
+            meta.update(http_status=200,finish_reason='stop',response_sha256=sha_file(response))
+            response.with_name(response.name.replace('-response.json','-metadata.json')).write_text(json.dumps(meta),encoding='utf-8')
+        return value,meta
+
+
+def test_cached_partial_original_m1_recovers_without_new_model_call(task,monkeypatch):
+    from modelcrew import modeling_hand as mh
+    original=mh.admit_m1_answer
+    def old_bug(*a,**k):raise ValueError('Required M1 check missing: validation_plan')
+    monkeypatch.setattr(mh,'admit_m1_answer',old_bug)
+    model=RecordedPartialM1(['FAIL'])
+    with Workflow() as w:
+        with pytest.raises(ValueError):invoke(w,task,model,request_id='old-partial-review')
+        row=w.modeling_status(task)[-1]
+        folder=asset_path(ROOT,row['payload']['folder'])
+        raw=next(folder.rglob('M1-*-response.json'));raw_hash=sha_file(raw)
+        monkeypatch.setattr(mh,'admit_m1_answer',original)
+        result=mh.recover_completed_modeling_review(w,task,str(row['id']))
+        assert result['status']=='needs_human' and result['cached_review_recovery']['no_model_call']
+        assert result['review_coverage']['missing']==['validation_plan']
+        assert len(model.calls)==3 and sha_file(raw)==raw_hash
+        assert not w.task(task)['model_approved']
+        assert mh.recover_completed_modeling_review(w,task,str(row['id']))['receipt_sha256']==result['receipt_sha256']
+        assert len(model.calls)==3
+
+
+def test_business_status_recovers_legacy_partial_review_and_releases_fence(task,monkeypatch):
+    from modelcrew import modeling_hand as mh
+    from modelcrew.business_adapter import BusinessAdapter
+    from modelcrew.business_store import BusinessStore
+    original=mh.admit_m1_answer
+    def old_bug(*a,**k):raise ValueError('Required M1 check missing: validation_plan')
+    monkeypatch.setattr(mh,'admit_m1_answer',old_bug)
+    model=RecordedPartialM1(['FAIL'])
+    class RecordingWorkflow(Workflow):
+        def run_modeling(self,task_id,**kwargs):return super().run_modeling(task_id,model=model,**kwargs)
+    class OldAdapter(BusinessAdapter):
+        def _reconcile(self,*a,**k):pass
+    with Workflow() as w:
+        w.setup();t=w.task(task)
+        baseline=w.db.execute('SELECT content FROM mc_contracts WHERE task_id=%s AND version=1',(task,)).fetchone()['content']
+        from modelcrew.mathematics import latest
+        package=latest(w,task,1)['content']
+        from modelcrew.business_artifacts import register_input,ArtifactRegistry
+        new_task=task+'-registered';owner={'project_id':t['project_id'],'task_id':new_task,'version':1}
+        item=register_input(w,ROOT,owner,baseline['inputs'][0]['path'])
+        path,sha_input=ArtifactRegistry(w,ROOT).resolve_input('artifact:'+item['artifact_id'],owner)
+        baseline['inputs'][0]['path']=path;baseline['inputs'][0]['sha256']=sha_input
+        w.create(new_task,baseline,project=t['project_id'],math_package=package)
+        task=new_task;t=w.task(task)
+        sha=w.db.execute('SELECT sha256 FROM mc_contracts WHERE task_id=%s AND version=1',(task,)).fetchone()['sha256']
+    key='legacy-partial-m1'
+    request={'contract_version':'1.0.0','operation':'modeling_start','request_id':key,
+        'expected_binding':{'task_id':task,'version':1,'contract_sha256':sha},
+        'arguments':{'task_id':task,'body':{'actor':'TEST_HOST','version':1,'request_id':key,'guidance':'Synthetic cached review recovery'}}}
+    old=OldAdapter(RecordingWorkflow).invoke('modeling_start',request)
+    assert old['status']=='outcome_unknown'
+    monkeypatch.setattr(mh,'admit_m1_answer',original)
+    adapter=BusinessAdapter()
+    response=adapter.invoke('operation_status',{'contract_version':'1.0.0','operation':'operation_status',
+        'arguments':{'project_id':t['project_id'],'task_id':task,'operation_name':'modeling_start','request_id':key}})
+    assert response['receipt']['state']=='succeeded'
+    assert len(model.calls)==3
+    with Workflow() as w:
+        assert BusinessStore(w.db).unresolved('task:'+task) is None
+        assert not w.task(task)['model_approved']
+    replay=adapter.invoke('modeling_start',request)
+    assert replay['replayed'] and replay['status']!='outcome_unknown'
+
+
+def prepared_file(w, task, *, mutate=None):
+    from modelcrew.algorithm_lookup import builtin_context
+    from modelcrew.mathematics import latest
+    references=builtin_context('geometry',card_ids=['bracketed-root'])
+    current=w.task(task);version=current['current_version']
+    contract=w.db.execute('SELECT content,sha256 FROM mc_contracts WHERE task_id=%s AND version=%s',(task,version)).fetchone()
+    proposal={'task_graph':[{'id':'q1','scope':'synthetic prepared proposal','conclusion_type':'simulation','depends_on':[]}],
+        'edits':[],'source_decisions':[{'citation_id':c['citation_id'],'decision':'adopted',
+        'reason':'Synthetic explicit decision','adaptation':'Check bracketed premises','limitations':'No computation or user approval'} for c in references['cards']],
+        'proposal':'合成完整方案；正式显示从结构化正文渲染。','questions':[],
+        'review_document':document(contract['content']['sources'][0]['id'])}
+    value={'binding':{'task_id':task,'version':version,'contract_sha256':contract['sha256'],
+                     'math_package_sha256':digest(latest(w,task,version)['content'])},
+        'plan':{'task_graph':proposal['task_graph'],'category':'geometry','card_ids':['bracketed-root'],
+                'facts':{},'research_question':'Synthetic prepared proposal premises'},
+        'proposal':proposal,'authorship':{'kind':'prepared_file','statement':'Synthetic imported author; not a provider call'}}
+    if mutate:mutate(value)
+    path=ROOT/'runs'/'test-prepared-proposals'/str(uuid.uuid4())/'submission.json'
+    path.parent.mkdir(parents=True);path.write_text(json.dumps(value,ensure_ascii=False),encoding='utf-8')
+    return {'path':path.relative_to(ROOT).as_posix(),'sha256':sha_file(path)},value
+
+
+def test_prepared_proposal_enters_real_review_without_model_rewrite(task):
+    model=FixtureModel()
+    with Workflow() as w:
+        files,source=prepared_file(w,task)
+        result=invoke(w,task,model,proposal_files=files,request_id='prepared-same')
+        assert result['status']=='ready' and result['version']==1
+        assert [c['stage'] for c in model.calls]==['M1']
+        assert result['proposal_import']['content_rewritten'] is False
+        assert result['proposal_import']['provider_author_call'] is False
+        folder=ROOT/result['folder'];proposal=json.loads((folder/'attempt-0/proposal.json').read_text(encoding='utf-8'))
+        from modelcrew.modeling_proposal import ReviewDocument
+        assert proposal['review_document']==ReviewDocument.model_validate(source['proposal']['review_document']).model_dump(mode='json')
+        assert (folder/'prepared-proposal.json').read_bytes()==(ROOT/files['path']).read_bytes()
+        assert not w.task(task)['model_approved']
+        assert assert_m1(w,w.task(task))['receipt_sha256']==result['receipt_sha256']
+        replay=invoke(w,task,model,proposal_files=files,request_id='prepared-same')
+        assert replay['run_id']==result['run_id'] and len(model.calls)==1
+
+
+def test_prepared_review_failure_never_regenerates_imported_prose(task):
+    model=FixtureModel(['FAIL'])
+    with Workflow() as w:
+        files,_=prepared_file(w,task)
+        result=invoke(w,task,model,proposal_files=files,auto_correct=True)
+        assert result['status']=='needs_human' and [c['stage'] for c in model.calls]==['M1']
+        assert len(result['attempts'])==1 and result['attempts'][0]['status']=='FAIL'
+        assert not w.task(task)['model_approved']
+
+
+@pytest.mark.parametrize('defect',['stale','edits','changed','outside','decisions'])
+def test_invalid_prepared_proposal_is_rejected_before_modeling_run(task,tmp_path,defect):
+    from modelcrew.business_contract import BusinessContractError
+    model=FixtureModel()
+    with Workflow() as w:
+        def mutate(value):
+            if defect=='stale':value['binding']['math_package_sha256']='f'*64
+            if defect=='edits':value['proposal']['edits']=[{'op':'replace','path':'/contract/problem/title','value':'not allowed'}]
+            if defect=='decisions':value['proposal']['source_decisions']=[]
+        files,_=prepared_file(w,task,mutate=mutate)
+        if defect=='changed':(ROOT/files['path']).write_text('{}',encoding='utf-8')
+        if defect=='outside':
+            files['path']=str(ROOT.parent/'outside-prepared-not-readable.json')
+        with pytest.raises(BusinessContractError):invoke(w,task,model,proposal_files=files)
+        assert w.modeling_status(task)==[] and model.calls==[]

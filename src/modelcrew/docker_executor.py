@@ -23,7 +23,7 @@ class Limits(BaseModel):
     max_file_bytes:int=Field(default=1024*1024,ge=1024,le=2*1024*1024)
     max_total_bytes:int=Field(default=4*1024*1024,ge=1024,le=4*1024*1024)
     max_log_bytes:int=Field(default=256*1024,ge=1024,le=256*1024)
-    max_files:int=Field(default=16,ge=1,le=32)
+    max_files:int=Field(default=16,ge=1,le=64)
 
 def sha(data):return hashlib.sha256(data).hexdigest()
 def read(path):return json.loads(Path(path).read_text(encoding='utf-8-sig'))
@@ -119,10 +119,35 @@ class DockerExecutor:
                 if row['executor_key']=='mcp-code-executor' and row['executor_config']!={'job_id':job['job_id'],'job_sha256':job['job_sha256']}:
                     raise ExecutorError('authorization_error','Job is not the approved execution configuration')
                 expected={i['id']:i['sha256'] for i in row['content']['inputs']}
-                actual={i.get('input_id'):i['sha256'] for i in job['inputs']}
-                if actual!=expected or len(job['inputs'])!=len(expected):raise ExecutorError('authorization_error','Execution input snapshot differs from approved contract')
+                self.approved_inputs(job,expected)
         except ExecutorError:raise
         except Exception as exc:raise ExecutorError('infrastructure_error','Approval database unavailable') from exc
+    def approved_inputs(self,job,expected):
+        """Only exact frozen inputs plus explicitly linked successful checkpoints."""
+        auth=job['authorization'];derived=auth.get('derived_inputs',[])
+        if not isinstance(derived,list) or len(derived)>4:raise ExecutorError('authorization_error','Invalid derived input manifest')
+        extra={}
+        for item in derived:
+            if set(item)!={'input_id','job_id','artifact_path','sha256'}:raise ExecutorError('authorization_error','Incomplete checkpoint provenance')
+            key=item['input_id']
+            if not isinstance(key,str) or not key.startswith('derived:') or key in expected or key in extra:
+                raise ExecutorError('authorization_error','Checkpoint input identity conflict')
+            _,parent=self.job(item['job_id'])
+            if parent['job_id']==job['job_id'] or any(parent['authorization'].get(k)!=auth.get(k) for k in ('mode','task_id','version','contract_sha256')):
+                raise ExecutorError('authorization_error','Checkpoint belongs to a different approved model')
+            receipt_path=self.root/'runs'/parent['job_id']/'result.json'
+            if not receipt_path.is_file():raise ExecutorError('authorization_error','Checkpoint producer is not complete')
+            receipt=read(receipt_path)
+            if receipt.get('status')!='succeeded' or receipt.get('job_sha256')!=parent['job_sha256'] or receipt.get('code_sha256')!=parent['code_sha256']:
+                raise ExecutorError('authorization_error','Checkpoint producer receipt differs')
+            matches=[a for a in receipt.get('artifacts',[]) if a.get('path')==item['artifact_path'] and a.get('sha256')==item['sha256']]
+            if len(matches)!=1:raise ExecutorError('authorization_error','Checkpoint is not a producer artifact')
+            self.verify_artifacts({'artifacts':matches})
+            extra[key]=item['sha256']
+        actual={i.get('input_id'):i['sha256'] for i in job['inputs']}
+        if actual!={**expected,**extra} or len(job['inputs'])!=len(expected)+len(extra):
+            raise ExecutorError('authorization_error','Execution input snapshot differs from approved contract')
+
     def inspect(self,name,job):
         r=self.docker('container','inspect',name,allow_missing=True)
         if r.returncode:

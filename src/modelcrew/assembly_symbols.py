@@ -25,12 +25,12 @@ def source_table(question,text):
     starts=[i for i,l in enumerate(lines) if l.strip().startswith('|') and i+1<len(lines) and re.fullmatch(r'\|[ :|\-]+\|',lines[i+1].strip())]
     if len(starts)!=1:raise ValueError('Each source symbol section must contain one table: '+question)
     start=starts[0];headers=cells(lines[start])
-    if headers!=['符号','含义','单位']:raise ValueError('Source symbol table requires 符号/含义/单位 columns')
+    if headers not in (['符号','含义','单位'],['符号','含义','单位','适用范围']):raise ValueError('Source symbol table requires 符号/含义/单位 columns and optional 适用范围')
     end=start+2;rows=[]
     while end<len(lines) and lines[end].strip().startswith('|'):
         values=cells(lines[end])
-        if len(values)!=3 or not all(values):raise ValueError('Invalid symbol row: '+question)
-        rows.append(dict(zip(['symbol','meaning','unit'],values)));end+=1
+        if len(values)!=len(headers) or not all(values):raise ValueError('Invalid symbol row: '+question)
+        rows.append(dict(zip(['symbol','meaning','unit','source_scope'],values)));end+=1
     rest='\n'.join(lines[:start]+lines[end:]).strip()
     captions=re.findall(r'^表(\d+)\s+.+$',rest,re.M)
     if len(captions)!=1 or re.sub(r'^表\d+\s+.+$','',rest,flags=re.M).strip():
@@ -82,7 +82,8 @@ def build(inputs,provided=None):
         scope=row.get('applicable_questions') or source_questions
         if not set(source_questions)<=set(scope)<=set(i['question_id'] for i in inputs) or len(scope)!=len(set(scope)):
             raise ValueError('Invalid applicable question scope')
-        validated.append({**row,'question_ids':scope})
+        source_scopes=[{'question_id':ref['question_id'],'symbol':ref['symbol'],'scope':sources[(ref['question_id'],key(ref['symbol']))]['source_scope']} for ref in refs if sources[(ref['question_id'],key(ref['symbol']))].get('source_scope')]
+        validated.append({**row,'question_ids':scope,**({'source_scopes':source_scopes} if source_scopes else {})})
     expected={(identity,a) for identity,r in sources.items() for a in atoms(r['symbol'])}
     if covered!=expected:raise ValueError('Global symbol table does not cover every source symbol component')
     if not validated:raise ValueError('Global symbol table must not be empty')
@@ -91,12 +92,22 @@ def build(inputs,provided=None):
             'semantic_review':'pending; explicit author mappings are not independent scientific approval'}
 
 
+def scope_label(question, title):
+    """Use a question label in cells; retain the full heading title elsewhere."""
+    match=re.match(r'^(问题\s*(?:[0-9]+|[一二三四五六七八九十百]+))(?=\s*[:：、（(]|$)',title)
+    return match.group(1).strip() if match else title
+
+
 def markdown(report,question_titles):
     first=report['source_tables'][0]
     token='@@ASM_tables_'+first['question_id']+'_'+first['local_table_number']+'@@'
     lines=[token+' 全局符号说明','', '| 符号 | 含义 | 单位 | 适用范围 |','|---|---|---|---|']
     for row in report['rows']:
-        scope='、'.join(question_titles[q] for q in row['question_ids'])
+        details={}
+        for original in row.get('source_scopes',[]):details.setdefault(original['question_id'],[])
+        for original in row.get('source_scopes',[]):
+            if original['scope'] not in details[original['question_id']]:details[original['question_id']].append(original['scope'])
+        scope='、'.join(scope_label(q,question_titles[q])+('（'+'；'.join(details[q])+'）' if q in details else '') for q in row['question_ids'])
         lines.append('| '+ ' | '.join([row['symbol'],row['meaning'],row['unit'],scope])+' |')
     return '\n'.join(lines)+'\n\n'
 

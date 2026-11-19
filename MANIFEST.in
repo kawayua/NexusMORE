@@ -199,6 +199,10 @@ include src/modelcrew/resources/collaboration/proof-review.md
 # F2 package-local runtime assets.
 include src/modelcrew/resources/rendering/render-word.ps1
 include src/modelcrew/resources/harness/nexusmore-workflow.js
+include src/modelcrew/resources/harness/nexusmore-dsh.mjs
+include src/modelcrew/resources/harness/nexusmore-dsh-decisions.mjs
+include src/modelcrew/resources/harness/nexusmore-dsh-conversation.mjs
+include src/modelcrew/resources/harness/nexusmore-dsh-client.js
 include src/modelcrew/resources/harness/package.json
 include src/modelcrew/resources/deployment/Dockerfile.runtime
 include src/modelcrew/resources/deployment/postgres.yaml
@@ -246,3 +250,106 @@ include scripts/build_agpl_source_materials.py
 # Program-owned versioned resource routing.
 include src/modelcrew/resources/capabilities/routing.json
 include docs/resource-routing.md
+
+# Frozen G1 business wire contracts; no runtime MCP availability implied.
+include src/modelcrew/resources/contracts/business-tools-1.0.0.json
+include src/modelcrew/resources/contracts/business-request-1.0.0.schema.json
+include src/modelcrew/resources/contracts/business-response-1.0.0.schema.json
+include src/modelcrew/resources/contracts/business-examples-1.0.0.json
+
+# G2 additive business dispatch and artifact registry.
+include src/modelcrew/resources/migrations/013_business_mcp.sql
+include src/modelcrew/resources/migrations/014_trusted_user_events.sql
+include src/modelcrew/resources/migrations/015_trusted_host_captures.sql
+
+# Version-specific local DSH operator guide.
+include docs/dsh-local-connection.md
+
+include docs/dsh-conversation-workspace.md
+
+
+# H5 explicit user/contributor documentation and source-build support.
+include .gitattributes
+include .github/ISSUE_TEMPLATE/bug_report.md
+include .github/ISSUE_TEMPLATE/feature_request.md
+include .github/pull_request_template.md
+include .gitignore
+include AGENTS.md
+include MANIFEST.in
+include README.md
+include configs/dependencies/documents.txt
+include configs/dependencies/dsh.txt
+include configs/dependencies/evidence.txt
+include configs/dependencies/figures.txt
+include configs/dependencies/paper-export.txt
+include configs/dependencies/retrieval.txt
+include configs/dependencies/workflow-runtime.txt
+include configs/dependencies/workflow.txt
+include configs/distribution-files.json
+include configs/documentation-checks.json
+include configs/evaluation/data-catalog-1.0.0.json
+include configs/executor/Dockerfile.figures
+include configs/executor/Dockerfile.figures-cjk
+include configs/executor/Dockerfile.py311
+include configs/executor/Dockerfile.reference
+include configs/executor/Dockerfile.runtime
+include configs/release-candidate-policy.json
+include configs/release-scope.json
+include configs/repository-layout.json
+include configs/runtime-environment.json
+include configs/services/postgres.yaml
+include configs/services/qdrant.yaml
+include docs/architecture.md
+include docs/business-workflow-mcp.md
+include docs/changelog.md
+include docs/compatibility.md
+include docs/contributing.md
+include docs/dsh-chat-review.md
+include docs/evaluation-protocol.md
+include docs/failure-recovery.md
+include docs/figure-tools.md
+include docs/hand-runtime.md
+include docs/history/project-progress.md
+include docs/history/readme-before-user-guide-20261119.md
+include docs/history/research-archive.md
+include docs/model-interface-scope.md
+include docs/open-source-harness-roadmap.md
+include docs/release-preparation.md
+include docs/release/g-stage-user-acceptance-20261119.json
+include docs/release/h-stage-sequencing-decision-20261119.json
+include docs/release/licensing-deferral-20261114.json
+include docs/release/source-completeness-20261114.json
+include docs/repository-layout.md
+include docs/three-hand-collaboration.md
+include docs/troubleshooting.md
+include docs/trusted-user-decisions.md
+include docs/user-guide.md
+include docs/validation/g5-acceptance-20261119.md
+include pyproject.toml
+include pytest.ini
+include scripts/audit_release_licensing.py
+include scripts/build_release_candidate.py
+include scripts/check_evaluation_data.py
+include scripts/check_public_documentation.py
+include scripts/check_repository_layout.py
+include scripts/render_assembly_word.ps1
+include src/harness/nexusmore-dsh-client.js
+include src/harness/nexusmore-dsh-conversation.mjs
+include src/harness/nexusmore-dsh-decisions.mjs
+include src/harness/nexusmore-dsh.mjs
+include src/harness/nexusmore-workflow.js
+include src/harness/package.json
+recursive-include tests *.py *.mjs
+
+include docs/roadmap.md
+
+include scripts/prepare_release_source_evidence.py
+
+include docs/scientific-figure-contract.md
+include docs/release/h5-privacy-repair-20261119.json
+
+include examples/validation/README.md
+include examples/validation/integer-allocation.json
+include examples/validation/reservoir-balance.json
+
+include docs/release/g5-acceptance-20261119.json
