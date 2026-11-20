@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "profile": "public_product",
   "public_repository": "https://github.com/kawayua/NexusMORE",
-  "source_commit": "4ac72505ea6f4f0daf853a3b5fd61838ddb2655a",
+  "source_commit": "bd28559e213b9d00f03eaa7223e884321a1d0c1b",
   "files": [
     ".gitattributes",
     ".github/ISSUE_TEMPLATE/bug_report.md",

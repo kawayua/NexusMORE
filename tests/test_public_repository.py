@@ -31,3 +31,11 @@ def test_personal_home_paths_require_review():
     issues=inspect_text('example.txt',synthetic.encode())
     assert issues[0]['rule']=='personal_home_path'
     assert synthetic not in json.dumps(issues)
+
+
+def test_development_dependencies_cover_http_contract_validation():
+    import tomllib
+    project=tomllib.loads((ROOT/'pyproject.toml').read_text(encoding='utf-8'))['project']
+    api=[r for r in project['optional-dependencies']['retrieval'] if r.lower().startswith('fastapi==')]
+    assert len(api)==1
+    assert api[0] in project['optional-dependencies']['dev']

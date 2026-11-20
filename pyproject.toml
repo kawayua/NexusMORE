@@ -21,7 +21,7 @@ retrieval = ["anyio==4.14.2", "beautifulsoup4==4.15.0", "fastapi==0.162.0", "htt
 documents = ["defusedxml==0.7.1", "lxml==6.1.1", "openpyxl==3.1.5", "pdfplumber==0.11.10", "PyMuPDF==1.27.2.3", "pypdf==6.16.1", "python-docx==1.2.0"]
 paper = ["anyio==4.14.2", "beautifulsoup4==4.15.0", "defusedxml==0.7.1", "fastapi==0.162.0", "httpx==0.28.1", "jsonschema==4.26.0", "langgraph-checkpoint-postgres==3.2.0", "langgraph-checkpoint==4.3.1", "langgraph==1.2.10", "lxml==6.1.1", "matplotlib==3.10.3", "mcp==1.30.0", "numpy==2.3.1", "openpyxl==3.1.5", "pdfplumber==0.11.10", "Pillow==12.2.0", "portalocker==4.4.2", "psycopg[binary]==3.3.4", "pydantic==2.13.4", "PyMuPDF==1.27.2.3", "pypdf==6.16.1", "python-docx==1.2.0", "qdrant-client==1.20.0", "scipy==1.16.0", "sentence-transformers==6.0.0", "sympy==1.13.1", "uvicorn==0.52.1"]
 evidence = ["numpy==2.3.1", "openpyxl==3.1.5", "pydantic==2.13.4", "scipy==1.16.0", "sympy==1.13.1"]
-dev = ["build>=1.2", "pytest==9.0.3", "setuptools>=81"]
+dev = ["build>=1.2", "pytest==9.0.3", "setuptools>=81", "fastapi==0.162.0"]
 
 [project.scripts]
 modelcrew = "modelcrew.__main__:main"
