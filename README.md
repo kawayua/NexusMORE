@@ -10,7 +10,7 @@
 ![Platform](https://img.shields.io/badge/platform-Windows%20x64-0078D4)
 [![License](https://img.shields.io/badge/license-AGPL--3.0-orange)](LICENSE)
 
-[快速开始](#-快速开始) · [使用指南](docs/user-guide.md) · [支持范围](docs/compatibility.md) · [参与贡献](docs/contributing.md)
+[快速开始](#-快速开始) · [算法资料库](#-算法资料库) · [使用指南](docs/user-guide.md) · [支持范围](docs/compatibility.md) · [参与贡献](docs/contributing.md)
 
 </div>
 
@@ -39,21 +39,7 @@
 
 ## 🔄 三手工作流
 
-```mermaid
-flowchart LR
-    A[题目与附件] --> B[建模手]
-    B --> M[M1 · 独立审查]
-    M --> U[用户确认方案]
-    U --> C[代码手]
-    C --> P[P1 / P2 · 独立检验]
-    P --> R[用户确认结果]
-    R --> W[论文手]
-    W --> W1[W1 · 证据审查]
-    W1 --> V[正文与配图合并审阅]
-    V --> E[正式导出]
-    E --> W2[W2 · 全文检查]
-    W2 --> F[成品审阅]
-```
+![枢模三手工作流：建模、Python求解与中文论文，含独立质检及用户确认](docs/assets/nexusmore-workflow-v1.png)
 
 | 阶段 | 主要工作 | 交付内容 |
 |---|---|---|
@@ -128,6 +114,69 @@ $env:MODELCREW_WORKSPACE = Join-Path $env:LOCALAPPDATA "NexusMORE\workspace"
 ```
 
 打开系统附上的当前审阅文件，阅读后明确回复“通过”，或直接提出修改意见。正文与配图的合并确认绑定当前版本；结果确认、图文确认和最终成品审阅的范围各自独立。具体步骤见[使用指南](docs/user-guide.md)。
+
+## 🧮 算法资料库
+
+![内置算法资料库：7类主题、113种去重算法、123条分类归属](docs/assets/algorithm-library-v1.jpg)
+
+**7 类主题 · 113 种去重规范算法 · 123 条分类归属**
+
+按题目结构查找方法，先核对适用条件与失败边界，再读取公式、步骤和教育案例。跨类方法共用规范 ID，分类条目合计 123，去重后为 113。
+
+| 类别与阅读入口 | 分类条目 | 部分代表方法 |
+|---|---:|---|
+| [优化](src/modelcrew/resources/algorithms/knowledge/optimization.md) | 17 | 线性规划、混合整数线性规划、动态规划、鲁棒优化、NSGA-II |
+| [预测](src/modelcrew/resources/algorithms/knowledge/prediction.md) | 15 | 灰色预测、ARIMA、VAR、LSTM、Transformer |
+| [综合评价](src/modelcrew/resources/algorithms/knowledge/evaluation.md) | 14 | 层次分析法、熵权法、TOPSIS、CRITIC、DEA |
+| [图论与网络](src/modelcrew/resources/algorithms/knowledge/graph.md) | 15 | Dijkstra、Dinic、匈牙利算法、PageRank、Louvain |
+| [统计与数据处理](src/modelcrew/resources/algorithms/knowledge/statistics.md) | 21 | 描述性统计、Pearson相关系数、t检验、Bootstrap、DID |
+| [综合与仿真](src/modelcrew/resources/algorithms/knowledge/simulation.md) | 13 | 蒙特卡洛模拟、常微分方程、排队论、马尔可夫链、Sobol分析 |
+| [机器学习](src/modelcrew/resources/algorithms/knowledge/machine-learning.md) | 28 | 支持向量机、随机森林、XGBoost、K-Means、主成分分析、CNN |
+
+每条资料包含**公式与符号、适用前提、失败边界、步骤与成本、固定教育案例及反例**。这是资料与限定案例的覆盖范围；真实任务的求解后端、依赖和结论仍需另行检验。
+
+<details>
+<summary>展开七类完整算法目录</summary>
+
+### 优化 · 17 条
+
+[线性规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#lp) · [整数规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#ip) · [混合整数线性规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#milp) · [非线性规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#nlp) · [0-1规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#binary-ip) · [动态规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#dynamic-programming) · [多目标规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#multi-objective) · [二次规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#qp) · [目标规划](src/modelcrew/resources/algorithms/knowledge/optimization.md#goal-programming) · [鲁棒优化](src/modelcrew/resources/algorithms/knowledge/optimization.md#robust-optimization) · [遗传算法](src/modelcrew/resources/algorithms/knowledge/optimization.md#ga) · [粒子群算法](src/modelcrew/resources/algorithms/knowledge/optimization.md#pso) · [模拟退火](src/modelcrew/resources/algorithms/knowledge/optimization.md#sa) · [蚁群算法](src/modelcrew/resources/algorithms/knowledge/optimization.md#aco) · [差分进化](src/modelcrew/resources/algorithms/knowledge/optimization.md#de) · [禁忌搜索](src/modelcrew/resources/algorithms/knowledge/optimization.md#tabu) · [NSGA-II](src/modelcrew/resources/algorithms/knowledge/optimization.md#nsga2)
+
+### 预测 · 15 条
+
+[线性回归](src/modelcrew/resources/algorithms/knowledge/prediction.md#linear-regression) · [多项式回归](src/modelcrew/resources/algorithms/knowledge/prediction.md#polynomial-regression) · [指数平滑](src/modelcrew/resources/algorithms/knowledge/prediction.md#exponential-smoothing) · [灰色预测](src/modelcrew/resources/algorithms/knowledge/prediction.md#gm11) · [ARIMA](src/modelcrew/resources/algorithms/knowledge/prediction.md#arima) · [SARIMA](src/modelcrew/resources/algorithms/knowledge/prediction.md#sarima) · [VAR](src/modelcrew/resources/algorithms/knowledge/prediction.md#var) · [Prophet](src/modelcrew/resources/algorithms/knowledge/prediction.md#prophet) · [XGBoost](src/modelcrew/resources/algorithms/knowledge/prediction.md#xgboost) · [LightGBM](src/modelcrew/resources/algorithms/knowledge/prediction.md#lightgbm) · [CatBoost](src/modelcrew/resources/algorithms/knowledge/prediction.md#catboost) · [LSTM](src/modelcrew/resources/algorithms/knowledge/prediction.md#lstm) · [GRU](src/modelcrew/resources/algorithms/knowledge/prediction.md#gru) · [TCN](src/modelcrew/resources/algorithms/knowledge/prediction.md#tcn) · [Transformer](src/modelcrew/resources/algorithms/knowledge/prediction.md#transformer)
+
+### 综合评价 · 14 条
+
+[层次分析法](src/modelcrew/resources/algorithms/knowledge/evaluation.md#ahp) · [熵权法](src/modelcrew/resources/algorithms/knowledge/evaluation.md#entropy-weight) · [TOPSIS](src/modelcrew/resources/algorithms/knowledge/evaluation.md#topsis) · [加权评分法](src/modelcrew/resources/algorithms/knowledge/evaluation.md#weighted-score) · [CRITIC](src/modelcrew/resources/algorithms/knowledge/evaluation.md#critic) · [主成分分析](src/modelcrew/resources/algorithms/knowledge/evaluation.md#pca) · [因子分析](src/modelcrew/resources/algorithms/knowledge/evaluation.md#factor-analysis) · [灰色关联分析](src/modelcrew/resources/algorithms/knowledge/evaluation.md#grey-relation) · [模糊综合评价](src/modelcrew/resources/algorithms/knowledge/evaluation.md#fuzzy-evaluation) · [VIKOR](src/modelcrew/resources/algorithms/knowledge/evaluation.md#vikor) · [PROMETHEE](src/modelcrew/resources/algorithms/knowledge/evaluation.md#promethee) · [ELECTRE](src/modelcrew/resources/algorithms/knowledge/evaluation.md#electre) · [DEA](src/modelcrew/resources/algorithms/knowledge/evaluation.md#dea) · [Malmquist指数](src/modelcrew/resources/algorithms/knowledge/evaluation.md#malmquist)
+
+### 图论与网络 · 15 条
+
+[深度优先搜索](src/modelcrew/resources/algorithms/knowledge/graph.md#dfs) · [广度优先搜索](src/modelcrew/resources/algorithms/knowledge/graph.md#bfs) · [Dijkstra](src/modelcrew/resources/algorithms/knowledge/graph.md#dijkstra) · [Floyd](src/modelcrew/resources/algorithms/knowledge/graph.md#floyd) · [Bellman-Ford](src/modelcrew/resources/algorithms/knowledge/graph.md#bellman-ford) · [Prim](src/modelcrew/resources/algorithms/knowledge/graph.md#prim) · [Kruskal](src/modelcrew/resources/algorithms/knowledge/graph.md#kruskal) · [Dinic](src/modelcrew/resources/algorithms/knowledge/graph.md#dinic) · [最小费用最大流](src/modelcrew/resources/algorithms/knowledge/graph.md#min-cost-flow) · [匈牙利算法](src/modelcrew/resources/algorithms/knowledge/graph.md#hungarian) · [PageRank](src/modelcrew/resources/algorithms/knowledge/graph.md#pagerank) · [Louvain](src/modelcrew/resources/algorithms/knowledge/graph.md#louvain) · [K最短路径](src/modelcrew/resources/algorithms/knowledge/graph.md#k-shortest) · [图着色](src/modelcrew/resources/algorithms/knowledge/graph.md#graph-coloring) · [中心性分析](src/modelcrew/resources/algorithms/knowledge/graph.md#centrality)
+
+### 统计与数据处理 · 21 条
+
+[描述性统计](src/modelcrew/resources/algorithms/knowledge/statistics.md#descriptive) · [Min-Max标准化](src/modelcrew/resources/algorithms/knowledge/statistics.md#minmax) · [Z-score标准化](src/modelcrew/resources/algorithms/knowledge/statistics.md#zscore) · [均值/中位数填补](src/modelcrew/resources/algorithms/knowledge/statistics.md#imputation) · [KNN填补](src/modelcrew/resources/algorithms/knowledge/statistics.md#knn-imputation) · [3σ原则](src/modelcrew/resources/algorithms/knowledge/statistics.md#three-sigma) · [IQR](src/modelcrew/resources/algorithms/knowledge/statistics.md#iqr) · [LOF](src/modelcrew/resources/algorithms/knowledge/statistics.md#lof) · [Pearson相关系数](src/modelcrew/resources/algorithms/knowledge/statistics.md#pearson) · [Spearman相关系数](src/modelcrew/resources/algorithms/knowledge/statistics.md#spearman) · [Kendall相关系数](src/modelcrew/resources/algorithms/knowledge/statistics.md#kendall) · [t检验](src/modelcrew/resources/algorithms/knowledge/statistics.md#ttest) · [卡方检验](src/modelcrew/resources/algorithms/knowledge/statistics.md#chi-square) · [方差分析](src/modelcrew/resources/algorithms/knowledge/statistics.md#anova) · [Bootstrap](src/modelcrew/resources/algorithms/knowledge/statistics.md#bootstrap) · [线性回归](src/modelcrew/resources/algorithms/knowledge/statistics.md#linear-regression) · [Logistic回归](src/modelcrew/resources/algorithms/knowledge/statistics.md#logistic-regression) · [VIF](src/modelcrew/resources/algorithms/knowledge/statistics.md#vif) · [ADF检验](src/modelcrew/resources/algorithms/knowledge/statistics.md#adf) · [DID](src/modelcrew/resources/algorithms/knowledge/statistics.md#did) · [倾向得分匹配](src/modelcrew/resources/algorithms/knowledge/statistics.md#psm)
+
+### 综合与仿真 · 13 条
+
+[蒙特卡洛模拟](src/modelcrew/resources/algorithms/knowledge/simulation.md#monte-carlo) · [差分方程](src/modelcrew/resources/algorithms/knowledge/simulation.md#difference-equation) · [常微分方程](src/modelcrew/resources/algorithms/knowledge/simulation.md#ode) · [排队论](src/modelcrew/resources/algorithms/knowledge/simulation.md#queueing) · [马尔可夫链](src/modelcrew/resources/algorithms/knowledge/simulation.md#markov) · [元胞自动机](src/modelcrew/resources/algorithms/knowledge/simulation.md#cellular-automata) · [系统动力学](src/modelcrew/resources/algorithms/knowledge/simulation.md#system-dynamics) · [离散事件仿真](src/modelcrew/resources/algorithms/knowledge/simulation.md#discrete-event) · [随机过程](src/modelcrew/resources/algorithms/knowledge/simulation.md#stochastic-process) · [贝叶斯网络](src/modelcrew/resources/algorithms/knowledge/simulation.md#bayesian-network) · [Agent-Based Modeling](src/modelcrew/resources/algorithms/knowledge/simulation.md#abm) · [敏感性分析](src/modelcrew/resources/algorithms/knowledge/simulation.md#sensitivity) · [Sobol分析](src/modelcrew/resources/algorithms/knowledge/simulation.md#sobol)
+
+### 机器学习 · 28 条
+
+[线性回归](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#linear-regression) · [Logistic回归](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#logistic-regression) · [决策树](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#decision-tree) · [支持向量机](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#svm) · [K近邻](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#knn) · [随机森林](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#random-forest) · [朴素贝叶斯](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#naive-bayes) · [AdaBoost](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#adaboost) · [GBDT](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#gbdt) · [XGBoost](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#xgboost) · [LightGBM](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#lightgbm) · [CatBoost](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#catboost) · [Stacking](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#stacking) · [K-Means](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#kmeans) · [层次聚类](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#hierarchical) · [DBSCAN](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#dbscan) · [GMM](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#gmm) · [Mean Shift](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#mean-shift) · [主成分分析](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#pca) · [t-SNE](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#tsne) · [UMAP](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#umap) · [MLP](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#mlp) · [CNN](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#cnn) · [RNN](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#rnn) · [LSTM](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#lstm) · [GRU](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#gru) · [Transformer](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#transformer) · [Autoencoder](src/modelcrew/resources/algorithms/knowledge/machine-learning.md#autoencoder)
+
+</details>
+
+### 实际读取方式
+
+```powershell
+python -m modelcrew.algorithm_knowledge list --category optimization
+python -m modelcrew.algorithm_knowledge read --id lp
+python -m modelcrew.algorithm_knowledge check-examples --id lp
+```
+
+只读入口从安装包定位资料；教育案例复算需要相应 NumPy/SciPy 依赖。完整[知识索引](src/modelcrew/resources/algorithms/index.md)与[规范目录](src/modelcrew/resources/algorithms/knowledge/catalog.json)一并保留，逐任务按需读取。
 
 ## 🧰 内置资料与工具
 

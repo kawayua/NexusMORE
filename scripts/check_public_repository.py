@@ -45,6 +45,23 @@ def inspect_text(name, raw):
     return issues
 
 
+
+def inspect_member(name, raw, binary_assets=None):
+    """Permit only explicitly pinned README PNG/JPEG assets; inspect all other files as text."""
+    assets=binary_assets or {}
+    if name not in assets:
+        return inspect_text(name,raw)
+    spec=assets[name]
+    if not name.startswith('docs/assets/') or len(raw)>5*1024*1024:
+        return [{'file':name,'rule':'binary_asset_scope_or_size'}]
+    if hashlib.sha256(raw).hexdigest()!=spec.get('sha256') or len(raw)!=spec.get('bytes'):
+        return [{'file':name,'rule':'binary_asset_identity'}]
+    kind=spec.get('mime_type')
+    valid=((kind=='image/png' and name.endswith('.png') and raw.startswith(bytes([137,80,78,71,13,10,26,10])))
+           or (kind=='image/jpeg' and name.endswith(('.jpg','.jpeg')) and raw.startswith(bytes([255,216,255])) and raw.endswith(bytes([255,217]))))
+    return [] if valid else [{'file':name,'rule':'binary_asset_format'}]
+
+
 def visible_files(root):
     """Use Git visibility in an actual checkout; otherwise inspect a fresh export."""
     try:
@@ -65,9 +82,11 @@ def check_tree(root=ROOT):
     if config['schema_version'] != '1.0.0' or config['profile'] != 'public_product':
         raise ValueError('Unknown public view profile')
     expected = set(config['files']) | {MARKER}
+    binary_assets=config.get('binary_assets',{})
     actual = visible_files(root)
     issues = [{'file':n,'rule':'unexpected_file'} for n in sorted(actual-expected)]
     issues += [{'file':n,'rule':'missing_file'} for n in sorted(expected-actual)]
+    issues += [{'file':n,'rule':'registered_binary_asset_missing'} for n in binary_assets if n not in expected]
     links = 0
     for name in sorted(expected & actual):
         try:
@@ -79,7 +98,7 @@ def check_tree(root=ROOT):
             issues.append({'file':name,'rule':'forbidden_path'})
             continue
         raw=path.read_bytes()
-        issues.extend(inspect_text(name,raw))
+        issues.extend(inspect_member(name,raw,binary_assets))
         if name == 'README.md' or name.startswith('docs/') or name.startswith('.github/') or name.endswith('/README.md'):
             if not name.endswith('.md'):
                 continue
@@ -104,7 +123,7 @@ def check_tree(root=ROOT):
             issues.append({'file':item['path'],'rule':'runtime_resource_identity'})
         resources+=1
     return {'status':'passed' if not issues else 'failed','profile':'public_product', 'files':len(actual),
-            'local_document_links':links,'runtime_resources':resources,'issues':issues,
+            'local_document_links':links,'runtime_resources':resources,'approved_binary_assets':len(binary_assets),'issues':issues,
             'private_archive_needed':False,'model_or_database_called':False,'history_rewritten':False}
 
 

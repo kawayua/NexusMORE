@@ -26,6 +26,8 @@ include configs/repository-layout.json
 include configs/services/postgres.yaml
 include configs/services/qdrant.yaml
 include docs/architecture.md
+include docs/assets/algorithm-library-v1.jpg
+include docs/assets/nexusmore-workflow-v1.png
 include docs/changelog.md
 include docs/combined-distribution-license.md
 include docs/compatibility.md

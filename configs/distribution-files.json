@@ -30,6 +30,8 @@
     "configs/services/postgres.yaml",
     "configs/services/qdrant.yaml",
     "docs/architecture.md",
+    "docs/assets/algorithm-library-v1.jpg",
+    "docs/assets/nexusmore-workflow-v1.png",
     "docs/changelog.md",
     "docs/combined-distribution-license.md",
     "docs/compatibility.md",
