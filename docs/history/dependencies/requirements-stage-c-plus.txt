@@ -1,4 +1,0 @@
--r requirements-stage-c.txt
-matplotlib==3.10.3
-PyMuPDF==1.27.2.3
-# Tectonic 0.17.0 is a separately provisioned compiler; see stage-c-plus/README.md.

@@ -1,18 +1,81 @@
+<div align="center">
+
 # 枢模 · NexusMORE
 
-面向中文数学建模研究的本地工作流工具：从题目与附件出发，讨论建模方案，执行 Python 求解，审阅结果和中文稿，再生成正式论文。建模手、代码手和论文手共享版本化资料；独立质检和真实用户确认贯穿流程。
+**从建模方案到中文论文，让计算、审阅与证据连成一条工作流。**
 
-**当前状态（2026-11-19）**：`0.1.0.dev0` 开发线，现有 Windows / DSH 本地业务已按 [G 验收范围](docs/validation/g5-acceptance-20261119.md)通过。按用户决定，本轮先完善使用与贡献文档；干净环境和新设备由用户在开源后补测，目前未验证。其他宿主与系统的兼容性尚无通过结论。当前没有公开包下载承诺，整体公开发行核对仍单独进行，详见[兼容与限制](docs/compatibility.md)。
+![Version](https://img.shields.io/badge/version-0.1.0.dev0-blue)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
+![Backend](https://img.shields.io/badge/backend-Python-4B8BBE)
+![Platform](https://img.shields.io/badge/platform-Windows%20x64-0078D4)
+[![License](https://img.shields.io/badge/license-AGPL--3.0-orange)](LICENSE)
 
-## 开始前
+[快速开始](#-快速开始) · [使用指南](docs/user-guide.md) · [支持范围](docs/compatibility.md) · [参与贡献](docs/contributing.md)
 
-准备 Windows x86_64、CPython 3.13、可运行 Linux amd64 容器的 Docker Desktop/WSL2，以及 DSH Desktop 0.2.2-rc.1。DSH 自带 Python 3.12 不适合作为本项目后端。模型服务的端点、具体模型名和密钥由使用者配置；图像质检另需相应模型支持图片输入。Word 原生渲染需要本机已安装并获许可的 Microsoft Word。
+</div>
 
-下面以取得的本项目源码目录为起点，在 PowerShell 中执行。命令已与当前代码入口核对；新设备完整安装尚待实测。
+---
 
-## 安装与初始化
+## 📖 简介
+
+枢模 · NexusMORE 是面向中文数学建模研究的本地 Agent 工作流。它把任务组织为 **建模分析 → Python 求解 → 中文论文** 三个阶段，让方案、代码、结果、图片和正文保持可追溯的版本关系。
+
+你可以在 DSH 原生会话中提交题目、讨论方案、查看文件并提出修改；系统负责资料路由、受控执行、独立质检和中断恢复。在需要作出研究判断的位置，由你审阅并确认当前版本。
+
+> 当前为开发预览版。本地 Windows / DSH 流程已有实测，新设备安装仍待验证；具体模型、工具和导出限制见[支持范围](docs/compatibility.md)。
+
+## ✨ 核心能力
+
+| 能力 | 可以做什么 |
+|---|---|
+| 🧠 建模分析 | 核对题面与附件，讨论假设、模型、算法和检验口径，按需读取内置资料 |
+| 💻 Python 求解 | 先验证最小求解，再执行完整计算；在受控 Docker 容器中运行生成的代码 |
+| 📊 结果与配图 | 展示带单位的表格、检验及候选图，保留原始数据、误差和文件身份 |
+| 📝 中文论文 | 基于已确认的结果撰写 Markdown；全篇统一符号表，支持中文图表与数学表达 |
+| 🛡️ 独立质检 | 在 M1、P1、P2、W1、W2 节点使用独立上下文审查，记录失败与修订 |
+| 🤝 原生审阅 | 在 DSH 打开审阅文件并回复；同版本正文与配图可一次合并确认 |
+| 🔁 可恢复运行 | 持久化状态、请求及回执；中断后查询原任务，避免重复执行 |
+| 📦 内置资料 | 随包携带算法、数学论证、中文论文规范及文档工具入口，无需另装技能包 |
+
+## 🔄 三手工作流
+
+```mermaid
+flowchart LR
+    A[题目与附件] --> B[建模手]
+    B --> M[M1 · 独立审查]
+    M --> U[用户确认方案]
+    U --> C[代码手]
+    C --> P[P1 / P2 · 独立检验]
+    P --> R[用户确认结果]
+    R --> W[论文手]
+    W --> W1[W1 · 证据审查]
+    W1 --> V[正文与配图合并审阅]
+    V --> E[正式导出]
+    E --> W2[W2 · 全文检查]
+    W2 --> F[成品审阅]
+```
+
+| 阶段 | 主要工作 | 交付内容 |
+|---|---|---|
+| 建模手 | 问题分析、资料选择、数学论证和模型设计 | 当前版本的可读方案与检验要求 |
+| 代码手 | 最小求解、完整计算、结果检验与绘图 | Python 代码、数值结果、候选图和复跑证据 |
+| 论文手 | 组织论证、撰写中文正文、汇编和导出 | Markdown 审阅稿、合并图文审阅页及正式文档 |
+
+独立质检是阶段内的只读审查，不是第四个常驻业务角色。出现错误时按影响返回相应阶段修订；用户确认、独立检查与程序执行各自记录。详见[架构说明](docs/architecture.md)。
+
+## 🚀 快速开始
+
+### 环境准备
+
+当前面向 **Windows x86_64 + CPython 3.13 + Docker Desktop/WSL2 Linux 容器**，宿主使用 **DSH Desktop 0.2.2-rc.1**。DSH 自带 Python 3.12 不能作为枢模后端。模型服务的端点、模型名和密钥由你配置，图像质检需相应模型能力。
+
+### 1. 获取与安装
+
+在 PowerShell 中执行：
 
 ```powershell
+git clone https://github.com/kawayua/NexusMORE.git
+cd NexusMORE
 py -3.13 -m venv .venv
 $python = (Resolve-Path .\.venv\Scripts\python.exe).Path
 & $python -m pip install ".[paper,dsh]"
@@ -21,9 +84,11 @@ $env:MODELCREW_WORKSPACE = Join-Path $env:LOCALAPPDATA "NexusMORE\workspace"
 & $python -m modelcrew resources-check
 ```
 
-`nexusmore` 是发行名，`modelcrew` 是 Python 包名和命令。没有 `py` 启动器时，用实际 CPython 3.13 的 `python.exe` 路径创建虚拟环境。安装依赖需要联网，`paper` 组包含论文与检索所需的较大依赖。若已有受审核的本地 wheel 或准备包，使用[安装包说明](docs/package-installation.md)或[环境准备说明](docs/environment-preparation.md)中的对应入口；不要求从未发布的 PyPI 包安装。
+`nexusmore` 是发行名，`modelcrew` 是命令和 Python 包名。没有 `py` 启动器时，可使用实际 CPython 3.13 的完整路径。当前从源码安装，未提供通用的一键安装或预编译发行包承诺。
 
-在工作区的 `configs/local/settings.json` 中填写 `model.provider`、`model.base_url` 和 `model.name`；密钥写入同目录的 `secrets.env`，变量名对应 `model.api_key_env`（默认为 `MODELCREW_LLM_API_KEY`）。不要把密钥、数据库口令或私有题目提交到仓库。更多配置及优先级见[用户配置](docs/user-configuration.md)。
+### 2. 配置模型与服务
+
+在工作区 `configs/local/settings.json` 填写 `model.provider`、`model.base_url` 和 `model.name`；密钥保存到同目录的 `secrets.env`，对应 `model.api_key_env` 指定的变量名。
 
 ```powershell
 & $python -m modelcrew environment setup
@@ -31,37 +96,96 @@ $env:MODELCREW_WORKSPACE = Join-Path $env:LOCALAPPDATA "NexusMORE\workspace"
 & $python -m modelcrew doctor --profile workflow --services
 ```
 
-`environment setup` 会准备工作区独立的 PostgreSQL/Qdrant 服务、迁移、执行镜像及文档工具，可能下载较大镜像和工具；首次使用前先启动 Docker。它不安装 Docker、DSH、Word 或模型密钥。默认内置算法查询不需要向量模型；论文向量检索需另按[环境准备说明](docs/environment-preparation.md)配置权重及索引。诊断通过不等于已经完成建模或论文审查。
+先启动 Docker。准备命令可能下载依赖、镜像和文档工具，不会安装 Docker、DSH 或 Microsoft Word，也不调用模型。配置字段及首次联网需求见[用户配置](docs/user-configuration.md)和[环境准备](docs/environment-preparation.md)。
 
-## 接入 DSH 并开始任务
-
-继续使用上面的 `$python` 和工作区；新开终端时重新指定这两项。
+### 3. 接入 DSH
 
 ```powershell
 & $python -m modelcrew.dsh_integration render --python $python --workspace $env:MODELCREW_WORKSPACE
 & $python -m modelcrew.dsh_integration install --python $python --workspace $env:MODELCREW_WORKSPACE --profile "$env:USERPROFILE\.dsh\profiles\desktop"
 ```
 
-`--profile` 应指向自己正在使用的 DSH profile；已有注册且配置未变时可直接打开原会话。安装器遇到同名冲突或被修改的管理块会拒绝覆盖，处理方法见[排错指南](docs/troubleshooting.md)。完整退出并重启 DSH，在输入框运行 `/nexusmore` 检查连接。
+`--profile` 使用自己实际的 DSH profile。完整退出并重开 DSH，在输入框执行 `/nexusmore` 检查连接，然后附上题面和数据开始讨论。接入与回退见[DSH 使用说明](docs/dsh-local-connection.md)。
 
-连接后附上自己的题面和全部所需附件，说明本次研究范围，例如：
+## 💬 使用示例
 
-> 请使用枢模处理附件中的问题一。先列出输入缺项、建模方案和检验口径，等我确认方案后再进入求解。
+从题目开始：
 
-审阅时打开回复所附的文件。确认当前方案或结果后，在原会话明确回复“通过”；需要调整则直接提出修改意见。正文与配图同时待审时，合并审阅页展示完整正文和全部候选图，标明暂列入文图与备选图；一次确认同时绑定当前正文与暂列配图。正式导出及独立 W2 仍在后续执行，详见[日常使用与恢复](docs/user-guide.md)。
+```text
+请用枢模分析附件中的问题一。先核对输入和输出要求，提出建模方案与检验方法，等我确认方案后再进入求解。
+```
 
-## 文档与贡献
+继续已有研究：
 
-| 入口 | 内容 |
+```text
+请基于当前已确认的模型继续 Python 求解，先验证最小案例，再计算完整结果。结果中单独说明单位、误差和验证结论。
+```
+
+结果进入写作：
+
+```text
+请根据当前已经确认的结果撰写中文论文审阅稿，并把正文与全部候选图放在同一审阅页，标明暂列入文图与备选图。
+```
+
+打开系统附上的当前审阅文件，阅读后明确回复“通过”，或直接提出修改意见。正文与配图的合并确认绑定当前版本；结果确认、图文确认和最终成品审阅的范围各自独立。具体步骤见[使用指南](docs/user-guide.md)。
+
+## 🧰 内置资料与工具
+
+| 类别 | 内容 |
 |---|---|
-| [使用指南](docs/user-guide.md) | 配置、任务流程、审阅、产物位置与恢复 |
-| [兼容与已知限制](docs/compatibility.md) | 本地实测范围、待验证环境、工具与模型边界 |
-| [排错指南](docs/troubleshooting.md) | 安装、服务、DSH、确认、恢复和导出问题 |
-| [架构说明](docs/architecture.md) | 三手、独立质检、共享业务状态与宿主边界 |
-| [贡献指南](docs/contributing.md) | 开发环境、无需私有数据的检查、提交与问题报告 |
-| [首发候选准备](docs/release-preparation.md) | 本地构建、包清单、扫描结果及发行待办 |
-| [更新记录](docs/changelog.md) / [历史导航](docs/history/project-progress.md) | 当前变化、阶段报告和保留的旧首页 |
+| 算法资料 | 优化、预测、评价、图论、统计、综合与机器学习七类索引及几何补充 |
+| 数学论证 | 公式、命题条件、证明与统计设计资料，用于模型论证和核对 |
+| 中文论文 | 章节组织、统一符号说明、图表引用和 Markdown 审阅规范 |
+| 文档工具 | PDF 读取、Word 结构检查、表格读取及受控文档工作区 |
+| 配图与导出 | Python 绘图、PNG/PDF/SVG、全页检查及批准内容的同源导出 |
 
-## 许可与使用边界
+默认算法查询从包内按名称、ID 或类别读取。论文语义检索需要另行准备嵌入模型与 Qdrant 索引；候选文献或 DOI 匹配不等于真实性核验。
 
-当前组合发行（含 PyMuPDF）采用 [AGPL-3.0-only](LICENSE)，第三方与既有授权按[第三方声明](THIRD_PARTY_NOTICES.md)及[组合发行说明](docs/combined-distribution-license.md)保留。软件按许可证提供且不作担保。私有输入、模型密钥、研究档案及历史成品不属于默认发行内容。开源准备、实际公开发布与新设备测试是分别记录的事项。
+## 📁 仓库结构
+
+```text
+NexusMORE/
+├── README.md
+├── AGENTS.md
+├── LICENSE
+├── THIRD_PARTY_NOTICES.md
+├── pyproject.toml
+├── src/
+│   ├── modelcrew/       # Python 业务核心与随包资源
+│   └── harness/         # DSH 宿主适配器
+├── configs/             # 依赖、服务与执行器配置
+├── docs/                # 使用、配置、架构和贡献说明
+├── examples/            # 原创小样例
+├── scripts/             # 公开维护与检查入口
+└── tests/               # 不依赖私有业务资料的测试
+```
+
+业务输入、运行证据和论文产物保存在独立用户工作区。公开仓库仅维护产品代码、用户文档及可共享测试；开发过程档案不作为安装前置材料。
+
+## ✅ 支持范围
+
+- 数据、求解、绘图和导出统一使用 **Python**。
+- LaTeX 支持基线为 **Tectonic 0.17.0 / Pandoc 3.6.4**；Word 原生渲染需要已授权的 Microsoft Word 及相应字体。
+- 其他宿主、Linux/macOS 主机及新设备安装尚无兼容性通过结论。
+- 暂不支持其他 LaTeX 引擎、外置 BibTeX/Biber、任意 TeX→Word、表格公式重算或任意公式编辑。
+- 科学正确性仍需独立检查与人的判断；模型执行成功或保留小数位数不等于数值准确。
+
+完整边界见[兼容说明](docs/compatibility.md)，常见故障见[排错指南](docs/troubleshooting.md)。
+
+## 🤝 参与贡献
+
+欢迎提交可复现的问题、文档修订和合成测试。公开检查不需要模型密钥、Docker、Word 或私有题目：
+
+```powershell
+python -m pip install -e ".[dev,workflow,dsh]"
+python -m scripts.check_public_repository
+python -m pytest -q
+```
+
+请先阅读[贡献指南](docs/contributing.md)。不要在 issue、提交或附件中包含密钥、连接串、私人题面和运行原件。产品变化见[更新记录](docs/changelog.md)。
+
+## 📄 许可
+
+当前组合源码采用 [AGPL-3.0-only](LICENSE)，既有 Apache-2.0 授权及第三方许可按[第三方声明](THIRD_PARTY_NOTICES.md)保留。源码公开不表示所有预编译依赖、原生组件及对应源码材料已完成发行核对；当前不发布预编译安装包。详见[许可与发行说明](docs/combined-distribution-license.md)。
+
+软件按许可证提供且不作担保。

@@ -226,8 +226,8 @@
     },
     {
       "path": "contracts/README.md",
-      "sha256": "169e005d3bd4db0d5a16ef1d84417bf6a40de46aa661bae2b7b7a946beca16d1",
-      "bytes": 4926,
+      "sha256": "6a69423f82fc46070db65747b7f0997e0962b3beda6bd205cab564ea734073ba",
+      "bytes": 2307,
       "disposition": "project_runtime_private_development"
     },
     {

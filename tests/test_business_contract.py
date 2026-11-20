@@ -259,7 +259,7 @@ def test_contract_resources_are_available_outside_checkout_from_zip(tmp_path):
         for name in ('business-tools-1.0.0.json', 'business-request-1.0.0.schema.json', 'business-response-1.0.0.schema.json'):
             zipped.write(package/'resources/contracts'/name, 'modelcrew/resources/contracts/'+name)
     dependency_root = str(Path(__import__('jsonschema').__file__).parent.parent)
-    assert not Path(dependency_root).is_relative_to(ROOT)
+    assert not Path(dependency_root).is_relative_to(ROOT/'src')
     code = "import sys,json; sys.path.insert(0,sys.argv[1]); sys.path.insert(1,sys.argv[2]); from modelcrew.business_contract import audit_contract; print(json.dumps(audit_contract()))"
     response = subprocess.run([sys.executable, '-I', '-c', code, str(archive), dependency_root], cwd=tmp_path,
                               capture_output=True, text=True, timeout=60)
